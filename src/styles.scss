@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font Face Declaration */
+@font-face {
+  font-family: 'Neue Haas Display';
+  src: url('./assets/fonts/NeueHaasDisplayBlack.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Haas Display';
+  src: url('./assets/fonts/NeueHaasDisplayLight.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Custom styles below this line */

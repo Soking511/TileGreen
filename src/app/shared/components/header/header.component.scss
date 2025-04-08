@@ -1,0 +1,30 @@
+.logo-text {
+  font-family: "Neue Haas Display", sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.nav-link {
+  font-family: "Neue Haas Display", sans-serif;
+  /* Technology */
+  width: 99px;
+  height: 24px;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  /* identical to box height */
+
+  color: #ffffff;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.contact-button {
+  font-family: "Neue Haas Display", sans-serif;
+  font-weight: 500;
+}
