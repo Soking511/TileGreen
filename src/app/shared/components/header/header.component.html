@@ -1,9 +1,8 @@
-<div class="px-4 sm:px-8 md:px-16 lg:px-32 xl:px-64 sm:py-4">
-    <nav
-        class="text-white flex flex-col md:flex-row items-center justify-between px-2 sm:px-4 md:px-6 sm:py-4 font-neue-haas">
+<div class="px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-2 sm:py-3 md:py-4">
+    <nav class="text-white flex flex-wrap items-center justify-between font-neue-haas">
         <!-- Logo -->
-        <div class="flex items-center gap-2 mb-4 md:mb-0">
-            <svg width="52" class="h-8 sm:h-10" height="48" viewBox="0 0 52 48" fill="none"
+        <div class="flex items-center gap-2 z-20">
+            <svg width="52" class="h-7 sm:h-8 md:h-10" height="48" viewBox="0 0 52 48" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_118_1154)">
                     <path
@@ -24,21 +23,70 @@
             </svg>
         </div>
 
-        <!-- Navigation Links -->
-        <ul
-            class="flex flex-wrap justify-center md:justify-start space-x-4 md:space-x-6 lg:space-x-10 text-base lg:text-lg font-light mb-4 md:mb-0">
-            <li><a href="#" class="nav-link hover:text-gray-300">About</a></li>
-            <li><a href="#" class="nav-link hover:text-gray-300">Technology</a></li>
-            <li><a href="#" class="nav-link hover:text-gray-300">License</a></li>
-            <li><a href="#" class="nav-link hover:text-gray-300">Applications</a></li>
-            <li><a href="#" class="nav-link hover:text-gray-300">Careers</a></li>
-        </ul>
+        <!-- Mobile Menu Button -->
+        <button class="md:hidden flex items-center z-20" id="mobile-menu-button">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+        </button>
 
-        <!-- Contact Us Button -->
-        <a href="#"
-            class="contact-button relative border border-white rounded-full px-4 sm:px-6 py-1 sm:py-2 text-white hover:bg-white hover:text-black transition overflow-hidden">
-            <span class="relative z-10">Contact Us</span>
-            <div class="absolute inset-0 bg-black opacity-25"></div>
-        </a>
+        <!-- Navigation Links - Mobile (Hidden by default) -->
+        <div class="md:hidden fixed inset-0 bg-blue-900/95 backdrop-blur-sm z-10 transform transition-transform duration-300 translate-x-full"
+            id="mobile-menu">
+            <div class="flex flex-col h-full justify-center items-center">
+                <ul class="flex flex-col space-y-6 text-xl font-light text-center">
+                    <li><a href="#" class="nav-link block py-2 hover:text-gray-300">About</a></li>
+                    <li><a href="#" class="nav-link block py-2 hover:text-gray-300">Technology</a></li>
+                    <li><a href="#" class="nav-link block py-2 hover:text-gray-300">License</a></li>
+                    <li><a href="#" class="nav-link block py-2 hover:text-gray-300">Applications</a></li>
+                    <li><a href="#" class="nav-link block py-2 hover:text-gray-300">Careers</a></li>
+                    <li class="pt-4">
+                        <a href="#"
+                            class="contact-button relative border border-white rounded-full px-6 py-2 text-white hover:bg-white hover:text-black transition overflow-hidden">
+                            <span class="relative z-10">Contact Us</span>
+                            <div class="absolute inset-0 bg-black opacity-25"></div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex md:items-center md:justify-between md:flex-grow">
+            <ul
+                class="flex flex-wrap justify-center md:justify-start space-x-4 lg:space-x-6 xl:space-x-10 text-sm lg:text-base font-light ml-4 lg:ml-8">
+                <li><a href="#" class="nav-link hover:text-gray-300">About</a></li>
+                <li><a href="#" class="nav-link hover:text-gray-300">Technology</a></li>
+                <li><a href="#" class="nav-link hover:text-gray-300">License</a></li>
+                <li><a href="#" class="nav-link hover:text-gray-300">Applications</a></li>
+                <li><a href="#" class="nav-link hover:text-gray-300">Careers</a></li>
+            </ul>
+
+            <!-- Contact Us Button (Desktop) -->
+            <a href="#"
+                class="contact-button relative border border-white rounded-full px-4 lg:px-6 py-1 lg:py-2 text-white hover:bg-white hover:text-black transition overflow-hidden whitespace-nowrap text-sm lg:text-base">
+                <span class="relative z-10">Contact Us</span>
+                <div class="absolute inset-0 bg-black opacity-25"></div>
+            </a>
+        </div>
     </nav>
 </div>
+
+<!-- Add script for mobile menu toggle -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            if (mobileMenu.classList.contains('translate-x-full')) {
+                mobileMenu.classList.remove('translate-x-full');
+                mobileMenu.classList.add('translate-x-0');
+            } else {
+                mobileMenu.classList.remove('translate-x-0');
+                mobileMenu.classList.add('translate-x-full');
+            }
+        });
+    });
+</script>

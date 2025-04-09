@@ -1,0 +1,44 @@
+.rectangle {
+  width: 24px;
+  height: 24px;
+
+  background: #0460d9;
+  border-radius: 4px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.text{
+  /* What makes us special */
+
+  width: 178px;
+  height: 22px;
+
+  font-family: "Neue Haas Grotesk Display Pro";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  /* identical to box height */
+
+  color: #434343;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.line {
+  position: absolute;
+  left: calc(
+    178px + 24px + 12px
+  ); /* Width of text + width of rectangle + gap */
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background-color: #464646;
+}

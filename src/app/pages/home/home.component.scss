@@ -15,3 +15,132 @@ h2 {
   font-family: "Neue Haas Display", sans-serif;
   font-weight: 500;
 }
+
+.section1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.section1-image {
+  width: 100%;
+  max-width: 474px;
+  height: auto;
+  aspect-ratio: 474/513;
+  font-family: "Neue Haas Display", sans-serif;
+}
+
+.section1-text {
+  /* Patented Machine Learning Technology Leading the Way */
+  max-width: 567px;
+  width: 100%;
+  margin: 0;
+  margin-bottom: 1rem;
+
+  font-family: "Neue Haas Grotesk Display Pro";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 1.4;
+  color: #010d26;
+
+  @media (min-width: 768px) {
+    font-size: 42px;
+    line-height: 1.5;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 52px;
+    line-height: 1.6;
+  }
+}
+
+.tech-description-container {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+
+  @media (min-width: 1024px) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    max-width: 218px;
+  }
+}
+
+.tech-description {
+  width: 100%;
+  max-width: 100%;
+  font-family: "Neue Haas Display", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.4;
+  color: #818896;
+
+  @media (min-width: 768px) {
+    font-size: 18px;
+    line-height: 1.5;
+    max-width: 300px;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 20px;
+    line-height: 1.5;
+    max-width: 218px;
+  }
+}
+
+.explore-our-tech-button {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 4px;
+  gap: 12px;
+
+  width: auto;
+  height: auto;
+
+  background: #F5F4F3;
+  transition: all 0.3s ease;
+}
+
+.p-description {
+  font-family: "Neue Haas Grotesk Display Pro";
+  font-weight: 800;
+}
+
+.h1-description {
+/* We Integrate Material Science and Machine Learning for Sustainability. */
+
+height: 116px;
+
+font-family: 'Neue Haas Grotesk Display Pro';
+font-style: normal;
+font-weight: 500;
+font-size: 48px;
+line-height: 58px;
+
+color: #010D26;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+}
+
+.eucalyptus-image{
+  /* unsplash:hX_hf2lPpUU */
+
+width: 515.07px;
+height: 772.21px;
+left: 751.78px;
+top: 5041.05px;
+
+transform: rotate(120.51deg);
+
+}
