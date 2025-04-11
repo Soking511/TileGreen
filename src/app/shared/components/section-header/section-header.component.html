@@ -1,7 +1,12 @@
-<div class="pb-8 ">
-    <div class="flex items-center gap-3 relative">
-        <div class="rectangle flex-shrink-0"></div>
-        <span class="text whitespace-nowrap flex-shrink-0">{{title}}</span>
-        <div class="line hidden sm:block"></div>
+<div class="pb-8">
+    <div class="flex items-center gap-3">
+        <!-- Rectangle indicator at the left -->
+        <div class="rectangle flex-shrink-0 order-1"></div>
+
+        <!-- Title text in the middle -->
+        <span class="text font-medium text-lg md:text-xl whitespace-normal flex-shrink-0 order-2">{{title}}</span>
+
+        <!-- Line that fills the remaining space on the right -->
+        <div class="flex-1 h-px bg-gray-200 min-w-[30px] order-3"></div>
     </div>
 </div>
