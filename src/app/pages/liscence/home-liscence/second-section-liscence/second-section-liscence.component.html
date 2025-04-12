@@ -100,6 +100,10 @@
 
     <!-- contact-form.component.html -->
     <div class="form-container px-12">
+        <p class="w-[1107px] text-[64px] text-left text-[#010d26] pb-10">
+            We’re launching soon! Be among the first to bring TileGreen’s technology to your region.
+          </p>
+
         <form [formGroup]="contactForm!" (ngSubmit)="onSubmit()"
             class="flex flex-col justify-start items-start w-full gap-4">
 
@@ -182,9 +186,9 @@
             </div>
 
             <!-- Submit Button -->
-            <div class="self-stretch flex justify-center mt-4">
+            <div class="self-stretch flex justify-center mt-4 rounded-[50px] bg-[#010d26]">
                 <button type="submit"
-                    class="px-12 py-4 bg-blue-600 text-white rounded-3xl text-xl hover:bg-blue-700 transition-colors">
+                    class="px-12 py-4 text-white rounded-3xl text-xl transition-colors">
                     Submit
                 </button>
             </div>
