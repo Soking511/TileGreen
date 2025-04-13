@@ -1,76 +1,117 @@
-<div class="px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-2 sm:py-3 md:py-4">
-    <nav class="text-white flex flex-wrap items-center justify-between font-neue-haas">
-        <!-- Logo -->
-        <div class="flex items-center gap-2 z-20">
-            <svg width="52" class="h-7 sm:h-8 md:h-10" height="48" viewBox="0 0 52 48" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_118_1154)">
-                    <path
-                        d="M51.9749 40.6678C51.9749 44.6898 48.6596 47.9807 44.6076 47.9807H36.8315C32.7795 47.9807 29.4642 44.6898 29.4642 40.6678V31.2255C29.4642 27.2035 32.7795 23.9127 36.8315 23.9127H48.7004L47.0638 29.3161H36.9137C35.8084 29.3161 34.867 30.2101 34.867 31.3477V40.5868C34.867 41.6839 35.8084 42.6184 36.9137 42.6184H44.4851C45.6313 42.6184 46.5319 41.6839 46.5319 40.5868V39.3195H41.129L39.4918 33.916H51.9749V40.6678Z"
-                        fill="white" />
-                    <path
-                        d="M11.0205 15.8993V22.2203H20.9287V25.3571V43.6314V47.9801H27.6705V43.6314V22.2203H49.1563L51.0203 15.8993H11.0205Z"
-                        fill="white" />
-                    <path
-                        d="M51.9749 0.0199661H45.6068H0.025116V0.61155V6.341V41.659V47.9801H6.39323H11.0205V41.659H6.39323V6.341H45.6068V10.934H51.9749V6.341V0.0199661Z"
-                        fill="white" />
-                </g>
-                <defs>
-                    <clipPath id="clip0_118_1154">
-                        <rect width="52" height="48" fill="white" />
-                    </clipPath>
-                </defs>
-            </svg>
-        </div>
+<!-- Hero Section with Background -->
+<div class="relative min-h-screen flex flex-col">
+    <img [src]="imagePath" alt="Header Background"
+        class="absolute inset-0 object-cover w-full h-full -z-10">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent -z-10"></div>
 
-        <!-- Mobile Menu Button -->
-        <button class="md:hidden flex items-center z-20" id="mobile-menu-button">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-            </svg>
-        </button>
-
-        <!-- Navigation Links - Mobile (Hidden by default) -->
-        <div class="md:hidden fixed inset-0 bg-blue-900/95 backdrop-blur-sm z-10 transform transition-transform duration-300 translate-x-full"
-            id="mobile-menu">
-            <div class="flex flex-col h-full justify-center items-center">
-                <ul class="flex flex-col space-y-6 text-xl font-light text-center">
-                    <li><a href="#" class="nav-link block py-2 hover:text-gray-300">About</a></li>
-                    <li><a href="#" class="nav-link block py-2 hover:text-gray-300">Technology</a></li>
-                    <li><a href="#" class="nav-link block py-2 hover:text-gray-300">License</a></li>
-                    <li><a href="#" class="nav-link block py-2 hover:text-gray-300">Applications</a></li>
-                    <li><a href="#" class="nav-link block py-2 hover:text-gray-300">Careers</a></li>
-                    <li class="pt-4">
-                        <a href="#"
-                            class="contact-button relative border border-white rounded-full px-6 py-2 text-white hover:bg-white hover:text-black transition overflow-hidden">
-                            <span class="relative z-10">Contact Us</span>
-                            <div class="absolute inset-0 bg-black opacity-25"></div>
-                        </a>
-                    </li>
-                </ul>
+    <!-- Navigation -->
+    <div class="px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-2 sm:py-3 md:py-4 z-50">
+        <nav class="text-white flex flex-wrap items-center justify-between font-neue-haas">
+            <!-- Logo -->
+            <div class="flex items-center gap-2 z-20">
+                <svg width="52" class="h-7 sm:h-8 md:h-10" height="48" viewBox="0 0 52 48" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_118_1154)">
+                        <path
+                            d="M51.9749 40.6678C51.9749 44.6898 48.6596 47.9807 44.6076 47.9807H36.8315C32.7795 47.9807 29.4642 44.6898 29.4642 40.6678V31.2255C29.4642 27.2035 32.7795 23.9127 36.8315 23.9127H48.7004L47.0638 29.3161H36.9137C35.8084 29.3161 34.867 30.2101 34.867 31.3477V40.5868C34.867 41.6839 35.8084 42.6184 36.9137 42.6184H44.4851C45.6313 42.6184 46.5319 41.6839 46.5319 40.5868V39.3195H41.129L39.4918 33.916H51.9749V40.6678Z"
+                            fill="white" />
+                        <path
+                            d="M11.0205 15.8993V22.2203H20.9287V25.3571V43.6314V47.9801H27.6705V43.6314V22.2203H49.1563L51.0203 15.8993H11.0205Z"
+                            fill="white" />
+                        <path
+                            d="M51.9749 0.0199661H45.6068H0.025116V0.61155V6.341V41.659V47.9801H6.39323H11.0205V41.659H6.39323V6.341H45.6068V10.934H51.9749V6.341V0.0199661Z"
+                            fill="white" />
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_118_1154">
+                            <rect width="52" height="48" fill="white" />
+                        </clipPath>
+                    </defs>
+                </svg>
             </div>
-        </div>
 
-        <!-- Desktop Navigation -->
-        <div class="hidden md:flex md:items-center md:justify-between md:flex-grow">
-            <ul
-                class="flex flex-wrap justify-center md:justify-start space-x-4 lg:space-x-6 xl:space-x-10 text-sm lg:text-base font-light ml-4 lg:ml-8">
-                <li><a href="#" class="nav-link hover:text-gray-300">About</a></li>
-                <li><a href="#" class="nav-link hover:text-gray-300">Technology</a></li>
-                <li><a href="#" class="nav-link hover:text-gray-300">License</a></li>
-                <li><a href="#" class="nav-link hover:text-gray-300">Applications</a></li>
-                <li><a href="#" class="nav-link hover:text-gray-300">Careers</a></li>
-            </ul>
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden flex items-center z-20" id="mobile-menu-button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
 
-            <!-- Contact Us Button (Desktop) -->
+            <!-- Navigation Links - Mobile (Hidden by default) -->
+            <div class="md:hidden fixed inset-0 bg-blue-900/95 backdrop-blur-sm z-10 transform transition-transform duration-300 translate-x-full"
+                id="mobile-menu">
+                <div class="flex flex-col h-full justify-center items-center">
+                    <ul class="flex flex-col space-y-6 text-xl font-light text-center">
+                        <li><a href="#" class="nav-link block py-2 hover:text-gray-300">About</a></li>
+                        <li><a href="#" class="nav-link block py-2 hover:text-gray-300">Technology</a></li>
+                        <li><a href="#" class="nav-link block py-2 hover:text-gray-300">License</a></li>
+                        <li><a href="#" class="nav-link block py-2 hover:text-gray-300">Applications</a></li>
+                        <li><a href="#" class="nav-link block py-2 hover:text-gray-300">Careers</a></li>
+                        <li class="pt-4">
+                            <a href="#"
+                                class="contact-button relative border border-white rounded-full px-6 py-2 text-white hover:bg-white hover:text-black transition overflow-hidden">
+                                <span class="relative z-10">Contact Us</span>
+                                <div class="absolute inset-0 bg-black opacity-25"></div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex md:items-center md:justify-between md:flex-grow">
+                <ul
+                    class="flex flex-wrap justify-center md:justify-start space-x-4 lg:space-x-6 xl:space-x-10 text-sm lg:text-base font-light ml-4 lg:ml-8">
+                    <li><a href="#" class="nav-link hover:text-gray-300">About</a></li>
+                    <li><a href="#" class="nav-link hover:text-gray-300">Technology</a></li>
+                    <li><a href="#" class="nav-link hover:text-gray-300">License</a></li>
+                    <li><a href="#" class="nav-link hover:text-gray-300">Applications</a></li>
+                    <li><a href="#" class="nav-link hover:text-gray-300">Careers</a></li>
+                </ul>
+
+                <!-- Contact Us Button (Desktop) -->
+                <a href="#"
+                    class="contact-button relative border border-white rounded-full px-4 lg:px-6 py-1 lg:py-2 text-white hover:bg-white hover:text-black transition overflow-hidden whitespace-nowrap text-sm lg:text-base">
+                    <span class="relative z-10">Contact Us</span>
+                    <div class="absolute inset-0 bg-black opacity-25"></div>
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="flex-grow flex flex-col justify-center items-center text-white px-4 sm:px-8 md:px-16">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-center max-w-4xl mx-auto leading-tight mb-6">
+            {{headTitle1}}<br> <i>{{headTitle2}}</i> {{headTitle3}}
+        </h1>
+        <p class="text-lg md:text-xl text-center max-w-2xl mx-auto mb-8 text-white/90">
+            {{description1}}
+            <br>
+            {{description2}}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 sm:gap-6">
+            @if ( button1Text ) {
+
+                <a href="#"
+                class="bg-white text-blue-900 hover:bg-blue-100 font-medium px-8 py-3 rounded-full transition-colors">
+                {{button1Text}}
+            </a>
+        }
             <a href="#"
-                class="contact-button relative border border-white rounded-full px-4 lg:px-6 py-1 lg:py-2 text-white hover:bg-white hover:text-black transition overflow-hidden whitespace-nowrap text-sm lg:text-base">
-                <span class="relative z-10">Contact Us</span>
-                <div class="absolute inset-0 bg-black opacity-25"></div>
+                class="border border-white text-white hover:bg-white/20 px-8 py-3 rounded-full transition-colors">
+                {{button2Text}}
             </a>
         </div>
-    </nav>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
+    </div>
 </div>
 
 <!-- Add script for mobile menu toggle -->

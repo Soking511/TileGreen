@@ -1,6 +1,8 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FooterHomeComponent } from "../../../home/footer-home/footer-home.component";
+import { HeaderComponent } from "../../../../shared/components/header/header.component";
 
 interface FaqItem {
   question: string;
@@ -10,7 +12,7 @@ interface FaqItem {
 
 @Component({
   selector: 'app-second-section-liscence',
-  imports: [NgFor, NgIf, ReactiveFormsModule],
+  imports: [NgFor, NgIf, ReactiveFormsModule, FooterHomeComponent, HeaderComponent],
   templateUrl: './second-section-liscence.component.html',
   styleUrl: './second-section-liscence.component.scss',
 })
