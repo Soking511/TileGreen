@@ -3,10 +3,11 @@ import { FirstSectionTechComponent } from "../first-section-tech/first-section-t
 import { SecondSectionTechComponent } from "../second-section-tech/second-section-tech.component";
 import { SectionHeaderComponent } from "../../../shared/components/section-header/section-header.component";
 import { FooterHomeComponent } from "../../home/footer-home/footer-home.component";
+import { HeaderComponent } from "../../../shared/components/header/header.component";
 
 @Component({
   selector: 'app-tech-home',
-  imports: [FirstSectionTechComponent, SecondSectionTechComponent, SectionHeaderComponent, FooterHomeComponent],
+  imports: [FirstSectionTechComponent, SecondSectionTechComponent, SectionHeaderComponent, FooterHomeComponent, HeaderComponent],
   templateUrl: './tech-home.component.html',
   styleUrl: './tech-home.component.scss'
 })

@@ -1,13 +1,12 @@
-<!-- Hero Section with Background -->
-<div class="relative min-h-screen flex flex-col">
-    <img [src]="imagePath" alt="Header Background"
-        class="absolute inset-0 object-cover w-full h-full -z-10">
+<div class="relative flex flex-col" [ngClass]="{'min-h-screen': imagePath}">
+    @if (imagePath) {
+    <img [src]="imagePath" alt="Header Background" class="absolute inset-0 object-cover w-full h-full -z-10">
     <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent -z-10"></div>
+    }
 
-    <!-- Navigation -->
-    <div class="px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-2 sm:py-3 md:py-4 z-50">
+    <div class="px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-2 sm:py-3 md:py-4 z-50"
+        [ngClass]="{'bg-[#010d26]': !imagePath}">
         <nav class="text-white flex flex-wrap items-center justify-between font-neue-haas">
-            <!-- Logo -->
             <div class="flex items-center gap-2 z-20">
                 <svg width="52" class="h-7 sm:h-8 md:h-10" height="48" viewBox="0 0 52 48" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -30,27 +29,35 @@
                 </svg>
             </div>
 
-            <!-- Mobile Menu Button -->
-            <button class="md:hidden flex items-center z-20" id="mobile-menu-button">
+            <button class="md:hidden flex items-center z-20" (click)="toggleMobileMenu()"
+                aria-label="Toggle navigation menu" [attr.aria-expanded]="isMobileMenuOpen">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
                 </svg>
             </button>
 
-            <!-- Navigation Links - Mobile (Hidden by default) -->
-            <div class="md:hidden fixed inset-0 bg-blue-900/95 backdrop-blur-sm z-10 transform transition-transform duration-300 translate-x-full"
-                id="mobile-menu">
-                <div class="flex flex-col h-full justify-center items-center">
+            <div class="md:hidden fixed inset-0 bg-blue-900/95 backdrop-blur-sm z-10 transform transition-transform duration-300 ease-in-out"
+                [ngClass]="isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'" role="dialog" aria-modal="true"
+                aria-label="Mobile navigation menu">
+                <div class="flex flex-col h-full justify-center items-center p-8">
+                    <button class="absolute top-6 right-6 text-white" (click)="toggleMobileMenu()"
+                        aria-label="Close menu">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
                     <ul class="flex flex-col space-y-6 text-xl font-light text-center">
-                        <li><a href="#" class="nav-link block py-2 hover:text-gray-300">About</a></li>
-                        <li><a href="#" class="nav-link block py-2 hover:text-gray-300">Technology</a></li>
-                        <li><a href="#" class="nav-link block py-2 hover:text-gray-300">License</a></li>
-                        <li><a href="#" class="nav-link block py-2 hover:text-gray-300">Applications</a></li>
-                        <li><a href="#" class="nav-link block py-2 hover:text-gray-300">Careers</a></li>
+                        @for (item of navbarItems; track item) {
+                        <li><a [routerLink]="item.link"
+                                class="nav-link block py-2 hover:text-gray-300 transition-colors duration-200">{{item.name}}</a>
+                        </li>
+                        }
                         <li class="pt-4">
                             <a href="#"
-                                class="contact-button relative border border-white rounded-full px-6 py-2 text-white hover:bg-white hover:text-black transition overflow-hidden">
+                                class="contact-button relative border border-white rounded-full px-8 py-3 text-white hover:bg-white hover:text-blue-900 transition-all duration-300 overflow-hidden">
                                 <span class="relative z-10">Contact Us</span>
                                 <div class="absolute inset-0 bg-black opacity-25"></div>
                             </a>
@@ -59,18 +66,14 @@
                 </div>
             </div>
 
-            <!-- Desktop Navigation -->
             <div class="hidden md:flex md:items-center md:justify-between md:flex-grow">
                 <ul
                     class="flex flex-wrap justify-center md:justify-start space-x-4 lg:space-x-6 xl:space-x-10 text-sm lg:text-base font-light ml-4 lg:ml-8">
-                    <li><a href="#" class="nav-link hover:text-gray-300">About</a></li>
-                    <li><a href="#" class="nav-link hover:text-gray-300">Technology</a></li>
-                    <li><a href="#" class="nav-link hover:text-gray-300">License</a></li>
-                    <li><a href="#" class="nav-link hover:text-gray-300">Applications</a></li>
-                    <li><a href="#" class="nav-link hover:text-gray-300">Careers</a></li>
+                    @for (item of navbarItems; track item) {
+                    <li><a [routerLink]="item.link" class="nav-link hover:text-gray-300">{{item.name}}</a></li>
+                    }
                 </ul>
 
-                <!-- Contact Us Button (Desktop) -->
                 <a href="#"
                     class="contact-button relative border border-white rounded-full px-4 lg:px-6 py-1 lg:py-2 text-white hover:bg-white hover:text-black transition overflow-hidden whitespace-nowrap text-sm lg:text-base">
                     <span class="relative z-10">Contact Us</span>
@@ -80,7 +83,7 @@
         </nav>
     </div>
 
-    <!-- Hero Content -->
+    @if (imagePath) {
     <div class="flex-grow flex flex-col justify-center items-center text-white px-4 sm:px-8 md:px-16">
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-center max-w-4xl mx-auto leading-tight mb-6">
             {{headTitle1}}<br> <i>{{headTitle2}}</i> {{headTitle3}}
@@ -91,13 +94,12 @@
             {{description2}}
         </p>
         <div class="flex flex-col sm:flex-row gap-4 sm:gap-6">
-            @if ( button1Text ) {
-
-                <a href="#"
+            @if (button1Text) {
+            <a href="#"
                 class="bg-white text-blue-900 hover:bg-blue-100 font-medium px-8 py-3 rounded-full transition-colors">
                 {{button1Text}}
             </a>
-        }
+            }
             <a href="#"
                 class="border border-white text-white hover:bg-white/20 px-8 py-3 rounded-full transition-colors">
                 {{button2Text}}
@@ -105,29 +107,12 @@
         </div>
     </div>
 
-    <!-- Scroll Indicator -->
     <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24"
+        <svg xmlns="http://www.w3.org/2000/svg"
+            class="h-8 w-8 text-white opacity-80 hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24"
             stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
         </svg>
     </div>
+    }
 </div>
-
-<!-- Add script for mobile menu toggle -->
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuButton.addEventListener('click', () => {
-            if (mobileMenu.classList.contains('translate-x-full')) {
-                mobileMenu.classList.remove('translate-x-full');
-                mobileMenu.classList.add('translate-x-0');
-            } else {
-                mobileMenu.classList.remove('translate-x-0');
-                mobileMenu.classList.add('translate-x-full');
-            }
-        });
-    });
-</script>

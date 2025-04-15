@@ -6,8 +6,8 @@
             Pioneering Eco Projects
         </h2>
         <p class="text-lg sm:text-xl md:text-2xl text-slate-950 max-w-2xl mb-6 sm:mb-8">
-            Discover the impactful projects where TileGreen's cutting-edge technology has been implemented
-            to create sustainable and eco-friendly solutions.
+            Discover the impactful projects where TileGreen's cutting-edge technology
+            has been implemented to create sustainable and eco-friendly solutions.
         </p>
         <a href="#contact"
             class="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-stone-100 rounded-full hover:bg-stone-200 transition-colors">
@@ -23,17 +23,19 @@
     </div>
 
     <!-- Modern Slider with Improvements -->
-    <div class="relative overflow-hidden bg-gray-50 py-8 rounded-3xl">
+    <div class="relative overflow-hidden  py-8 rounded-3xl">
         <!-- Title and Navigation Controls in single row -->
         <div class="flex justify-between items-center mb-6 px-6 sm:px-10">
-            <h3 class="text-xl sm:text-2xl font-medium text-slate-800">Featured Projects</h3>
+            <h3 class="text-xl sm:text-2xl font-medium text-slate-800">
+                <!-- Featured Projects -->
+            </h3>
 
             <div class="flex space-x-3">
                 <!-- Progress bar -->
-                <div class="hidden md:block w-32 bg-gray-200 rounded-full h-2 my-auto mr-4">
+                <!-- <div class="hidden md:block w-32 bg-gray-200 rounded-full h-2 my-auto mr-4">
                     <div class="bg-blue-700 h-2 rounded-full transition-all duration-500"
                         [style.width.%]="(currentIndex / (slides.length - 1)) * 100"></div>
-                </div>
+                </div> -->
 
                 <!-- Navigation Buttons - Improved Design -->
                 <button (click)="prevSlide()"
@@ -57,46 +59,54 @@
         <!-- Slider Content - Card-based Modern Design -->
         <div class="relative px-4">
             <!-- Slider track with smooth transitions -->
-            <div class="flex transition-transform duration-500 ease-out"
-                [style.transform]="'translateX(' + (-currentIndex * (100/visibleSlides)) + '%)'">
-
+            <div class="flex transition-transform duration-500 ease-out" [style.transform]="
+          'translateX(' + -currentIndex * (100 / visibleSlides) + '%)'
+        ">
                 <!-- Individual Slide Cards -->
                 <div *ngFor="let slide of slides; let i = index"
                     class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-2 md:px-3 transition-all duration-500"
                     [class.scale-95]="!isActive(i) && isNearActive(i)"
                     [class.opacity-70]="!isActive(i) && !isNearActive(i)">
-
                     <div
                         class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col">
                         <!-- Image container with fixed aspect ratio -->
                         <div class="relative aspect-[16/9] overflow-hidden">
                             <img [src]="slide.img" [alt]="slide.alt"
                                 class="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                                (error)="handleImageError($event)">
+                                (error)="handleImageError($event)" />
 
                             <!-- Category badge -->
                             <div
                                 class="absolute top-4 left-4 bg-blue-700 text-white px-3 py-1 rounded-full text-sm font-medium">
-                                {{ slide.category || 'Eco Project' }}
+                                {{ slide.category || "Eco Project" }}
                             </div>
                         </div>
 
                         <!-- Content -->
                         <div class="p-5 flex flex-col flex-grow">
-                            <h4 class="text-xl font-semibold mb-2">{{ slide.title || 'Project ' + (i+1) }}</h4>
-                            <p class="text-gray-600 mb-4 flex-grow">{{ slide.description || 'Innovative eco-friendly
-                                solution utilizing TileGreen technology.' }}</p>
+                            <h4 class="text-xl font-semibold mb-2">
+                                {{ slide.title || "Project " + (i + 1) }}
+                            </h4>
+                            <p class="text-gray-600 mb-4 flex-grow">
+                                {{
+                                slide.description ||
+                                "Innovative eco-friendly
+                                solution utilizing TileGreen technology."
+                                }}
+                            </p>
 
                             <div class="flex justify-between items-center mt-auto pt-4 border-t border-gray-100">
-                                <span class="text-sm text-gray-500">{{ slide.location || 'Global' }}</span>
-                                <a href="#" class="text-blue-700 font-medium flex items-center">
+                                <span class="text-sm text-gray-500">{{
+                                    slide.location || "Global"
+                                    }}</span>
+                                <!-- <a href="#" class="text-blue-700 font-medium flex items-center">
                                     Learn more
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
                                         xmlns="http://www.w3.org/2000/svg" class="ml-1">
                                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
-                                </a>
+                                </a> -->
                             </div>
                         </div>
                     </div>
@@ -117,31 +127,35 @@
 
 <app-section-header title="Contact" />
 
-<!-- Refactored Second Section -->
-<div class="container mx-auto px-4 py-16">
-    <div class="flex flex-col lg:flex-row items-center gap-6 md:gap-8 lg:gap-12">
-        <!-- Text Content Column -->
-        <div class="w-full lg:w-3/5 flex flex-col justify-between gap-8">
+<!-- Refactored Second Section with Enhanced Responsiveness -->
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20">
+    <div class="flex flex-col lg:flex-row items-start gap-8 md:gap-10 lg:gap-16">
+        <!-- Text Content Column - Improved responsive hierarchy -->
+        <div class="w-full lg:w-3/5 flex flex-col justify-between gap-6 sm:gap-8">
             <div class="flex flex-col gap-4 md:gap-6">
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold text-slate-950">
-                    We are passionate innovators, committed to environmental sustainability and technological
-                    advancements.
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-slate-950 leading-tight">
+                    We are passionate innovators, committed to environmental
+                    sustainability and technological advancements.
                 </h2>
-                <p class="text-base sm:text-lg md:text-xl text-zinc-700">
-                    Driven by an unwavering passion, we merge groundbreaking technology with a deep respect for our
-                    planet.
-                    Every idea we bring to life reflects our commitment to creating solutions that not only push the
-                    boundaries of innovation but also promote a healthier, more sustainable future.
+                <p class="text-base sm:text-lg md:text-xl text-zinc-700 leading-relaxed max-w-3xl">
+                    Driven by an unwavering passion, we merge groundbreaking technology
+                    with a deep respect for our planet. Every idea we bring to life
+                    reflects our commitment to creating solutions that not only push the
+                    boundaries of innovation but also promote a healthier, more
+                    sustainable future.
                 </p>
             </div>
 
-            <!-- CTA Button - Consistent with First Section -->
+            <!-- CTA Button - Enhanced for better responsive behavior -->
             <a href="#about"
-                class="inline-flex items-center self-start px-4 sm:px-6 py-2 sm:py-3 bg-stone-100 rounded-full hover:bg-stone-200 transition-colors mt-4 md:mt-6">
-                <span class="text-lg sm:text-xl font-medium text-slate-950 mr-2 sm:mr-4">Discover TileGreen</span>
-                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-700 rounded-full flex items-center justify-center">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                        class="sm:w-6 sm:h-6">
+                class="inline-flex items-center self-start px-4 sm:px-6 py-2.5 sm:py-3 bg-stone-100 rounded-full hover:bg-stone-200 transition-colors mt-6 sm:mt-8 shadow-sm hover:shadow-md group">
+                <span
+                    class="text-lg sm:text-xl font-medium text-slate-950 mr-2 sm:mr-4 group-hover:mr-3 sm:group-hover:mr-5 transition-all">Discover
+                    TileGreen</span>
+                <div
+                    class="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-blue-700 rounded-full flex items-center justify-center group-hover:bg-blue-800 transition-colors">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        class="sm:w-5 sm:h-5 md:w-6 md:h-6 group-hover:translate-x-0.5 transition-transform">
                         <path d="M13.5 19L21.5 12L13.5 5M21.5 12H2.5" stroke="white" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
@@ -149,12 +163,43 @@
             </a>
         </div>
 
-        <!-- Images Column - Responsive -->
-        <div class="w-full lg:w-2/5 flex flex-col sm:flex-row gap-4 md:gap-6 mt-8 lg:mt-0">
-            <img class="w-full sm:w-1/2 h-64 sm:h-80 md:h-96 lg:h-[543px] object-cover rounded-3xl lg:rounded-full shadow-md"
-                src="assets/images/person/1.png" alt="TileGreen innovation" />
-            <img class="hidden sm:block w-1/2 h-80 md:h-96 lg:h-[543px] object-cover rounded-3xl lg:rounded-full shadow-md"
-                src="assets/images/person/2.png" alt="TileGreen sustainability" />
+        <!-- Images Column - Optimized for mobile without shadows -->
+        <div class="w-full lg:w-2/5 mt-8 lg:mt-0">
+            <!-- Mobile-optimized layout without shadows -->
+            <div class="sm:hidden flex flex-col gap-5">
+                <!-- First image with proper sizing for mobile -->
+                <div class="rounded-xl overflow-hidden">
+                    <img class="w-full mx-auto object-contain" src="assets/images/person/1.png"
+                        alt="TileGreen innovation" style="max-height: 60vh;" />
+                    <!-- Control height for mobile viewport -->
+                </div>
+
+                <!-- Second image with proper sizing for mobile -->
+                <div class="rounded-xl overflow-hidden">
+                    <img class="w-full mx-auto object-contain" src="assets/images/person/2.png"
+                        alt="TileGreen sustainability" style="max-height: 60vh;" />
+                    <!-- Control height for mobile viewport -->
+                </div>
+            </div>
+
+            <!-- Tablet and desktop layout remains unchanged -->
+            <div class="hidden sm:flex flex-row gap-4">
+                <!-- Left column image with object-contain to prevent cropping -->
+                <div class="w-1/2">
+                    <div class="rounded-3xl h-auto">
+                        <img class="w-full object-contain max-h-[450px]" src="assets/images/person/1.png"
+                            alt="TileGreen innovation" />
+                    </div>
+                </div>
+
+                <!-- Right column image with object-contain to prevent cropping -->
+                <div class="w-1/2">
+                    <div class="rounded-3xl h-auto">
+                        <img class="w-full object-contain max-h-[450px]" src="assets/images/person/2.png"
+                            alt="TileGreen sustainability" />
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

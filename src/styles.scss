@@ -5,17 +5,81 @@
 
 /* Font Face Declaration */
 @font-face {
-  font-family: 'Neue Haas Display';
-  src: url('./assets/fonts/NeueHaasDisplayBlack.ttf') format('truetype');
+  font-family: "Neue Haas Display";
+  src: url("./assets/fonts/NeueHaasDisplayBlack.ttf") format("truetype");
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Neue Haas Display';
-  src: url('./assets/fonts/NeueHaasDisplayLight.ttf') format('truetype');
+  font-family: "Neue Haas Display";
+  src: url("./assets/fonts/NeueHaasDisplayLight.ttf") format("truetype");
   font-style: normal;
   font-display: swap;
 }
 
 /* Custom styles below this line */
+
+/* Modern animations for the About page */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDelayed {
+  0%,
+  30% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDelayed2 {
+  0%,
+  50% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDelayed3 {
+  0%,
+  70% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.animate-fadeInDelayed {
+  animation: fadeInDelayed 1.5s ease-out forwards;
+}
+
+.animate-fadeInDelayed2 {
+  animation: fadeInDelayed2 2s ease-out forwards;
+}
+
+.animate-fadeInDelayed3 {
+  animation: fadeInDelayed3 2.5s ease-out forwards;
+}

@@ -1,0 +1,90 @@
+<section id="openings" class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 max-w-7xl">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-4 md:gap-8">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#010d26]">Open Positions</h2>
+        <p class="text-base md:text-xl lg:text-2xl text-[#818896] max-w-xl">
+            Engineer the Future: Build the Technology Transforming Green Construction
+        </p>
+    </div>
+
+    <div class="space-y-16 md:space-y-24">
+        <!-- Job Categories Loop -->
+        @for (category of jobCategories; track $index) {
+        <div class="space-y-6">
+            <!-- Category Header -->
+            <div class="inline-block px-4 py-2 rounded-2xl bg-[#62bf04]/20">
+                <h3 class="text-base md:text-lg font-medium text-[#010d26]">{{category.name}}</h3>
+            </div>
+
+            <!-- Job Positions Loop -->
+            <div class="space-y-4">
+                @for (position of category.positions; track position.title) {
+                <div class="border border-[#adadad] rounded-3xl overflow-hidden">
+                    <!-- Job Header - Always Visible -->
+                    <div (click)="toggleJobExpansion(position)"
+                        class="flex justify-between items-center p-5 md:px-8 md:py-6 cursor-pointer hover:bg-gray-50 transition-colors duration-200">
+                        <div>
+                            <h4 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium text-[#010d26]">
+                                {{position.title}}
+                            </h4>
+                            <p class="text-base sm:text-lg md:text-xl text-[#010d26] mt-1">
+                                {{position.description}}
+                            </p>
+                        </div>
+                        <div class="flex-shrink-0 transition-transform duration-300"
+                            [ngClass]="{'rotate-45': position.expanded}">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 md:w-8 md:h-8">
+                                <path
+                                    d="M33.3332 19.3889H21.111V7.16665C21.111 6.87197 20.9939 6.58935 20.7855 6.38098C20.5772 6.17261 20.2945 6.05554 19.9999 6.05554C19.7052 6.05554 19.4226 6.17261 19.2142 6.38098C19.0058 6.58935 18.8887 6.87197 18.8887 7.16665V19.3889H6.66653C6.37184 19.3889 6.08923 19.5059 5.88085 19.7143C5.67248 19.9227 5.55542 20.2053 5.55542 20.5C5.54993 20.6444 5.57547 20.7883 5.6303 20.922C5.68513 21.0557 5.76798 21.1761 5.87328 21.2751C5.97857 21.3741 6.10386 21.4493 6.24069 21.4958C6.37753 21.5422 6.52274 21.5588 6.66653 21.5444H18.8887V33.8333C18.8887 34.128 19.0058 34.4106 19.2142 34.619C19.4226 34.8274 19.7052 34.9444 19.9999 34.9444C20.2945 34.9444 20.5772 34.8274 20.7855 34.619C20.9939 34.4106 21.111 34.128 21.111 33.8333V21.6111H33.3332C33.6279 21.6111 33.9105 21.494 34.1189 21.2857C34.3272 21.0773 34.4443 20.7947 34.4443 20.5C34.4443 20.2053 34.3272 19.9227 34.1189 19.7143C33.9105 19.5059 33.6279 19.3889 33.3332 19.3889Z"
+                                    fill="black"></path>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Expanded Job Details -->
+                    @if (position.expanded) {
+                    <div class="p-5 md:p-8 pt-0 md:pt-0 border-t border-gray-200 bg-gray-50 animate-fadeIn">
+                        <!-- Requirements -->
+                        @if (position.requirements && position.requirements.length > 0) {
+                        <div class="mb-6">
+                            <h5 class="text-lg font-medium text-[#010d26] mb-2">Requirements</h5>
+                            <ul class="list-disc list-inside text-[#818896] space-y-1">
+                                @for (req of position.requirements; track $index) {
+                                <li>{{req}}</li>
+                                }
+                            </ul>
+                        </div>
+                        }
+
+                        <!-- Responsibilities -->
+                        @if (position.responsibilities && position.responsibilities.length > 0) {
+                        <div class="mb-6">
+                            <h5 class="text-lg font-medium text-[#010d26] mb-2">Responsibilities</h5>
+                            <ul class="list-disc list-inside text-[#818896] space-y-1">
+                                @for (resp of position.responsibilities; track $index) {
+                                <li>{{resp}}</li>
+                                }
+                            </ul>
+                        </div>
+                        }
+
+                        <!-- Apply Button -->
+                        <button (click)="applyForJob(position.title)"
+                            class="mt-2 inline-flex items-center px-6 py-3 bg-[#010d26] hover:bg-[#021f59] text-white font-medium rounded-full transition-colors duration-200">
+                            Apply Now
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H3a1 1 0 110-2h9.586l-2.293-2.293a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                    }
+                </div>
+                }
+            </div>
+        </div>
+        }
+    </div>
+</section>

@@ -1,29 +1,51 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import { TechHomeComponent } from './pages/technology/tech-home/tech-home.component';
-import { HomeAppsComponent } from './pages/applications/home-apps/home-apps.component';
-import { HomeLicenseComponent } from './pages/liscence/home-liscence/home-liscence.component';
 
 export const routes: Routes = [
   {
     path: 'home',
-    component: HomeComponent,
+    loadComponent: () =>
+      import('./pages/home/home.component').then((m) => m.HomeComponent),
   },
   {
     path: 'technology',
-    component: TechHomeComponent,
+    loadComponent: () =>
+      import('./pages/technology/tech-home/tech-home.component').then(
+        (m) => m.TechHomeComponent
+      ),
   },
   {
     path: 'applications',
-    component: HomeAppsComponent,
+    loadComponent: () =>
+      import('./pages/applications/home-apps/home-apps.component').then(
+        (m) => m.HomeAppsComponent
+      ),
   },
   {
     path: 'licenses',
-    component: HomeLicenseComponent,
+    loadComponent: () =>
+      import('./pages/liscence/home-liscence/home-liscence.component').then(
+        (m) => m.HomeLicenseComponent
+      ),
+  },
+  {
+    path: 'careers',
+    loadComponent: () =>
+      import('./pages/careers/home-careers/home-careers.component').then(
+        (m) => m.HomeCareersComponent
+      ),
+  },
+  {
+    path: 'about',
+    loadComponent: () =>
+      import('./pages/about/about.component').then((m) => m.AboutComponent),
   },
   {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
+  },
+  {
+    path: '**',
+    redirectTo: 'home',
   },
 ];

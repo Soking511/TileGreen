@@ -1,0 +1,64 @@
+<app-header/>
+<div
+    class="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12 py-16 overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0 -z-10">
+        <img src="assets/images/careers/background.png" alt="Careers Background" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-white/80ssets/images/careers"></div>
+    </div>
+
+    <!-- Content Container -->
+    <div class="container mx-auto max-w-7xl flex flex-col items-center justify-center gap-8 md:gap-10 lg:gap-12 z-10">
+        <!-- Logo -->
+        <svg width="120" height="113" viewBox="0 0 203 191" fill="none" xmlns="http://www.w3.org/2000/svg"
+            class="mb-4 md:mb-6">
+            <path
+                d="M202.277 161.641C202.277 177.337 189.421 190.175 173.716 190.175H143.568C127.857 190.175 115.007 177.337 115.007 161.641V124.801C115.007 109.104 127.863 96.2669 143.568 96.2669H189.585L183.236 117.347H143.884C139.601 117.347 135.949 120.831 135.949 125.274V161.325C135.949 165.604 139.601 169.252 143.884 169.252H173.235C177.677 169.252 181.17 165.604 181.17 161.325V156.383H160.228L153.879 135.303H202.271V161.647L202.277 161.641Z"
+                fill="#0F8C22" />
+            <path
+                d="M43.498 65V89.6651H81.9149V101.903V173.209V190.175H108.051V173.209V89.6651H191.347L198.574 65H43.498Z"
+                fill="#0F8C22" />
+            <path
+                d="M202.335 0H177.531H0V2.31433V24.7792V163.22V188H24.8031H42.8215V163.22H24.8031V24.7792H177.531V42.7802H202.335V24.7792V0Z"
+                fill="#021F59" />
+        </svg>
+
+        <!-- Main Heading -->
+        <h1
+            class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold text-center text-[#010d26] max-w-4xl leading-tight">
+            Building a Greener Future:<br> Careers at TileGreen
+        </h1>
+
+        <!-- Subheading/Description -->
+        <p
+            class="text-base sm:text-lg md:text-xl lg:text-2xl text-center text-[#818896] max-w-5xl mx-auto leading-relaxed">
+            At TileGreen, we believe that sustainable cities of the future demand innovative, carbon-negative
+            materials that transform waste into opportunity. By pioneering advanced manufacturing
+            technologies, we are reshaping the construction industry—turning unrecyclable plastic waste into
+            high-performance, eco-friendly building materials.
+        </p>
+
+        <!-- CTA Button -->
+        <a href="#openings"
+            class="inline-flex justify-center items-center px-8 py-3 md:px-10 md:py-4 bg-[#010d26] hover:bg-[#021f59] transition-colors rounded-full text-white text-lg md:text-xl font-medium mt-4 md:mt-6 cursor-pointer">
+            See Openings
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd"
+                    d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H3a1 1 0 110-2h9.586l-2.293-2.293a1 1 0 010-1.414z"
+                    clip-rule="evenodd" />
+            </svg>
+        </a>
+    </div>
+
+    <!-- Optional: Scroll indicator at bottom -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#010d26]" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
+    </div>
+</div>
+
+
+<app-careers/>
+<app-form-careers/>
