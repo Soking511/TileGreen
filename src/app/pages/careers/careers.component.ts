@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormCareersComponent } from "./form-careers/form-careers.component";
 
 interface JobCategory {
   name: string;
@@ -17,7 +18,7 @@ interface JobPosition {
 @Component({
   selector: 'app-careers',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormCareersComponent],
   templateUrl: './careers.component.html',
   styleUrl: './careers.component.scss',
 })
