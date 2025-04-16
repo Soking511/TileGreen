@@ -68,6 +68,7 @@ export class FifthSectionComponent implements OnInit, OnDestroy {
   totalSlides = this.slides.length;
   slideInterval: any;
   visibleSlides = 1;
+  private resizeTimeout: any;
 
   constructor() {
     this.setVisibleSlides();
@@ -75,11 +76,15 @@ export class FifthSectionComponent implements OnInit, OnDestroy {
 
   @HostListener('window:resize')
   onResize() {
-    this.setVisibleSlides();
+    clearTimeout(this.resizeTimeout);
+    this.resizeTimeout = setTimeout(() => {
+      this.setVisibleSlides();
+    }, 150); // Throttle resize
   }
 
   ngOnInit(): void {
-    this.startSlideshow();
+    // Only start slideshow if slides are visible
+    setTimeout(() => this.startSlideshow(), 0);
   }
 
   ngOnDestroy(): void {
@@ -150,5 +155,9 @@ export class FifthSectionComponent implements OnInit, OnDestroy {
     console.error('Image failed to load:', event.target.src);
     // Set a fallback image
     event.target.src = 'assets/images/placeholder.jpg';
+  }
+
+  trackBySlide(index: number, item: SlideItem) {
+    return item.id;
   }
 }

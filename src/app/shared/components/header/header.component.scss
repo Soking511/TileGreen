@@ -16,7 +16,59 @@
   line-height: 24px;
   /* identical to box height */
 
-  // color: #ffffff;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    transition: width 0.3s ease, background-color 0.3s ease;
+    background-color: transparent;
+  }
+
+  &:hover::after {
+    width: 100%;
+    background-color: #0460d9; /* Match the text color */
+    opacity: 0.7;
+  }
+
+  /* Enhanced hover effects with color logic */
+  transition: color 0.3s ease, transform 0.2s ease;
+
+  &:hover {
+    color: #0460d9; /* Primary blue for main navigation */
+    transform: translateY(-1px);
+  }
+
+  &.active {
+    color: #0460d9;
+    font-weight: 600;
+  }
+
+  /* Color variations for different sections */
+  &.products:hover {
+    color: #0f8c22; /* Green for product-related items */
+    &::after {
+      background-color: #0f8c22;
+    }
+  }
+
+  &.about:hover {
+    color: #005b9f; /* Deeper blue for about/company info */
+    &::after {
+      background-color: #005b9f;
+    }
+  }
+
+  &.contact:hover {
+    color: #e57200; /* Orange for call-to-action items */
+    &::after {
+      background-color: #e57200;
+    }
+  }
 
   /* Inside auto layout */
   flex: none;
@@ -27,4 +79,103 @@
 .contact-button {
   font-family: "Neue Haas Display", sans-serif;
   font-weight: 500;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(4, 96, 217, 0.25);
+  }
+
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: left 0.5s ease;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(4, 96, 217, 0.25);
+
+    &::before {
+      left: 100%;
+    }
+  }
+}
+
+:host {
+  display: block;
+  width: 100%;
+  // position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: transparent !important;
+}
+
+:host ::ng-deep img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* Fix for mobile menu transparency */
+.md\:hidden.fixed.inset-0 {
+  background-color: transparent !important;
+  backdrop-filter: blur(10px);
+}
+
+/* Style for mobile menu content to make it visible while keeping background transparent */
+.mobile-menu-content {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  padding: 20px;
+  backdrop-filter: blur(15px);
+}
+
+/* Ensure all background elements are transparent */
+div[class*="bg-transparent"],
+nav[class*="bg-transparent"],
+.bg-transparent {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+.bg-transparent {
+  background-color: transparent !important;
+}
+
+/* New approach to transparency issues */
+.header-content {
+  background-color: transparent !important;
+}
+
+/* Remove backgrounds completely instead of setting them transparent */
+.remove-bg {
+  background: none !important;
+}
+
+/* Mobile menu item hover effects */
+.mobile-menu-item {
+  transition: background-color 0.3s ease, padding-left 0.2s ease;
+  border-left: 0px solid transparent;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding-left: 8px;
+    border-left: 3px solid #0460d9;
+  }
 }

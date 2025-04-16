@@ -1,1 +1,55 @@
-<p>qa-careers works!</p>
+<div class="container mx-auto py-12">
+    <h2 class="text-4xl md:text-5xl lg:text-[64px] text-center text-[#010d26] mb-10">Common Questions</h2>
+
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="flex flex-col justify-start items-start w-full gap-5">
+            <!-- FAQ Items -->
+            <div *ngFor="let item of faqItems"
+                class="flex flex-col w-full overflow-hidden rounded-3xl border border-[#adadad] transition-all duration-300"
+                [ngClass]="{'shadow-lg': item.isOpen, 'border-[#0460d9]': item.isOpen}">
+                <button (click)="toggleItem(item)"
+                    class="flex justify-between items-center w-full px-[45px] py-[41px] text-left hover:bg-gray-50 focus:outline-none"
+                    [ngClass]="{'bg-gray-50': item.isOpen}">
+                    <p class="text-3xl md:text-[40px] text-left text-[#010d26]">{{ item.question }}</p>
+                    <svg class="flex-grow-0 flex-shrink-0 w-10 h-10 transform transition-transform duration-300"
+                        [ngClass]="{'rotate-45': item.isOpen, 'text-[#0460d9]': item.isOpen}" width="40" height="40"
+                        viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        preserveAspectRatio="xMidYMid meet">
+                        <g clip-path="url(#clip0_careers_plus)">
+                            <path
+                                d="M33.3332 18.889H21.111V6.66678C21.111 6.37209 20.9939 6.08947 20.7855 5.8811C20.5772 5.67273 20.2945 5.55566 19.9999 5.55566C19.7052 5.55566 19.4226 5.67273 19.2142 5.8811C19.0058 6.08947 18.8887 6.37209 18.8887 6.66678V18.889H6.66653C6.37184 18.889 6.08923 19.0061 5.88085 19.2144C5.67248 19.4228 5.55542 19.7054 5.55542 20.0001C5.54993 20.1445 5.57547 20.2884 5.6303 20.4221C5.68513 20.5558 5.76798 20.6762 5.87328 20.7752C5.97857 20.8742 6.10386 20.9494 6.24069 20.9959C6.37753 21.0424 6.52274 21.059 6.66653 21.0446H18.8887V33.3334C18.8887 33.6281 19.0058 33.9107 19.2142 34.1191C19.4226 34.3275 19.7052 34.4446 19.9999 34.4446C20.2945 34.4446 20.5772 34.3275 20.7855 34.1191C20.9939 33.9107 21.111 33.6281 21.111 33.3334V21.1112H33.3332C33.6279 21.1112 33.9105 20.9942 34.1189 20.7858C34.3272 20.5774 34.4443 20.2948 34.4443 20.0001C34.4443 19.7054 34.3272 19.4228 34.1189 19.2144C33.9105 19.0061 33.6279 18.889 33.3332 18.889Z"
+                                fill="currentColor"></path>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_careers_plus">
+                                <rect width="40" height="40" fill="white"></rect>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </button>
+                <div class="transition-all duration-300 max-h-0 overflow-hidden"
+                    [ngClass]="{'max-h-[500px] pb-8': item.isOpen}">
+                    <div class="px-[45px] pt-4">
+                        <p class="text-xl text-gray-700 leading-relaxed">{{ item.answer }}</p>
+
+                        <!-- Key highlights section -->
+                        <div *ngIf="item.isOpen && item.keyHighlights" class="mt-6">
+                            <p class="text-lg font-medium text-[#010d26] mb-3">Key Highlights:</p>
+                            <ul class="space-y-2">
+                                <li *ngFor="let highlight of item.keyHighlights" class="flex items-start gap-2">
+                                    <svg class="w-5 h-5 text-[#0460d9] mt-1 flex-shrink-0" fill="currentColor"
+                                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-gray-800">{{ highlight }}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

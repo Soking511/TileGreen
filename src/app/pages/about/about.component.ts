@@ -1,7 +1,7 @@
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
-import { FooterHomeComponent } from "../home/footer-home/footer-home.component";
-import { HeaderComponent } from "../../shared/components/header/header.component";
+import { FooterHomeComponent } from '../home/footer-home/footer-home.component';
+import { HeaderComponent } from '../../shared/components/header/header.component';
 
 interface SlideItem {
   id: number;
@@ -13,11 +13,17 @@ interface SlideItem {
   location?: string;
 }
 
+interface RecognitionLogo {
+  name: string;
+  image: string;
+}
+
 @Component({
   selector: 'app-about',
-  imports: [NgFor, FooterHomeComponent, HeaderComponent],
+  standalone: true,
+  imports: [HeaderComponent, FooterHomeComponent, NgFor, NgIf],
   templateUrl: './about.component.html',
-  styleUrl: './about.component.scss'
+  styleUrl: './about.component.scss',
 })
 export class AboutComponent implements OnInit, OnDestroy {
   slides: SlideItem[] = [
@@ -63,10 +69,46 @@ export class AboutComponent implements OnInit, OnDestroy {
     },
   ];
 
+  recognitionLogos: RecognitionLogo[] = [
+    {
+      name: 'Sustainable Business Award',
+      image: 'assets/images/about/logo-award1.png',
+    },
+    {
+      name: 'Green Tech Innovation',
+      image: 'assets/images/about/logo-award2.png',
+    },
+    {
+      name: 'Eco Friendly Certification',
+      image: 'assets/images/about/logo-award3.png',
+    },
+    {
+      name: 'Environmental Excellence',
+      image: 'assets/images/about/logo-award4.png',
+    },
+    {
+      name: 'Circular Economy Leader',
+      image: 'assets/images/about/logo-award5.png',
+    },
+    {
+      name: 'Recycling Innovation Award',
+      image: 'assets/images/about/logo-award6.png',
+    },
+    {
+      name: 'Green Building Partner',
+      image: 'assets/images/about/logo-award7.png',
+    },
+    {
+      name: 'Sustainability Champion',
+      image: 'assets/images/about/logo-award8.png',
+    },
+  ];
+
   currentIndex = 0;
   totalSlides = this.slides.length;
   slideInterval: any;
   visibleSlides = 1;
+  private resizeTimeout: any;
 
   constructor() {
     this.setVisibleSlides();
@@ -74,7 +116,10 @@ export class AboutComponent implements OnInit, OnDestroy {
 
   @HostListener('window:resize')
   onResize() {
-    this.setVisibleSlides();
+    clearTimeout(this.resizeTimeout);
+    this.resizeTimeout = setTimeout(() => {
+      this.setVisibleSlides();
+    }, 150); // Throttle resize
   }
 
   ngOnInit(): void {
@@ -149,5 +194,9 @@ export class AboutComponent implements OnInit, OnDestroy {
     console.error('Image failed to load:', event.target.src);
     // Set a fallback image
     event.target.src = 'assets/images/placeholder.jpg';
+  }
+
+  trackBySlide(index: number, item: SlideItem) {
+    return item.id;
   }
 }

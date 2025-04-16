@@ -1,25 +1,31 @@
-<div class="relative flex flex-col" [ngClass]="{'min-h-screen': imagePath}">
+<div class="relative w-full overflow-hidden flex flex-col justify-between"
+    [ngClass]="{'bg-gradient-to-b from-[#a8a8a8] to-[#424242] h-screen': imagePath}">
+
+
+    <!-- Background Image -->
     @if (imagePath) {
-    <img [src]="imagePath" alt="Header Background" class="absolute inset-0 object-cover w-full h-full -z-10">
-    <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent -z-10"></div>
+    <img [src]="imagePath" alt="Header Background" class="absolute inset-0 w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent"></div>
     }
 
-    <div class="px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-2 sm:py-3 md:py-4 z-50"
-        [ngClass]="{'bg-[#010d26]': !imagePath}">
-        <nav class="text-white flex flex-wrap items-center justify-between font-neue-haas">
+    <!-- Content Container -->
+    <div class="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 flex flex-col h-full">
+        <!-- Nav Section -->
+        <nav class="flex flex-wrap items-center justify-between font-neue-haas py-3 sm:py-4 md:py-5"
+            [ngClass]="imagePath ? 'text-white' : 'text-black'">
             <div class="flex items-center gap-2 z-20">
-                <svg width="52" class="h-7 sm:h-8 md:h-10" height="48" viewBox="0 0 52 48" fill="none"
+                <svg width="52" class="h-8 sm:h-8 md:h-10" height="48" viewBox="0 0 52 48" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_118_1154)">
                         <path
                             d="M51.9749 40.6678C51.9749 44.6898 48.6596 47.9807 44.6076 47.9807H36.8315C32.7795 47.9807 29.4642 44.6898 29.4642 40.6678V31.2255C29.4642 27.2035 32.7795 23.9127 36.8315 23.9127H48.7004L47.0638 29.3161H36.9137C35.8084 29.3161 34.867 30.2101 34.867 31.3477V40.5868C34.867 41.6839 35.8084 42.6184 36.9137 42.6184H44.4851C45.6313 42.6184 46.5319 41.6839 46.5319 40.5868V39.3195H41.129L39.4918 33.916H51.9749V40.6678Z"
-                            fill="white" />
+                            [attr.fill]="imagePath ? 'white' : 'black'" />
                         <path
                             d="M11.0205 15.8993V22.2203H20.9287V25.3571V43.6314V47.9801H27.6705V43.6314V22.2203H49.1563L51.0203 15.8993H11.0205Z"
-                            fill="white" />
+                            [attr.fill]="imagePath ? 'white' : 'black'" />
                         <path
                             d="M51.9749 0.0199661H45.6068H0.025116V0.61155V6.341V41.659V47.9801H6.39323H11.0205V41.659H6.39323V6.341H45.6068V10.934H51.9749V6.341V0.0199661Z"
-                            fill="white" />
+                            [attr.fill]="imagePath ? 'white' : 'black'" />
                     </g>
                     <defs>
                         <clipPath id="clip0_118_1154">
@@ -29,90 +35,109 @@
                 </svg>
             </div>
 
-            <button class="md:hidden flex items-center z-20" (click)="toggleMobileMenu()"
+            <button class="md:hidden flex items-center z-20 p-2 touch-manipulation" (click)="toggleMobileMenu()"
                 aria-label="Toggle navigation menu" [attr.aria-expanded]="isMobileMenuOpen">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
                 </svg>
             </button>
 
-            <div class="md:hidden fixed inset-0 bg-blue-900/95 backdrop-blur-sm z-10 transform transition-transform duration-300 ease-in-out"
-                [ngClass]="isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'" role="dialog" aria-modal="true"
+            <!-- Enhanced Mobile menu -->
+            <div class="md:hidden fixed inset-0 z-10 transform transition-all duration-300 ease-in-out overflow-hidden"
+                [ngClass]="isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'"
+                [ngStyle]="{'transition-delay': isMobileMenuOpen ? '0s' : '0.3s'}" role="dialog" aria-modal="true"
                 aria-label="Mobile navigation menu">
-                <div class="flex flex-col h-full justify-center items-center p-8">
-                    <button class="absolute top-6 right-6 text-white" (click)="toggleMobileMenu()"
-                        aria-label="Close menu">
+                <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" (click)="toggleMobileMenu()"
+                    [ngClass]="isMobileMenuOpen ? 'opacity-100' : 'opacity-0'"
+                    style="transition: opacity 0.3s ease-in-out;"></div>
+                <div class="flex flex-col h-full w-full max-w-sm ml-auto transform transition-transform duration-300 ease-in-out"
+                    [ngClass]="isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'"
+                    style="background-color: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px);">
+                    <button class="absolute top-6 right-6 p-2 touch-manipulation" [ngClass]="'text-white'"
+                        (click)="toggleMobileMenu()" aria-label="Close menu">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
-                    <ul class="flex flex-col space-y-6 text-xl font-light text-center">
+                    <div class="h-24"></div> <!-- Spacer -->
+                    <ul class="flex flex-col space-y-8 text-2xl font-light px-8 items-center">
                         @for (item of navbarItems; track item) {
-                        <li><a [routerLink]="item.link"
-                                class="nav-link block py-2 hover:text-gray-300 transition-colors duration-200">{{item.name}}</a>
+                        <li>
+                            <a [routerLink]="item.link" (click)="toggleMobileMenu()"
+                                class="nav-link block py-3 touch-manipulation hover:text-gray-300 transition-colors duration-200 text-white font-medium tracking-wide">
+                                {{item.name}}
+                            </a>
                         </li>
                         }
-                        <li class="pt-4">
+                        <li class="pt-8">
                             <a href="#"
-                                class="contact-button relative border border-white rounded-full px-8 py-3 text-white hover:bg-white hover:text-blue-900 transition-all duration-300 overflow-hidden">
+                                class="contact-button inline-block relative border rounded-full px-8 py-4 transition-all duration-300 overflow-hidden touch-manipulation text-white border-white hover:bg-white/20 font-medium tracking-wide">
                                 <span class="relative z-10">Contact Us</span>
-                                <div class="absolute inset-0 bg-black opacity-25"></div>
                             </a>
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <div class="hidden md:flex md:items-center md:justify-between md:flex-grow">
-                <ul
-                    class="flex flex-wrap justify-center md:justify-start space-x-4 lg:space-x-6 xl:space-x-10 text-sm lg:text-base font-light ml-4 lg:ml-8">
+            <div class="hidden md:flex md:items-center md:justify-center md:flex-grow">
+                <ul class="flex flex-wrap justify-center space-x-6 lg:space-x-8 xl:space-x-12 text-sm lg:text-base">
                     @for (item of navbarItems; track item) {
-                    <li><a [routerLink]="item.link" class="nav-link hover:text-gray-300">{{item.name}}</a></li>
+                    <li>
+                        <a [routerLink]="item.link"
+                            class="nav-link hover:text-gray-300 py-2 px-1 font-medium tracking-wide transition-all duration-200 relative group"
+                            [ngClass]="imagePath ? 'text-white' : 'text-black'">
+                            {{item.name}}
+                            <span
+                                class="absolute bottom-0 left-0 w-0 h-0.5 bg-current group-hover:w-full transition-all duration-300"></span>
+                        </a>
+                    </li>
                     }
                 </ul>
 
                 <a href="#"
-                    class="contact-button relative border border-white rounded-full px-4 lg:px-6 py-1 lg:py-2 text-white hover:bg-white hover:text-black transition overflow-hidden whitespace-nowrap text-sm lg:text-base">
+                    class="contact-button relative border rounded-full px-5 lg:px-7 py-1.5 lg:py-2.5 transition overflow-hidden whitespace-nowrap text-sm lg:text-base ml-8 lg:ml-12 font-medium tracking-wide"
+                    [ngClass]="imagePath ? 'border-white text-white hover:text-black hover:bg-white' : 'border-black text-black hover:text-blue-900 hover:bg-transparent'">
                     <span class="relative z-10">Contact Us</span>
-                    <div class="absolute inset-0 bg-black opacity-25"></div>
+                    <div class="absolute inset-0 bg-black opacity-25" *ngIf="imagePath"></div>
                 </a>
             </div>
         </nav>
+
+        <!-- Flexible spacer -->
+        <div class="flex-grow"></div>
+
+
     </div>
 
     @if (imagePath) {
-    <div class="flex-grow flex flex-col justify-center items-center text-white px-4 sm:px-8 md:px-16">
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-center max-w-4xl mx-auto leading-tight mb-6">
-            {{headTitle1}}<br> <i>{{headTitle2}}</i> {{headTitle3}}
-        </h1>
-        <p class="text-lg md:text-xl text-center max-w-2xl mx-auto mb-8 text-white/90">
-            {{description1}}
-            <br>
-            {{description2}}
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 sm:gap-6">
-            @if (button1Text) {
-            <a href="#"
-                class="bg-white text-blue-900 hover:bg-blue-100 font-medium px-8 py-3 rounded-full transition-colors">
-                {{button1Text}}
-            </a>
-            }
-            <a href="#"
-                class="border border-white text-white hover:bg-white/20 px-8 py-3 rounded-full transition-colors">
-                {{button2Text}}
-            </a>
+    <!-- Bottom Section with divider and heading -->
+    <div class="relative z-10 w-full">
+        <!-- Main Heading - Moved here, just above the divider line -->
+        <div class="container mx-auto px-4 sm:px-6 md:px-8 mb-8 md:mb-12">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-bold leading-tight">
+                {{headTitle1}} <br><i class="font-serif font-medium">{{headTitle2}}</i> <br>{{headTitle3}}
+            </h1>
         </div>
-    </div>
 
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <svg xmlns="http://www.w3.org/2000/svg"
-            class="h-8 w-8 text-white opacity-80 hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </svg>
+        <!-- Divider line -->
+        <div class="border-t border-white border-opacity-50 w-full"></div>
+
+        <!-- Bottom content -->
+        <div class="container mx-auto px-4 sm:px-6 md:px-8 py-5 sm:py-6 md:py-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-5 sm:gap-6">
+                <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-white max-w-3xl">
+                    {{description1||''}} <br>
+                    {{description2||''}}
+                </p>
+                <a href="#"
+                    class="whitespace-nowrap px-6 sm:px-8 py-3 sm:py-3.5 rounded-full border-2 border-white text-white text-base sm:text-lg hover:bg-white hover:text-blue-900 transition-all duration-300 touch-manipulation mt-4 md:mt-0">
+                    Express Interest
+                </a>
+            </div>
+        </div>
     </div>
     }
 </div>
