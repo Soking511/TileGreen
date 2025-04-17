@@ -9,9 +9,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class ApiService {
   private baseURL: string;
 
-  constructor(private http: HttpClient) // private toastService: ToastService
-  {
-    this.baseURL = 'http://localhost:8000/tile_green';
+  constructor(
+    private http: HttpClient // private toastService: ToastService
+  ) {
+    this.baseURL = 'https://api.tailgreen.pulslytics.agency/tile_green';
   }
 
   private getHeaders(): HttpHeaders {
@@ -90,12 +91,16 @@ export class ApiService {
   }
 
   // Helper method to create FormData from a form group and a file
-  createFormDataWithFile(formGroup: any, fileField: string, file: File): FormData {
+  createFormDataWithFile(
+    formGroup: any,
+    fileField: string,
+    file: File
+  ): FormData {
     const formData = new FormData();
 
     // Add all form fields from form group
     if (formGroup) {
-      Object.keys(formGroup.controls || {}).forEach(key => {
+      Object.keys(formGroup.controls || {}).forEach((key) => {
         const value = formGroup.get(key)?.value;
         if (value !== null && value !== undefined) {
           formData.append(key, value);
