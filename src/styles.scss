@@ -14,6 +14,11 @@
 }
 
 @font-face {
+  font-family: "Neue_Haas_Grotesk_Display_Bold";
+  src: url("./assets/fonts/NeueHaasDisplayBold.ttf") format("truetype");
+}
+
+@font-face {
   font-family: "Libre Baskerville";
   src: url("./assets/fonts/LibreBaskerville-Italic.ttf") format("truetype");
 }
@@ -33,11 +38,11 @@
 }
 
 .text-tile-bold {
-  font-family: "Neue Haas Display", sans-serif;
-  font-weight: 700;
+  font-family: "Neue_Haas_Grotesk_Display_Bold", sans-serif;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+
 }
 
 .text-tile-inter {
