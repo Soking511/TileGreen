@@ -7,7 +7,7 @@
     <!-- Preload image -->
     <link rel="preload" [attr.href]="imagePath" as="image" type="image/jpeg" fetchpriority="high">
     <img [src]="imagePath" alt="Header Background" class="absolute inset-0 w-full h-full object-cover" loading="eager"
-         fetchpriority="high" [attr.importance]="'high'">
+        fetchpriority="high" [attr.importance]="'high'">
     <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent"></div>
     }
 
@@ -17,8 +17,8 @@
         <nav class="flex flex-wrap items-center justify-between font-neue-haas py-3 sm:py-4 md:py-5"
             [ngClass]="imagePath ? 'text-white' : 'text-black'">
             <div class="flex items-center gap-2 z-20">
-                <svg width="52" class="h-8 sm:h-8 md:h-10" height="48" viewBox="0 0 52 48" fill="none" [routerLink]="'/home'" class="cursor-pointer"
-                    xmlns="http://www.w3.org/2000/svg">
+                <svg width="52" class="h-8 sm:h-8 md:h-10" height="48" viewBox="0 0 52 48" fill="none"
+                    [routerLink]="'/home'" class="cursor-pointer" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_118_1154)">
                         <path
                             d="M51.9749 40.6678C51.9749 44.6898 48.6596 47.9807 44.6076 47.9807H36.8315C32.7795 47.9807 29.4642 44.6898 29.4642 40.6678V31.2255C29.4642 27.2035 32.7795 23.9127 36.8315 23.9127H48.7004L47.0638 29.3161H36.9137C35.8084 29.3161 34.867 30.2101 34.867 31.3477V40.5868C34.867 41.6839 35.8084 42.6184 36.9137 42.6184H44.4851C45.6313 42.6184 46.5319 41.6839 46.5319 40.5868V39.3195H41.129L39.4918 33.916H51.9749V40.6678Z"

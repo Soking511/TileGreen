@@ -1,4 +1,11 @@
-import { Component, Input, OnInit, HostListener, AfterViewInit, ElementRef } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  HostListener,
+  AfterViewInit,
+  ElementRef,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
