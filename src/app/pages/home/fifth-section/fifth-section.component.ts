@@ -17,6 +17,23 @@ interface SlideItem {
   standalone: true,
   imports: [CommonModule, SectionHeaderComponent],
   templateUrl: './fifth-section.component.html',
+  styles: [
+    `
+      @keyframes fadeIn {
+        from {
+          opacity: 0.5;
+          transform: scale(0.98);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      .animate-fadeIn {
+        animation: fadeIn 0.5s ease-out forwards;
+      }
+    `,
+  ],
 })
 export class FifthSectionComponent implements OnInit, OnDestroy {
   slides: SlideItem[] = [
@@ -65,23 +82,19 @@ export class FifthSectionComponent implements OnInit, OnDestroy {
   currentIndex = 0;
   totalSlides = this.slides.length;
   slideInterval: any;
-  visibleSlides = 1;
   private resizeTimeout: any;
 
-  constructor() {
-    this.setVisibleSlides();
-  }
+  constructor() {}
 
   @HostListener('window:resize')
   onResize() {
     clearTimeout(this.resizeTimeout);
     this.resizeTimeout = setTimeout(() => {
-      this.setVisibleSlides();
-    }, 150); // Throttle resize
+      // Just clear any resize-related caching if needed
+    }, 150);
   }
 
   ngOnInit(): void {
-    // Only start slideshow if slides are visible
     setTimeout(() => this.startSlideshow(), 0);
   }
 
@@ -89,21 +102,10 @@ export class FifthSectionComponent implements OnInit, OnDestroy {
     this.stopSlideshow();
   }
 
-  setVisibleSlides(): void {
-    // Set number of visible slides based on screen width
-    if (window.innerWidth >= 1024) {
-      this.visibleSlides = 3; // Desktop
-    } else if (window.innerWidth >= 768) {
-      this.visibleSlides = 2; // Tablet
-    } else {
-      this.visibleSlides = 1; // Mobile
-    }
-  }
-
   startSlideshow(): void {
     this.slideInterval = setInterval(() => {
       this.nextSlide();
-    }, 5000); // Change slide every 5 seconds
+    }, 5000);
   }
 
   stopSlideshow(): void {
@@ -112,46 +114,35 @@ export class FifthSectionComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Essential methods for the slider
+  getCurrentSlide(): SlideItem | null {
+    return this.slides[this.currentIndex] || null;
+  }
+
+  getPrevSlide(): SlideItem | null {
+    if (this.slides.length <= 1) return null;
+    const prevIndex =
+      this.currentIndex === 0 ? this.slides.length - 1 : this.currentIndex - 1;
+    return this.slides[prevIndex] || null;
+  }
+
+  getNextSlide(): SlideItem | null {
+    if (this.slides.length <= 1) return null;
+    const nextIndex = (this.currentIndex + 1) % this.slides.length;
+    return this.slides[nextIndex] || null;
+  }
+
   prevSlide(): void {
-    this.stopSlideshow(); // Stop autoplay when user interacts
+    this.stopSlideshow();
     this.currentIndex =
-      this.currentIndex === 0
-        ? Math.max(0, this.totalSlides - this.visibleSlides)
-        : Math.max(0, this.currentIndex - 1);
+      this.currentIndex === 0 ? this.slides.length - 1 : this.currentIndex - 1;
   }
 
   nextSlide(): void {
-    const maxIndex = Math.max(0, this.totalSlides - this.visibleSlides);
-    this.currentIndex =
-      this.currentIndex >= maxIndex ? 0 : this.currentIndex + 1;
-  }
-
-  goToSlide(index: number): void {
-    this.stopSlideshow(); // Stop autoplay when user interacts
-    this.currentIndex = Math.min(
-      index,
-      Math.max(0, this.totalSlides - this.visibleSlides)
-    );
-  }
-
-  isActive(index: number): boolean {
-    return (
-      index >= this.currentIndex &&
-      index < this.currentIndex + this.visibleSlides
-    );
-  }
-
-  isNearActive(index: number): boolean {
-    // Check if the slide is just outside the visible range (for scaling effect)
-    return (
-      index === this.currentIndex - 1 ||
-      index === this.currentIndex + this.visibleSlides
-    );
+    this.currentIndex = (this.currentIndex + 1) % this.slides.length;
   }
 
   handleImageError(event: any): void {
-    console.error('Image failed to load:', event.target.src);
-    // Set a fallback image
     event.target.src = 'assets/images/placeholder.jpg';
   }
 
