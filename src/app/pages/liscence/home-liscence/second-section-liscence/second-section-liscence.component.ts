@@ -55,7 +55,10 @@ export class SecondSectionLiscenceComponent {
       Validators.minLength(3),
       Validators.maxLength(50),
     ]),
-    message: new FormControl('', [Validators.maxLength(500)]), // Message is optional
+    message: new FormControl('', [
+      Validators.required,
+      Validators.maxLength(500)]
+    ), // Message is optional
   });
 
   industries: string[] = [
@@ -126,7 +129,7 @@ export class SecondSectionLiscenceComponent {
 
   constructor(private apiService: ApiService) {}
 
-  onSubmit() { 
+  onSubmit() {
     if (this.contactForm.valid) {
       this.formSubmitting = true;
       this.formSubmitted = false;
