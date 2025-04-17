@@ -24,8 +24,19 @@
 }
 
 @font-face {
+  font-family: "NeueHaasDisplayMediu";
+  src: url("./assets/fonts/NeueHaasDisplayMediu.ttf") format("truetype");
+}
+
+@font-face {
   font-family: "Inter_Display";
   src: url("./assets/fonts/Inter_18pt-Regular.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Inter_Display_Md";
+  src: url("./assets/fonts/Inter_18pt-Medium.ttf") format("ttf");
   font-weight: normal;
   font-style: normal;
 }
@@ -37,6 +48,16 @@
   font-style: normal;
 }
 
+
+
+.text-tile-md {
+  font-family: "NeueHaasDisplayMediu", sans-serif;
+  font-weight: 500;
+  line-height: normal;
+  font-style: normal;
+}
+
+
 .text-tile-bold {
   font-family: "Neue_Haas_Grotesk_Display_Bold", sans-serif;
   font-style: normal;
@@ -44,6 +65,12 @@
   line-height: normal;
 
 }
+
+.text-tile-inter-md {
+  font-family: "Inter_Display_Md";
+  font-weight: 500;
+}
+
 
 .text-tile-inter {
   font-family: "Inter_Display", sans-serif;

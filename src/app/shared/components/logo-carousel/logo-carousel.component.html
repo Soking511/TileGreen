@@ -1,0 +1,27 @@
+<div class="py-6">
+    <section class="logo-carousel-container">
+        <div class="logo-carousel">
+            <div class="fade-overlay fade-left"></div>
+
+            <div class="logo-track" [style.animationDuration]="animationDuration + 's'">
+                <div class="logo-group">
+                    @for (logo of logos; track logo.url) {
+                    <div class="logo-item">
+                        <img [src]="logo.url" [alt]="logo.alt" class="logo">
+                    </div>
+                    }
+                </div>
+
+                <div class="logo-group">
+                    @for (logo of logos; track logo.url) {
+                    <div class="logo-item">
+                        <img [src]="logo.url" [alt]="logo.alt" class="logo">
+                    </div>
+                    }
+                </div>
+            </div>
+
+            <div class="fade-overlay fade-right"></div>
+        </div>
+    </section>
+</div>

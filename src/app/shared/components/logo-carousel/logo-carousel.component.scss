@@ -1,0 +1,96 @@
+.logo-carousel-container {
+  width: 100%;
+  padding: 2rem 0;
+  overflow: hidden;
+}
+
+.logo-carousel {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.logo-track {
+  display: flex;
+  white-space: nowrap;
+  width: max-content !important; /* Ensure track has proper width */
+  animation: scroll-logos 30s linear infinite;
+  animation-play-state: running !important;
+  will-change: transform;
+
+  .logo-group {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+  }
+}
+
+// Pause only on hover if needed
+.logo-carousel:hover .logo-track {
+  animation-play-state: paused;
+}
+
+.logo-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.5rem;
+  flex-shrink: 0;
+}
+
+.logo {
+  height: 3.5rem;
+  max-width: 10rem;
+  object-fit: contain;
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.fade-overlay {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 5rem;
+  pointer-events: none;
+  z-index: 10;
+
+  @media (min-width: 640px) {
+    width: 7.5rem;
+  }
+
+  @media (min-width: 768px) {
+    width: 10rem;
+  }
+}
+
+.fade-left {
+  left: 0;
+  background: linear-gradient(to right, white, rgba(255, 255, 255, 0));
+}
+
+.fade-right {
+  right: 0;
+  background: linear-gradient(to left, white, rgba(255, 255, 255, 0));
+}
+
+@keyframes scroll-logos {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(
+      -50%
+    ); /* Ensure we only move half the content for seamless loop */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-track {
+    animation-play-state: paused;
+  }
+}

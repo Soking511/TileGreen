@@ -5,6 +5,7 @@ import { SectionHeaderComponent } from "../../../shared/components/section-heade
   selector: 'app-third-section',
   imports: [SectionHeaderComponent],
   templateUrl: './third-section.component.html',
+  styleUrls: ['./third-section.component.scss'],
 })
 export class ThirdSectionComponent {
 

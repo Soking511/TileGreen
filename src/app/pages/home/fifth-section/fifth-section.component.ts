@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from '../../../shared/components/header/header.component';
 import { SectionHeaderComponent } from '../../../shared/components/section-header/section-header.component';
 
 interface SlideItem {
@@ -16,7 +15,7 @@ interface SlideItem {
 @Component({
   selector: 'app-fifth-section',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, SectionHeaderComponent],
+  imports: [CommonModule, SectionHeaderComponent],
   templateUrl: './fifth-section.component.html',
 })
 export class FifthSectionComponent implements OnInit, OnDestroy {

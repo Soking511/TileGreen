@@ -1,17 +1,17 @@
 <!-- Refactored Slider Section -->
 <div class="container mx-auto px-4 py-16">
     <!-- Section Header -->
-    <div class="max-w-5xl mx-auto flex flex-col items-center text-center mb-8 sm:mb-12 md:mb-16 px-4">
-        <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold text-slate-950 mb-3 sm:mb-4">
+    <div class="max-w-5xl mx-auto flex flex-col items-center text-center mb-8 sm:mb-12 md:mb-16 px-4 ">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl mb-3 sm:mb-4 text-[#010D26] text-tile-md">
             Pioneering Eco Projects
         </h2>
-        <p class="text-lg sm:text-xl md:text-2xl text-slate-950 max-w-2xl mb-6 sm:mb-8">
-            Discover the impactful projects where TileGreen's cutting-edge technology
+        <p class="text-lg sm:text-xl md:text-2xl max-w-4xl mb-6 sm:mb-8 text-[#010D26] text-tile-inter">
+            Discover the impactful projects where TileGreen's cutting-edge technology<br>
             has been implemented to create sustainable and eco-friendly solutions.
         </p>
         <a href="#contact"
             class="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-stone-100 rounded-full hover:bg-stone-200 transition-colors">
-            <span class="text-lg sm:text-xl md:text-2xl font-medium text-slate-950 mr-2 sm:mr-4">Contact Us</span>
+            <span class="text-lg sm:text-xl md:text-2xl font-medium mr-2 sm:mr-4">Contact Us</span>
             <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-700 rounded-full flex items-center justify-center">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                     class="sm:w-6 sm:h-6">
@@ -131,16 +131,18 @@
         <!-- Text Content Column - Improved responsive hierarchy -->
         <div class="w-full lg:w-3/5 flex flex-col justify-between gap-6 sm:gap-8">
             <div class="flex flex-col gap-4 md:gap-6">
-                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-slate-950 leading-tight">
-                    We are passionate innovators, committed to environmental
-                    sustainability and technological advancements.
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-tile-md">
+                    &nbsp;We are passionate innovators,<br>
+                    committed to environmental <br>
+                    sustainability and technological <br>
+                    advancements.
                 </h2>
-                <p class="text-base sm:text-lg md:text-xl text-zinc-700 leading-relaxed max-w-3xl">
-                    Driven by an unwavering passion, we merge groundbreaking technology
-                    with a deep respect for our planet. Every idea we bring to life
-                    reflects our commitment to creating solutions that not only push the
-                    boundaries of innovation but also promote a healthier, more
-                    sustainable future.
+                <p class="text-tile-inter sm:text-lg md:text-xl text-zinc-700 leading-relaxed max-w-3xl">
+                    Driven by an unwavering passion, we merge groundbreaking <br>
+                    technology with a deep respect for our planet. Every idea we <br>
+                    bring to life reflects our commitment to creating solutions that <br>
+                    not only push the boundaries of innovation but also promote a <br>
+                    healthier, more sustainable future.
                 </p>
             </div>
 
@@ -148,7 +150,7 @@
             <a href="#about"
                 class="inline-flex items-center self-start px-4 sm:px-6 py-2.5 sm:py-3 bg-stone-100 rounded-full hover:bg-stone-200 transition-colors mt-6 sm:mt-8 shadow-sm hover:shadow-md group">
                 <span
-                    class="text-lg sm:text-xl font-medium text-slate-950 mr-2 sm:mr-4 group-hover:mr-3 sm:group-hover:mr-5 transition-all">Discover
+                    class="text-lg sm:text-xl font-medium mr-2 sm:mr-4 group-hover:mr-3 sm:group-hover:mr-5 transition-all">Discover
                     TileGreen</span>
                 <div
                     class="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-blue-700 rounded-full flex items-center justify-center group-hover:bg-blue-800 transition-colors">
@@ -166,35 +168,58 @@
             <!-- Mobile-optimized layout without shadows -->
             <div class="sm:hidden flex flex-col gap-5">
                 <!-- First image with proper sizing for mobile -->
-                <div class="rounded-xl overflow-hidden">
+                <div class="rounded-xl overflow-hidden relative group">
                     <img class="w-full mx-auto object-contain" src="assets/images/person/1.png"
                         alt="TileGreen innovation" style="max-height: 60vh;" />
-                    <!-- Control height for mobile viewport -->
+                    <!-- Centered name and role overlay -->
+                    <div
+                        class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center">
+                        <h4 class="text-white text-xl font-semibold">Amr Shalan</h4>
+                        <p class="text-white text-sm">CEO & Co Founder </p>
+                    </div>
                 </div>
 
                 <!-- Second image with proper sizing for mobile -->
-                <div class="rounded-xl overflow-hidden">
+                <div class="rounded-xl overflow-hidden relative group">
                     <img class="w-full mx-auto object-contain" src="assets/images/person/2.png"
                         alt="TileGreen sustainability" style="max-height: 60vh;" />
-                    <!-- Control height for mobile viewport -->
+                    <!-- Centered name and role overlay -->
+                    <div
+                        class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center">
+                        <h4 class="text-white text-xl font-semibold"> Khaled Raafat</h4>
+                        <p class="text-white text-sm">CTO & Co Founder</p>
+                    </div>
                 </div>
             </div>
 
-            <!-- Tablet and desktop layout remains unchanged -->
+            <!-- Tablet and desktop layout with the same hover effect -->
             <div class="hidden sm:flex flex-row gap-4">
                 <!-- Left column image with object-contain to prevent cropping -->
                 <div class="w-1/2">
-                    <div class="rounded-3xl h-auto">
+                    <div class="rounded-3xl h-auto relative group">
                         <img class="w-full object-contain max-h-[450px]" src="assets/images/person/1.png"
                             alt="TileGreen innovation" />
+                        <!-- Centered name and role overlay -->
+                        <div
+                            class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center">
+                            <h4 class="text-white shadow text-4xl font-semibold">Amr Shalan</h4>
+                            <p class="text-white shadow text-xl">CEO & Co Founder</p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Right column image with object-contain to prevent cropping -->
                 <div class="w-1/2">
-                    <div class="rounded-3xl h-auto">
+                    <div class="rounded-3xl h-auto relative group">
                         <img class="w-full object-contain max-h-[450px]" src="assets/images/person/2.png"
                             alt="TileGreen sustainability" />
+                        <!-- Centered name and role overlay -->
+                        <div
+                            class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center">
+                            <h4 class="text-white text-4xl font-semibold shadow">
+                                Khaled Raafat</h4>
+                            <p class="text-white text-xl shadow">CTO & Co Founder</p>
+                        </div>
                     </div>
                 </div>
             </div>

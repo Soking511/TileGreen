@@ -1,4 +1,4 @@
-import { NgFor, NgIf } from '@angular/common';
+import { NgFor } from '@angular/common';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FooterHomeComponent } from '../home/footer-home/footer-home.component';
 import { HeaderComponent } from '../../shared/components/header/header.component';
@@ -21,7 +21,7 @@ interface RecognitionLogo {
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [HeaderComponent, FooterHomeComponent, NgFor, NgIf],
+  imports: [HeaderComponent, FooterHomeComponent, NgFor],
   templateUrl: './about.component.html',
 })
 export class AboutComponent implements OnInit, OnDestroy {
