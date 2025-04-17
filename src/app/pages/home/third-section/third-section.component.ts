@@ -4,7 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-third-section',
   imports: [],
   templateUrl: './third-section.component.html',
-  styleUrl: './third-section.component.scss'
 })
 export class ThirdSectionComponent {
 

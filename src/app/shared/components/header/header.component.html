@@ -117,9 +117,39 @@
     <div class="relative z-10 w-full">
         <!-- Main Heading - Moved here, just above the divider line -->
         <div class="container mx-auto px-4 sm:px-6 md:px-8 mb-8 md:mb-12">
-            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-bold leading-tight">
-                {{headTitle1}} <br><i class="font-serif font-medium">{{headTitle2}}</i> <br>{{headTitle3}}
-            </h1>
+            <table class="w-full">
+                <tr>
+                    <td class="align-bottom p-0">
+                        <h1
+                            class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-bold leading-tight">
+                            {{headTitle1}} <br>
+                            <i class="font-serif font-medium">{{headTitle2}}</i> <br>
+                            {{headTitle3}}
+                        </h1>
+                    </td>
+                    <td class="align-bottom p-0 w-1 text-right">
+                        <a href="#" *ngIf="button1Text"
+                            class="bg-[#0460d9]/40 backdrop-blur-sm whitespace-nowrap px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-3.5 rounded-[50px] text-white text-sm sm:text-lg md:text-2xl hover:bg-transparent hover:text-white transition-all duration-300 touch-manipulation inline-flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-center">
+                            {{ button1Text|| "Learn More"}}
+                            <svg class="w-8 h-8 sm:w-[45px] sm:h-[45px]" viewBox="0 0 56 56" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <rect width="56" height="56" rx="28" fill="white" />
+                                <g clip-path="url(#clip0_616_8)">
+                                    <path
+                                        d="M30.1243 36.5862L38.6665 27.9995L30.1243 19.4129C30.0471 19.3116 29.9491 19.228 29.8369 19.1679C29.7246 19.1077 29.6008 19.0724 29.4737 19.0643C29.3466 19.0562 29.2193 19.0755 29.1003 19.1209C28.9813 19.1663 28.8735 19.2367 28.7841 19.3274C28.6947 19.418 28.6258 19.5269 28.5821 19.6465C28.5385 19.7661 28.521 19.8937 28.5309 20.0207C28.5408 20.1476 28.5779 20.2709 28.6396 20.3823C28.7014 20.4937 28.7863 20.5905 28.8887 20.6662L35.2798 27.1106L18.2754 27.1106C18.0396 27.1106 17.8136 27.2043 17.6469 27.371C17.4802 27.5377 17.3865 27.7638 17.3865 27.9995C17.3865 28.2353 17.4802 28.4614 17.6469 28.6281C17.8136 28.7948 18.0396 28.8884 18.2754 28.8884L35.2798 28.8884L28.8887 35.3329C28.7225 35.5002 28.6296 35.7268 28.6305 35.9627C28.6313 36.1986 28.7258 36.4244 28.8932 36.5906C29.0606 36.7568 29.2871 36.8497 29.523 36.8489C29.7589 36.8481 29.9847 36.7536 30.1509 36.5862L30.1243 36.5862Z"
+                                        fill="#0460D9" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_616_8">
+                                        <rect width="32" height="32" fill="white"
+                                            transform="translate(44 12) rotate(90)" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </a>
+                    </td>
+                </tr>
+            </table>
         </div>
 
         <!-- Divider line -->
@@ -127,17 +157,21 @@
 
         <!-- Bottom content -->
         <div class="container mx-auto px-4 sm:px-6 md:px-8 py-5 sm:py-6 md:py-8">
+
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-5 sm:gap-6">
                 <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-white max-w-3xl">
                     {{description1||''}} <br>
                     {{description2||''}}
                 </p>
+
                 <a href="#"
-                    class="whitespace-nowrap px-6 sm:px-8 py-3 sm:py-3.5 rounded-full border-2 border-white text-white text-base sm:text-lg hover:bg-white hover:text-blue-900 transition-all duration-300 touch-manipulation mt-4 md:mt-0">
-                    Express Interest
+                    class="whitespace-nowrap px-6 sm:px-8 py-3 sm:py-3.5 rounded-full border-2 border-white text-white text-base sm:text-2xl hover:bg-white hover:text-blue-900 transition-all duration-300 touch-manipulation mt-4 md:mt-0">
+                    {{ button2Text|| "Express Interest"}}
                 </a>
             </div>
+
         </div>
+
     </div>
     }
 </div>

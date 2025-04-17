@@ -13,7 +13,6 @@ import {
   standalone: true,
   imports: [FooterHomeComponent, ReactiveFormsModule, CommonModule],
   templateUrl: './form-careers.component.html',
-  styleUrl: './form-careers.component.scss',
 })
 export class FormCareersComponent {
   positionForm = new FormGroup({

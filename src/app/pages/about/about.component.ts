@@ -23,7 +23,6 @@ interface RecognitionLogo {
   standalone: true,
   imports: [HeaderComponent, FooterHomeComponent, NgFor, NgIf],
   templateUrl: './about.component.html',
-  styleUrl: './about.component.scss',
 })
 export class AboutComponent implements OnInit, OnDestroy {
   slides: SlideItem[] = [

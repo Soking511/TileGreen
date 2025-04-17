@@ -18,7 +18,6 @@ interface SlideItem {
   standalone: true,
   imports: [CommonModule, HeaderComponent, SectionHeaderComponent],
   templateUrl: './fifth-section.component.html',
-  styleUrl: './fifth-section.component.scss',
 })
 export class FifthSectionComponent implements OnInit, OnDestroy {
   slides: SlideItem[] = [

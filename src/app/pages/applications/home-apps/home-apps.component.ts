@@ -7,7 +7,6 @@ import { FooterHomeComponent } from "../../home/footer-home/footer-home.componen
   selector: 'app-home-apps',
   imports: [FirstSectionAppsComponent, HeaderComponent, FooterHomeComponent],
   templateUrl: './home-apps.component.html',
-  styleUrl: './home-apps.component.scss'
 })
 export class HomeAppsComponent {
 

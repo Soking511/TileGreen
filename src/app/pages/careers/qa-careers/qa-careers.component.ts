@@ -12,7 +12,6 @@ interface FaqItem {
   selector: 'app-qa-careers',
   imports: [NgFor, NgIf, NgClass],
   templateUrl: './qa-careers.component.html',
-  styleUrl: './qa-careers.component.scss',
   standalone: true,
 })
 export class QaCareersComponent {

@@ -5,7 +5,6 @@ import { SectionHeaderComponent } from "../../../shared/components/section-heade
   selector: 'app-first-section',
   imports: [SectionHeaderComponent],
   templateUrl: './first-section.component.html',
-  styleUrl: './first-section.component.scss'
 })
 export class FirstSectionComponent {
 

@@ -5,7 +5,6 @@ import { Component, Input } from '@angular/core';
   selector: 'app-footer-home',
   imports: [NgStyle, NgClass],
   templateUrl: './footer-home.component.html',
-  styleUrl: './footer-home.component.scss',
 })
 export class FooterHomeComponent {
   @Input() showFirstSection: boolean = false;

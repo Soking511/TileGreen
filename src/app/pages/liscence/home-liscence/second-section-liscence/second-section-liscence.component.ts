@@ -22,12 +22,9 @@ interface FaqItem {
     NgFor,
     NgIf,
     ReactiveFormsModule,
-    FooterHomeComponent,
-    HeaderComponent,
     NgClass,
   ],
   templateUrl: './second-section-liscence.component.html',
-  styleUrl: './second-section-liscence.component.scss',
 })
 export class SecondSectionLiscenceComponent {
   contactForm: FormGroup | undefined;
