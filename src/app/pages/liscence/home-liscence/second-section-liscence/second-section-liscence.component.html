@@ -132,31 +132,32 @@
         </p>
 
         <div class="flex flex-col md:flex-row gap-8 items-start">
-            <form [formGroup]="contactForm!" (ngSubmit)="onSubmit()"
+            <form [formGroup]="contactForm" (submit)="onSubmit()"
                 class="flex flex-col justify-start items-start w-full md:w-2/3 gap-4 max-w-3xl">
 
                 <!-- Full Name -->
                 <div class="flex flex-col justify-start items-start self-stretch relative gap-2 w-full">
-                    <label for="fullName" class="text-xl md:text-2xl text-left text-[#010d26]">Full Name</label>
-                    <input id="fullName" formControlName="fullName" type="text" placeholder="Enter your full name"
+                    <label for="full_name" class="text-xl md:text-2xl text-left text-[#010d26]">Full Name</label>
+                    <input id="full_name" formControlName="full_name" type="text" placeholder="Enter your full name"
                         class="w-full px-6 md:px-10 py-3 md:py-4 rounded-3xl border border-[#9c9c9c] text-lg md:text-xl"
-                        [class.border-red-500]="isFieldInvalid('fullName')">
+                        [class.border-red-500]="isFieldInvalid('full_name')">
                     <div class="h-5 text-red-500 text-sm">
-                        <span *ngIf="isFieldInvalid('fullName')">Full name is required</span>
+                        <span *ngIf="getFieldError('full_name', 'required')">Full name is required</span>
+                        <span *ngIf="getFieldError('full_name', 'minlength')">Name must be at least 3 characters</span>
                     </div>
                 </div>
 
                 <!-- Company Name and Industry -->
                 <div class="flex flex-col sm:flex-row justify-start items-start self-stretch gap-4 w-full">
                     <div class="flex flex-col justify-start items-start flex-grow w-full sm:w-1/2 relative gap-2">
-                        <label for="companyName" class="text-xl md:text-2xl text-left text-[#010d26]">Company
+                        <label for="company_name" class="text-xl md:text-2xl text-left text-[#010d26]">Company
                             Name</label>
-                        <input id="companyName" formControlName="companyName" type="text"
+                        <input id="company_name" formControlName="company_name" type="text"
                             placeholder="Enter company name"
                             class="w-full px-6 md:px-10 py-3 md:py-4 rounded-3xl border border-[#9c9c9c] text-lg md:text-xl"
-                            [class.border-red-500]="isFieldInvalid('companyName')">
+                            [class.border-red-500]="isFieldInvalid('company_name')">
                         <div class="h-5 text-red-500 text-sm">
-                            <span *ngIf="isFieldInvalid('companyName')">Company name is required</span>
+                            <span *ngIf="isFieldInvalid('company_name')">Company name is required</span>
                         </div>
                     </div>
 
@@ -185,6 +186,17 @@
                     </div>
                 </div>
 
+                <!-- Position -->
+                <div class="flex flex-col justify-start items-start self-stretch relative gap-2 w-full">
+                    <label for="position" class="text-xl md:text-2xl text-left text-[#010d26]">Position</label>
+                    <input id="position" formControlName="position" type="text" placeholder="Enter your position"
+                        class="w-full px-6 md:px-10 py-3 md:py-4 rounded-3xl border border-[#9c9c9c] text-lg md:text-xl"
+                        [class.border-red-500]="isFieldInvalid('position')">
+                    <div class="h-5 text-red-500 text-sm">
+                        <span *ngIf="isFieldInvalid('position')">Position is required</span>
+                    </div>
+                </div>
+
                 <!-- Email and Region -->
                 <div class="flex flex-col sm:flex-row justify-start items-start self-stretch gap-4 w-full">
                     <div class="flex flex-col justify-start items-start flex-grow w-full sm:w-1/2 relative gap-2">
@@ -193,18 +205,20 @@
                             class="w-full px-6 md:px-10 py-3 md:py-4 rounded-3xl border border-[#9c9c9c] text-lg md:text-xl"
                             [class.border-red-500]="isFieldInvalid('email')">
                         <div class="h-5 text-red-500 text-sm">
-                            <span *ngIf="isFieldInvalid('email')">Please enter a valid email address</span>
+                            <span *ngIf="getFieldError('email', 'required')">Email is required</span>
+                            <span *ngIf="getFieldError('email', 'email')">Please enter a valid email address</span>
                         </div>
                     </div>
 
                     <div class="flex flex-col justify-start items-start flex-grow w-full sm:w-1/2 relative gap-2">
-                        <label for="region" class="text-xl md:text-2xl text-left text-[#010d26]">Country /
+                        <label for="country_region" class="text-xl md:text-2xl text-left text-[#010d26]">Country /
                             Region</label>
-                        <input id="region" formControlName="region" type="text" placeholder="Enter Region"
+                        <input id="country_region" formControlName="country_region" type="text"
+                            placeholder="Enter Region"
                             class="w-full px-6 md:px-10 py-3 md:py-4 rounded-3xl border border-[#9c9c9c] text-lg md:text-xl"
-                            [class.border-red-500]="isFieldInvalid('region')">
+                            [class.border-red-500]="isFieldInvalid('country_region')">
                         <div class="h-5 text-red-500 text-sm">
-                            <span *ngIf="isFieldInvalid('region')">Country/Region is required</span>
+                            <span *ngIf="isFieldInvalid('country_region')">Country/Region is required</span>
                         </div>
                     </div>
                 </div>
@@ -214,14 +228,43 @@
                     <label for="message" class="text-xl md:text-2xl text-left text-[#010d26]">Message (optional)</label>
                     <textarea id="message" formControlName="message" placeholder="Enter your message"
                         class="w-full h-32 md:h-40 px-6 md:px-10 py-4 md:py-7 rounded-3xl border border-[#9c9c9c] text-lg md:text-xl resize-none"></textarea>
+                </div>
 
+                <!-- Form Status Messages -->
+                <div *ngIf="formSubmitted" class="self-stretch mb-4 w-full">
+                    <div *ngIf="formSubmitSuccess" class="p-4 bg-green-100 text-green-800 rounded-lg flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 flex-shrink-0" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        Thank you! Your form has been submitted successfully. We will contact you soon.
+                    </div>
+                    <div *ngIf="formSubmitError" class="p-4 bg-red-100 text-red-800 rounded-lg flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 flex-shrink-0" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                        There was an error submitting your form. Please try again later.
+                    </div>
                 </div>
 
                 <!-- Submit Button -->
                 <div class="self-stretch flex justify-center mt-4">
-                    <button type="submit"
-                        class="w-full sm:w-auto px-8 md:px-12 py-3 md:py-4 text-white rounded-[50px] bg-[#010d26] text-lg md:text-xl transition-colors hover:bg-[#192949]">
-                        Submit
+                    <button type="submit" [disabled]="formSubmitting"
+                        class="relative w-full sm:w-auto px-8 md:px-12 py-3 md:py-4 text-white rounded-[50px] bg-[#010d26] text-lg md:text-xl transition-colors hover:bg-[#192949] disabled:bg-gray-400 disabled:cursor-not-allowed overflow-hidden">
+                        <span *ngIf="!formSubmitting">Submit</span>
+                        <span *ngIf="formSubmitting" class="flex items-center justify-center">
+                            <svg class="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                    stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor"
+                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                </path>
+                            </svg>
+                            Submitting...
+                        </span>
                     </button>
                 </div>
             </form>

@@ -47,9 +47,9 @@
                     Build a<br />
                     <span class="italic">Greener Future</span>
                     <a href="/contact"
-                    class="hidden md:flex mt-4 lg:mt-6 w-fit justify-center items-center overflow-hidden gap-2 p-2 rounded-full border border-[#010d26] hover:bg-gray-100 transition-all duration-300 cursor-pointer">
-                    <span class="text-base md:text-lg lg:text-xl px-4 text-[#010d26]">Contact Us</span>
-                </a>
+                        class="hidden md:flex mt-4 lg:mt-6 w-fit justify-center items-center overflow-hidden gap-2 p-2 rounded-full border border-[#010d26] hover:bg-gray-100 transition-all duration-300 cursor-pointer">
+                        <span class="text-base md:text-lg lg:text-xl px-4 text-[#010d26]">Contact Us</span>
+                    </a>
                 </h2>
 
                 <!-- Logo -->
@@ -103,18 +103,48 @@
                         Join our monthly newsletter list
                     </h3>
 
-                    <form class="w-full md:max-w-lg">
+                    <form class="w-full md:max-w-lg" [formGroup]="newLetterForm" (ngSubmit)="onSubmit()">
                         <!-- Email Input -->
-                        <div
-                            class="w-full h-10 sm:h-12 md:h-14 lg:h-16 relative mb-3 overflow-hidden rounded-2xl sm:rounded-3xl border border-black">
-                            <input type="email" placeholder="Email address"
+                        <div class="w-full h-10 sm:h-12 md:h-14 lg:h-16 relative mb-3 overflow-hidden rounded-2xl sm:rounded-3xl border border-black"
+                            [ngClass]="{'border-red-500': newLetterForm.get('email')?.invalid && newLetterForm.get('email')?.touched}">
+                            <input type="email" placeholder="Email address" formControlName="email"
                                 class="w-full h-full p-2 sm:p-3 text-sm sm:text-base md:text-lg font-medium focus:outline-none text-[#A7A7A7]" />
                         </div>
 
+                        <!-- Email validation error -->
+                        <div *ngIf="newLetterForm.get('email')?.invalid && newLetterForm.get('email')?.touched"
+                            class="text-red-500 text-sm mb-2">
+                            <span *ngIf="newLetterForm.get('email')?.errors?.['required']">Email is required</span>
+                            <span *ngIf="newLetterForm.get('email')?.errors?.['email']">Please enter a valid
+                                email</span>
+                        </div>
+
+                        <!-- Form Status Messages -->
+                        <div *ngIf="formSubmitted" class="mb-3">
+                            <div *ngIf="formSubmitSuccess" class="p-2 bg-green-100 text-green-800 rounded-lg text-sm">
+                                Thank you for subscribing to our newsletter!
+                            </div>
+                            <div *ngIf="formSubmitError" class="p-2 bg-red-100 text-red-800 rounded-lg text-sm">
+                                Subscription failed. Please try again.
+                            </div>
+                        </div>
+
                         <!-- Submit Button -->
-                        <button type="submit"
-                            class="w-full flex justify-center items-center overflow-hidden gap-2 py-2 px-3 rounded-full bg-[#010d26] hover:bg-[#021c47] transition-all duration-300 cursor-pointer">
-                            <span class="text-sm sm:text-base md:text-lg lg:text-xl text-white">Submit</span>
+                        <button type="submit" [disabled]="formSubmitting"
+                            class="w-full flex justify-center items-center overflow-hidden gap-2 py-2 px-3 rounded-full bg-[#010d26] hover:bg-[#021c47] transition-all duration-300 cursor-pointer disabled:bg-gray-400 disabled:cursor-not-allowed">
+                            <span *ngIf="!formSubmitting"
+                                class="text-sm sm:text-base md:text-lg lg:text-xl text-white">Submit</span>
+                            <span *ngIf="formSubmitting" class="flex items-center text-white">
+                                <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                        stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor"
+                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                    </path>
+                                </svg>
+                                Submitting...
+                            </span>
                         </button>
                     </form>
 

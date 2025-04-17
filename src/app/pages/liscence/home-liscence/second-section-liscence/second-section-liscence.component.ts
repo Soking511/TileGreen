@@ -1,13 +1,12 @@
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import {
-  FormBuilder,
+  FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { FooterHomeComponent } from '../../../home/footer-home/footer-home.component';
-import { HeaderComponent } from '../../../../shared/components/header/header.component';
+import { ApiService } from '../../../../../services/api.service';
 
 interface FaqItem {
   question: string;
@@ -18,16 +17,47 @@ interface FaqItem {
 
 @Component({
   selector: 'app-second-section-liscence',
-  imports: [
-    NgFor,
-    NgIf,
-    ReactiveFormsModule,
-    NgClass,
-  ],
+  imports: [NgFor, NgIf, ReactiveFormsModule, NgClass],
   templateUrl: './second-section-liscence.component.html',
 })
 export class SecondSectionLiscenceComponent {
-  contactForm: FormGroup | undefined;
+  // Form status flags
+  formSubmitted = false;
+  formSubmitSuccess = false;
+  formSubmitError = false;
+  formSubmitting = false;
+
+  contactForm = new FormGroup({
+    full_name: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(50),
+    ]),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.email,
+      Validators.minLength(5),
+      Validators.maxLength(30),
+    ]),
+    company_name: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(50),
+    ]),
+    position: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(50),
+    ]),
+    industry: new FormControl('', [Validators.required]),
+    country_region: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(50),
+    ]),
+    message: new FormControl('', [Validators.maxLength(500)]), // Message is optional
+  });
+
   industries: string[] = [
     'Technology',
     'Healthcare',
@@ -94,31 +124,37 @@ export class SecondSectionLiscenceComponent {
     },
   ];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private apiService: ApiService) {}
 
-  ngOnInit(): void {
-    this.initForm();
-  }
+  onSubmit() { 
+    if (this.contactForm.valid) {
+      this.formSubmitting = true;
+      this.formSubmitted = false;
+      this.formSubmitSuccess = false;
+      this.formSubmitError = false;
 
-  initForm(): void {
-    this.contactForm = this.fb.group({
-      fullName: ['', Validators.required],
-      companyName: ['', Validators.required],
-      industry: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      region: ['', Validators.required],
-      message: [''],
-    });
-  }
+      this.apiService.post('/ContactUs', this.contactForm.value).subscribe(
+        (response) => {
+          console.log('Form submitted successfully', response);
+          this.formSubmitting = false;
+          this.formSubmitted = true;
+          this.formSubmitSuccess = true;
+          this.contactForm.reset();
 
-  onSubmit(): void {
-    if (this.contactForm) {
-      if (this.contactForm.valid) {
-        console.log('Form submitted:', this.contactForm.value);
-        // Add your API call or other form submission logic here
-      } else {
-        this.markFormGroupTouched(this.contactForm);
-      }
+          // Set default values after reset
+          this.contactForm.get('industry')?.setValue('');
+        },
+        (error) => {
+          console.error('Error submitting form', error);
+          this.formSubmitting = false;
+          this.formSubmitted = true;
+          this.formSubmitError = true;
+        }
+      );
+    } else {
+      console.log('Form is invalid, marking fields as touched');
+      // Improve user experience by marking all fields as touched to show errors
+      this.markFormGroupTouched(this.contactForm);
     }
   }
 
@@ -139,6 +175,14 @@ export class SecondSectionLiscenceComponent {
       return field ? field.invalid && (field.dirty || field.touched) : false;
     }
     return false;
+  }
+
+  // Helper method to check for specific field errors
+  getFieldError(fieldName: string, errorType: string): boolean {
+    const field = this.contactForm.get(fieldName);
+    if (!field) return false;
+
+    return field.touched && field.errors && field.errors[errorType];
   }
 
   toggleItem(item: FaqItem): void {

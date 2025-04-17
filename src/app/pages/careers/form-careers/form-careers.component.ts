@@ -1,20 +1,26 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FooterHomeComponent } from '../../home/footer-home/footer-home.component';
 import {
   FormControl,
   FormGroup,
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { ApiService } from '../../../../services/api.service';
 
 @Component({
   selector: 'app-form-careers',
   standalone: true,
-  imports: [FooterHomeComponent, ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './form-careers.component.html',
 })
 export class FormCareersComponent {
+  // Form status flags
+  formSubmitted = false;
+  formSubmitSuccess = false;
+  formSubmitError = false;
+  formSubmitting = false;
+
   positionForm = new FormGroup({
     position_name: new FormControl('', [
       Validators.required,
@@ -26,7 +32,7 @@ export class FormCareersComponent {
       Validators.minLength(3),
       Validators.maxLength(20),
     ]),
-    last_name: new FormControl('', [
+    second_name: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
       Validators.maxLength(20),
@@ -40,14 +46,15 @@ export class FormCareersComponent {
     email: new FormControl('', [Validators.required, Validators.email]),
   });
 
-  resumeFile: File | null = null;
+  resume: File | null = null;
   fileUploaded: boolean = false;
-  formSubmitted: boolean = false;
+
+  constructor(private apiService: ApiService) {}
 
   handleFileInput(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
-      this.resumeFile = input.files[0];
+      this.resume = input.files[0];
       this.fileUploaded = true;
     }
   }
@@ -55,17 +62,71 @@ export class FormCareersComponent {
   onSubmit(): void {
     this.formSubmitted = true;
 
-    if (this.positionForm.valid && this.resumeFile) {
+    if (this.positionForm.valid && this.resume) {
+      this.formSubmitting = true;
+      this.formSubmitSuccess = false;
+      this.formSubmitError = false;
 
-      this.positionForm.reset();
-      this.resumeFile = null;
-      this.fileUploaded = false;
-      this.formSubmitted = false;
+      // Create FormData object to send file along with form data
+      const formData = new FormData();
+
+      // Append all form fields
+      Object.keys(this.positionForm.controls).forEach((key) => {
+        formData.append(key, this.positionForm.get(key)?.value);
+      });
+
+      // Append resume file
+      if (this.resume) {
+        formData.append('resume', this.resume);
+      }
+
+      // Send form data to server
+      this.apiService.postFormData('/ApplyJob', formData).subscribe(
+        (response) => {
+          console.log('Form submitted successfully', response);
+          this.formSubmitting = false;
+          this.formSubmitSuccess = true;
+
+          // Scroll to the success message
+          setTimeout(() => {
+            const successMessage = document.querySelector('.success-message');
+            successMessage?.scrollIntoView({
+              behavior: 'smooth',
+              block: 'center',
+            });
+          }, 100);
+
+          this.positionForm.reset();
+          this.resume = null;
+          this.fileUploaded = false;
+        },
+        (error) => {
+          console.error('Error submitting form', error);
+          this.formSubmitting = false;
+          this.formSubmitError = true;
+
+          // Scroll to the error message
+          setTimeout(() => {
+            const errorMessage = document.querySelector('.error-message');
+            errorMessage?.scrollIntoView({
+              behavior: 'smooth',
+              block: 'center',
+            });
+          }, 100);
+        }
+      );
     } else {
+      // Mark all form controls as touched to show validation errors
       Object.keys(this.positionForm.controls).forEach((key) => {
         const control = this.positionForm.get(key);
         control?.markAsTouched();
       });
+
+      // Find the first error and scroll to it
+      setTimeout(() => {
+        const firstError = document.querySelector('.text-red-500');
+        firstError?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
     }
   }
 
