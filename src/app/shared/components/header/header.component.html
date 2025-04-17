@@ -85,27 +85,34 @@
                 </div>
             </div>
 
-            <div class="hidden md:flex md:items-center md:justify-center md:flex-grow">
-                <ul class="flex flex-wrap justify-center space-x-6 lg:space-x-8 xl:space-x-12 text-sm lg:text-base">
-                    @for (item of navbarItems; track item) {
-                    <li>
-                        <a [routerLink]="item.link"
-                            class="nav-link hover:text-gray-300 py-2 px-1 font-medium tracking-wide transition-all duration-200 relative group"
-                            [ngClass]="imagePath ? 'text-white' : 'text-black'">
-                            {{item.name}}
-                            <span
-                                class="absolute bottom-0 left-0 w-0 h-0.5 bg-current group-hover:w-full transition-all duration-300"></span>
-                        </a>
-                    </li>
-                    }
-                </ul>
+            <!-- Desktop Navigation - Restructured to put Contact Us on far right -->
+            <div class="hidden md:flex md:items-center md:justify-between md:flex-grow">
+                <!-- Navigation Links - Centered -->
+                <div class="flex-grow flex justify-center">
+                    <ul class="flex flex-wrap justify-center space-x-6 lg:space-x-8 xl:space-x-12 text-sm lg:text-base">
+                        @for (item of navbarItems; track item) {
+                        <li>
+                            <a [routerLink]="item.link"
+                                class="nav-link hover:text-gray-300 py-2 px-1 font-medium tracking-wide transition-all duration-200 relative group"
+                                [ngClass]="imagePath ? 'text-white' : 'text-black'">
+                                {{item.name}}
+                                <span
+                                    class="absolute bottom-0 left-0 w-0 h-0.5 bg-current group-hover:w-full transition-all duration-300"></span>
+                            </a>
+                        </li>
+                        }
+                    </ul>
+                </div>
 
-                <a href="#"
-                    class="contact-button relative border rounded-full px-5 lg:px-7 py-1.5 lg:py-2.5 transition overflow-hidden whitespace-nowrap text-sm lg:text-base ml-8 lg:ml-12 font-medium tracking-wide"
-                    [ngClass]="imagePath ? 'border-white text-white hover:text-black hover:bg-white' : 'border-black text-black hover:text-blue-900 hover:bg-transparent'">
-                    <span class="relative z-10">Contact Us</span>
-                    <div class="absolute inset-0 bg-black opacity-25" *ngIf="imagePath"></div>
-                </a>
+                <!-- Contact Us Button - Without hover effects -->
+                <div class="ml-4">
+                    <a href="#"
+                        class="contact-button relative border rounded-full px-5 lg:px-7 py-1.5 lg:py-2.5 whitespace-nowrap text-sm lg:text-base font-medium tracking-wide"
+                        [ngClass]="imagePath ? 'border-white text-white' : 'border-black text-black'">
+                        <span class="relative z-10">Contact Us</span>
+                        <div class="absolute inset-0 bg-black opacity-25" *ngIf="imagePath"></div>
+                    </a>
+                </div>
             </div>
         </nav>
 
@@ -124,10 +131,23 @@
                 <tr>
                     <td class="align-bottom p-0">
                         <h1
-                            class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-bold leading-tight">
-                            {{headTitle1}} <br>
-                            <i class="font-serif font-medium">{{headTitle2}}</i> <br>
-                            {{headTitle3}}
+                            class=" text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-bold leading-tight">
+                            <div class="w-[673px] justify-start">
+                                <span
+                                    class="text-white text-7xl font-medium font-['Neue_Haas_Grotesk_Display_Pro']">{{headTitle1}}</span>
+                                <br />
+                                @if ( headTitle2 == 'technology') {
+                                <span
+                                    class="text-white text-7xl font-normal font-['Libre_Baskerville']">{{headTitle2}}</span>
+                                } @else {
+                                <span
+                                    class="text-white text-7xl font-normal font-['Avenir_Next_LT_Pro']">{{headTitle2}}</span>
+
+                                }
+                                <br />
+                                <span
+                                    class="text-white text-7xl font-medium font-['Neue_Haas_Grotesk_Display_Pro']">{{headTitle3}}</span>
+                            </div>
                         </h1>
                     </td>
                     <td class="align-bottom p-0 w-1 text-right">
@@ -163,10 +183,12 @@
 
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-5 sm:gap-6">
                 <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-white max-w-3xl">
-                    {{description1||''}} <br>
-                    {{description2||''}}
+                    <span class="w-[741px] justify-start text-white text-2xl font-normal font-['Inter_Display']">
+                        {{description1||''}}
+                        <br>
+                        {{description2||''}}
+                    </span>
                 </p>
-
                 <a href="#"
                     class="whitespace-nowrap px-6 sm:px-8 py-3 sm:py-3.5 rounded-full border-2 border-white text-white text-base sm:text-2xl hover:bg-white hover:text-blue-900 transition-all duration-300 touch-manipulation mt-4 md:mt-0">
                     {{ button2Text|| "Express Interest"}}

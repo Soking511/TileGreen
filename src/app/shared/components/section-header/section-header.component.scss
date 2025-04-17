@@ -11,17 +11,24 @@
   flex-grow: 0;
 }
 
-.text{
+span {
+  color: #fff;
+  font-feature-settings: "liga" off, "clig" off;
+  color: #434343;
+
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: "Neue Haas Grotesk Display Pro";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.text {
   /* What makes us special */
 
   width: 178px;
   height: 22px;
-
-  font-family: "Neue Haas Grotesk Display Pro";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 22px;
   /* identical to box height */
 
   color: #434343;

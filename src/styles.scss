@@ -3,20 +3,29 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Font Face Declaration */
 @font-face {
   font-family: "Neue Haas Display";
-  src: url("./assets/fonts/NeueHaasDisplayBlack.ttf") format("truetype");
-  font-style: normal;
-  font-display: swap;
+  src: url("./assets/fonts/NeueHaasDisplayRoman.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "Neue Haas Display";
-  src: url("./assets/fonts/NeueHaasDisplayLight.ttf") format("truetype");
-  font-style: normal;
-  font-display: swap;
+  font-family: "Libre Baskerville";
+  src: url("./assets/fonts/LibreBaskerville-Italic.ttf") format("truetype");
 }
+
+@font-face {
+  font-family: 'Libre Baskerville';
+  src: url("./assets/fonts/LibreBaskerville-Italic.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Inter_Display';
+  src: url("./assets/fonts/Inter_18pt-Regular.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 /* Custom styles below this line */
 
