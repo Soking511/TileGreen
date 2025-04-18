@@ -77,14 +77,8 @@
 }
 
 .contact-button {
-  font-family: "Neue Haas Display", sans-serif;
   font-weight: 500;
   transition: all 0.3s ease;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(4, 96, 217, 0.25);
-  }
 
   position: relative;
   overflow: hidden;
@@ -97,8 +91,6 @@
     width: 100%;
     height: 100%;
   }
-
-
 }
 
 :host {
@@ -166,20 +158,28 @@ nav[class*="bg-transparent"],
   }
 }
 
-.head-title{
-  color: #FFF;
+.head-title {
+  color: #fff;
 
-  font-feature-settings: 'liga' off, 'clig' off;
+  font-feature-settings: "liga" off, "clig" off;
   font-family: "Neue Haas Grotesk Display Pro";
   font-style: normal;
   font-weight: 500;
   line-height: normal;
 }
 
-.technology-word{
-  color: #FFF;
+.technology-word {
+  color: #fff;
   font-family: "Libre Baskerville", sans-serif;
   font-style: italic;
   font-weight: 400;
   line-height: normal;
+}
+
+.no-shadow {
+  box-shadow: none !important;
+  &:hover {
+    box-shadow: none !important;
+    transform: none !important;
+  }
 }
