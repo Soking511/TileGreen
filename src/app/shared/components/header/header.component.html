@@ -47,7 +47,7 @@
             </button>
 
             <!-- Enhanced Mobile menu -->
-            <div class="md:hidden fixed inset-0 z-10 transform transition-all duration-300 ease-in-out overflow-hidden"
+            <div class="md:hidden fixed inset-0 z-50 transform transition-all duration-300 ease-in-out overflow-hidden"
                 [ngClass]="isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'"
                 [ngStyle]="{'transition-delay': isMobileMenuOpen ? '0s' : '0.3s'}" role="dialog" aria-modal="true"
                 aria-label="Mobile navigation menu">
@@ -124,7 +124,7 @@
 
     @if (imagePath) {
     <!-- Bottom Section with divider and heading -->
-    <div class="relative z-10 w-full">
+    <div class="relative  w-full">
         <!-- Main Heading - Moved here, just above the divider line -->
         <div class="container mx-auto px-4 sm:px-6 md:px-8 mb-8 md:mb-12">
             <table class="w-full">
