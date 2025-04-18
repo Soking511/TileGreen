@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ApiService } from '../../../../../services/api.service';
+import { ButtonComponent } from "../../../../shared/components/button/button.component";
 
 interface FaqItem {
   question: string;
@@ -17,7 +18,7 @@ interface FaqItem {
 // head-numbers
 @Component({
   selector: 'app-second-section-liscence',
-  imports: [NgFor, NgIf, ReactiveFormsModule, NgClass],
+  imports: [NgFor, NgIf, ReactiveFormsModule, NgClass, ButtonComponent],
   templateUrl: './second-section-liscence.component.html',
   styleUrls: ['./second-section-liscence.component.scss'],
 })

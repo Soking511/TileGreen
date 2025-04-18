@@ -26,24 +26,8 @@
         </div>
 
         <!-- CTA Button -->
-        <div class="w-full flex justify-center sm:justify-start">
-            <a href="#"
-                class="group flex items-center gap-4 px-6 py-4 rounded-full bg-[#f5f4f3] hover:bg-gray-100 transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer touch-manipulation">
-                <span class="text-xl md:text-2xl text-[#010d26] group-hover:text-[#0460D9] transition-colors">
-                    PRE-Order Now
-                </span>
-                <span
-                    class="bg-[#0460D9] rounded-full w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center flex-shrink-0 transform transition-all duration-300 group-hover:scale-110 group-hover:bg-[#0353c0]">
-                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"
-                        class="flex-grow-0 flex-shrink-0 w-14 h-14 relative" preserveAspectRatio="none">
-                        <rect width="56" height="56" rx="28" fill="#0460D9"></rect>
-                        <path
-                            d="M30.6245 36.5867L39.1667 28L30.6245 19.4134C30.5474 19.312 30.4494 19.2285 30.3371 19.1684C30.2249 19.1082 30.101 19.0729 29.9739 19.0648C29.8469 19.0567 29.7195 19.076 29.6005 19.1214C29.4816 19.1667 29.3737 19.2372 29.2843 19.3278C29.1949 19.4185 29.1261 19.5274 29.0824 19.647C29.0387 19.7666 29.0212 19.8942 29.0312 20.0211C29.0411 20.1481 29.0782 20.2714 29.1399 20.3828C29.2016 20.4942 29.2866 20.591 29.389 20.6667L35.7801 27.1111L18.7756 27.1111C18.5399 27.1111 18.3138 27.2048 18.1471 27.3715C17.9804 27.5382 17.8867 27.7643 17.8867 28C17.8867 28.2358 17.9804 28.4619 18.1471 28.6286C18.3138 28.7953 18.5399 28.8889 18.7756 28.8889L35.7801 28.8889L29.389 35.3334C29.2228 35.5007 29.1299 35.7273 29.1307 35.9632C29.1315 36.199 29.226 36.4249 29.3934 36.5911C29.5608 36.7573 29.7873 36.8502 30.0232 36.8494C30.2591 36.8486 30.485 36.7541 30.6512 36.5867L30.6245 36.5867Z"
-                            fill="white"></path>
-                    </svg>
-                </span>
-            </a>
-        </div>
+
+        <app-button buttonText="PRE-Order Now" linkPath="/about" [withArrow]="true" [withAnimation]="true" />
     </div>
     <app-section-header title="Value" />
     <h1
@@ -169,75 +153,80 @@
 
             <!-- Content section -->
             <div class="w-full lg:w-1/2 flex flex-col gap-8 md:gap-12">
-            <!-- Text content with enhanced styling -->
-            <div class="flex flex-col gap-6">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl text-tile-md text-[#010D26] font-bold leading-tight">
-                    We started with one product for <br> producing outdoor interlocking <br>"paving tiles".
-                    <br class="hidden md:block" />
-                    Anticipate more technologies for more<br> green building materials soon.
-                </h2>
-                <p class="text-lg md:text-xl text-[#818896] font-medium leading-relaxed">
-                    It's designed for durability and sustainability, serving as an <br>eco-friendly alternative to
-                    traditional concrete pavers.
-                </p>
-            </div>
-
-            <!-- Product cards with enhanced styling -->
-            <div class="product-card flex flex-col gap-5">
-                <!-- Card 1 - Enhanced with hover effects and larger images -->
-                <div class="flex items-center p-3 rounded-xl border border-[#c0c0c0] transition-all duration-300 group">
-                    <div class="w-28 h-20 md:w-40 md:h-28 rounded-lg overflow-hidden">
-                        <img src="assets/images/rectangle-12.png"
-                            class="w-full h-full object-cover transition-transform duration-500" alt="Roofing tiles" />
-                    </div>
-                    <div class="ml-6">
-                        <p class="text-xl md:text-2xl text-[#010D26] text-tile-md transition-colors">
-                            Roofing tiles</p>
-                        <!-- <p class="text-sm text-[#818896] mt-1 hidden md:block">Durable and weather-resistant</p> -->
-                    </div>
+                <!-- Text content with enhanced styling -->
+                <div class="flex flex-col gap-6">
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl text-tile-md text-[#010D26] font-bold leading-tight">
+                        We started with one product for <br> producing outdoor interlocking <br>"paving tiles".
+                        <br class="hidden md:block" />
+                        Anticipate more technologies for more<br> green building materials soon.
+                    </h2>
+                    <p class="text-lg md:text-xl text-[#818896] font-medium leading-relaxed">
+                        It's designed for durability and sustainability, serving as an <br>eco-friendly alternative to
+                        traditional concrete pavers.
+                    </p>
                 </div>
 
-                <!-- Card 2 - Enhanced with hover effects and larger images -->
-                <div class="flex items-center p-3 rounded-xl border border-[#c0c0c0] transition-all duration-300 group">
-                    <div class="w-28 h-20 md:w-40 md:h-28 rounded-lg overflow-hidden">
-                        <img src="assets/images/rectangle-12-4.png"
-                            class="w-full h-full object-cover transition-transform duration-500"
-                            alt="Outdoor Furniture" />
+                <!-- Product cards with enhanced styling -->
+                <div class="product-card flex flex-col gap-5">
+                    <!-- Card 1 - Enhanced with hover effects and larger images -->
+                    <div
+                        class="flex items-center p-3 rounded-xl border border-[#c0c0c0] transition-all duration-300 group">
+                        <div class="w-28 h-20 md:w-40 md:h-28 rounded-lg overflow-hidden">
+                            <img src="assets/images/rectangle-12.png"
+                                class="w-full h-full object-cover transition-transform duration-500"
+                                alt="Roofing tiles" />
+                        </div>
+                        <div class="ml-6">
+                            <p class="text-xl md:text-2xl text-[#010D26] text-tile-md transition-colors">
+                                Roofing tiles</p>
+                            <!-- <p class="text-sm text-[#818896] mt-1 hidden md:block">Durable and weather-resistant</p> -->
+                        </div>
                     </div>
-                    <div class="ml-6">
-                        <p class="text-xl md:text-2xl text-[#010D26] text-tile-md transition-colors">
-                            Outdoor Furniture</p>
-                        <!-- <p class="text-sm text-[#818896] mt-1 hidden md:block">Sustainable outdoor solutions</p> -->
-                    </div>
-                </div>
 
-                <!-- Card 3 - Enhanced with hover effects and larger images -->
-                <div class="flex items-center p-3 rounded-xl border border-[#c0c0c0] transition-all duration-300 group">
-                    <div class="w-28 h-20 md:w-40 md:h-28 rounded-lg overflow-hidden">
-                        <img src="assets/images/rectangle-12-3.png"
-                            class="w-full h-full object-cover transition-transform duration-500"
-                            alt="Cladding Sheets" />
+                    <!-- Card 2 - Enhanced with hover effects and larger images -->
+                    <div
+                        class="flex items-center p-3 rounded-xl border border-[#c0c0c0] transition-all duration-300 group">
+                        <div class="w-28 h-20 md:w-40 md:h-28 rounded-lg overflow-hidden">
+                            <img src="assets/images/rectangle-12-4.png"
+                                class="w-full h-full object-cover transition-transform duration-500"
+                                alt="Outdoor Furniture" />
+                        </div>
+                        <div class="ml-6">
+                            <p class="text-xl md:text-2xl text-[#010D26] text-tile-md transition-colors">
+                                Outdoor Furniture</p>
+                            <!-- <p class="text-sm text-[#818896] mt-1 hidden md:block">Sustainable outdoor solutions</p> -->
+                        </div>
                     </div>
-                    <div class="ml-6">
-                        <p class="text-xl md:text-2xl text-[#010D26] text-tile-md transition-colors">
-                            Cladding Sheets</p>
-                        <!-- <p class="text-sm text-[#818896] mt-1 hidden md:block">Eco-friendly façade solutions</p> -->
-                    </div>
-                </div>
 
-                <!-- Card 4 - Enhanced with hover effects and larger images -->
-                <div class="flex items-center p-3 rounded-xl border border-[#c0c0c0] transition-all duration-300 group">
-                    <div class="w-28 h-20 md:w-40 md:h-28 rounded-lg overflow-hidden">
-                        <img src="assets/images/rectangle-12-2.png"
-                            class="w-full h-full object-cover transition-transform duration-500" alt="Panels" />
+                    <!-- Card 3 - Enhanced with hover effects and larger images -->
+                    <div
+                        class="flex items-center p-3 rounded-xl border border-[#c0c0c0] transition-all duration-300 group">
+                        <div class="w-28 h-20 md:w-40 md:h-28 rounded-lg overflow-hidden">
+                            <img src="assets/images/rectangle-12-3.png"
+                                class="w-full h-full object-cover transition-transform duration-500"
+                                alt="Cladding Sheets" />
+                        </div>
+                        <div class="ml-6">
+                            <p class="text-xl md:text-2xl text-[#010D26] text-tile-md transition-colors">
+                                Cladding Sheets</p>
+                            <!-- <p class="text-sm text-[#818896] mt-1 hidden md:block">Eco-friendly façade solutions</p> -->
+                        </div>
                     </div>
-                    <div class="ml-6">
-                        <p class="text-xl md:text-2xl text-[#010D26] text-tile-md transition-colors">
-                            Panels</p>
-                        <!-- <p class="text-sm text-[#818896] mt-1 hidden md:block">Versatile construction elements</p> -->
+
+                    <!-- Card 4 - Enhanced with hover effects and larger images -->
+                    <div
+                        class="flex items-center p-3 rounded-xl border border-[#c0c0c0] transition-all duration-300 group">
+                        <div class="w-28 h-20 md:w-40 md:h-28 rounded-lg overflow-hidden">
+                            <img src="assets/images/rectangle-12-2.png"
+                                class="w-full h-full object-cover transition-transform duration-500" alt="Panels" />
+                        </div>
+                        <div class="ml-6">
+                            <p class="text-xl md:text-2xl text-[#010D26] text-tile-md transition-colors">
+                                Panels</p>
+                            <!-- <p class="text-sm text-[#818896] mt-1 hidden md:block">Versatile construction elements</p> -->
+                        </div>
                     </div>
                 </div>
-            </div>
             </div>
         </div>
     </div>

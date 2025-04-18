@@ -5,19 +5,9 @@
         class="w-full md:w-[600px] lg:w-[784px] text-lg md:text-xl lg:text-2xl font-medium text-center text-[#818896] mx-auto text-tile-inter-bold px-4 mb-8">
         Transform plastic waste into a profitable, scalable business with <br> TileGreen's proven technology.
     </p>
-    <button
-        class="cursor-pointer px-3 flex flex-col sm:flex-row justify-center items-center relative overflow-hidden gap-4 sm:gap-6  py-3 sm:py-1.5 rounded-[50px] bg-[#f5f4f3] mx-auto max-w-xl">
-        <p class="text-xl sm:text-2xl text-center sm:text-left text-[#010d26]">
-            Start Your Listening Journey
-        </p>
-        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"
-            class="flex-grow-0 flex-shrink-0 w-14 h-14 relative" preserveAspectRatio="none">
-            <rect width="56" height="56" rx="28" fill="#0460D9"></rect>
-            <path
-                d="M30.6243 36.5867L39.1665 28L30.6243 19.4134C30.5471 19.312 30.4491 19.2285 30.3369 19.1684C30.2246 19.1082 30.1008 19.0729 29.9737 19.0648C29.8466 19.0567 29.7193 19.076 29.6003 19.1214C29.4813 19.1667 29.3735 19.2372 29.2841 19.3278C29.1947 19.4185 29.1258 19.5274 29.0821 19.647C29.0385 19.7666 29.021 19.8942 29.0309 20.0211C29.0408 20.1481 29.0779 20.2714 29.1396 20.3828C29.2014 20.4942 29.2863 20.591 29.3887 20.6667L35.7798 27.1111L18.7754 27.1111C18.5396 27.1111 18.3136 27.2048 18.1469 27.3715C17.9802 27.5382 17.8865 27.7643 17.8865 28C17.8865 28.2358 17.9802 28.4619 18.1469 28.6286C18.3136 28.7953 18.5396 28.8889 18.7754 28.8889L35.7798 28.8889L29.3887 35.3334C29.2225 35.5007 29.1296 35.7273 29.1305 35.9632C29.1313 36.199 29.2258 36.4249 29.3932 36.5911C29.5606 36.7573 29.7871 36.8502 30.023 36.8494C30.2589 36.8486 30.4847 36.7541 30.6509 36.5867L30.6243 36.5867Z"
-                fill="white"></path>
-        </svg>
-    </button>
+    <div class='mx-auto flex justify-center'>
+        <app-button buttonText="Start Your Licensing Journey" linkPath="/about" [withArrow]="true" [withAnimation]="true" />
+    </div>
 
     <!-- section 2 -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-12 px-16" loading='lazy'>
@@ -126,13 +116,13 @@
 
 
     <!-- contact-form.component.html -->
-    <div class="form-container">
         <p
-            class="w-full lg:w-[1107px] text-3xl md:text-5xl lg:text-[64px] text-left text-[#010d26] pb-10 text-tile-regular px-8 md:pl-16">
-            We're launching soon! Be among the first <br>
-            to bring TileGreen's technology to your <br>
-            region.
-        </p>
+        class="w-full text-3xl md:text-5xl lg:text-[64px] text-left text-[#010d26] pb-10 text-tile-regular px-8 md:pl-16 w-full">
+        We're launching soon! Be among the first <br>
+        to bring TileGreen's technology to your <br>
+        region.
+    </p>
+    <div class="form-container">
 
         <div class="flex flex-col md:flex-row gap-8 items-start">
             <form [formGroup]="contactForm" (submit)="onSubmit()"

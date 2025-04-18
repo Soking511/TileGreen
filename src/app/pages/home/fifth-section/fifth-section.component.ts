@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SectionHeaderComponent } from '../../../shared/components/section-header/section-header.component';
+import { ButtonComponent } from "../../../shared/components/button/button.component";
 
 interface SlideItem {
   id: number;
@@ -15,7 +16,7 @@ interface SlideItem {
 @Component({
   selector: 'app-fifth-section',
   standalone: true,
-  imports: [CommonModule, SectionHeaderComponent],
+  imports: [CommonModule, SectionHeaderComponent, ButtonComponent],
   templateUrl: './fifth-section.component.html',
   styles: [
     `

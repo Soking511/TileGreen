@@ -1,8 +1,9 @@
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FooterHomeComponent } from '../home/footer-home/footer-home.component';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { LogoCarouselComponent } from "../../shared/components/logo-carousel/logo-carousel.component";
+import { ButtonComponent } from "../../shared/components/button/button.component";
 
 interface SlideItem {
   id: number;
@@ -22,7 +23,7 @@ interface RecognitionLogo {
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [HeaderComponent, FooterHomeComponent, NgFor, LogoCarouselComponent],
+  imports: [HeaderComponent, FooterHomeComponent, NgFor, LogoCarouselComponent, NgIf, ButtonComponent],
   templateUrl: './about.component.html',
 })
 export class AboutComponent implements OnInit, OnDestroy {
@@ -34,7 +35,7 @@ export class AboutComponent implements OnInit, OnDestroy {
     { url: 'assets/images/logos/5.png', alt: 'Brand 5' },
     { url: 'assets/images/logos/6.png', alt: 'Brand 6' },
   ];
-  
+
   slides: SlideItem[] = [
     {
       id: 1,
