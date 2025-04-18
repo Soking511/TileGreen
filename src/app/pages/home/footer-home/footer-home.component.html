@@ -1,30 +1,38 @@
 @if ( firstSectionTitle ){
-<footer class="relative bg-cover bg-center bg-no-repeat py-24 text-white"
-    [style.background-image]="imagePath ? 'url(' + imagePath + ')' : 'url(assets/images/footer/default-bg.jpg)'">
+<footer [ngClass]="'mt-0'" [ngStyle]="{'background-image': 'url(' + imagePath + ')'}" class="">
+
+    <!-- Overlay -->
     <div class="absolute inset-0 bg-black opacity-30"></div>
 
-    <div class="container mx-auto px-4 text-center relative z-10">
-        <h2 class="text-4xl md:text-5xl font-bold mb-6">{{firstSectionTitle}}</h2>
+    <!-- Content Container -->
+    <div class="container mx-auto px-4 relative z-10 text-white"
+        [ngClass]="{'text-left': textPosition === 'left', 'text-center': textPosition !== 'left'}">
+        <!-- Heading -->
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 pt-16"
+            [ngClass]="{'text-left': textPosition === 'left', 'text-center': textPosition !== 'left'}">
+            {{firstSectionTitle}}
+        </h2>
 
+        <!-- Description -->
         <p class="w-full text-sm sm:text-base md:text-xl lg:text-2xl leading-relaxed mb-10"
-            [class.text-left]="textPosition === 'left'" [class.text-center]="textPosition !== 'left'">
+            [ngClass]="{'text-left mx-0': textPosition === 'left', 'text-center max-w-4xl mx-auto': textPosition !== 'left'}">
             <span class="text-tile-regular">
-                {{firstSectionDescription || 'TileGreen is at the forefront of the sustainability revolution,
-                driving innovative solutions to tackle some of the world\'s most pressing environmental
-                challenges'}}
+                {{firstSectionDescription || 'TileGreen is at the forefront of the sustainability revolution, driving
+                innovative solutions to tackle some of the world\'s most pressing environmental challenges'}}
             </span>
         </p>
 
-        <!-- Modified button with proper centering -->
-        <div class="flex justify-center w-full">
+        <!-- CTA Button -->
+        <div class="flex w-full pb-16"
+            [ngClass]="{'justify-start': textPosition === 'left', 'justify-center': textPosition !== 'left'}">
             <a href="/contact"
-                class="flex justify-center items-center overflow-hidden gap-2 px-6 py-3 md:px-8 md:py-4 rounded-full border-2 border-white hover:bg-white/20 transition-all duration-300 z-10"
-                [ngClass]="{'self-start ml-0': textPosition === 'left', 'mx-auto': textPosition !== 'left'}">
+                class="flex justify-center items-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-full border-2 border-white hover:bg-white/20 transition-all duration-300">
                 <span class="text-base sm:text-lg md:text-xl lg:text-2xl whitespace-nowrap">
                     {{ firstSectionButtonText || 'Contact Us' }}
                 </span>
+                <!-- Arrow Icon -->
                 <svg width="48" height="48" viewBox="0 0 56 57" fill="none" xmlns="http://www.w3.org/2000/svg"
-                    class="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex-shrink-0" preserveAspectRatio="none">
+                    class="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex-shrink-0">
                     <rect y="0.5" width="56" height="56" rx="28" fill="#0460D9"></rect>
                     <path
                         d="M30.6243 37.0862L39.1665 28.4995L30.6243 19.9129C30.5471 19.8116 30.4491 19.728 30.3369 19.6679C30.2246 19.6077 30.1008 19.5724 29.9737 19.5643C29.8466 19.5562 29.7193 19.5755 29.6003 19.6209C29.4813 19.6663 29.3735 19.7367 29.2841 19.8274C29.1947 19.918 29.1258 20.0269 29.0821 20.1465C29.0385 20.2661 29.021 20.3937 29.0309 20.5207C29.0408 20.6476 29.0779 20.7709 29.1396 20.8823C29.2014 20.9937 29.2863 21.0905 29.3887 21.1662L35.7798 27.6106L18.7754 27.6106C18.5396 27.6106 18.3136 27.7043 18.1469 27.871C17.9802 28.0377 17.8865 28.2638 17.8865 28.4995C17.8865 28.7353 17.9802 28.9614 18.1469 29.1281C18.3136 29.2948 18.5396 29.3884 18.7754 29.3884L35.7798 29.3884L29.3887 35.8329C29.2225 36.0002 29.1296 36.2268 29.1305 36.4627C29.1313 36.6986 29.2258 36.9244 29.3932 37.0906C29.5606 37.2568 29.7871 37.3497 30.023 37.3489C30.2589 37.3481 30.4847 37.2536 30.6509 37.0862L30.6243 37.0862Z"
@@ -84,7 +92,8 @@
                 </div>
 
                 <!-- Description -->
-                <p class="text-sm sm:text-base md:text-lg lg:text-xl text-[#010D26] max-w-xl leading-relaxed text-tile-regular">
+                <p
+                    class="text-sm sm:text-base md:text-lg lg:text-xl text-[#010D26] max-w-xl leading-relaxed text-tile-regular">
                     TileGreen is at the forefront of the sustainability <br>
                     revolution, driving innovative solutions to tackle some of <br>
                     the world's most pressing environmental challenges
@@ -99,7 +108,7 @@
             </div>
 
             <!-- Right Column: Newsletter & Contact -->
-            <div class="w-full md:w-1/2 lg:w-2/5 flex flex-col justify-end mt-5 md:mt-0 pb-62">
+            <div class="w-full md:w-1/2 lg:w-2/5 flex flex-col justify-end mt-5 md:mt-0 md:pb-62">
                 <!-- Newsletter Signup Form -->
                 <div class="pt-2 md:pt-4 flex flex-col justify-start items-end gap-3 sm:gap-4 max-h-1/4  ">
 
@@ -186,8 +195,9 @@
                         </div>
 
                         <!-- Email Contact -->
-                        <div class="flex items-center justify-end w-full gap-2 mb-2 sm:mb-3">
-                            <p class="text-sm sm:text-base md:text-lg text-tile-inter text-[#010D26]">info tilegreen.com</p>
+                        <div class="flex items-center justify-end w-full gap-2 mb-2 sm:mb-3 pt-4">
+                            <p class="text-sm sm:text-base md:text-lg text-tile-inter text-[#010D26]">info tilegreen.com
+                            </p>
                         </div>
 
                         <!-- Phone Contact -->

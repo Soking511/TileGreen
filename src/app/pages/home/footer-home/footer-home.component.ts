@@ -1,4 +1,4 @@
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass, NgIf, NgStyle } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import {
   FormControl,
@@ -10,7 +10,7 @@ import { ApiService } from '../../../../services/api.service';
 
 @Component({
   selector: 'app-footer-home',
-  imports: [NgClass, ReactiveFormsModule, NgIf],
+  imports: [NgClass, ReactiveFormsModule, NgIf, NgStyle],
   templateUrl: './footer-home.component.html',
 })
 export class FooterHomeComponent {

@@ -14,11 +14,12 @@ interface FaqItem {
   isOpen: boolean;
   keyBenefits?: string[];
 }
-
+// head-numbers
 @Component({
   selector: 'app-second-section-liscence',
   imports: [NgFor, NgIf, ReactiveFormsModule, NgClass],
   templateUrl: './second-section-liscence.component.html',
+  styleUrls: ['./second-section-liscence.component.scss'],
 })
 export class SecondSectionLiscenceComponent {
   // Form status flags

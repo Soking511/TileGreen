@@ -2,6 +2,7 @@ import { NgFor } from '@angular/common';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FooterHomeComponent } from '../home/footer-home/footer-home.component';
 import { HeaderComponent } from '../../shared/components/header/header.component';
+import { LogoCarouselComponent } from "../../shared/components/logo-carousel/logo-carousel.component";
 
 interface SlideItem {
   id: number;
@@ -21,10 +22,19 @@ interface RecognitionLogo {
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [HeaderComponent, FooterHomeComponent, NgFor],
+  imports: [HeaderComponent, FooterHomeComponent, NgFor, LogoCarouselComponent],
   templateUrl: './about.component.html',
 })
 export class AboutComponent implements OnInit, OnDestroy {
+  brandLogos = [
+    { url: 'assets/images/logos/1.png', alt: 'Brand 1' },
+    { url: 'assets/images/logos/2.png', alt: 'Brand 2' },
+    { url: 'assets/images/logos/3.png', alt: 'Brand 3' },
+    { url: 'assets/images/logos/4.png', alt: 'Brand 4' },
+    { url: 'assets/images/logos/5.png', alt: 'Brand 5' },
+    { url: 'assets/images/logos/6.png', alt: 'Brand 6' },
+  ];
+  
   slides: SlideItem[] = [
     {
       id: 1,
@@ -103,47 +113,34 @@ export class AboutComponent implements OnInit, OnDestroy {
     },
   ];
 
+
   currentIndex = 0;
   totalSlides = this.slides.length;
   slideInterval: any;
-  visibleSlides = 1;
   private resizeTimeout: any;
 
-  constructor() {
-    this.setVisibleSlides();
-  }
+  constructor() {}
 
   @HostListener('window:resize')
   onResize() {
     clearTimeout(this.resizeTimeout);
     this.resizeTimeout = setTimeout(() => {
-      this.setVisibleSlides();
-    }, 150); // Throttle resize
+      // Just clear any resize-related caching if needed
+    }, 150);
   }
 
   ngOnInit(): void {
-    this.startSlideshow();
+    setTimeout(() => this.startSlideshow(), 0);
   }
 
   ngOnDestroy(): void {
     this.stopSlideshow();
   }
 
-  setVisibleSlides(): void {
-    // Set number of visible slides based on screen width
-    if (window.innerWidth >= 1024) {
-      this.visibleSlides = 3; // Desktop
-    } else if (window.innerWidth >= 768) {
-      this.visibleSlides = 2; // Tablet
-    } else {
-      this.visibleSlides = 1; // Mobile
-    }
-  }
-
   startSlideshow(): void {
     this.slideInterval = setInterval(() => {
       this.nextSlide();
-    }, 5000); // Change slide every 5 seconds
+    }, 5000);
   }
 
   stopSlideshow(): void {
@@ -152,46 +149,35 @@ export class AboutComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Essential methods for the slider
+  getCurrentSlide(): SlideItem | null {
+    return this.slides[this.currentIndex] || null;
+  }
+
+  getPrevSlide(): SlideItem | null {
+    if (this.slides.length <= 1) return null;
+    const prevIndex =
+      this.currentIndex === 0 ? this.slides.length - 1 : this.currentIndex - 1;
+    return this.slides[prevIndex] || null;
+  }
+
+  getNextSlide(): SlideItem | null {
+    if (this.slides.length <= 1) return null;
+    const nextIndex = (this.currentIndex + 1) % this.slides.length;
+    return this.slides[nextIndex] || null;
+  }
+
   prevSlide(): void {
-    this.stopSlideshow(); // Stop autoplay when user interacts
+    this.stopSlideshow();
     this.currentIndex =
-      this.currentIndex === 0
-        ? Math.max(0, this.totalSlides - this.visibleSlides)
-        : Math.max(0, this.currentIndex - 1);
+      this.currentIndex === 0 ? this.slides.length - 1 : this.currentIndex - 1;
   }
 
   nextSlide(): void {
-    const maxIndex = Math.max(0, this.totalSlides - this.visibleSlides);
-    this.currentIndex =
-      this.currentIndex >= maxIndex ? 0 : this.currentIndex + 1;
-  }
-
-  goToSlide(index: number): void {
-    this.stopSlideshow(); // Stop autoplay when user interacts
-    this.currentIndex = Math.min(
-      index,
-      Math.max(0, this.totalSlides - this.visibleSlides)
-    );
-  }
-
-  isActive(index: number): boolean {
-    return (
-      index >= this.currentIndex &&
-      index < this.currentIndex + this.visibleSlides
-    );
-  }
-
-  isNearActive(index: number): boolean {
-    // Check if the slide is just outside the visible range (for scaling effect)
-    return (
-      index === this.currentIndex - 1 ||
-      index === this.currentIndex + this.visibleSlides
-    );
+    this.currentIndex = (this.currentIndex + 1) % this.slides.length;
   }
 
   handleImageError(event: any): void {
-    console.error('Image failed to load:', event.target.src);
-    // Set a fallback image
     event.target.src = 'assets/images/placeholder.jpg';
   }
 

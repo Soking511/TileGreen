@@ -39,6 +39,14 @@
   src: url("./assets/fonts/Inter_18pt-Medium.ttf") format("ttf");
   font-weight: normal;
   font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Inter_Display_Bold";
+  src: url("./assets/fonts/Inter_18pt-Bold.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+  font-weight: 500;
 }
 
 .text-tile-regular {
@@ -66,6 +74,11 @@
 
 }
 
+
+body {
+  overflow-x: hidden;
+}
+
 .text-tile-inter-md {
   font-family: "Inter_Display_Md";
   font-weight: 500;
@@ -76,7 +89,12 @@
   font-family: "Inter_Display", sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-weight: 400;
+  line-height: normal;
+}
+.text-tile-inter-bold {
+  font-family: "Inter_Display_Bold", sans-serif;
+  font-weight: 500;
+  font-style: normal;
   line-height: normal;
 }
 /* Custom styles below this line */
