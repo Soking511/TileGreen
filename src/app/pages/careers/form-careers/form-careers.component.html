@@ -1,17 +1,17 @@
 <section class="mx-auto py-12 md:py-16">
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#010d26]">Apply Now</h2>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl text-tile-regular text-[#010d26]">Apply Now</h2>
         <p class="text-base md:text-xl lg:text-2xl text-[#818896] max-w-md">
             Engineer the Future: Build the Technology Transforming <br> Green Construction
         </p>
     </div>
 
-    <form [formGroup]="positionForm" (ngSubmit)="onSubmit()" class="grid md:grid-cols-2 gap-8 pr-8 lg:pr-0">
+    <form [formGroup]="positionForm" (ngSubmit)="onSubmit()" class="grid md:grid-cols-2 gap-8 pr-8 lg:pr-0 text-tile-regular  ">
         <div class="space-y-6">
             <div class="space-y-2">
                 <label for="position" class="block text-xl text-[#010d26] font-medium">Position Name</label>
                 <input type="text" id="position" formControlName="position_name" placeholder="Enter position"
-                    class="w-full px-5 py-4 rounded-3xl border border-[#9c9c9c] text-lg placeholder:text-[#a7a7a7] focus:outline-none focus:ring-2 focus:ring-[#0460d9]"
+                    class="w-full px-5 py-4 text-tile-inter rounded-3xl border border-[#9c9c9c] text-lg placeholder:text-[#a7a7a7]  focus:outline-none focus:ring-2 focus:ring-[#0460d9]"
                     [ngClass]="{'border-red-500': hasError('position_name', 'required') || hasError('position_name', 'minlength') || hasError('position_name', 'maxlength')}">
                 @if (hasError('position_name', 'required') && formSubmitted) {
                 <p class="text-red-500 text-sm mt-1">Position name is required</p>
@@ -28,7 +28,7 @@
                 <div class="space-y-2">
                     <label for="firstName" class="block text-xl text-[#010d26] font-medium">First Name</label>
                     <input type="text" id="firstName" formControlName="first_name" placeholder="Enter first name"
-                        class="w-full px-5 py-4 rounded-3xl border border-[#9c9c9c] text-lg placeholder:text-[#a7a7a7] focus:outline-none focus:ring-2 focus:ring-[#0460d9]"
+                        class="w-full px-5 py-4 rounded-3xl border border-[#9c9c9c] text-tile-inter text-lg placeholder:text-[#a7a7a7] focus:outline-none focus:ring-2 focus:ring-[#0460d9]"
                         [ngClass]="{'border-red-500': hasError('first_name', 'required') || hasError('first_name', 'minlength') || hasError('first_name', 'maxlength')}">
                     @if (hasError('first_name', 'required') && formSubmitted) {
                     <p class="text-red-500 text-sm mt-1">First name is required</p>
@@ -40,7 +40,7 @@
                 <div class="space-y-2">
                     <label for="lastName" class="block text-xl text-[#010d26] font-medium">Last Name</label>
                     <input type="text" id="lastName" formControlName="second_name" placeholder="Enter last name"
-                        class="w-full px-5 py-4 rounded-3xl border border-[#9c9c9c] text-lg placeholder:text-[#a7a7a7] focus:outline-none focus:ring-2 focus:ring-[#0460d9]"
+                        class="w-full text-tile-inter px-5 py-4 rounded-3xl border border-[#9c9c9c] text-lg placeholder:text-[#a7a7a7] focus:outline-none focus:ring-2 focus:ring-[#0460d9]"
                         [ngClass]="{'border-red-500': hasError('second_name', 'required') || hasError('second_name', 'minlength') || hasError('second_name', 'maxlength')}">
                     @if (hasError('second_name', 'required') && formSubmitted) {
                     <p class="text-red-500 text-sm mt-1">Last name is required</p>
@@ -55,7 +55,7 @@
                 <div class="space-y-2">
                     <label for="email" class="block text-xl text-[#010d26] font-medium">Email Address</label>
                     <input type="email" id="email" formControlName="email" placeholder="Enter email address"
-                        class="w-full px-5 py-4 rounded-3xl border border-[#9c9c9c] text-lg placeholder:text-[#a7a7a7] focus:outline-none focus:ring-2 focus:ring-[#0460d9]"
+                        class="w-full px-5 text-tile-inter py-4 rounded-3xl border border-[#9c9c9c] text-lg placeholder:text-[#a7a7a7] focus:outline-none focus:ring-2 focus:ring-[#0460d9]"
                         [ngClass]="{'border-red-500': hasError('email', 'required') || hasError('email', 'email')}">
                     @if (hasError('email', 'required') && formSubmitted) {
                     <p class="text-red-500 text-sm mt-1">Email is required</p>
@@ -67,7 +67,7 @@
                 <div class="space-y-2">
                     <label for="phone" class="block text-xl text-[#010d26] font-medium">Phone Number</label>
                     <input type="tel" id="phone" formControlName="phone_number" placeholder="Enter phone number"
-                        class="w-full px-5 py-4 rounded-3xl border border-[#9c9c9c] text-lg placeholder:text-[#a7a7a7] focus:outline-none focus:ring-2 focus:ring-[#0460d9]"
+                        class="w-full text-tile-inter px-5 py-4 rounded-3xl border border-[#9c9c9c] text-lg placeholder:text-[#a7a7a7] focus:outline-none focus:ring-2 focus:ring-[#0460d9]"
                         [ngClass]="{'border-red-500': hasError('phone_number', 'required') || hasError('phone_number', 'pattern') || hasError('phone_number', 'minlength')}">
                     @if (hasError('phone_number', 'required') && formSubmitted) {
                     <p class="text-red-500 text-sm mt-1">Phone number is required</p>
@@ -117,7 +117,7 @@
                             <input type="file" id="resume-upload" class="hidden" accept=".pdf"
                                 (change)="handleFileInput($event)">
                             <span
-                                class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#0460d9] hover:bg-[#0353bd] transition-colors duration-200 text-white font-semibold text-base">
+                                class="text-tile-inter inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#0460d9] hover:bg-[#0353bd] transition-colors duration-200 text-white font-semibold text-base">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                     fill="currentColor">
                                     <path fill-rule="evenodd"
