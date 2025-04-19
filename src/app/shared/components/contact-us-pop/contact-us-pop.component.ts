@@ -8,7 +8,6 @@ import {
 } from '@angular/forms';
 import { IFaqItem } from '../../interfaces/FaqInterface';
 import { NgIf, NgFor, CommonModule } from '@angular/common';
-import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-contact-us-pop',
@@ -30,8 +29,8 @@ export class ContactUsPopComponent {
   contactForm = new FormGroup({
     full_name: new FormControl('', [
       Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(50),
+      Validators.minLength(2),
+      Validators.maxLength(60),
     ]),
     email: new FormControl('', [
       Validators.required,
@@ -39,27 +38,39 @@ export class ContactUsPopComponent {
       Validators.minLength(5),
       Validators.maxLength(30),
     ]),
-    company_name: new FormControl('', [
+    phone: new FormControl('', [
       Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(50),
+      Validators.pattern(/^[0-9+\-\s()]+$/),
+      Validators.minLength(7),
+      Validators.maxLength(20),
     ]),
     position: new FormControl('', [
       Validators.required,
-      Validators.minLength(3),
+      Validators.minLength(2),
       Validators.maxLength(50),
     ]),
-    industry: new FormControl('', [Validators.required]),
+    company_name: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(50),
+    ]),
+    industry: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(50),
+    ]),
     country_region: new FormControl('', [
       Validators.required,
-      Validators.minLength(3),
+      Validators.minLength(2),
       Validators.maxLength(50),
     ]),
     message: new FormControl('', [
       Validators.required,
       Validators.maxLength(500),
-    ]), // Message is optional
+    ]),
   });
+
+  phoneNumber = '+20-xxx-xxx-xx';
 
   industries: string[] = [
     'Technology',
@@ -171,9 +182,6 @@ export class ContactUsPopComponent {
           this.formSubmitted = true;
           this.formSubmitSuccess = true;
           this.contactForm.reset();
-
-          // Set default values after reset
-          this.contactForm.get('industry')?.setValue('');
         },
         (error) => {
           console.error('Error submitting form', error);
