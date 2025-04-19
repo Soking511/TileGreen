@@ -12,7 +12,7 @@ export class ApiService {
   constructor(
     private http: HttpClient // private toastService: ToastService
   ) {
-    this.baseURL = 'http://127.0.0.1:8000/tile_green';
+    this.baseURL = 'https://api.tailgreen.pulslytics.agency/tile_green';
   }
 
 
