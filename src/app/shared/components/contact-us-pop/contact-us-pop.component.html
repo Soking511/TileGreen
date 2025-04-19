@@ -3,12 +3,11 @@
     (click)="onBackdropClick($event)">
     <div class="popup-backdrop absolute inset-0 bg-black bg-opacity-60 transition-opacity duration-300"></div>
 
-    <!-- Popup Content Container -->
     <div
-        class="popup-container relative w-full sm:w-11/12 md:w-2/3 lg:w-3/5 xl:w-1/2 max-w-3xl mx-auto z-10 transform transition-all duration-300 ease-out scale-100">
+        class="popup-container relative w-full sm:w-11/12 md:w-2/3 lg:w-3/5 xl:w-1/2 max-w-3xl mx-auto z-10 bg-white p-4 sm:p-6 md:p-7 rounded-2xl md:rounded-3xl shadow-xl">
         <!-- Close Button -->
         <button
-            class="popup-close absolute -right-2 -top-2 md:right-1 md:top-1 z-20 w-8 h-8 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white shadow-lg border border-gray-200 transition-all hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            class="cursor-pointer absolute -right-2 m-4 -top-2 md:right-1 md:top-1 z-20 w-8 h-8 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white shadow-lg border border-gray-200 hover:bg-gray-100"
             (click)="close()" aria-label="Close popup">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
@@ -16,188 +15,157 @@
             </svg>
         </button>
 
-        <!-- Form Content Based on Figma Design -->
-        <div
-            class="flex flex-col justify-start items-start overflow-hidden gap-4 md:gap-5 px-4 sm:px-6 md:px-7 py-5 md:py-6 rounded-2xl md:rounded-3xl bg-white mx-auto w-full shadow-xl">
-            <!-- Header Section -->
-            <div
-                class="flex flex-col md:flex-row md:justify-between items-start md:items-center self-stretch gap-2 md:gap-0 w-full pb-8">
-                <h2
-                    class="text-2xl sm:text-2xl md:text-3xl lg:text-3xl text-tile-regular text-left text-[#010d26] transition-all">
-                    Contact Us</h2>
-                <p
-                    class="text-tile-inter sm:text-base md:text-lg lg:text-lg text-left text-[#818896] md:max-w-md ml-auto pr-2 transition-all flex items-center justify-end h-full my-auto">
-                    Fill out the following form and we'll<br> get back to you.
-                </p>
+        <!-- Header -->
+        <h2 class="text-2xl md:text-3xl text-[#010d26] mb-2">Contact Us</h2>
+        <p class="text-base md:text-lg text-[#818896] mb-6">Fill out the following form and we'll get back to you.</p>
+
+        <!-- Form -->
+        <form [formGroup]="contactForm" (submit)="onSubmit()" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Full Name -->
+            <div class="sm:col-span-2">
+                <label for="full_name" class="block text-base md:text-lg text-[#010d26] mb-1">
+                    Full Name <span class="text-red-500">*</span>
+                </label>
+                <input id="full_name" formControlName="full_name" type="text" placeholder="Enter your full name"
+                    class="w-full px-4 py-2.5 rounded-xl border border-[#9c9c9c] focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                    [class.border-red-500]="isFieldInvalid('full_name')">
+                <div class="h-4 text-red-500 text-xs md:text-sm mt-1">
+                    <span *ngIf="getFieldError('full_name', 'required')">Full name is required</span>
+                </div>
             </div>
 
-            <!-- Form Section -->
-            <form [formGroup]="contactForm" (submit)="onSubmit()"
-                class="flex flex-col justify-start items-start self-stretch gap-3 md:gap-4 w-full">
-                <!-- Full Name -->
-                <div class="flex flex-col justify-start items-start self-stretch gap-1 w-full">
-                    <label for="full_name"
-                        class="self-stretch text-base md:text-lg text-left text-[#010d26] text-tile-regular">
-                        Full Name <span class="text-red-500">*</span>
-                    </label>
-                    <input id="full_name" formControlName="full_name" type="text" placeholder="Enter your full name"
-                        class="w-full px-3 sm:px-4 py-2 md:py-2.5 rounded-xl md:rounded-2xl border border-[#9c9c9c] text-sm md:text-base transition-all duration-200 focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                        [class.border-red-500]="isFieldInvalid('full_name')"
-                        [class.ring-2]="isFieldInvalid('full_name')"
-                        [class.ring-red-300]="isFieldInvalid('full_name')" aria-describedby="full_name_error">
-                    <div id="full_name_error" class="h-4 text-red-500 text-xs md:text-sm" aria-live="polite">
-                        <span *ngIf="getFieldError('full_name', 'required')">Full name is required</span>
-                        <span *ngIf="getFieldError('full_name', 'minlength')">Name must be at least 2 characters</span>
-                    </div>
+            <!-- Email -->
+            <div>
+                <label for="email" class="block text-base md:text-lg text-[#010d26] mb-1">
+                    Email Address <span class="text-red-500">*</span>
+                </label>
+                <input id="email" formControlName="email" type="email" placeholder="Enter email address"
+                    class="w-full px-4 py-2.5 rounded-xl border border-[#9c9c9c] focus:ring-2 focus:ring-blue-400"
+                    [class.border-red-500]="isFieldInvalid('email')">
+                <div class="h-4 text-red-500 text-xs md:text-sm mt-1">
+                    <span *ngIf="getFieldError('email', 'required')">Email is required</span>
+                    <span *ngIf="getFieldError('email', 'email')">Please enter a valid email</span>
                 </div>
+            </div>
 
-                <!-- Email & Phone Row -->
-                <div class="flex flex-col sm:flex-row justify-start items-start self-stretch gap-3 md:gap-4 w-full">
-                    <div class="flex flex-col justify-start items-start flex-grow w-full sm:w-1/2 relative gap-1">
-                        <label for="email"
-                            class="self-stretch text-base md:text-lg text-left text-[#010d26] text-tile-regular">
-                            Email Address <span class="text-red-500">*</span>
-                        </label>
-                        <input id="email" formControlName="email" type="email" inputmode="email" autocomplete="email"
-                            placeholder="Enter email address"
-                            class="w-full px-3 sm:px-4 py-2 md:py-2.5 rounded-xl md:rounded-2xl border border-[#9c9c9c] text-sm md:text-base transition-all duration-200 focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                            [class.border-red-500]="isFieldInvalid('email')" [class.ring-2]="isFieldInvalid('email')"
-                            [class.ring-red-300]="isFieldInvalid('email')" aria-describedby="email_error">
-                        <div id="email_error" class="h-4 text-red-500 text-xs md:text-sm" aria-live="polite">
-                            <span *ngIf="getFieldError('email', 'required')">Email is required</span>
-                            <span *ngIf="getFieldError('email', 'email')">Please enter a valid email address</span>
-                        </div>
-                    </div>
-                    <div class="flex flex-col justify-start items-start flex-grow w-full sm:w-1/2 relative gap-1">
-                        <label for="phone"
-                            class="self-stretch text-base md:text-lg text-left text-[#010d26] text-tile-regular">
-                            Phone Number <span class="text-red-500">*</span>
-                        </label>
-                        <input id="phone" formControlName="phone" type="tel" inputmode="tel" autocomplete="tel"
-                            placeholder="Enter phone number"
-                            class="w-full px-3 sm:px-4 py-2 md:py-2.5 rounded-xl md:rounded-2xl border border-[#9c9c9c] text-sm md:text-base transition-all duration-200 focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                            [class.border-red-500]="isFieldInvalid('phone')">
-                        <div class="h-4 text-red-500 text-xs md:text-sm">
-                            <span *ngIf="isFieldInvalid('phone')">Valid phone number is required</span>
-                        </div>
-                    </div>
+            <!-- Phone -->
+            <div>
+                <label for="phone" class="block text-base md:text-lg text-[#010d26] mb-1">
+                    Phone Number <span class="text-red-500">*</span>
+                </label>
+                <input id="phone" formControlName="phone" type="tel" placeholder="Enter phone number"
+                    class="w-full px-4 py-2.5 rounded-xl border border-[#9c9c9c] focus:ring-2 focus:ring-blue-400"
+                    [class.border-red-500]="isFieldInvalid('phone')">
+                <div class="h-4 text-red-500 text-xs md:text-sm mt-1">
+                    <span *ngIf="isFieldInvalid('phone')">Valid phone number is required</span>
                 </div>
+            </div>
 
-                <!-- Position & Company Row -->
-                <div class="flex flex-col sm:flex-row justify-start items-start self-stretch gap-3 md:gap-4 w-full">
-                    <div class="flex flex-col justify-start items-start flex-grow w-full sm:w-1/2 relative gap-1">
-                        <label for="position"
-                            class="self-stretch text-base md:text-lg text-left text-[#010d26] text-tile-regular">
-                            Position <span class="text-red-500">*</span>
-                        </label>
-                        <input id="position" formControlName="position" type="text" placeholder="Enter your position"
-                            class="w-full px-3 sm:px-4 py-2 md:py-2.5 rounded-xl md:rounded-2xl border border-[#9c9c9c] text-sm md:text-base transition-all duration-200 focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                            [class.border-red-500]="isFieldInvalid('position')">
-                        <div class="h-4 text-red-500 text-xs md:text-sm">
-                            <span *ngIf="isFieldInvalid('position')">Position is required</span>
-                        </div>
-                    </div>
-                    <div class="flex flex-col justify-start items-start flex-grow w-full sm:w-1/2 relative gap-1">
-                        <label for="company_name"
-                            class="self-stretch text-base md:text-lg text-left text-[#010d26] text-tile-regular">
-                            Company <span class="text-red-500">*</span>
-                        </label>
-                        <input id="company_name" formControlName="company_name" type="text"
-                            placeholder="Enter company name"
-                            class="w-full px-3 sm:px-4 py-2 md:py-2.5 rounded-xl md:rounded-2xl border border-[#9c9c9c] text-sm md:text-base transition-all duration-200 focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                            [class.border-red-500]="isFieldInvalid('company_name')">
-                        <div class="h-4 text-red-500 text-xs md:text-sm">
-                            <span *ngIf="isFieldInvalid('company_name')">Company name is required</span>
-                        </div>
-                    </div>
+            <!-- Position -->
+            <div>
+                <label for="position" class="block text-base md:text-lg text-[#010d26] mb-1">
+                    Position <span class="text-red-500">*</span>
+                </label>
+                <input id="position" formControlName="position" type="text" placeholder="Enter your position"
+                    class="w-full px-4 py-2.5 rounded-xl border border-[#9c9c9c] focus:ring-2 focus:ring-blue-400"
+                    [class.border-red-500]="isFieldInvalid('position')">
+                <div class="h-4 text-red-500 text-xs md:text-sm mt-1">
+                    <span *ngIf="isFieldInvalid('position')">Position is required</span>
                 </div>
+            </div>
 
-                <!-- Industry & Country/Region Row -->
-                <div class="flex flex-col sm:flex-row justify-start items-start self-stretch gap-3 md:gap-4 w-full">
-                    <div class="flex flex-col justify-start items-start flex-grow w-full sm:w-1/2 relative gap-1">
-                        <label for="industry"
-                            class="self-stretch text-base md:text-lg text-left text-[#010d26] text-tile-regular">
-                            Industry <span class="text-red-500">*</span>
-                        </label>
-                        <input id="industry" formControlName="industry" type="text" placeholder="Enter industry"
-                            class="w-full px-3 sm:px-4 py-2 md:py-2.5 rounded-xl md:rounded-2xl border border-[#9c9c9c] text-sm md:text-base transition-all duration-200 focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                            [class.border-red-500]="isFieldInvalid('industry')">
-                        <div class="h-4 text-red-500 text-xs md:text-sm">
-                            <span *ngIf="isFieldInvalid('industry')">Industry is required</span>
-                        </div>
-                    </div>
-                    <div class="flex flex-col justify-start items-start flex-grow w-full sm:w-1/2 relative gap-1">
-                        <label for="country_region"
-                            class="self-stretch text-base md:text-lg text-left text-[#010d26] text-tile-regular">
-                            Country / Region <span class="text-red-500">*</span>
-                        </label>
-                        <input id="country_region" formControlName="country_region" type="text"
-                            placeholder="Enter country/region"
-                            class="w-full px-3 sm:px-4 py-2 md:py-2.5 rounded-xl md:rounded-2xl border border-[#9c9c9c] text-sm md:text-base transition-all duration-200 focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                            [class.border-red-500]="isFieldInvalid('country_region')">
-                        <div class="h-4 text-red-500 text-xs md:text-sm">
-                            <span *ngIf="isFieldInvalid('country_region')">Country/Region is required</span>
-                        </div>
-                    </div>
+            <!-- Company -->
+            <div>
+                <label for="company_name" class="block text-base md:text-lg text-[#010d26] mb-1">
+                    Company <span class="text-red-500">*</span>
+                </label>
+                <input id="company_name" formControlName="company_name" type="text" placeholder="Enter company name"
+                    class="w-full px-4 py-2.5 rounded-xl border border-[#9c9c9c] focus:ring-2 focus:ring-blue-400"
+                    [class.border-red-500]="isFieldInvalid('company_name')">
+                <div class="h-4 text-red-500 text-xs md:text-sm mt-1">
+                    <span *ngIf="isFieldInvalid('company_name')">Company name is required</span>
                 </div>
+            </div>
 
-                <!-- Message Field -->
-                <div class="flex flex-col justify-start items-start self-stretch relative gap-1 w-full">
-                    <label for="message"
-                        class="self-stretch text-base md:text-lg text-left text-[#010d26] text-tile-regular">
-                        Message <span class="text-red-500">*</span>
-                    </label>
-                    <textarea id="message" formControlName="message" placeholder="Enter your message"
-                        class="w-full h-20 md:h-24 px-3 sm:px-4 py-2 md:py-2.5 rounded-xl md:rounded-2xl border border-[#9c9c9c] text-sm md:text-base transition-all duration-200 focus:ring-2 focus:ring-blue-400 focus:border-transparent resize-none"
-                        [class.border-red-500]="isFieldInvalid('message')"></textarea>
-                    <div class="h-4 text-red-500 text-xs md:text-sm">
-                        <span *ngIf="isFieldInvalid('message')">Message is required</span>
-                    </div>
+            <!-- Industry -->
+            <div>
+                <label for="industry" class="block text-base md:text-lg text-[#010d26] mb-1">
+                    Industry <span class="text-red-500">*</span>
+                </label>
+                <input id="industry" formControlName="industry" type="text" placeholder="Enter industry"
+                    class="w-full px-4 py-2.5 rounded-xl border border-[#9c9c9c] focus:ring-2 focus:ring-blue-400"
+                    [class.border-red-500]="isFieldInvalid('industry')">
+                <div class="h-4 text-red-500 text-xs md:text-sm mt-1">
+                    <span *ngIf="isFieldInvalid('industry')">Industry is required</span>
                 </div>
+            </div>
 
-                <!-- Form Status Messages -->
-                <div *ngIf="formSubmitted" class="self-stretch w-full transition-all duration-300 ease-in-out"
-                    role="alert">
-                    <div *ngIf="formSubmitSuccess"
-                        class="p-4 bg-green-100 text-green-800 rounded-lg flex items-center border-l-4 border-green-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 flex-shrink-0" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                        </svg>
-                        Thank you! Your form has been submitted successfully. We will contact you soon.
-                    </div>
-                    <div *ngIf="formSubmitError"
-                        class="p-4 bg-red-100 text-red-800 rounded-lg flex items-center border-l-4 border-red-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 flex-shrink-0" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                        </svg>
-                        There was an error submitting your form. Please try again later.
-                    </div>
+            <!-- Country/Region -->
+            <div>
+                <label for="country_region" class="block text-base md:text-lg text-[#010d26] mb-1">
+                    Country/Region <span class="text-red-500">*</span>
+                </label>
+                <input id="country_region" formControlName="country_region" type="text"
+                    placeholder="Enter country/region"
+                    class="w-full px-4 py-2.5 rounded-xl border border-[#9c9c9c] focus:ring-2 focus:ring-blue-400"
+                    [class.border-red-500]="isFieldInvalid('country_region')">
+                <div class="h-4 text-red-500 text-xs md:text-sm mt-1">
+                    <span *ngIf="isFieldInvalid('country_region')">Country/Region is required</span>
                 </div>
-            </form>
+            </div>
 
-            <!-- Footer Section -->
-            <div
-                class="flex flex-col sm:flex-row justify-between items-center self-stretch gap-3 sm:gap-0 w-full mt-1 md:mt-2">
-                <p class="text-sm md:text-base font-medium text-center sm:text-left text-[#010d26]">
-                    Or call us at: <a href="tel:{{phoneNumber || '+1 (800) 123-4567'}}"
-                        class="text-blue-600 hover:underline">{{phoneNumber || "+1 (800) 123-4567"}}</a>
+            <!-- Message -->
+            <div class="sm:col-span-2">
+                <label for="message" class="block text-base md:text-lg text-[#010d26] mb-1">
+                    Message <span class="text-red-500">*</span>
+                </label>
+                <textarea id="message" formControlName="message" placeholder="Enter your message"
+                    class="w-full h-24 px-4 py-2.5 rounded-xl border border-[#9c9c9c] focus:ring-2 focus:ring-blue-400 resize-none"
+                    [class.border-red-500]="isFieldInvalid('message')"></textarea>
+                <div class="h-4 text-red-500 text-xs md:text-sm mt-1">
+                    <span *ngIf="isFieldInvalid('message')">Message is required</span>
+                </div>
+            </div>
+
+            <!-- Form Status Messages -->
+            <div *ngIf="formSubmitted" class="sm:col-span-2 mt-2">
+                <div *ngIf="formSubmitSuccess"
+                    class="p-4 bg-green-100 text-green-800 rounded-lg flex items-center border-l-4 border-green-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    Thank you! Your form has been submitted successfully. We will contact you soon.
+                </div>
+                <div *ngIf="formSubmitError"
+                    class="p-4 bg-red-100 text-red-800 rounded-lg flex items-center border-l-4 border-red-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                    There was an error submitting your form. Please try again later.
+                </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="sm:col-span-2 flex flex-wrap justify-between items-center mt-4">
+                <p class="text-sm md:text-base font-medium my-2">
+                    Or call us at: <a href="tel:{{phoneNumber}}" class="text-blue-600 hover:underline">{{phoneNumber ||
+                        "+1 (800) 123-4567"}}</a>
                 </p>
                 <button type="button" [disabled]="formSubmitting || contactForm.invalid" (click)="onSubmit()"
-                    [ngClass]="{'opacity-70 cursor-not-allowed': formSubmitting || contactForm.invalid, 'hover:bg-[#192949] hover:scale-[1.02] active:scale-[0.98]': !(formSubmitting || contactForm.invalid)}"
-                    class="flex justify-center items-center w-full sm:w-auto px-5 sm:px-8 py-2 sm:py-2.5 rounded-[50px] bg-[#010d26] text-white transition-all duration-200 transform focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    [ngClass]="{'opacity-70 cursor-not-allowed': formSubmitting || contactForm.invalid, 'hover:bg-[#192949]': !(formSubmitting || contactForm.invalid)}"
+                    class="px-8 py-2.5 rounded-[50px] bg-[#010d26] text-white transition-all duration-200">
                     <ng-container *ngIf="!formSubmitting; else submittingTemplate">
                         <span class="text-base md:text-lg">Apply</span>
                     </ng-container>
                     <ng-template #submittingTemplate>
-                        <div class="flex items-center justify-center">
+                        <div class="flex items-center">
                             <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg"
                                 fill="none" viewBox="0 0 24 24">
                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                    stroke-width="4">
-                                </circle>
+                                    stroke-width="4"></circle>
                                 <path class="opacity-75" fill="currentColor"
                                     d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
                                 </path>
@@ -207,6 +175,6 @@
                     </ng-template>
                 </button>
             </div>
-        </div>
+        </form>
     </div>
 </div>
