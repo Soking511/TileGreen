@@ -1,4 +1,4 @@
-<div class="flex flex-col md:flex-row items-center pb-26 max-w-full">
+<div class="flex flex-col md:flex-row items-center pb-8 lg:pb-2  px-2 max-w-full">
     <!-- Eucalyptus branch image on the left -->
     <div class="">
     </div>
@@ -10,7 +10,7 @@
         <div class="w-full justify-start">
             <span class="text-blue-700 text-[153px] font-medium text-tile-regular tracking-wide">“</span><span
                 class="text-blue-700 text-5xl font-medium text-tile-regular tracking-wide"> </span><span
-                class="text-slate-950 text-5xl font-medium text-tile-regular tracking-wide">  TileGreen transforms
+                class="text-slate-950 text-5xl font-medium text-tile-regular tracking-wide"> TileGreen transforms
                 recycled plastic waste into sustainable building materials, reducing pollution and providing durable
                 solutions for eco-friendly construction.</span>
         </div>
@@ -18,9 +18,9 @@
 </div>
 
 <!-- Benefits Section -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
     <!-- Benefit 1 -->
-    <div class="flex flex-col items-center text-center">
+    <div class="flex flex-col items-center text-center ">
         <div class="relative mb-6">
             <div class="text-blue-600 text-6xl mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" width="233" height="232" viewBox="0 0 233 232" fill="none">
@@ -87,8 +87,29 @@
 
 </div>
 
+<app-logos />
 
-<app-logos/>
+<div class="container mx-auto px-4 py-48 max-w-full relative">
+
+    <!-- Media Logos Section -->
+    <div class="media-logos grid grid-cols-1 md:grid-cols-4 gap-8 mb-12 px-16">
+        <!-- Forbes -->
+        @for ( article of articleService.articles; track article ){
+        <div class="flex flex-col items-center">
+            <div class="mb-4 h-16 flex items-center">
+                <img [src]="article.image" [alt]="article.name" class="h-12 w-auto">
+            </div>
+            <a [href]="article.link" class="inline-flex items-center underline border-b border-white">
+                Read Article <i class="fas fa-external-link-alt ml-2 text-xs"></i>
+            </a>
+        </div>
+        }
+
+        <!-- Add empty divs for consistent grid alignment if you have fewer than 8 logos -->
+        <div class="hidden md:block"></div>
+        <div class="hidden md:block"></div>
+    </div>
+</div>
 
 <div class="text-center mb-8">
     <h1 class="text-5xl text-tile-bold text-[#010D26] mb-2">

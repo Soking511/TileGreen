@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { LogoCarouselComponent } from "../../../shared/components/logo-carousel/logo-carousel.component";
 import { LogosComponent } from "../../../shared/components/logos/logos.component";
+import { ArticleService } from '../../../../services/article.service';
 
 @Component({
   selector: 'app-second-section',
@@ -17,4 +18,6 @@ export class SecondSectionComponent {
     { url: 'assets/images/logos/5.png', alt: 'Brand 5' },
     { url: 'assets/images/logos/6.png', alt: 'Brand 6' },
   ];
+
+  articleService = inject(ArticleService);
 }
