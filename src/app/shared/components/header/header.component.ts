@@ -8,12 +8,15 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { ButtonComponent } from "../button/button.component";
+import { ButtonComponent } from '../button/button.component';
+// Add the ContactUsPopComponent import
+import { ContactUsPopComponent } from '../contact-us-pop/contact-us-pop.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterLink, ButtonComponent],
+  // Add ContactUsPopComponent to imports
+  imports: [CommonModule, RouterLink, ButtonComponent, ContactUsPopComponent],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
@@ -29,6 +32,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   @Input() navigateTo: string | null = null;
 
   isMobileMenuOpen: boolean = false;
+  // Add isContactPopupOpen property
+  isContactPopupOpen: boolean = false;
   navbarItems = [
     { name: 'About', link: '/about' },
     { name: 'Technology', link: '/technology' },
@@ -65,6 +70,26 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     }
   }
 
+  // Add contact popup handler
+  openContactPopup(event: Event): void {
+    event.preventDefault();
+    this.isContactPopupOpen = true;
+
+    // Close mobile menu if it's open
+    if (this.isMobileMenuOpen) {
+      this.closeMobileMenu();
+    }
+
+    // Prevent scrolling when popup is open
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Add method to close contact popup
+  closeContactPopup(): void {
+    this.isContactPopupOpen = false;
+    document.body.style.overflow = '';
+  }
+
   toggleMobileMenu(): void {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
 
@@ -89,6 +114,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   onKeydownHandler() {
     if (this.isMobileMenuOpen) {
       this.toggleMobileMenu();
+    }
+    // Also close contact popup if open
+    if (this.isContactPopupOpen) {
+      this.closeContactPopup();
     }
   }
 }

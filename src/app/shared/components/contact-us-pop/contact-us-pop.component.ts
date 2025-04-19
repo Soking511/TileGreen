@@ -1,24 +1,26 @@
-import { NgClass, NgFor, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { ApiService } from '../../../../services/api.service';
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ApiService } from '../../../../../services/api.service';
-import { ButtonComponent } from "../../../../shared/components/button/button.component";
-import { IFaqItem } from '../../../../shared/interfaces/FaqInterface';
+import { IFaqItem } from '../../interfaces/FaqInterface';
+import { NgIf, NgFor, CommonModule } from '@angular/common';
+import { animate, style, transition, trigger } from '@angular/animations';
 
-
-// head-numbers
 @Component({
-  selector: 'app-second-section-liscence',
-  imports: [NgFor, NgIf, ReactiveFormsModule, NgClass, ButtonComponent],
-  templateUrl: './second-section-liscence.component.html',
-  styleUrls: ['./second-section-liscence.component.scss'],
+  selector: 'app-contact-us-pop',
+  imports: [ReactiveFormsModule, NgIf, NgFor, CommonModule],
+  templateUrl: './contact-us-pop.component.html',
+  styleUrl: './contact-us-pop.component.scss',
+  standalone: true,
 })
-export class SecondSectionLiscenceComponent {
+export class ContactUsPopComponent {
+  @Input() isOpen = false;
+  @Output() closeEvent = new EventEmitter<void>();
+
   // Form status flags
   formSubmitted = false;
   formSubmitSuccess = false;
@@ -55,8 +57,8 @@ export class SecondSectionLiscenceComponent {
     ]),
     message: new FormControl('', [
       Validators.required,
-      Validators.maxLength(500)]
-    ), // Message is optional
+      Validators.maxLength(500),
+    ]), // Message is optional
   });
 
   industries: string[] = [
@@ -126,6 +128,34 @@ export class SecondSectionLiscenceComponent {
   ];
 
   constructor(private apiService: ApiService) {}
+
+  // Open the popup
+  open() {
+    this.isOpen = true;
+    document.body.classList.add('overflow-hidden');
+  }
+
+  // Close the popup
+  close() {
+    this.isOpen = false;
+    document.body.classList.remove('overflow-hidden');
+    this.closeEvent.emit();
+    // Reset form state when closing
+    if (this.formSubmitted) {
+      setTimeout(() => {
+        this.formSubmitted = false;
+        this.formSubmitSuccess = false;
+        this.formSubmitError = false;
+      }, 300);
+    }
+  }
+
+  // Handle backdrop click to close modal unless clicking on the form
+  onBackdropClick(event: MouseEvent) {
+    if ((event.target as HTMLElement).classList.contains('popup-backdrop')) {
+      this.close();
+    }
+  }
 
   onSubmit() {
     if (this.contactForm.valid) {

@@ -76,7 +76,7 @@
                         </li>
                         }
                         <li class="pt-8">
-                            <a href="#"
+                            <a href="#" (click)="openContactPopup($event)"
                                 class="font-tile-regular contact-button inline-block relative border rounded-full px-8 py-4 transition-all duration-300 overflow-hidden touch-manipulation text-white border-white hover:bg-white/20 font-medium tracking-wide no-shadow">
                                 <span class="relative z-10">Contact Us</span>
                             </a>
@@ -104,9 +104,9 @@
                     </ul>
                 </div>
 
-                <!-- Contact Us Button - Without hover effects -->
+                <!-- Contact Us Button - Updated with click handler -->
                 <div class="ml-4">
-                    <a href="#"
+                    <a href="#" (click)="openContactPopup($event)"
                         class="contact-button relative border rounded-full px-5 lg:px-7 py-1.5 lg:py-2.5 whitespace-nowrap text-sm lg:text-base font-medium tracking-wide"
                         [ngClass]="imagePath ? 'border-white text-white' : 'border-black text-black'">
                         <span class="relative z-10">Contact Us</span>
@@ -202,7 +202,7 @@
                         {{description2||''}}
                     </span>
                 </p>
-                <a href="#"
+                <a href="#" (click)="openContactPopup($event)"
                     class="whitespace-nowrap px-6 sm:px-8 py-3 sm:py-3.5 rounded-full border-2 border-white text-white text-base sm:text-2xl hover:bg-white hover:text-blue-900 transition-all duration-300 touch-manipulation mt-4 md:mt-0">
                     {{ button2Text|| "Express Interest"}}
                 </a>
@@ -213,3 +213,7 @@
     </div>
     }
 </div>
+
+<!-- Update the contact popup component to include isOpen binding and close event -->
+<app-contact-us-pop [isOpen]="isContactPopupOpen" (closeEvent)="closeContactPopup()">
+</app-contact-us-pop>
