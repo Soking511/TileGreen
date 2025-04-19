@@ -8,6 +8,13 @@ import {
 } from '@angular/forms';
 import { IFaqItem } from '../../interfaces/FaqInterface';
 import { NgIf, NgFor, CommonModule } from '@angular/common';
+import {
+  trigger,
+  transition,
+  style,
+  animate,
+  state,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-contact-us-pop',
@@ -15,10 +22,51 @@ import { NgIf, NgFor, CommonModule } from '@angular/common';
   templateUrl: './contact-us-pop.component.html',
   styleUrl: './contact-us-pop.component.scss',
   standalone: true,
+  animations: [
+    trigger('fadeInOut', [
+      state(
+        'void',
+        style({
+          opacity: 0,
+        })
+      ),
+      transition('void <=> *', animate('300ms ease-in-out')),
+    ]),
+    trigger('slideInOut', [
+      state(
+        'void',
+        style({
+          transform: 'scale(0.9)',
+          opacity: 0,
+        })
+      ),
+      transition('void => *', [
+        animate(
+          '400ms ease-out',
+          style({
+            transform: 'scale(1)',
+            opacity: 1,
+          })
+        ),
+      ]),
+      transition('* => void', [
+        animate(
+          '300ms ease-in',
+          style({
+            transform: 'scale(0.9)',
+            opacity: 0,
+          })
+        ),
+      ]),
+    ]),
+  ],
 })
 export class ContactUsPopComponent {
   @Input() isOpen = false;
   @Output() closeEvent = new EventEmitter<void>();
+
+  // Animation state
+  animationState = 'in';
 
   // Form status flags
   formSubmitted = false;
@@ -148,9 +196,11 @@ export class ContactUsPopComponent {
 
   // Close the popup
   close() {
+    // Set flag to false after animation completes
     this.isOpen = false;
     document.body.classList.remove('overflow-hidden');
     this.closeEvent.emit();
+
     // Reset form state when closing
     if (this.formSubmitted) {
       setTimeout(() => {
