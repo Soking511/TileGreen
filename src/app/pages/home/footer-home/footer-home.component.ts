@@ -1,5 +1,5 @@
 import { NgClass, NgIf, NgStyle } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -7,13 +7,14 @@ import {
   Validators,
 } from '@angular/forms';
 import { ApiService } from '../../../../services/api.service';
+import { ContactPopupService } from '../../../../services/contact-popup.service';
 
 @Component({
   selector: 'app-footer-home',
   imports: [NgClass, ReactiveFormsModule, NgIf, NgStyle],
   templateUrl: './footer-home.component.html',
 })
-export class FooterHomeComponent {
+export class FooterHomeComponent implements OnInit {
   @Input() showFirstSection: boolean = false;
   @Input() firstSectionTitle: string | null = null;
   @Input() firstSectionDescription: string | null = null;
@@ -31,7 +32,21 @@ export class FooterHomeComponent {
   formSubmitError = false;
   formSubmitting = false;
 
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private apiService: ApiService,
+    private contactPopupService: ContactPopupService
+  ) {}
+
+  ngOnInit(): void {
+    // Any initialization logic
+  }
+
+  // Open contact popup using the service
+  openContactPopup(event: Event): void {
+    event.preventDefault();
+    this.contactPopupService.openPopup();
+  }
+
   onSubmit() {
     if (this.newLetterForm.valid) {
       this.formSubmitting = true;

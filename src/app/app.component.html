@@ -1,2 +1,5 @@
 <!-- <app-header/> -->
 <router-outlet></router-outlet>
+
+<!-- Global contact popup that can be triggered from anywhere -->
+<app-contact-us-pop [isOpen]="isContactPopupOpen" (closeEvent)="closeContactPopup()"></app-contact-us-pop>

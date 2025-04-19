@@ -9,13 +9,12 @@ import {
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ButtonComponent } from '../button/button.component';
-// Add the ContactUsPopComponent import
 import { ContactUsPopComponent } from '../contact-us-pop/contact-us-pop.component';
+import { ContactPopupService } from '../../../../services/contact-popup.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  // Add ContactUsPopComponent to imports
   imports: [CommonModule, RouterLink, ButtonComponent, ContactUsPopComponent],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
@@ -32,7 +31,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   @Input() navigateTo: string | null = null;
 
   isMobileMenuOpen: boolean = false;
-  // Add isContactPopupOpen property
   isContactPopupOpen: boolean = false;
   navbarItems = [
     { name: 'About', link: '/about' },
@@ -43,12 +41,13 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   ];
   private imagePreloaded = false;
 
-  constructor(private el: ElementRef) {}
+  constructor(
+    private el: ElementRef,
+    private contactPopupService: ContactPopupService
+  ) {}
 
   ngOnInit(): void {
-    // Initialization code
-
-    // Preload the background image if it exists
+    // Preload image if specified
     if (this.imagePath) {
       const img = new Image();
       img.src = this.imagePath;
@@ -59,35 +58,20 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // If we have an image path, set up the preload link
-    if (this.imagePath && !this.imagePreloaded) {
-      // Create a preload link element dynamically as fallback
-      const preloadLink = document.createElement('link');
-      preloadLink.rel = 'preload';
-      preloadLink.href = this.imagePath;
-      preloadLink.as = 'image';
-      document.head.appendChild(preloadLink);
-    }
+    // Any post-render initialization
   }
 
-  // Add contact popup handler
+  // Add contact popup handler that uses the service
   openContactPopup(event: Event): void {
     event.preventDefault();
-    this.isContactPopupOpen = true;
 
     // Close mobile menu if it's open
     if (this.isMobileMenuOpen) {
       this.closeMobileMenu();
     }
 
-    // Prevent scrolling when popup is open
-    document.body.style.overflow = 'hidden';
-  }
-
-  // Add method to close contact popup
-  closeContactPopup(): void {
-    this.isContactPopupOpen = false;
-    document.body.style.overflow = '';
+    // Use the service to open the popup
+    this.contactPopupService.openPopup();
   }
 
   toggleMobileMenu(): void {
@@ -115,9 +99,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     if (this.isMobileMenuOpen) {
       this.toggleMobileMenu();
     }
-    // Also close contact popup if open
-    if (this.isContactPopupOpen) {
-      this.closeContactPopup();
-    }
+    // Also close contact popup using the service
+    this.contactPopupService.closePopup();
   }
 }
