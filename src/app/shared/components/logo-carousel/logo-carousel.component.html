@@ -5,17 +5,17 @@
 
             <div class="logo-track" [style.animationDuration]="animationDuration + 's'">
                 <div class="logo-group">
-                    @for (logo of logos; track logo.url) {
+                    @for (company of logos; track company.company_name) {
                     <div class="logo-item">
-                        <img [src]="logo.url" [alt]="logo.alt" class="logo">
+                        <img [src]="company.logo" [alt]="company.company_name" class="logo">
                     </div>
                     }
                 </div>
 
                 <div class="logo-group">
-                    @for (logo of logos; track logo.url) {
+                    @for (company of logos; track company.company_name) {
                     <div class="logo-item">
-                        <img [src]="logo.url" [alt]="logo.alt" class="logo">
+                        <img [src]="company.logo" [alt]="company.company_name" class="logo">
                     </div>
                     }
                 </div>

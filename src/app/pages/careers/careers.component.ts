@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormCareersComponent } from "./form-careers/form-careers.component";
 
 interface JobCategory {
-  name: string;
-  positions: JobPosition[];
+    name: string;
+    positions: JobPosition[];
 }
 
 interface JobPosition {

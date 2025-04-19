@@ -12,9 +12,8 @@ export class ApiService {
   constructor(
     private http: HttpClient // private toastService: ToastService
   ) {
-    this.baseURL = 'https://api.tailgreen.pulslytics.agency/tile_green';
+    this.baseURL = 'http://localhost:8000/tile_green';
   }
-
 
   private getHeaders(): HttpHeaders {
     let headers = new HttpHeaders();
@@ -32,7 +31,7 @@ export class ApiService {
 
     const queryString =
       queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
-    const url = `${this.baseURL}${route}`;
+    const url = `${this.baseURL}/${route}/`;
 
     return this.http.get<any>(url, {
       headers,

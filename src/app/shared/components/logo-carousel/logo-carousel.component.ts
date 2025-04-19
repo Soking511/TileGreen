@@ -1,10 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ICompany } from '../../interfaces/companiesInterface';
 
-interface Logo {
-  url: string;
-  alt: string;
-}
 
 @Component({
   selector: 'app-logo-carousel',
@@ -14,7 +11,7 @@ interface Logo {
   styleUrls: ['./logo-carousel.component.scss'],
 })
 export class LogoCarouselComponent implements OnInit {
-  @Input() logos: Logo[] = [];
+  @Input() logos: ICompany[] = [];
   @Input() animationDuration: number = 30; // Default animation duration in seconds
 
   ngOnInit(): void {
