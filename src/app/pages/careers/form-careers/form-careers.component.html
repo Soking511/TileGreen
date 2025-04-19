@@ -6,7 +6,8 @@
         </p>
     </div>
 
-    <form [formGroup]="positionForm" (ngSubmit)="onSubmit()" class="grid md:grid-cols-2 gap-8 pr-8 lg:pr-0 text-tile-regular  ">
+    <form [formGroup]="positionForm" (ngSubmit)="onSubmit()"
+        class="grid md:grid-cols-2 gap-8 pr-8 lg:pr-0 text-tile-regular  ">
         <div class="space-y-6">
             <div class="space-y-2">
                 <label for="position" class="block text-xl text-[#010d26] font-medium">Position Name</label>
@@ -163,7 +164,7 @@
             <!-- Submit Button -->
             <button type="submit" [disabled]="formSubmitting"
                 class="relative cursor-pointer w-full mt-8 py-4 px-6 bg-[#010d26] hover:bg-[#021f59] transition-colors duration-200 text-white text-xl font-medium rounded-full disabled:bg-gray-400 disabled:cursor-not-allowed">
-                <span *ngIf="!formSubmitting">Apply</span>
+                <span *ngIf="!formSubmitting">Join the Waitlist</span>
                 <span *ngIf="formSubmitting" class="flex items-center justify-center">
                     <svg class="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg"
                         fill="none" viewBox="0 0 24 24">
