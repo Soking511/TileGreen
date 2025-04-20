@@ -23,7 +23,7 @@
 }
 
 .line {
-  position: absolute;
+  position: relative;
   left: calc(
     178px + 24px + 12px
   ); /* Width of text + width of rectangle + gap */
