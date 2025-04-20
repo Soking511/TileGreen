@@ -226,7 +226,7 @@
                 <!-- Submit Button -->
                 <div class="self-stretch flex justify-center mt-4">
                     <button type="submit" [disabled]="formSubmitting"
-                        class="relative w-full sm:w-auto px-8 md:px-12 py-3 md:py-4 text-white rounded-[50px] bg-[#010d26] text-lg md:text-xl transition-colors hover:bg-[#192949] disabled:bg-gray-400 disabled:cursor-not-allowed overflow-hidden">
+                        class="cursor-pointer relative w-full sm:w-auto px-8 md:px-12 py-3 md:py-4 text-white rounded-[50px] bg-[#010d26] text-lg md:text-xl transition-colors hover:bg-[#192949] disabled:bg-gray-400 disabled:cursor-not-allowed overflow-hidden">
                         <span *ngIf="!formSubmitting">Join the waitlist</span>
                         <span *ngIf="formSubmitting" class="flex items-center justify-center">
                             <svg class="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg"
