@@ -41,7 +41,8 @@
             </div>
         </div>
         <div class="self-stretch text-center justify-start text-[#818896] text-2xl text-tile-inter-md">
-            recycling low-value and unrecyclable <br> plastic waste that would otherwise be <br> incinerated or landfilled</div>
+            recycling low-value and unrecyclable <br> plastic waste that would otherwise be <br> incinerated or
+            landfilled</div>
     </div>
 
     <!-- Benefit 2 -->
@@ -77,7 +78,8 @@
             </div>
         </div>
         <div class="self-stretch text-center justify-start text-[#818896] text-2xl text-tile-inter-md">
-            saving energy through optimized <br> manufacturing process with 62% less <br> energy than alternative products</div>
+            saving energy through optimized <br> manufacturing process with 62% less <br> energy than alternative
+            products</div>
     </div>
 
     <!-- <svg class="mx-auto mt-8 col-span-1 md:col-span-3 w-full max-w-3xl" width="865" height="260"
@@ -92,15 +94,23 @@
 <div class="">
 
     <!-- Media Logos Section -->
-    <div class="media-logos grid grid-cols-1 md:grid-cols-4 gap-8 mb-12 px-16">
-        <!-- Forbes -->
-        @for ( article of articleService.articles; track article ){
-        <div class="flex flex-col items-center">
-            <div class="mb-4 h-16 flex items-center">
-                <img [src]="article.image" [alt]="article.name" class="h-auto w-auto">
+    <div class="media-logos grid grid-cols-1 md:grid-cols-4 gap-10 mb-16 px-4 md:px-16 max-w-7xl mx-auto">
+        @for (article of articleService.articles; track article) {
+        <div
+            class="flex flex-col items-center p-4 transition-all duration-300 hover:shadow-lg rounded-lg bg-white hover:bg-gray-50 hover:translate-y-[-5px]">
+            <div class="mb-6 h-20 flex items-center justify-center">
+                <img [src]="article.image" [alt]="article.name"
+                    class="max-h-full max-w-[80%] object-contain filter hover:brightness-110 transition-all duration-300">
             </div>
-            <a [href]="article.link" class="inline-flex items-center underline border-b border-white">
-                Read Article <i class="fas fa-external-link-alt ml-2 text-xs"></i>
+            <a [href]="article.link" target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center text-blue-600 font-medium hover:text-blue-800 transition-colors duration-200 group">
+                Read Article
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200"
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
             </a>
         </div>
         }
