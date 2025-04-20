@@ -1,7 +1,7 @@
-<div class="relative w-full overflow-hidden flex flex-col justify-between"
+<div class="w-full z-40 overflow-hidden flex flex-col justify-between"
     [ngClass]="{'bg-gradient-to-b from-[#a8a8a8] to-[#424242] h-screen': imagePath}">
 
-    <!-- Background Image with Preloading -->
+ <!-- Background Image with Preloading -->
     @if (imagePath) {
     <!-- Preload image -->
     <link rel="preload" [attr.href]="imagePath" as="image" type="image/jpeg" fetchpriority="high">
@@ -9,25 +9,27 @@
         fetchpriority="high" [attr.importance]="'high'">
     <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent"></div>
     }
-
+    <!-- isScrolled -->
     <!-- Content Container -->
-    <div class="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 flex flex-col h-full">
+    <div class="fixed w-screen z-40 flex flex-col " >
         <!-- Nav Section -->
-        <nav class="flex flex-wrap items-center justify-between font-neue-haas py-3 sm:py-4 md:py-5"
-            [ngClass]="imagePath ? 'text-white' : 'text-black'">
+        <nav class="flex flex-wrap items-center justify-between font-neue-haas py-3 sm:py-4 md:py-5 w-full px-4 sm:px-6 md:px-26 "
+        [class.bg-white]="isScrolled"
+        [class.text-black]="isScrolled"
+            [ngClass]="imagePath && !isScrolled ? 'text-white' : 'text-black'" >
             <div class="flex items-center gap-2 z-20">
                 <svg width="52" class="h-8 sm:h-8 md:h-10" height="48" viewBox="0 0 52 48" fill="none"
                     [routerLink]="'/home'" class="cursor-pointer" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_118_1154)">
                         <path
                             d="M51.9749 40.6678C51.9749 44.6898 48.6596 47.9807 44.6076 47.9807H36.8315C32.7795 47.9807 29.4642 44.6898 29.4642 40.6678V31.2255C29.4642 27.2035 32.7795 23.9127 36.8315 23.9127H48.7004L47.0638 29.3161H36.9137C35.8084 29.3161 34.867 30.2101 34.867 31.3477V40.5868C34.867 41.6839 35.8084 42.6184 36.9137 42.6184H44.4851C45.6313 42.6184 46.5319 41.6839 46.5319 40.5868V39.3195H41.129L39.4918 33.916H51.9749V40.6678Z"
-                            [attr.fill]="imagePath ? 'white' : 'black'" />
+                            [attr.fill]="imagePath && !isScrolled ? 'white' : 'black'" />
                         <path
                             d="M11.0205 15.8993V22.2203H20.9287V25.3571V43.6314V47.9801H27.6705V43.6314V22.2203H49.1563L51.0203 15.8993H11.0205Z"
-                            [attr.fill]="imagePath ? 'white' : 'black'" />
+                            [attr.fill]="imagePath && !isScrolled ? 'white' : 'black'" />
                         <path
                             d="M51.9749 0.0199661H45.6068H0.025116V0.61155V6.341V41.659V47.9801H6.39323H11.0205V41.659H6.39323V6.341H45.6068V10.934H51.9749V6.341V0.0199661Z"
-                            [attr.fill]="imagePath ? 'white' : 'black'" />
+                            [attr.fill]="imagePath && !isScrolled ? 'white' : 'black'" />
                     </g>
                     <defs>
                         <clipPath id="clip0_118_1154">
@@ -65,7 +67,7 @@
                         </svg>
                     </button>
                     <div class="h-24"></div>
-                    <ul class="flex flex-col space-y-8 text-2xl font-light px-8 items-center">
+                    <ul class="flex flex-col space-y-8 text-2xl font-light px-8 items-start">
                         @for (item of navbarItems; track item) {
                         <li>
                             <a [routerLink]="item.link" (click)="toggleMobileMenu()"
@@ -76,8 +78,8 @@
                         }
                         <li class="pt-8">
                             <a href="#" (click)="openContactPopup($event)"
-                                class="font-tile-regular contact-button inline-block relative border rounded-full px-8 py-4 transition-all duration-300 overflow-hidden touch-manipulation text-white border-white hover:bg-white/20 font-medium tracking-wide no-shadow">
-                                <span class="relative z-10">Contact Us</span>
+                                class="z-50 font-tile-regular contact-button inline-block relative border rounded-full px-8 py-4 transition-all duration-300 overflow-hidden touch-manipulation text-white border-white hover:bg-white/20 font-medium tracking-wide no-shadow">
+                                <span class="relative ">Contact Us</span>
                             </a>
                         </li>
                     </ul>
@@ -93,7 +95,7 @@
                         <li>
                             <a [routerLink]="item.link"
                                 class="nav-link hover:text-gray-300 py-2 px-1 font-medium tracking-wide transition-all duration-200 relative group text-tile-regular"
-                                [ngClass]="imagePath ? 'text-white' : 'text-black'">
+                                [ngClass]="imagePath && !isScrolled ? 'text-white' : 'text-black'">
                                 {{item.name}}
                                 <span
                                     class="absolute bottom-0 left-0 w-0 h-0.5 bg-current group-hover:w-full transition-all duration-300"></span>
@@ -106,24 +108,24 @@
                 <!-- Contact Us Button - Updated with click handler -->
                 <div class="ml-4">
                     <a href="#" (click)="openContactPopup($event)"
-                        class="contact-button relative border rounded-full px-5 lg:px-7 py-1.5 lg:py-2.5 whitespace-nowrap text-sm lg:text-base font-medium tracking-wide"
-                        [ngClass]="imagePath ? 'border-white text-white' : 'border-black text-black'">
+                        class="contact-button  relative border rounded-full px-5 lg:px-7 py-1.5 lg:py-2.5 whitespace-nowrap text-sm lg:text-base font-medium tracking-wide"
+                        [ngClass]="imagePath && !isScrolled ? 'border-white text-white' : 'border-black text-black'">
                         <span class="relative z-10">Contact Us</span>
-                        <div class="absolute inset-0 bg-black opacity-25" *ngIf="imagePath"></div>
+                        <!-- <div class="absolute inset-0 bg-black opacity-25" *ngIf="imagePath"></div> -->
                     </a>
                 </div>
             </div>
         </nav>
 
         <!-- Flexible spacer -->
-        <div class="flex-grow"></div>
 
 
     </div>
 
     @if (imagePath) {
     <!-- Bottom Section with divider and heading -->
-    <div class="relative  w-full">
+    <!-- <div class="relative  w-full"> -->
+    <div class="relative w-full z-10  flex flex-col justify-end h-full">
         <!-- Main Heading - Moved here, just above the divider line -->
         <div class="px-4 sm:px-6 md:px-8 mb-8 md:mb-12">
             <table class="w-full">
@@ -156,7 +158,7 @@
                             [withArrow]="true"
                             [withAnimation]="true"/> -->
 
-                        <div class='p-4' *ngIf="button1Text">
+                        <div class='p-4' *ngIf="button1Text" class="z-50">
                             <a [routerLink]="navigateTo"
                                 class="cursor-pointer bg-[#0460d9]/40 backdrop-blur-sm group relative inline-flex items-center   rounded-[50px] overflow-hidden">
                                 <span

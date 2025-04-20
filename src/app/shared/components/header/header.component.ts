@@ -32,6 +32,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   isMobileMenuOpen: boolean = false;
   isContactPopupOpen: boolean = false;
+  isScrolled: boolean = false;
   navbarItems = [
     { name: 'About', link: '/about' },
     { name: 'Technology', link: '/technology' },
@@ -55,6 +56,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         this.imagePreloaded = true;
       };
     }
+
+    // Initialize scroll state
+    this.isScrolled = window.scrollY > 10;
   }
 
   ngAfterViewInit(): void {
@@ -101,5 +105,11 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     }
     // Also close contact popup using the service
     this.contactPopupService.closePopup();
+  }
+
+  // Detect scroll event
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.isScrolled = window.scrollY > 10;
   }
 }
