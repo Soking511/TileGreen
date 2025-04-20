@@ -105,16 +105,16 @@
     <div class="media-logos grid grid-cols-1 md:grid-cols-4 gap-10 mb-16 px-4 md:px-16 max-w-7xl mx-auto">
         @for (article of articleService.articles; track article) {
         <div
-            class="flex flex-col items-center p-4 transition-all duration-300 hover:shadow-lg rounded-lg bg-white hover:bg-gray-50 hover:translate-y-[-5px]">
+            class="flex flex-col items-center p-4 transition-all duration-300 rounded-lg bg-white ">
             <div class="mb-6 h-20 flex items-center justify-center">
                 <img [src]="article.image" [alt]="article.name"
-                    class="max-h-full max-w-[80%] object-contain filter hover:brightness-110 transition-all duration-300">
+                    class="max-h-full max-w-[80%] object-contain filter  transition-all duration-300">
             </div>
             <a [href]="article.link" target="_blank" rel="noopener noreferrer"
                 class="inline-flex items-center font-medium transition-colors duration-200 group">
                 Read Article
                 <svg xmlns="http://www.w3.org/2000/svg"
-                    class="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200"
+                    class="h-4 w-4 ml-1 transform transition-transform duration-200"
                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M14 5l7 7m0 0l-7 7m7-7H3" />
