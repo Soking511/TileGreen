@@ -1,5 +1,5 @@
 import { NgClass, NgFor, NgIf } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -74,6 +74,7 @@ export class SecondSectionLiscenceComponent {
   ];
   selectedQa: IFaqItem | undefined;
 
+  @ViewChild('questionSection') targetSection!: ElementRef;
 
   constructor(private apiService: ApiService) {}
 
@@ -145,6 +146,10 @@ export class SecondSectionLiscenceComponent {
     }
   }
 
+  scrollToSection() {
+    this.targetSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
+  }
+  
   getKeyBenefit(item: IFaqItem, index: number): string {
     return item.keyBenefits && item.keyBenefits.length > index
       ? item.keyBenefits[index]
