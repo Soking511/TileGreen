@@ -25,6 +25,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   @Input() headTitle1: string | null = null;
   @Input() headTitle2: string | null = null;
   @Input() headTitle3: string | null = null;
+  @Input() headTitleLibre: string | null = null;
+  @Input() headTitle2Font: string | null = null;
   @Input() description1: string | null = null;
   @Input() description2: string | null = null;
   @Input() imagePath: string | null = null;

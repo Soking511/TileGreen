@@ -113,7 +113,7 @@
                 <div class="flex flex-col justify-start items-start self-stretch relative gap-2 w-full">
                     <label for="full_name" class="text-xl md:text-2xl text-left text-[#010d26]">Full Name</label>
                     <input id="full_name" formControlName="full_name" type="text" placeholder="Enter your full name"
-                        class="w-full px-6 md:px-10 py-3 md:py-4 rounded-3xl border border-[#9c9c9c] text-lg md:text-xl"
+                        class="w-full px-6 md:px-10 py-3 md:py-4 rounded-3xl border border-[#9c9c9c] text-lg md:text-xl text-[#A7A7A7]"
                         [class.border-red-500]="isFieldInvalid('full_name')">
                     <div class="h-5 text-red-500 text-sm">
                         <span *ngIf="getFieldError('full_name', 'required')">Full name is required</span>
@@ -128,7 +128,7 @@
                             Name</label>
                         <input id="company_name" formControlName="company_name" type="text"
                             placeholder="Enter company name"
-                            class="w-full px-6 md:px-10 py-3 md:py-4 rounded-3xl border border-[#9c9c9c] text-lg md:text-xl"
+                            class="w-full px-6 md:px-10 py-3 md:py-4 rounded-3xl border border-[#9c9c9c] text-lg md:text-xl text-[#A7A7A7]"
                             [class.border-red-500]="isFieldInvalid('company_name')">
                         <div class="h-5 text-red-500 text-sm">
                             <span *ngIf="isFieldInvalid('company_name')">Company name is required</span>
@@ -139,7 +139,7 @@
                         <label for="industry" class="text-xl md:text-2xl text-left text-[#010d26]">Industry</label>
                         <div class="relative w-full">
                             <select id="industry" formControlName="industry"
-                                class="w-full px-6 md:px-10 py-3 md:py-4 rounded-3xl border border-[#9c9c9c] text-lg md:text-xl appearance-none"
+                                class="w-full px-6 md:px-10 py-3 md:py-4 rounded-3xl border border-[#9c9c9c] text-lg md:text-xl appearance-none text-[#A7A7A7]"
                                 [class.border-red-500]="isFieldInvalid('industry')">
                                 <option value="" disabled selected>Choose Industry</option>
                                 <option *ngFor="let industry of industries" [value]="industry">{{industry}}</option>
@@ -164,7 +164,7 @@
                 <div class="flex flex-col justify-start items-start self-stretch relative gap-2 w-full">
                     <label for="position" class="text-xl md:text-2xl text-left text-[#010d26]">Position</label>
                     <input id="position" formControlName="position" type="text" placeholder="Enter your position"
-                        class="w-full px-6 md:px-10 py-3 md:py-4 rounded-3xl border border-[#9c9c9c] text-lg md:text-xl"
+                        class="text-[#A7A7A7] w-full px-6 md:px-10 py-3 md:py-4 rounded-3xl border border-[#9c9c9c] text-lg md:text-xl"
                         [class.border-red-500]="isFieldInvalid('position')">
                     <div class="h-5 text-red-500 text-sm">
                         <span *ngIf="isFieldInvalid('position')">Position is required</span>
@@ -176,7 +176,7 @@
                     <div class="flex flex-col justify-start items-start flex-grow w-full sm:w-1/2 relative gap-2">
                         <label for="email" class="text-xl md:text-2xl text-left text-[#010d26]">Email</label>
                         <input id="email" formControlName="email" type="email" placeholder="Enter Email"
-                            class="w-full px-6 md:px-10 py-3 md:py-4 rounded-3xl border border-[#9c9c9c] text-lg md:text-xl"
+                            class="text-[#A7A7A7] w-full px-6 md:px-10 py-3 md:py-4 rounded-3xl border border-[#9c9c9c] text-lg md:text-xl"
                             [class.border-red-500]="isFieldInvalid('email')">
                         <div class="h-5 text-red-500 text-sm">
                             <span *ngIf="getFieldError('email', 'required')">Email is required</span>
@@ -189,7 +189,7 @@
                             Region</label>
                         <input id="country_region" formControlName="country_region" type="text"
                             placeholder="Enter Region"
-                            class="w-full px-6 md:px-10 py-3 md:py-4 rounded-3xl border border-[#9c9c9c] text-lg md:text-xl"
+                            class="text-[#A7A7A7] w-full px-6 md:px-10 py-3 md:py-4 rounded-3xl border border-[#9c9c9c] text-lg md:text-xl"
                             [class.border-red-500]="isFieldInvalid('country_region')">
                         <div class="h-5 text-red-500 text-sm">
                             <span *ngIf="isFieldInvalid('country_region')">Country/Region is required</span>
@@ -201,7 +201,7 @@
                 <div class="flex flex-col justify-start items-start self-stretch relative gap-2 w-full">
                     <label for="message" class="text-xl md:text-2xl text-left text-[#010d26]">Message (optional)</label>
                     <textarea id="message" formControlName="message" placeholder="Enter your message"
-                        class="w-full h-32 md:h-40 px-6 md:px-10 py-4 md:py-7 rounded-3xl border border-[#9c9c9c] text-lg md:text-xl resize-none"></textarea>
+                        class="text-[#A7A7A7] w-full h-32 md:h-40 px-6 md:px-10 py-4 md:py-7 rounded-3xl border border-[#9c9c9c] text-lg md:text-xl resize-none"></textarea>
                 </div>
 
                 <!-- Form Status Messages -->
@@ -224,9 +224,9 @@
                 </div>
 
                 <!-- Submit Button -->
-                <div class="self-stretch flex justify-center mt-4">
+                <div class="self-stretch flex justify-center mt-4 ">
                     <button type="submit" [disabled]="formSubmitting"
-                        class="cursor-pointer relative w-full sm:w-auto px-8 md:px-12 py-3 md:py-4 text-white rounded-[50px] bg-[#010d26] text-lg md:text-xl transition-colors hover:bg-[#192949] disabled:bg-gray-400 disabled:cursor-not-allowed overflow-hidden">
+                        class="cursor-pointer relative w-full   px-8 md:px-12 py-3 md:py-4 text-white rounded-[50px] bg-[#010d26] text-lg md:text-xl transition-colors hover:bg-[#192949] disabled:bg-gray-400 disabled:cursor-not-allowed overflow-hidden">
                         <span *ngIf="!formSubmitting">Join the waitlist</span>
                         <span *ngIf="formSubmitting" class="flex items-center justify-center">
                             <svg class="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg"

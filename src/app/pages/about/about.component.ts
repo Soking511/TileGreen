@@ -5,6 +5,7 @@ import { HeaderComponent } from '../../shared/components/header/header.component
 import { LogoCarouselComponent } from "../../shared/components/logo-carousel/logo-carousel.component";
 import { ButtonComponent } from "../../shared/components/button/button.component";
 import { LogosComponent } from "../../shared/components/logos/logos.component";
+import { DescriptionScrollComponent } from "./description-scroll/description-scroll.component";
 
 interface SlideItem {
   id: number;
@@ -24,7 +25,7 @@ interface RecognitionLogo {
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [HeaderComponent, FooterHomeComponent, NgFor, LogoCarouselComponent, NgIf, ButtonComponent, LogosComponent],
+  imports: [HeaderComponent, FooterHomeComponent, NgFor, LogoCarouselComponent, NgIf, ButtonComponent, LogosComponent, DescriptionScrollComponent],
   templateUrl: './about.component.html',
 })
 export class AboutComponent implements OnInit, OnDestroy {
