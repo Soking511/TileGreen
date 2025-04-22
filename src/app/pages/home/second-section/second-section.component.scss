@@ -1,19 +1,15 @@
 .media-logos img {
-    cursor: pointer;
-    height: 140px;
-    align-self: stretch;
-    aspect-ratio: 238/101.05;
-    transition: transform 0.2s ease;
-  }
+  cursor: pointer;
+  height: 140px;
+  align-self: stretch;
+  // aspect-ratio: 238/101.05;
+  transition: transform 0.2s ease;
+}
 
-  .media-logos img:hover {
-    transform: scale(1.05);
-  }
-
-  .media-logos .mb-4 {
-    height: auto;
-    min-height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.media-logos .mb-4 {
+  height: auto;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

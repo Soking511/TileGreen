@@ -94,7 +94,7 @@
                         @for (item of navbarItems; track item) {
                         <li>
                             <a [routerLink]="item.link"
-                                class="nav-link hover:text-gray-300 py-2 px-1 font-medium tracking-wide transition-all duration-200 relative group text-tile-regular"
+                                class="nav-link hover:text-gray-300 py-2 px-1 tracking-wide transition-all duration-200 relative group text-tile-regular"
                                 [ngClass]="imagePath && !isScrolled ? 'text-white' : 'text-black'">
                                 {{item.name}}
                                 <span
@@ -108,7 +108,7 @@
                 <!-- Contact Us Button - Updated with click handler -->
                 <div class="ml-4">
                     <a href="#" (click)="openContactPopup($event)"
-                        class="contact-button  relative border rounded-full px-5 lg:px-7 py-1.5 lg:py-2.5 whitespace-nowrap text-sm lg:text-base font-medium tracking-wide"
+                        class=" hover:opacity-100 opacity-80 contact-button  relative border rounded-full px-5 lg:px-7 py-1.5 lg:py-2.5 whitespace-nowrap text-sm lg:text-base text-tile-regular tracking-wide"
                         [ngClass]="imagePath && !isScrolled ? 'border-white text-white' : 'border-black text-black'">
                         <span class="relative z-10">Contact Us</span>
                         <!-- <div class="absolute inset-0 bg-black opacity-25" *ngIf="imagePath"></div> -->
@@ -165,13 +165,13 @@
 
                         <div class='p-4' *ngIf="button1Text" class="z-50">
                             <a [routerLink]="navigateTo"
-                                class="cursor-pointer bg-[#0460d9]/40 backdrop-blur-sm group relative inline-flex items-center   rounded-[50px] overflow-hidden">
+                                class="p-1.5 cursor-pointer bg-[#0460d9]/40 backdrop-blur-sm group relative inline-flex items-center   rounded-[50px] overflow-hidden">
                                 <span
-                                    class="px-5 py-2 text-2xl text-tile-regular text-white z-10 transition-colors duration-300 whitespace-nowrap group-hover:text-blue-700">{{
+                                    class="px-5 py-2 text-2xl text-tile-regular text-white z-10 transition-colors duration-900 whitespace-nowrap group-hover:text-blue-700">{{
                                     button1Text|| "Learn More"}}</span>
                                 <span class="relative">
                                     <span
-                                        class="absolute right-0 top-0 w-14 h-14 bg-white rounded-full transition-all duration-300 ease-out transform origin-center
+                                        class="absolute right-0 top-0 w-14 h-14 bg-white rounded-full transition-all duration-700 ease-out transform origin-center
                                               group-hover:scale-[20] group-hover:bg-white group-hover:rounded-none"></span>
 
                                     <span class="flex items-center justify-center w-14 h-14 relative z-10">
