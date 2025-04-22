@@ -1,16 +1,38 @@
-<section class="py-20 bg-white text-center h-full">
-    <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-3xl md:text-4xl font-semibold text-gray-800 mb-6">
-        About Tile Green
-      </h2>
+<div class="relative bg-gradient-to-b from-slate-50 via-white to-white py-20 md:py-28 overflow-hidden min-h-screen">
+    <div class="container mx-auto px-4 py-12 max-w-4xl text-center">
+        <!-- Logo with Animation -->
+        <div class="flex justify-center mb-10">
+            <svg width="150" height="150" viewBox="0 0 203 191" fill="none" xmlns="http://www.w3.org/2000/svg"
+                class="mb-4 md:mb-6">
+                <path
+                    d="M202.277 161.641C202.277 177.337 189.421 190.175 173.716 190.175H143.568C127.857 190.175 115.007 177.337 115.007 161.641V124.801C115.007 109.104 127.863 96.2669 143.568 96.2669H189.585L183.236 117.347H143.884C139.601 117.347 135.949 120.831 135.949 125.274V161.325C135.949 165.604 139.601 169.252 143.884 169.252H173.235C177.677 169.252 181.17 165.604 181.17 161.325V156.383H160.228L153.879 135.303H202.271V161.647L202.277 161.641Z"
+                    fill="#0F8C22" />
+                <path
+                    d="M43.498 65V89.6651H81.9149V101.903V173.209V190.175H108.051V173.209V89.6651H191.347L198.574 65H43.498Z"
+                    fill="#0F8C22" />
+                <path
+                    d="M202.335 0H177.531H0V2.31433V24.7792V163.22V188H24.8031H42.8215V163.22H24.8031V24.7792H177.531V42.7802H202.335V24.7792V0Z"
+                    fill="#021F59" />
+            </svg>
+        </div>
+        <!-- Main Heading - Full Opacity -->
+        <h1 class="text-3xl md:text-4xl text-tile-regular text-gray-600 leading-relaxed">
+            @for ( label of text; track label; let idx = $index ){
+                @if ( idx <= currentIndex ){
 
-      <div class="text-gray-600 text-lg md:text-xl leading-relaxed space-y-4">
-        <p
-          *ngFor="let line of visibleLines"
-          class="fade-in-line"
-        >
-          {{ line }}
-        </p>
-      </div>
+                    <span >
+                        {{label}}
+                    </span>
+                    <br>
+                }
+            }
+        </h1>
+        <h1 class="text-3xl md:text-4xl text-tile-regular text-gray-600 mb-6 leading-relaxed">
+            <!-- {{text[currentIndex]}} -->
+            <span class="block [mask-image:linear-gradient(to_top,transparent_0%,white_60%)]">
+                {{text[currentIndex+1]}}
+            </span>
+        </h1>
+
     </div>
-  </section>
+</div>

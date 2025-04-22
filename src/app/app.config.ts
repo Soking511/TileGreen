@@ -1,5 +1,10 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter, withInMemoryScrolling } from '@angular/router';
+import {
+  provideRouter,
+  withInMemoryScrolling,
+  withPreloading,
+  PreloadAllModules,
+} from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { routes } from './app.routes';
@@ -15,7 +20,8 @@ export const appConfig: ApplicationConfig = {
       routes,
       withInMemoryScrolling({
         scrollPositionRestoration: 'enabled', // enable position restoration
-      })
+      }),
+      withPreloading(PreloadAllModules) // Preload all lazy-loaded modules
     ),
     provideHttpClient(withInterceptorsFromDi()),
     provideAnimations(),
