@@ -68,16 +68,6 @@ export class FifthSectionComponent implements OnInit, OnDestroy {
       category: 'Community',
       location: 'Nairobi, KE',
     },
-    {
-      id: 4,
-      img: 'assets/images/slider/2.png',
-      alt: 'Eco project 5',
-      title: 'Coastal Cleanup Initiative',
-      description:
-        'Transforming ocean plastic into valuable building materials while cleaning up coastal environments.',
-      category: 'Conservation',
-      location: 'Manila, PH',
-    },
   ];
 
   currentIndex = 0;
