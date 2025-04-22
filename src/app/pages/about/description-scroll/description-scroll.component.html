@@ -56,8 +56,7 @@
         <h1 class="text-3xl md:text-4xl text-tile-regular text-[#010D26] leading-relaxed ">
             @for ( label of text; track label; ){
             @if ( $index <= currentIndex ){ <span class=' transition-opacity duration-500 ease-in-out'
-                [class.opacity-100]="currentIndex === $index"
-                [class.opacity-0]="currentIndex < $index" [id]="$index">
+                [class.opacity-100]="currentIndex === $index" [class.opacity-0]="currentIndex < $index" [id]="$index">
                 {{label}}
                 </span>
                 <br>
