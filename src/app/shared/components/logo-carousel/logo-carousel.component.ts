@@ -16,7 +16,7 @@ export class LogoCarouselComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.animationDuration <= 0) {
-      this.animationDuration = 30;
+      this.animationDuration = 10;
       console.warn('Invalid animation duration, defaulting to 30 seconds');
     }
   }
