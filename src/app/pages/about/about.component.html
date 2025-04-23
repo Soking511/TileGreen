@@ -45,10 +45,10 @@
 </div> -->
 
 <!-- <img src="assets/images/about/brands.png" class="mx-auto" alt=""> -->
-<div class="flex flex-row items-center justify-center gap-8 overflow-x-auto py-8 mx-auto">
+<div class="flex flex-row flex-wrap items-center justify-center gap-6 py-8 mx-auto">
     @for (company of logosService.icons; track company.company_name) {
     <div class="logo-item flex-shrink-0">
-        <img [src]="company.logo" [alt]="company.company_name" class="logo h-12 md:h-16">
+        <img [src]="company.logo" [alt]="company.company_name" class="logo h-8 md:h-10">
     </div>
     }
 </div>
