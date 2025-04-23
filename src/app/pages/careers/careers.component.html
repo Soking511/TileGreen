@@ -81,5 +81,200 @@
         </div>
         }
     </div>
-    <app-form-careers/>
+    <app-form-careers />
 </section>
+
+<!-- Job Application Popup/Modal -->
+<div *ngIf="isFormPopupVisible" class="popup-wrapper">
+    <div class="bg-white rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto relative">
+        <!-- Close button with enhanced styling -->
+        <button (click)="hideFormPopup()"
+            class="cursor-pointer absolute top-4 right-4 text-gray-600 bg-white/90 p-2 rounded-full shadow-md transition-colors duration-200 z-10"
+            aria-label="Close popup">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+
+        <!-- Popup Content -->
+        <div class="px-6 py-6 md:px-8 md:py-8">
+            <div class="flex flex-col justify-between items-start mb-4 gap-2">
+                <h2 class="text-2xl md:text-3xl text-tile-regular text-[#010d26]">
+                    Apply for <span class="font-medium">{{ selectedJobTitle }}</span>
+                </h2>
+                <p class="text-sm md:text-base text-[#818896] max-w-md">
+                    Engineer the Future: Build the Technology Transforming Green Construction
+                </p>
+            </div>
+
+            <form [formGroup]="positionForm" (ngSubmit)="onSubmit()"
+                class="grid md:grid-cols-1 pr-4 lg:pr-0 text-tile-regular">
+                <div class="space-y-4">
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="space-y-1">
+                            <label for="firstName" class="block text-lg text-[#010d26] font-medium">First Name</label>
+                            <input type="text" id="firstName" formControlName="first_name"
+                                placeholder="Enter first name"
+                                class="w-full px-4 py-3 rounded-2xl border border-[#9c9c9c] text-tile-inter text-base placeholder:text-[#a7a7a7] focus:outline-none focus:ring-2 focus:ring-[#0460d9]"
+                                [ngClass]="{'border-red-500': hasError('first_name', 'required') || hasError('first_name', 'minlength') || hasError('first_name', 'maxlength')}">
+                            @if (hasError('first_name', 'required') && formSubmitted) {
+                            <p class="text-red-500 text-xs mt-1">First name is required</p>
+                            }
+                            @if (hasError('first_name', 'minlength')) {
+                            <p class="text-red-500 text-xs mt-1">First name must be at least 3 characters</p>
+                            }
+                        </div>
+                        <div class="space-y-1">
+                            <label for="lastName" class="block text-lg text-[#010d26] font-medium">Last Name</label>
+                            <input type="text" id="lastName" formControlName="second_name" placeholder="Enter last name"
+                                class="w-full text-tile-inter px-4 py-3 rounded-2xl border border-[#9c9c9c] text-base placeholder:text-[#a7a7a7] focus:outline-none focus:ring-2 focus:ring-[#0460d9]"
+                                [ngClass]="{'border-red-500': hasError('second_name', 'required') || hasError('second_name', 'minlength') || hasError('second_name', 'maxlength')}">
+                            @if (hasError('second_name', 'required') && formSubmitted) {
+                            <p class="text-red-500 text-xs mt-1">Last name is required</p>
+                            }
+                            @if (hasError('second_name', 'minlength')) {
+                            <p class="text-red-500 text-xs mt-1">Last name must be at least 3 characters</p>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="space-y-1">
+                            <label for="email" class="block text-lg text-[#010d26] font-medium">Email Address</label>
+                            <input type="email" id="email" formControlName="email" placeholder="Enter email address"
+                                class="w-full px-4 text-tile-inter py-3 rounded-2xl border border-[#9c9c9c] text-base placeholder:text-[#a7a7a7] focus:outline-none focus:ring-2 focus:ring-[#0460d9]"
+                                [ngClass]="{'border-red-500': hasError('email', 'required') || hasError('email', 'email')}">
+                            @if (hasError('email', 'required') && formSubmitted) {
+                            <p class="text-red-500 text-xs mt-1">Email is required</p>
+                            }
+                            @if (hasError('email', 'email')) {
+                            <p class="text-red-500 text-xs mt-1">Please enter a valid email address</p>
+                            }
+                        </div>
+                        <div class="space-y-1">
+                            <label for="phone" class="block text-lg text-[#010d26] font-medium">Phone Number</label>
+                            <input type="tel" id="phone" formControlName="phone_number" placeholder="Enter phone number"
+                                class="w-full text-tile-inter px-4 py-3 rounded-2xl border border-[#9c9c9c] text-base placeholder:text-[#a7a7a7] focus:outline-none focus:ring-2 focus:ring-[#0460d9]"
+                                [ngClass]="{'border-red-500': hasError('phone_number', 'required') || hasError('phone_number', 'pattern') || hasError('phone_number', 'minlength')}">
+                            @if (hasError('phone_number', 'required') && formSubmitted) {
+                            <p class="text-red-500 text-xs mt-1">Phone number is required</p>
+                            }
+                            @if (hasError('phone_number', 'pattern')) {
+                            <p class="text-red-500 text-xs mt-1">Phone number must contain only digits</p>
+                            }
+                            @if (hasError('phone_number', 'minlength')) {
+                            <p class="text-red-500 text-xs mt-1">Phone number must be at least 10 digits</p>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="mt-4 w-full p-4 rounded-xl bg-black/5 border border-black border-dashed"
+                        [ngClass]="{'border-red-500': !fileUploaded && formSubmitted}">
+                        <div class="flex flex-col items-center gap-3">
+                            <svg width="40" height="40" viewBox="0 0 76 76" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" class="text-[#0460D9]">
+                                <path
+                                    d="M38 69.6079V41.4829M38 41.4829L48.9375 52.4204M38 41.4829L27.0625 52.4204M63 55.8798C67.6687 54.0517 72.375 49.886 72.375 41.4829C72.375 28.9829 61.9594 25.8579 56.75 25.8579C56.75 19.6079 56.75 7.10791 38 7.10791C19.25 7.10791 19.25 19.6079 19.25 25.8579C14.0406 25.8579 3.625 28.9829 3.625 41.4829C3.625 49.886 8.33125 54.0517 13 55.8798"
+                                    stroke="#0460D9" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                                </path>
+                            </svg>
+
+                            <div class="text-center">
+                                @if (fileUploaded) {
+                                <p class="text-sm font-medium text-green-600">
+                                    File uploaded successfully!
+                                </p>
+                                <p class="text-xs text-[#a5a5a5] mt-1">
+                                    {{ resume?.name }}
+                                </p>
+                                } @else {
+                                <p class="text-sm font-medium text-[#101720]">
+                                    Click to upload or drag your file here
+                                </p>
+                                <p class="text-xs text-[#a5a5a5] mt-1">
+                                    Make sure to upload in PDF format
+                                </p>
+                                @if (!fileUploaded && formSubmitted) {
+                                <p class="text-red-500 text-xs mt-1">Resume file is required</p>
+                                }
+                                }
+                            </div>
+
+                            <div class="w-full flex justify-center">
+                                <label for="resume-upload" class="cursor-pointer">
+                                    <input type="file" id="resume-upload" class="hidden" accept=".pdf"
+                                        (change)="handleFileInput($event)">
+                                    <span
+                                        class="text-tile-inter inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#0460d9] hover:bg-[#0353bd] transition-colors duration-200 text-white font-semibold text-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20"
+                                            fill="currentColor">
+                                            <path fill-rule="evenodd"
+                                                d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        {{ fileUploaded ? 'Replace File' : 'Upload Resume' }}
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Status Messages -->
+                    <div *ngIf="formSubmitted" class="mt-4 w-full">
+                        <div *ngIf="formSubmitSuccess"
+                            class="p-3 bg-green-100 text-green-800 rounded-lg flex items-center success-message">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 flex-shrink-0" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <div>
+                                <h3 class="font-semibold text-sm">Application Submitted!</h3>
+                                <p class="text-xs">Thank you for your interest in joining our team. We will review your
+                                    application and contact
+                                    you soon.</p>
+                            </div>
+                        </div>
+                        <div *ngIf="formSubmitError"
+                            class="p-3 bg-red-100 text-red-800 rounded-lg flex items-center error-message">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 flex-shrink-0" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                            <div>
+                                <h3 class="font-semibold text-sm">Submission Error</h3>
+                                <p class="text-xs">There was an error submitting your application. Please try again
+                                    later or contact us
+                                    directly.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="flex justify-between items-center mt-4 gap-3">
+
+                        <button type="submit" [disabled]="formSubmitting"
+                            class="relative cursor-pointer w-full mt-8 py-4 px-6 bg-[#010d26] hover:bg-[#021f59] transition-colors duration-200 text-white text-xl font-medium rounded-full disabled:bg-gray-400 disabled:cursor-not-allowed cursor-pointer">
+                            <span *ngIf="!formSubmitting">Join the Waitlist</span>
+                            <span *ngIf="formSubmitting" class="flex items-center justify-center">
+                                <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                        stroke-width="4">
+                                    </circle>
+                                    <path class="opacity-75" fill="currentColor"
+                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                    </path>
+                                </svg>
+                                Submitting...
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

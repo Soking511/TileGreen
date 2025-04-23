@@ -7,6 +7,7 @@ import { ICompany } from '../app/shared/interfaces/companiesInterface';
 })
 export class CompaniesService {
   companies: ICompany[] | undefined;
+  icons: ICompany[] | undefined;
 
   constructor(private apiService: ApiService) {
     this.apiService.get('JointStockCompany').subscribe({
@@ -15,5 +16,14 @@ export class CompaniesService {
       },
       error: (error) => {},
     });
+
+    this.apiService.get('IconCompany').subscribe({
+      next: (data: ICompany[]) => {
+        this.icons = data;
+      },
+      error: (error) => {},
+    });
   }
+
+
 }

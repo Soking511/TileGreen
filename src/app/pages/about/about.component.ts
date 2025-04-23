@@ -1,11 +1,13 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, inject, OnDestroy, OnInit } from '@angular/core';
 import { FooterHomeComponent } from '../home/footer-home/footer-home.component';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { LogoCarouselComponent } from "../../shared/components/logo-carousel/logo-carousel.component";
 import { ButtonComponent } from "../../shared/components/button/button.component";
 import { LogosComponent } from "../../shared/components/logos/logos.component";
 import { DescriptionScrollComponent } from "./description-scroll/description-scroll.component";
+import { ApiService } from '../../../services/api.service';
+import { CompaniesService } from '../../../services/companies.service';
 
 interface SlideItem {
   id: number;
@@ -122,7 +124,8 @@ export class AboutComponent implements OnInit, OnDestroy {
   slideInterval: any;
   private resizeTimeout: any;
 
-  constructor() {}
+  logosService = inject(CompaniesService)
+  constructor(private apiService: ApiService) {}
 
   @HostListener('window:resize')
   onResize() {
