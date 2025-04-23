@@ -4,7 +4,7 @@
     <!-- Background Image with Preloading -->
     @if (imagePath) {
     <!-- Preload image -->
-    <link *ngIf="imagePath" rel="preload" [attr.href]="imagePath" as="image" type="image/jpeg" fetchpriority="high">
+    <!-- <link *ngIf="imagePath" rel="preload" [attr.href]="imagePath" as="image" type="image/jpeg" fetchpriority="high"> -->
     <img [src]="imagePath" alt="Header Background" class="absolute inset-0 w-full h-full object-cover"
         fetchpriority="high" [attr.importance]="'high'">
     <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent"></div>
