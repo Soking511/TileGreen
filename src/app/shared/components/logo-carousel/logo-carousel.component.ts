@@ -12,7 +12,7 @@ import { ICompany } from '../../interfaces/companiesInterface';
 })
 export class LogoCarouselComponent implements OnInit {
   @Input() logos: ICompany[] = [];
-  @Input() animationDuration: number = 5; // Default animation duration in seconds
+  @Input() animationDuration: number = 1; // Default animation duration in seconds
 
   ngOnInit(): void {
     if (this.animationDuration <= 0) {
