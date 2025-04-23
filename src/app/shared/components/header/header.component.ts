@@ -8,14 +8,12 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { ButtonComponent } from '../button/button.component';
-import { ContactUsPopComponent } from '../contact-us-pop/contact-us-pop.component';
 import { ContactPopupService } from '../../../../services/contact-popup.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterLink, ButtonComponent, ContactUsPopComponent],
+  imports: [CommonModule, RouterLink],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })

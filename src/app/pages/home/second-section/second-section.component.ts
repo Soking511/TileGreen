@@ -1,11 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { LogoCarouselComponent } from "../../../shared/components/logo-carousel/logo-carousel.component";
 import { LogosComponent } from "../../../shared/components/logos/logos.component";
 import { ArticleService } from '../../../../services/article.service';
 
 @Component({
   selector: 'app-second-section',
-  imports: [LogoCarouselComponent, LogosComponent],
+  imports: [LogosComponent],
   templateUrl: './second-section.component.html',
   styleUrls: ['./second-section.component.scss'],
 })

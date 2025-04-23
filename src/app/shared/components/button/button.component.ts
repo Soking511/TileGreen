@@ -1,10 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-button',
-  imports: [RouterLink, NgClass],
+  imports: [RouterLink],
   standalone: true,
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss'

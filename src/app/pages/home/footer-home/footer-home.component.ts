@@ -1,4 +1,4 @@
-import { NgClass, NgIf, NgStyle } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import {
   FormControl,
@@ -11,7 +11,7 @@ import { ContactPopupService } from '../../../../services/contact-popup.service'
 
 @Component({
   selector: 'app-footer-home',
-  imports: [NgClass, ReactiveFormsModule, NgIf, NgStyle],
+  imports: [NgClass, ReactiveFormsModule, NgIf],
   templateUrl: './footer-home.component.html',
 })
 export class FooterHomeComponent implements OnInit {

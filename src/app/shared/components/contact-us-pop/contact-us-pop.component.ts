@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { IFaqItem } from '../../interfaces/FaqInterface';
-import { NgIf, NgFor, CommonModule } from '@angular/common';
+import { NgIf, CommonModule } from '@angular/common';
 import {
   trigger,
   transition,
@@ -18,7 +18,7 @@ import {
 
 @Component({
   selector: 'app-contact-us-pop',
-  imports: [ReactiveFormsModule, NgIf, NgFor, CommonModule],
+  imports: [ReactiveFormsModule, NgIf, CommonModule],
   templateUrl: './contact-us-pop.component.html',
   styleUrl: './contact-us-pop.component.scss',
   standalone: true,
