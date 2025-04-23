@@ -130,10 +130,10 @@
                         </h3>
                         <br>
                         <!-- Email Input -->
-                        <div class="w-full h-10 sm:h-12 md:h-14 lg:h-16 relative mb-3 overflow-hidden rounded-2xl sm:rounded-3xl border border-black"
+                        <div class="w-full relative mb-3 overflow-hidden rounded-2xl sm:rounded-3xl border border-black"
                             [ngClass]="{'border-red-500': newLetterForm.get('email')?.invalid && newLetterForm.get('email')?.touched}">
                             <input type="email" placeholder="Email address" formControlName="email"
-                                class="w-full h-full p-2 sm:p-3 text-sm sm:text-base md:text-lg font-medium focus:outline-none text-[#A7A7A7]" />
+                                class="w-full h-full p-3 sm:p-4 text-sm sm:text-base md:text-lg font-medium focus:outline-none text-[#A7A7A7]" />
                         </div>
 
                         <!-- Email validation error -->

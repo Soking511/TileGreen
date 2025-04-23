@@ -127,3 +127,7 @@
 form {
   max-width: 100%;
 }
+
+form input::placeholder, form textarea::placeholder {
+  color: #A7A7A7;
+}
