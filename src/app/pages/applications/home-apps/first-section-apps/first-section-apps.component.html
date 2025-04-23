@@ -142,8 +142,8 @@
     <p class="w-full max-w-md mx-auto my-12 text-4xl sm:text-5xl text-center text-[#021f59] text-tile-md">See it in
         action</p>
 
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8 lg:py-12">
-        <div class="relative w-full max-w-5xl mx-auto aspect-video bg-gray-100 rounded-2xl overflow-hidden shadow-lg">
+    <div class="container mx-auto px-4 py-12 md:py-16 lg:py-20">
+        <div class="relative w-full aspect-video bg-gray-100 rounded-2xl overflow-hidden shadow-lg">
             <!-- Loading indicator -->
             <div class="absolute inset-0 flex items-center justify-center z-10 bg-gray-200 bg-opacity-50 transition-opacity duration-500"
                 [class.opacity-0]="videoLoaded" [class.invisible]="videoLoaded">
@@ -152,7 +152,7 @@
 
             <!-- Video element with poster image -->
             <video #videoPlayer class="w-full h-full object-cover rounded-2xl" crossorigin="anonymous"
-                preload="metadata" poster="assets/images/video-poster.jpg" controls playsinline
+                preload="metadata" poster="assets/images/applications-section/2.png" controls playsinline
                 (loadeddata)="onVideoLoaded()" src="https://api.tailgreen.pulslytics.agency/media/video.mp4">
                 <source src="https://api.tailgreen.pulslytics.agency/media/video.mp4" type="video/mp4">
                 <track kind="captions" src="assets/captions/video-captions.vtt" label="English" default>
@@ -170,10 +170,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Optional video caption -->
-        <p class="text-center text-gray-600 mt-3 text-sm">Watch how our eco-friendly paving tiles are made and installed
-        </p>
     </div>
 
     <div class="container mx-auto px-4 py-12 md:py-16 lg:py-20">
