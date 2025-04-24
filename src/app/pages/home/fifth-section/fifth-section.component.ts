@@ -21,6 +21,8 @@ interface SlideItem {
   templateUrl: './fifth-section.component.html',
   styles: [
     `
+
+
       @keyframes fadeIn {
         from {
           opacity: 0.5;
