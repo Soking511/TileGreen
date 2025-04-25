@@ -13,7 +13,7 @@ export class ApiService {
     private http: HttpClient // private toastService: ToastService
   ) {
     // this.baseURL = 'http://localhost:8000/tile_green';
-    this.baseURL = 'https://api.tailgreen.pulslytics.agency/tile_green';
+    this.baseURL = 'https://api-tilegreen.pulslytics.agency/tile_green';
   }
 
   private getHeaders(): HttpHeaders {
