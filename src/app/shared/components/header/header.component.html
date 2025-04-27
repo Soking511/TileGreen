@@ -38,11 +38,15 @@
                 </svg>
             </div>
 
-            <button class="md:hidden flex items-center z-20 p-2 touch-manipulation" (click)="toggleMobileMenu()"
-                aria-label="Toggle navigation menu" [attr.aria-expanded]="isMobileMenuOpen">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24"
+            <!-- Improved Mobile Menu Button with responsive colors -->
+            <button
+                class="md:hidden flex items-center justify-center z-20 p-2 w-10 h-10 rounded-full transition-all touch-manipulation"
+                [ngClass]="isScrolled ? 'bg-gray-100 hover:bg-gray-200' : 'bg-blue-600/20 hover:bg-blue-600/30 backdrop-blur-sm'"
+                (click)="toggleMobileMenu()" aria-label="Toggle navigation menu"
+                [attr.aria-expanded]="isMobileMenuOpen">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h12" />
                 </svg>
             </button>
 
@@ -51,40 +55,99 @@
                 [ngClass]="isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'"
                 [ngStyle]="{'transition-delay': isMobileMenuOpen ? '0s' : '0.3s'}" role="dialog" aria-modal="true"
                 aria-label="Mobile navigation menu">
+                <!-- Backdrop with blur -->
                 <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" (click)="toggleMobileMenu()"
                     [ngClass]="isMobileMenuOpen ? 'opacity-100' : 'opacity-0'"
                     style="transition: opacity 0.3s ease-in-out;"></div>
-                <div class="flex flex-col h-full w-full max-w-sm ml-auto transform transition-transform duration-300 ease-in-out"
-                    [ngClass]="isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'"
-                    style="background-color: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px);">
-                    <button class="absolute top-6 right-6 p-2 touch-manipulation" [ngClass]="'text-white'"
-                        (click)="toggleMobileMenu()" aria-label="Close menu">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                    <div class="h-24"></div>
-                    <ul class="flex flex-col space-y-8 text-2xl font-light px-8 items-start">
-                        @for (item of navbarItems; track item) {
-                        <li>
-                            <a [routerLink]="item.link"
-                               routerLinkActive="active-link"
-                               [routerLinkActiveOptions]="{exact: item.link === '/home'}"
-                               (click)="toggleMobileMenu()"
-                                class="nav-link block py-3 touch-manipulation hover:text-gray-300 transition-colors duration-200 text-white font-medium tracking-wide">
-                                {{item.name}}
-                            </a>
-                        </li>
-                        }
-                        <li class="pt-8">
-                            <a href="#" (click)="openContactPopup($event)"
-                                class="z-50 font-tile-regular contact-button inline-block relative border rounded-full px-8 py-4 transition-all duration-300 overflow-hidden touch-manipulation text-white border-white hover:bg-white/20 font-medium tracking-wide no-shadow">
-                                <span class="relative ">Contact Us</span>
-                            </a>
-                        </li>
-                    </ul>
+
+                <!-- Mobile menu content -->
+                <div class="flex flex-col h-full w-full max-w-sm ml-auto transform transition-transform duration-300 ease-in-out bg-gradient-to-b from-slate-900 to-blue-900/90 backdrop-blur-md"
+                    [ngClass]="isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'">
+
+                    <!-- Header with logo and close button -->
+                    <div class="flex justify-between items-center px-6 py-4 border-b border-white/10">
+                        <div class="flex items-center gap-2">
+                            <svg width="40" height="38" viewBox="0 0 52 48" fill="none" [routerLink]="'/home'"
+                                class="cursor-pointer" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_mobile_logo)">
+                                    <path
+                                        d="M51.9749 40.6678C51.9749 44.6898 48.6596 47.9807 44.6076 47.9807H36.8315C32.7795 47.9807 29.4642 44.6898 29.4642 40.6678V31.2255C29.4642 27.2035 32.7795 23.9127 36.8315 23.9127H48.7004L47.0638 29.3161H36.9137C35.8084 29.3161 34.867 30.2101 34.867 31.3477V40.5868C34.867 41.6839 35.8084 42.6184 36.9137 42.6184H44.4851C45.6313 42.6184 46.5319 41.6839 46.5319 40.5868V39.3195H41.129L39.4918 33.916H51.9749V40.6678Z"
+                                        fill="white" />
+                                    <path
+                                        d="M11.0205 15.8993V22.2203H20.9287V25.3571V43.6314V47.9801H27.6705V43.6314V22.2203H49.1563L51.0203 15.8993H11.0205Z"
+                                        fill="white" />
+                                    <path
+                                        d="M51.9749 0.0199661H45.6068H0.025116V0.61155V6.341V41.659V47.9801H6.39323H11.0205V41.659H6.39323V6.341H45.6068V10.934H51.9749V6.341V0.0199661Z"
+                                        fill="white" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_mobile_logo">
+                                        <rect width="52" height="48" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            <span class="text-white font-medium text-lg">TileGreen</span>
+                        </div>
+
+                        <button
+                            class="p-2 touch-manipulation rounded-full hover:bg-white/10 active:bg-white/20 transition-colors"
+                            [ngClass]="'text-white'" (click)="toggleMobileMenu()" aria-label="Close menu">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Navigation items -->
+                    <nav class="overflow-y-auto flex-1 py-6">
+                        <ul class="flex flex-col space-y-1 px-4">
+                            @for (item of navbarItems; track item) {
+                            <li class="w-full">
+                                <a [routerLink]="item.link" routerLinkActive="mobile-active-link"
+                                    [routerLinkActiveOptions]="{exact: item.link === '/home'}"
+                                    (click)="toggleMobileMenu()"
+                                    class="mobile-menu-item flex items-center w-full py-4 px-4 rounded-lg touch-manipulation text-white font-medium tracking-wide text-lg transition-all">
+                                    {{item.name}}
+                                </a>
+                            </li>
+                            }
+                        </ul>
+                    </nav>
+
+                    <!-- Bottom section with contact button -->
+                    <div class="px-6 pb-8 pt-4 border-t border-white/10">
+                        <a href="#" (click)="openContactPopup($event)"
+                            class="z-50 font-tile-regular w-full flex justify-center contact-button bg-blue-600/40 hover:bg-blue-500/60 active:bg-blue-500/80 transition-all duration-200 border border-blue-400/50 rounded-full py-4 px-8 text-white font-medium tracking-wide">
+                            Contact Us
+                        </a>
+
+                        <div class="flex justify-center mt-6 gap-6">
+                            <!-- Social media icons -->
+                            <!-- <a href="#" class="text-white/70 hover:text-white transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M22.162 5.656a8.384 8.384 0 0 1-2.402.658A4.196 4.196 0 0 0 21.6 4c-.82.488-1.719.83-2.656 1.015a4.182 4.182 0 0 0-7.126 3.814 11.874 11.874 0 0 1-8.62-4.37 4.168 4.168 0 0 0-.566 2.103c0 1.45.738 2.731 1.86 3.481a4.168 4.168 0 0 1-1.894-.523v.052a4.185 4.185 0 0 0 3.355 4.101 4.21 4.21 0 0 1-1.89.072A4.185 4.185 0 0 0 7.97 16.65a8.394 8.394 0 0 1-6.191 1.732 11.83 11.83 0 0 0 6.41 1.88c7.693 0 11.9-6.373 11.9-11.9 0-.18-.005-.362-.013-.54a8.496 8.496 0 0 0 2.087-2.165z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-white/70 hover:text-white transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-white/70 hover:text-white transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+                            </svg>
+                        </a> -->
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -95,14 +158,14 @@
                     <ul class="flex flex-wrap justify-center space-x-6 lg:space-x-8 xl:space-x-12 text-sm lg:text-base">
                         @for (item of navbarItems; track item) {
                         <li>
-                            <a [routerLink]="item.link"
-                               routerLinkActive="active-link"
-                               [routerLinkActiveOptions]="{exact: item.link === '/home'}"
+                            <a [routerLink]="item.link" routerLinkActive="active-link"
+                                [routerLinkActiveOptions]="{exact: item.link === '/home'}"
                                 class="nav-link hover:text-gray-300 py-2 px-1 tracking-wide transition-all duration-200 relative group text-tile-regular"
                                 [ngClass]="imagePath && !isScrolled ? 'text-white' : 'text-black'">
                                 {{item.name}}
                                 <span
-                                    class="absolute bottom-0 left-0 w-0 h-0.5 bg-current group-hover:w-full transition-all duration-300"></span>
+                                    class="absolute bottom-0 left-0 w-0 h-0.5 bg-current group-hover:w-full transition-all duration-300"
+                                    [ngClass]="{'w-full': isActive(item.link)}"></span>
                             </a>
                         </li>
                         }

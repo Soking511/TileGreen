@@ -7,7 +7,7 @@ import {
   ElementRef,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { ContactPopupService } from '../../../../services/contact-popup.service';
 
 @Component({
@@ -17,7 +17,7 @@ import { ContactPopupService } from '../../../../services/contact-popup.service'
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit, AfterViewInit {
+export class HeaderComponent implements OnInit {
   @Input() button1Text: string | null = null;
   @Input() button2Text: string | null = null;
   @Input() headTitle1: string | null = null;
@@ -38,36 +38,20 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     { name: 'Home', link: '/home' },
     { name: 'About', link: '/about' },
     { name: 'Technology', link: '/technology' },
-    { name: 'License', link: '/licenses' },
     { name: 'Applications', link: '/applications' },
+    { name: 'License', link: '/licenses' },
     { name: 'Careers', link: '/careers' },
   ];
-  private imagePreloaded = false;
 
   constructor(
-    private el: ElementRef,
-    private contactPopupService: ContactPopupService
+    private contactPopupService: ContactPopupService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    // Preload image if specified
-    if (this.imagePath) {
-      const img = new Image();
-      img.src = this.imagePath;
-      img.onload = () => {
-        this.imagePreloaded = true;
-      };
-    }
-
-    // Initialize scroll state
     this.isScrolled = window.scrollY > 10;
   }
 
-  ngAfterViewInit(): void {
-    // Any post-render initialization
-  }
-
-  // Add contact popup handler that uses the service
   openContactPopup(event: Event): void {
     event.preventDefault();
 
@@ -91,7 +75,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     }
   }
 
-  // Close mobile menu when clicking on a link
   closeMobileMenu(): void {
     if (this.isMobileMenuOpen) {
       this.isMobileMenuOpen = false;
@@ -99,13 +82,11 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     }
   }
 
-  // Close menu when escape key is pressed
   @HostListener('document:keydown.escape')
   onKeydownHandler() {
     if (this.isMobileMenuOpen) {
       this.toggleMobileMenu();
     }
-    // Also close contact popup using the service
     this.contactPopupService.closePopup();
   }
 
@@ -113,5 +94,14 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   @HostListener('window:scroll', [])
   onWindowScroll() {
     this.isScrolled = window.scrollY > 10;
+  }
+
+  isActive(route: string): boolean {
+    if (route === '/home') {
+      // Exact match for home route
+      return this.router.url === route;
+    }
+    // Partial match for other routes
+    return this.router.url.startsWith(route);
   }
 }
