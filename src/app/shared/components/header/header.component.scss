@@ -48,6 +48,18 @@
     font-weight: 600;
   }
 
+  /* Active link styles */
+  &.active-link {
+    color: #0460d9;
+    font-weight: 600;
+    
+    &::after {
+      width: 100%;
+      background-color: #0460d9;
+      opacity: 1;
+    }
+  }
+
   /* Color variations for different sections */
   &.products:hover {
     color: #0f8c22; /* Green for product-related items */

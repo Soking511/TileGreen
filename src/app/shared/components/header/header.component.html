@@ -69,7 +69,10 @@
                     <ul class="flex flex-col space-y-8 text-2xl font-light px-8 items-start">
                         @for (item of navbarItems; track item) {
                         <li>
-                            <a [routerLink]="item.link" (click)="toggleMobileMenu()"
+                            <a [routerLink]="item.link"
+                               routerLinkActive="active-link"
+                               [routerLinkActiveOptions]="{exact: item.link === '/home'}"
+                               (click)="toggleMobileMenu()"
                                 class="nav-link block py-3 touch-manipulation hover:text-gray-300 transition-colors duration-200 text-white font-medium tracking-wide">
                                 {{item.name}}
                             </a>
@@ -93,6 +96,8 @@
                         @for (item of navbarItems; track item) {
                         <li>
                             <a [routerLink]="item.link"
+                               routerLinkActive="active-link"
+                               [routerLinkActiveOptions]="{exact: item.link === '/home'}"
                                 class="nav-link hover:text-gray-300 py-2 px-1 tracking-wide transition-all duration-200 relative group text-tile-regular"
                                 [ngClass]="imagePath && !isScrolled ? 'text-white' : 'text-black'">
                                 {{item.name}}

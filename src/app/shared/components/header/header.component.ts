@@ -7,13 +7,13 @@ import {
   ElementRef,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ContactPopupService } from '../../../../services/contact-popup.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
@@ -35,6 +35,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   isContactPopupOpen: boolean = false;
   isScrolled: boolean = false;
   navbarItems = [
+    { name: 'Home', link: '/home' },
     { name: 'About', link: '/about' },
     { name: 'Technology', link: '/technology' },
     { name: 'License', link: '/licenses' },
