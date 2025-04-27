@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../shared/components/header/header.component';
-import { IntroComponent } from './intro/intro.component';
 import { FirstSectionComponent } from './first-section/first-section.component';
 import { SecondSectionComponent } from './second-section/second-section.component';
 import { ThirdSectionComponent } from './third-section/third-section.component';
@@ -14,7 +13,6 @@ import { NgIf } from '@angular/common';
   selector: 'app-home',
   imports: [
     HeaderComponent,
-    IntroComponent,
     FirstSectionComponent,
     SecondSectionComponent,
     ThirdSectionComponent,
