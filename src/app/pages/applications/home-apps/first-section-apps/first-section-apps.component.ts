@@ -2,10 +2,11 @@ import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { SectionHeaderComponent } from '../../../../shared/components/section-header/section-header.component';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import { NgIf } from '@angular/common';
+import { ProductExpansionSectionComponent } from "../../../product-expansion-section/product-expansion-section.component";
 
 @Component({
   selector: 'app-first-section-apps',
-  imports: [SectionHeaderComponent, ButtonComponent, NgIf],
+  imports: [SectionHeaderComponent, ButtonComponent, NgIf, ProductExpansionSectionComponent],
   templateUrl: './first-section-apps.component.html',
 })
 export class FirstSectionAppsComponent implements OnInit {

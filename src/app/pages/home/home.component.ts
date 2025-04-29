@@ -17,11 +17,9 @@ import { NgIf } from '@angular/common';
     SecondSectionComponent,
     ThirdSectionComponent,
     FourthSectionComponent,
-    FifthSectionComponent,
     FooterHomeComponent,
-    LoadingComponent,
-    NgIf,
-  ],
+    FifthSectionComponent
+],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
