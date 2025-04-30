@@ -204,19 +204,18 @@
                                 <span class="text-white text-4xl md:text-7xl text-tile-regular">{{headTitle1}}</span>
                                 @if ( headTitleLibre ){
                                 <span
-                                    class="text-white text-4xl md:text-7xl font-normal font-['Libre_Baskerville']">{{headTitleLibre}}</span>
+                                    class="text-white text-4xl md:text-7xl font-normal text-tile-regular">{{headTitleLibre}}</span>
                                 }
                                 <br />
                                 @if ( headTitle2 == 'technology' || headTitle2 == 'Technology' ) {
-                                <span
-                                    class="text-white text-4xl md:text-7xl font-normal font-['Libre_Baskerville']">{{headTitle2}}</span>
+                                <!-- <span class="text-white text-4xl md:text-7xl font-normal font-['Libre_Baskerville']">{{headTitle2}}</span> -->
+                                <span class="text-white text-4xl md:text-7xl font-normal text-tile-regular">{{headTitle2}}</span>
                                 } @else {
-                                <span
-                                    class="text-white text-4xl md:text-7xl font-normal  text-tile-regular">{{headTitle2}}</span>
+                                <span class="text-white text-4xl md:text-7xl font-normal  text-tile-regular">{{headTitle2}}</span>
 
                                 }
 
-                                <span *ngIf="headTitle2_2" class="font-['Libre_Baskerville']"> {{headTitle2_2}}</span>
+                                <span *ngIf="headTitle2_2" class="text-tile-regula"> {{headTitle2_2}}</span>
                                 <br />
                                 <span class="text-white text-4xl md:text-7xl text-tile-regular">{{headTitle3}}</span>
                             </div>
