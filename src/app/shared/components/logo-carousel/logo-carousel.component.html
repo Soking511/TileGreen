@@ -1,4 +1,4 @@
-<div class="py-6">
+<div class="py-6 overflow-hidden">
     <section class="logo-carousel-container">
         <div class="logo-carousel">
             <div class="fade-overlay fade-left"></div>
@@ -12,6 +12,7 @@
                     }
                 </div>
 
+                <!-- Duplicate group for seamless looping -->
                 <div class="logo-group">
                     @for (company of logos; track company.company_name) {
                     <div class="logo-item">

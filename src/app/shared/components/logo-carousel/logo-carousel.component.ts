@@ -12,11 +12,18 @@ import { ICompany } from '../../interfaces/companiesInterface';
 })
 export class LogoCarouselComponent implements OnInit {
   @Input() logos: ICompany[] = [];
-  @Input() animationDuration: number = 1; // Default animation duration in seconds
+  @Input() animationDuration: number = 30; // Default animation duration in seconds
 
   ngOnInit(): void {
+    // Calculate optimal animation duration based on number of logos
+    if (this.logos.length > 0) {
+      // Adjust speed based on number of logos, with a minimum duration
+      const calculatedDuration = Math.max(20, this.logos.length * 4);
+      this.animationDuration = calculatedDuration;
+    }
+    
     if (this.animationDuration <= 0) {
-      this.animationDuration = 10;
+      this.animationDuration = 30;
       console.warn('Invalid animation duration, defaulting to 30 seconds');
     }
   }

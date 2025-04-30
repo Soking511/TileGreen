@@ -2,6 +2,7 @@
   width: 100%;
   padding: 2rem 0;
   overflow: hidden;
+  position: relative; /* Ensure proper positioning */
 }
 
 .logo-carousel {
@@ -9,6 +10,7 @@
   width: 100%;
   display: flex;
   align-items: center;
+  z-index: 1; /* Ensure visibility */
 }
 
 .logo-track {
@@ -18,11 +20,13 @@
   animation: scroll-logos 30s linear infinite;
   animation-play-state: running !important;
   will-change: transform;
+  gap: 0; /* No gap between logo groups */
 
   .logo-group {
     display: inline-flex;
     flex-shrink: 0;
     align-items: center;
+    gap: 0; /* No gap between logos */
   }
 }
 
@@ -40,14 +44,21 @@
 }
 
 .logo {
-  height: 3.5rem;
-  max-width: 10rem;
+  height: 5rem; /* Increased from 3.5rem */
+  max-width: 14rem; /* Increased from 10rem */
   object-fit: contain;
   opacity: 0.75;
   transition: opacity 0.3s ease;
+  filter: grayscale(100%);
 
   &:hover {
     opacity: 1;
+    filter: grayscale(0%);
+  }
+
+  @media (min-width: 768px) {
+    height: 6rem; /* Even larger on desktop */
+    max-width: 16rem;
   }
 }
 
@@ -83,9 +94,7 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(
-      -50%
-    ); /* Ensure we only move half the content for seamless loop */
+    transform: translateX(-50%); /* Move exactly half the content for perfect loop */
   }
 }
 
