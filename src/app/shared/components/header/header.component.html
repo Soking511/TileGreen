@@ -192,70 +192,54 @@
     @if (imagePath) {
     <!-- Bottom Section with divider and heading -->
     <!-- <div class="relative  w-full"> -->
-    <div class="relative w-full z-10  flex flex-col justify-end h-full">
+    <div class="relative w-full z-10 flex flex-col justify-end h-full">
         <!-- Main Heading - Moved here, just above the divider line -->
         <div class="px-4 sm:px-6 md:px-8 mb-8 md:mb-12">
-            <table class="w-full">
-                <tr>
-                    <td class="align-bottom p-0">
-                        <h1
-                            class=" text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white text-tile-md leading-tight">
-                            <div class="w-[773px] justify-start">
-                                <span class="text-white text-4xl md:text-7xl text-tile-regular">{{headTitle1}}</span>
-                                @if ( headTitleLibre ){
-                                <span
-                                    class="text-white text-4xl md:text-7xl font-normal text-tile-regular">{{headTitleLibre}}</span>
-                                }
-                                <br />
-                                @if ( headTitle2 == 'technology' || headTitle2 == 'Technology' ) {
-                                <!-- <span class="text-white text-4xl md:text-7xl font-normal font-['Libre_Baskerville']">{{headTitle2}}</span> -->
-                                <span class="text-white text-4xl md:text-7xl font-normal text-tile-regular">{{headTitle2}}</span>
-                                } @else {
-                                <span class="text-white text-4xl md:text-7xl font-normal  text-tile-regular">{{headTitle2}}</span>
+            <div class="flex flex-col md:flex-row items-end justify-between gap-6">
+                <h1
+                    class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white text-tile-md leading-tight">
+                    <div class="md:max-w-3xl">
+                        <span class="text-white text-4xl md:text-7xl text-tile-regular">{{headTitle1}}</span>
+                        @if ( headTitleLibre ){
+                        <span
+                            class="text-white text-4xl md:text-7xl font-normal text-tile-regular">{{headTitleLibre}}</span>
+                        }
+                        <br />
+                        @if ( headTitle2 == 'technology' || headTitle2 == 'Technology' ) {
+                        <span
+                            class="text-white text-4xl md:text-7xl font-normal text-tile-regular">{{headTitle2}}</span>
+                        } @else {
+                        <span
+                            class="text-white text-4xl md:text-7xl font-normal text-tile-regular">{{headTitle2}}</span>
+                        }
 
-                                }
+                        <span *ngIf="headTitle2_2" class="text-tile-regula"> {{headTitle2_2}}</span>
+                        <br />
+                        <span class="text-white text-4xl md:text-7xl text-tile-regular">{{headTitle3}}</span>
+                    </div>
+                </h1>
 
-                                <span *ngIf="headTitle2_2" class="text-tile-regula"> {{headTitle2_2}}</span>
-                                <br />
-                                <span class="text-white text-4xl md:text-7xl text-tile-regular">{{headTitle3}}</span>
-                            </div>
-                        </h1>
-                    </td>
-                    <td class="align-bottom p-0 w-1 text-right">
-                        <!-- <app-button *ngIf="button1Text"
-                            [buttonText]="button1Text"
-                            [linkPath]="navigateTo"
-                            [backgroundColor]="'blue'"
-                            [backgroundColorHover]="'white'"
-                            [withArrow]="true"
-                            [withAnimation]="true"/> -->
+                <div class="mt-4 md:mt-0" *ngIf="button1Text">
+                    <a [routerLink]="navigateTo"
+                        class="p-1.5 cursor-pointer bg-[#0460d9]/40 backdrop-blur-sm group relative inline-flex items-center rounded-[50px] overflow-hidden">
+                        <span
+                            class="px-5 py-2 text-2xl text-tile-regular text-white z-10 transition-colors duration-900 whitespace-nowrap group-hover:text-blue-700">{{
+                            button1Text|| "Learn More"}}</span>
+                        <span class="relative">
+                            <span class="absolute right-0 top-0 w-14 h-14 bg-white rounded-full transition-all duration-700 ease-out transform origin-center
+                                      group-hover:scale-[20] group-hover:bg-white group-hover:rounded-none"></span>
 
-                        <div class='p-4' *ngIf="button1Text" class="z-50">
-                            <a [routerLink]="navigateTo"
-                                class="p-1.5 cursor-pointer bg-[#0460d9]/40 backdrop-blur-sm group relative inline-flex items-center   rounded-[50px] overflow-hidden">
-                                <span
-                                    class="px-5 py-2 text-2xl text-tile-regular text-white z-10 transition-colors duration-900 whitespace-nowrap group-hover:text-blue-700">{{
-                                    button1Text|| "Learn More"}}</span>
-                                <span class="relative">
-                                    <span
-                                        class="absolute right-0 top-0 w-14 h-14 bg-white rounded-full transition-all duration-700 ease-out transform origin-center
-                                              group-hover:scale-[20] group-hover:bg-white group-hover:rounded-none"></span>
-
-                                    <span class="flex items-center justify-center w-14 h-14 relative z-10">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M13.5 19L21.5 12L13.5 5M21.5 12H2.5" stroke="blue" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </span>
-                                </span>
-                            </a>
-                        </div>
-
-
-                    </td>
-                </tr>
-            </table>
+                            <span class="flex items-center justify-center w-14 h-14 relative z-10">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13.5 19L21.5 12L13.5 5M21.5 12H2.5" stroke="blue" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </span>
+                        </span>
+                    </a>
+                </div>
+            </div>
         </div>
 
         <!-- Divider line -->
@@ -275,10 +259,10 @@
                         {{description2||''}}
                     </span>
                 </p>
-                <a href="#" (click)="openContactPopup($event)"
+                <!-- <a href="#" (click)="openContactPopup($event)"
                     class="whitespace-nowrap px-6 sm:px-8 py-3 sm:py-3.5 rounded-full border-2 border-white text-white text-base sm:text-2xl hover:bg-white hover:text-blue-900 transition-all duration-300 touch-manipulation mt-4 md:mt-0">
                     {{ button2Text|| "Express Interest"}}
-                </a>
+                </a> -->
             </div>
 
         </div>
