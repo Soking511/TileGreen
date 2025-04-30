@@ -231,25 +231,7 @@
                             [withAnimation]="true"/> -->
 
                         <div class='p-4' *ngIf="button1Text" class="z-50">
-                            <a [routerLink]="navigateTo"
-                                class="p-1.5 cursor-pointer bg-[#0460d9]/40 backdrop-blur-sm group relative inline-flex items-center   rounded-[50px] overflow-hidden">
-                                <span
-                                    class="px-5 py-2 text-2xl text-tile-regular text-white z-10 transition-colors duration-900 whitespace-nowrap group-hover:text-blue-700">{{
-                                    button1Text|| "Learn More"}}</span>
-                                <span class="relative">
-                                    <span
-                                        class="absolute right-0 top-0 w-14 h-14 bg-white rounded-full transition-all duration-700 ease-out transform origin-center
-                                              group-hover:scale-[20] group-hover:bg-white group-hover:rounded-none"></span>
 
-                                    <span class="flex items-center justify-center w-14 h-14 relative z-10">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M13.5 19L21.5 12L13.5 5M21.5 12H2.5" stroke="blue" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </span>
-                                </span>
-                            </a>
                         </div>
 
 
@@ -275,10 +257,25 @@
                         {{description2||''}}
                     </span>
                 </p>
-                <!-- <a href="#" (click)="openContactPopup($event)"
-                    class="whitespace-nowrap px-6 sm:px-8 py-3 sm:py-3.5 rounded-full border-2 border-white text-white text-base sm:text-2xl hover:bg-white hover:text-blue-900 transition-all duration-300 touch-manipulation mt-4 md:mt-0">
-                    {{ button2Text|| "Express Interest"}}
-                </a> -->
+                <a [routerLink]="navigateTo"
+                class="p-1.5 cursor-pointer bg-[#0460d9]/40 backdrop-blur-sm group relative inline-flex items-center   rounded-[50px] overflow-hidden">
+                <span
+                    class="px-5 py-2 text-2xl text-tile-regular text-white z-10 transition-colors duration-900 whitespace-nowrap group-hover:text-blue-700">{{
+                    button1Text|| "Learn More"}}</span>
+                <span class="relative">
+                    <span
+                        class="absolute right-0 top-0 w-14 h-14 bg-white rounded-full transition-all duration-700 ease-out transform origin-center
+                              group-hover:scale-[20] group-hover:bg-white group-hover:rounded-none"></span>
+
+                    <span class="flex items-center justify-center w-14 h-14 relative z-10">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13.5 19L21.5 12L13.5 5M21.5 12H2.5" stroke="blue" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                </span>
+            </a>
             </div>
 
         </div>
