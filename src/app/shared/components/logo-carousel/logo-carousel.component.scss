@@ -94,7 +94,9 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%); /* Move exactly half the content for perfect loop */
+    transform: translateX(
+      -50%
+    ); /* Move exactly half the content for perfect loop */
   }
 }
 

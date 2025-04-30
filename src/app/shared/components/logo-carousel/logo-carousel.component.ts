@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ICompany } from '../../interfaces/companiesInterface';
 
-
 @Component({
   selector: 'app-logo-carousel',
   standalone: true,
@@ -21,7 +20,7 @@ export class LogoCarouselComponent implements OnInit {
       const calculatedDuration = Math.max(20, this.logos.length * 4);
       this.animationDuration = calculatedDuration;
     }
-    
+
     if (this.animationDuration <= 0) {
       this.animationDuration = 30;
       console.warn('Invalid animation duration, defaulting to 30 seconds');
