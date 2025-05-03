@@ -71,9 +71,7 @@ export class DescriptionScrollComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     // Wait for view to be fully initialized
-    setTimeout(() => {
-      this.initAnimations();
-    }, 100);
+    this.initAnimations();
   }
 
   ngOnDestroy() {
