@@ -1,4 +1,9 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import {
+  ApplicationConfig,
+  provideZoneChangeDetection,
+  isDevMode,
+  enableProdMode,
+} from '@angular/core';
 import {
   provideRouter,
   withInMemoryScrolling,
@@ -12,6 +17,11 @@ import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from '@angular/common/http';
+
+// Enable production mode if we're not in development
+if (!isDevMode()) {
+  enableProdMode();
+}
 
 export const appConfig: ApplicationConfig = {
   providers: [

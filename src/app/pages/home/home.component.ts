@@ -6,8 +6,6 @@ import { ThirdSectionComponent } from './third-section/third-section.component';
 import { FourthSectionComponent } from './fourth-section/fourth-section.component';
 import { FifthSectionComponent } from './fifth-section/fifth-section.component';
 import { FooterHomeComponent } from './footer-home/footer-home.component';
-import { LoadingComponent } from '../../shared/components/loading/loading.component';
-import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -18,8 +16,8 @@ import { NgIf } from '@angular/common';
     ThirdSectionComponent,
     FourthSectionComponent,
     FooterHomeComponent,
-    FifthSectionComponent
-],
+    FifthSectionComponent,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })

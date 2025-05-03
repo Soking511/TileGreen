@@ -16,7 +16,7 @@
             </svg>
         </div>
 
-        <h1 class="text-3xl md:text-4xl text-tile-regular text-[#010D26] leading-relaxed">
+        <!-- <h1 class="text-3xl md:text-4xl text-tile-regular text-[#010D26] leading-relaxed">
             @for (label of text; track $index) {
             @if ($index <= currentIndex) { <span class="transition-opacity duration-500 ease-in-out"
                 [class.opacity-100]="currentIndex === $index" [class.opacity-0]="currentIndex < $index"
@@ -26,11 +26,18 @@
                 <br>
                 }
                 }
-        </h1>
-        <h1 class="text-3xl md:text-4xl text-tile-regular text-gray-600 mb-6 leading-relaxed">
+        </h1> -->
+        <!-- <h1 class="text-3xl md:text-4xl text-tile-regular text-gray-600 mb-6 leading-relaxed">
             <span class="block [mask-image:linear-gradient(to_top,transparent_0%,white_60%)]">
                 {{text[currentIndex+1]}}
             </span>
-        </h1>
+        </h1> -->
+        @for ( label of text; track $index) {
+            <div class="text-container">
+                <h1 #animatedText class="" class="animated-text text-3xl md:text-5xl text-tile-regular text-gray-600 leading-relaxed">
+                  {{label}}
+                </h1>
+              </div>
+        }
     </div>
 </div>

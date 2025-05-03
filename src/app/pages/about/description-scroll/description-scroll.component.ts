@@ -6,10 +6,13 @@ import {
   ViewChildren,
   QueryList,
   AfterViewInit,
+  OnDestroy,
 } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import { ViewportScroller } from '@angular/common';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 @Component({
   selector: 'app-description-scroll',
@@ -29,24 +32,20 @@ import { ViewportScroller } from '@angular/common';
     ]),
   ],
 })
-export class DescriptionScrollComponent implements AfterViewInit {
+export class DescriptionScrollComponent implements AfterViewInit, OnDestroy {
   @ViewChild('latestElement') latestElement: ElementRef | undefined;
-  @ViewChildren('textElement') textElements: QueryList<ElementRef> | undefined;
+  @ViewChildren('animatedText') textElements!: QueryList<ElementRef>;
 
   text: string[] = [
     'At TileGreen, we envision a different future',
     '—one of abundance and sustainability',
-    ' ',
     'Our innovative materials enable us to',
     'build more, not less.',
-    ' ',
     'With every new construction project',
-    ' ',
     "using TileGreen's products, we seize",
     'the opportunity to create',
     'environmentally friendly solutions',
-    ' ',
-    'Join us in creating a greener, more sustainable future', // Fixed typo "creative" -> "creating"
+    'Join us in creating a greener, more sustainable future',
   ];
   currentIndex: number = 0;
   isAtEnd: boolean = false;
@@ -55,19 +54,87 @@ export class DescriptionScrollComponent implements AfterViewInit {
   lastScrollTime: number = 0;
   scrollToNextSection: boolean = false;
   animationResetFlag: boolean = false;
+  private lastTouchY: number | null = null;
+  private animations: gsap.core.Timeline[] = [];
 
   constructor(
     private el: ElementRef,
     private ngZone: NgZone,
     private viewportScroller: ViewportScroller
   ) {
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
+
     // Add non-passive wheel and touch event listeners in the constructor
     this.addNonPassiveEventListeners();
   }
 
   ngAfterViewInit() {
-    // Initial setup
-    this.checkAndUpdateScrollPosition();
+    // Wait for view to be fully initialized
+    setTimeout(() => {
+      this.initAnimations();
+    }, 100);
+  }
+
+  ngOnDestroy() {
+    // Clean up all ScrollTrigger instances when component is destroyed
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    this.animations.forEach((timeline) => timeline.kill());
+  }
+
+  private initAnimations() {
+    // Get all text elements after view init
+    this.textElements.forEach((element, index) => {
+      if (!element?.nativeElement) return;
+
+      const textContent = element.nativeElement;
+
+      // Create splitting effect for each line
+      const lines = this.splitTextIntoLines(textContent);
+
+      // Create animation
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: textContent,
+          start: 'top 60%',
+          toggleActions: 'play none none reverse',
+        },
+      });
+
+      tl.from(lines, {
+        y: 30,
+        opacity: 0,
+        stagger: 0.1,
+        duration: 0.6,
+        ease: 'power2.out',
+      });
+
+      this.animations.push(tl);
+    });
+  }
+
+  // Manually split text into lines (alternative to GSAP SplitText)
+  private splitTextIntoLines(element: HTMLElement): HTMLElement[] {
+    const originalText = element.innerText;
+    element.innerHTML = '';
+
+    const lines: HTMLElement[] = [];
+    originalText.split('\n').forEach((line) => {
+      const lineEl = document.createElement('div');
+      lineEl.className = 'line-wrapper';
+      lineEl.style.overflow = 'hidden';
+
+      const innerSpan = document.createElement('span');
+      innerSpan.className = 'line';
+      innerSpan.textContent = line || ' ';
+      innerSpan.style.display = 'block';
+
+      lineEl.appendChild(innerSpan);
+      element.appendChild(lineEl);
+      lines.push(innerSpan);
+    });
+
+    return lines;
   }
 
   // Add non-passive event listeners programmatically instead of using @HostListener
@@ -276,8 +343,6 @@ export class DescriptionScrollComponent implements AfterViewInit {
   private onWindowTouchEndEvent(): void {
     this.lastTouchY = null;
   }
-
-  private lastTouchY: number | null = null;
 
   private increaseIndex(): void {
     if (this.currentIndex < this.text.length - 2) {
