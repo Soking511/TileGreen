@@ -3,11 +3,6 @@ import { RouterOutlet } from '@angular/router';
 import { ContactUsPopComponent } from './shared/components/contact-us-pop/contact-us-pop.component';
 import { ContactPopupService } from '../services/contact-popup.service';
 import { Subscription } from 'rxjs';
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollSmoother } from "gsap/ScrollSmoother";
-import { TextPlugin } from "gsap/TextPlugin";
-import { SplitText } from 'gsap/SplitText';
 
 @Component({
   selector: 'app-root',
@@ -24,10 +19,6 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private contactPopupService: ContactPopupService) {}
 
   ngOnInit() {
-    // Subscribe to the contact popup state changes
-    // Register GSAP plugins
-
-    // Subscribe to the contact popup state changes
     this.subscription = this.contactPopupService.isOpen$.subscribe(
       (isOpen) => (this.isContactPopupOpen = isOpen)
     );

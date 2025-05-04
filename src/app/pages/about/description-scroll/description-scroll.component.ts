@@ -50,8 +50,8 @@ export class DescriptionScrollComponent implements AfterViewInit, OnDestroy {
   currentIndex: number = 0;
   isAtEnd: boolean = false;
   isScrolling: boolean = false;
-  scrollThrottleTime: number = 10; // ms between scroll actions
-  lastScrollTime: number = 0;
+  scrollThrottleTime: number = 5; // Reduced throttle time for smoother scrolling
+  lastScrollTime: number = Date.now() - 20;
   scrollToNextSection: boolean = false;
   animationResetFlag: boolean = false;
   private lastTouchY: number | null = null;
@@ -70,8 +70,15 @@ export class DescriptionScrollComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    // Wait for view to be fully initialized
-    this.initAnimations();
+    // Initialize animations asynchronously to avoid blocking user interactions
+    this.ngZone.runOutsideAngular(() => {
+      setTimeout(() => {
+        this.initAnimations();
+      }, 0); // Schedule animations to run after the view is stable
+    });
+
+    // Ensure the component is ready for interaction immediately
+    this.isScrolling = false;
   }
 
   ngOnDestroy() {
@@ -200,13 +207,14 @@ export class DescriptionScrollComponent implements AfterViewInit, OnDestroy {
     ) {
       event.preventDefault();
 
-      // Throttle scroll events for smoother transitions
       this.handleScrollEvent(event.deltaY);
     }
   }
 
   private handleScrollEvent(deltaY: number): void {
     const now = Date.now();
+
+    // Ensure rapid scroll events are handled properly
     if (
       this.isScrolling ||
       now - this.lastScrollTime < this.scrollThrottleTime
@@ -214,7 +222,6 @@ export class DescriptionScrollComponent implements AfterViewInit, OnDestroy {
       return;
     }
 
-    // Run the scroll handling in NgZone to ensure proper change detection
     this.ngZone.run(() => {
       this.isScrolling = true;
       this.lastScrollTime = now;
@@ -222,23 +229,18 @@ export class DescriptionScrollComponent implements AfterViewInit, OnDestroy {
       // Handle scroll down - increase index
       if (deltaY > 0) {
         this.increaseIndex();
-        // Trigger animation reset
         this.resetAnimations();
       }
       // Handle scroll up - decrease index
       else if (deltaY < 0) {
         this.decreaseIndex();
-        // Trigger animation reset
         this.resetAnimations();
       }
 
-      // Scroll to the current index element
-
-      // Reset scrolling flag after animation completes and check for scroll position update
-      setTimeout(() => {
+      // Reset scrolling flag using requestAnimationFrame for smoother updates
+      requestAnimationFrame(() => {
         this.isScrolling = false;
-        // this.checkAndUpdateScrollPosition();
-      }, this.scrollThrottleTime);
+      });
     });
   }
 
@@ -266,7 +268,6 @@ export class DescriptionScrollComponent implements AfterViewInit, OnDestroy {
   }
 
   private handleTouchMovement(event: TouchEvent): void {
-    // We need to track the touch direction to determine if it's up or down
     if (this.lastTouchY === null) {
       this.lastTouchY = event.touches[0].clientY;
       return;
@@ -275,8 +276,6 @@ export class DescriptionScrollComponent implements AfterViewInit, OnDestroy {
     const currentTouchY = event.touches[0].clientY;
     const touchDeltaY = this.lastTouchY - currentTouchY;
 
-    // Only handle touch movements if we're not currently animating
-    // and it's been long enough since the last scroll
     const now = Date.now();
     if (
       this.isScrolling ||
@@ -285,30 +284,24 @@ export class DescriptionScrollComponent implements AfterViewInit, OnDestroy {
       return;
     }
 
-    // Use a minimum threshold to avoid accidental swipes
-    if (Math.abs(touchDeltaY) > 10) {
+    if (Math.abs(touchDeltaY) > 5) {
+      // Reduced threshold for better responsiveness
       this.ngZone.run(() => {
         this.isScrolling = true;
         this.lastScrollTime = now;
 
-        // Scrolling down (touch moving up)
         if (touchDeltaY > 0) {
           this.increaseIndex();
           this.resetAnimations();
-        }
-        // Scrolling up (touch moving down)
-        else if (touchDeltaY < 0) {
+        } else if (touchDeltaY < 0) {
           this.decreaseIndex();
           this.resetAnimations();
         }
 
-        // Scroll to the current index element
-
-        // Reset scrolling flag after animation completes and check for scroll position update
-        setTimeout(() => {
+        // Reset scrolling flag using requestAnimationFrame
+        requestAnimationFrame(() => {
           this.isScrolling = false;
-          this.checkAndUpdateScrollPosition();
-        }, this.scrollThrottleTime);
+        });
       });
     }
 

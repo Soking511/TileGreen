@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SectionHeaderComponent } from '../../../shared/components/section-header/section-header.component';
 import { ButtonComponent } from "../../../shared/components/button/button.component";
 import { LinkedPersonComponent } from "../../../shared/components/linked-person/linked-person.component";
+import { CaseStudiesSliderComponent } from "../../../shared/components/case-studies-slider/case-studies-slider.component";
 
 interface SlideItem {
   id: number;
@@ -17,7 +18,7 @@ interface SlideItem {
 @Component({
   selector: 'app-fifth-section',
   standalone: true,
-  imports: [CommonModule, SectionHeaderComponent, ButtonComponent, LinkedPersonComponent],
+  imports: [CommonModule, SectionHeaderComponent, ButtonComponent, LinkedPersonComponent, CaseStudiesSliderComponent],
   templateUrl: './fifth-section.component.html',
   styles: [
     `

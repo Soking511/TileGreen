@@ -18,8 +18,13 @@
     "@angular/platform-browser": "^19.2.0",
     "@angular/platform-browser-dynamic": "^19.2.0",
     "@angular/router": "^19.2.0",
+    "@fullpage/angular-fullpage": "^0.1.5",
     "@tailwindcss/postcss": "^4.1.3",
+    "@types/fullpage.js": "^2.9.6",
+    "angular-fullpage": "^0.0.5",
+    "fullpage.js": "^4.0.35",
     "gsap": "^3.13.0",
+    "ngx-free-fullpage": "^1.0.1-beta.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"

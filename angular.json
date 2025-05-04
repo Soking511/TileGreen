@@ -34,7 +34,7 @@
                 "output": "assets"
               }
             ],
-            "styles": ["src/styles.scss"],
+            "styles": ["src/styles.scss",   "node_modules/fullpage.js/dist/fullpage.min.css"          ],
             "scripts": []
           },
           "configurations": {

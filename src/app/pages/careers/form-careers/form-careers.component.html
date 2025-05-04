@@ -1,4 +1,4 @@
-<section class="mx-auto pt-12 md:pt-16">
+<section class="mx-auto pt-8 sm:pt-12 md:pt-16">
     <div class="flex flex-col md:flex-row justify-between items-start md:items-start mb-4 gap-6">
         <h2 class="text-3xl md:text-4xl lg:text-5xl text-tile-regular text-[#010d26]">Apply Now</h2>
         <p class="text-base md:text-xl lg:text-2xl text-[#818896] max-w-md ">
@@ -7,10 +7,10 @@
     </div>
 
     <form [formGroup]="positionForm" (ngSubmit)="onSubmit()"
-        class="grid md:grid-cols-2 gap-8 pr-8 lg:pr-0 text-tile-regular  ">
-        <div class="space-y-6">
+        class="grid md:grid-cols-2 gap-6 md:gap-8">
+        <div class="space-y-4 sm:space-y-6 w-full">
             <div class="space-y-2">
-                <label for="position" class="block text-xl text-[#010d26] font-medium">Position Name</label>
+                <label for="position" class="block text-xl text-[#010d26] text-tile-regular pl-2">Position Name</label>
                 <input type="text" id="position" formControlName="position_name" placeholder="Enter position"
                     class="w-full px-5 py-4 text-tile-inter rounded-3xl border border-[#9c9c9c] text-lg placeholder:text-[#a7a7a7]  focus:outline-none focus:ring-2 focus:ring-[#0460d9]"
                     [ngClass]="{'border-red-500': hasError('position_name', 'required') || hasError('position_name', 'minlength') || hasError('position_name', 'maxlength')}">
@@ -27,7 +27,7 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div class="space-y-2">
-                    <label for="firstName" class="block text-xl text-[#010d26] font-medium">First Name</label>
+                    <label for="firstName" class="block text-xl text-[#010d26] text-tile-regular pl-2">First Name</label>
                     <input type="text" id="firstName" formControlName="first_name" placeholder="Enter first name"
                         class="w-full px-5 py-4 rounded-3xl border border-[#9c9c9c] text-tile-inter text-lg placeholder:text-[#a7a7a7] focus:outline-none focus:ring-2 focus:ring-[#0460d9]"
                         [ngClass]="{'border-red-500': hasError('first_name', 'required') || hasError('first_name', 'minlength') || hasError('first_name', 'maxlength')}">
@@ -39,7 +39,7 @@
                     }
                 </div>
                 <div class="space-y-2">
-                    <label for="lastName" class="block text-xl text-[#010d26] font-medium">Last Name</label>
+                    <label for="lastName" class="block text-xl text-[#010d26] text-tile-regular pl-2">Last Name</label>
                     <input type="text" id="lastName" formControlName="second_name" placeholder="Enter last name"
                         class="w-full text-tile-inter px-5 py-4 rounded-3xl border border-[#9c9c9c] text-lg placeholder:text-[#a7a7a7] focus:outline-none focus:ring-2 focus:ring-[#0460d9]"
                         [ngClass]="{'border-red-500': hasError('second_name', 'required') || hasError('second_name', 'minlength') || hasError('second_name', 'maxlength')}">
@@ -54,7 +54,7 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div class="space-y-2">
-                    <label for="email" class="block text-xl text-[#010d26] font-medium">Email Address</label>
+                    <label for="email" class="block text-xl text-[#010d26] text-tile-regular pl-2">Email Address</label>
                     <input type="email" id="email" formControlName="email" placeholder="Enter email address"
                         class="w-full px-5 text-tile-inter py-4 rounded-3xl border border-[#9c9c9c] text-lg placeholder:text-[#a7a7a7] focus:outline-none focus:ring-2 focus:ring-[#0460d9]"
                         [ngClass]="{'border-red-500': hasError('email', 'required') || hasError('email', 'email')}">
@@ -66,7 +66,7 @@
                     }
                 </div>
                 <div class="space-y-2">
-                    <label for="phone" class="block text-xl text-[#010d26] font-medium">Phone Number</label>
+                    <label for="phone" class="block text-xl text-[#010d26] text-tile-regular pl-2">Phone Number</label>
                     <input type="tel" id="phone" formControlName="phone_number" placeholder="Enter phone number"
                         class="w-full text-tile-inter px-5 py-4 rounded-3xl border border-[#9c9c9c] text-lg placeholder:text-[#a7a7a7] focus:outline-none focus:ring-2 focus:ring-[#0460d9]"
                         [ngClass]="{'border-red-500': hasError('phone_number', 'required') || hasError('phone_number', 'pattern') || hasError('phone_number', 'minlength')}">
@@ -82,7 +82,7 @@
                 </div>
             </div>
 
-            <div class="mt-8 w-full p-6 rounded-2xl bg-black/5 border border-black border-dashed"
+            <div class="mt-6 sm:mt-8 w-full p-4 sm:p-6 rounded-2xl bg-black/5 border border-black border-dashed"
                 [ngClass]="{'border-red-500': !fileUploaded && formSubmitted}">
                 <div class="flex flex-col items-center gap-4">
                     <svg width="60" height="60" viewBox="0 0 76 76" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -133,7 +133,7 @@
             </div>
 
             <!-- Form Status Messages -->
-            <div *ngIf="formSubmitted" class="mt-6 w-full">
+            <div *ngIf="formSubmitted" class="mt-4 sm:mt-6 w-full">
                 <div *ngIf="formSubmitSuccess"
                     class="p-4 bg-green-100 text-green-800 rounded-lg flex items-center success-message">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 flex-shrink-0" fill="none"
@@ -163,7 +163,7 @@
 
             <!-- Submit Button -->
             <button type="submit" [disabled]="formSubmitting"
-                class="relative cursor-pointer w-full py-4 px-6 bg-[#010d26] hover:bg-[#021f59] transition-colors duration-200 text-white text-xl font-medium rounded-full disabled:bg-gray-400 disabled:cursor-not-allowed cursor-pointer">
+                class="relative w-full py-3 sm:py-4 px-4 sm:px-6 bg-[#010d26] hover:bg-[#021f59] transition-colors duration-200 text-white text-lg sm:text-xl rounded-full disabled:bg-gray-400 disabled:cursor-not-allowed text-tile-regular">
                 <span *ngIf="!formSubmitting">Join the Waitlist</span>
                 <span *ngIf="formSubmitting" class="flex items-center justify-center">
                     <svg class="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg"

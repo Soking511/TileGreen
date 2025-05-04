@@ -6,6 +6,7 @@ import { ThirdSectionComponent } from './third-section/third-section.component';
 import { FourthSectionComponent } from './fourth-section/fourth-section.component';
 import { FifthSectionComponent } from './fifth-section/fifth-section.component';
 import { FooterHomeComponent } from './footer-home/footer-home.component';
+import { CaseStudiesSliderComponent } from '../../shared/components/case-studies-slider/case-studies-slider.component';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,7 @@ import { FooterHomeComponent } from './footer-home/footer-home.component';
     FourthSectionComponent,
     FooterHomeComponent,
     FifthSectionComponent,
+    CaseStudiesSliderComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -28,6 +30,6 @@ export class HomeComponent implements OnInit {
     // Simulate loading time or wait for data to be fetched
     setTimeout(() => {
       this.isLoading = false;
-    }, 1000); // Show loader for 1.5 seconds
+    }, 1000); // Show loader for 1 second
   }
 }
