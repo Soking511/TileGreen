@@ -6,8 +6,7 @@
         </p>
     </div>
 
-    <form [formGroup]="positionForm" (ngSubmit)="onSubmit()"
-        class="grid md:grid-cols-2 gap-6 md:gap-8">
+    <form [formGroup]="positionForm" (ngSubmit)="onSubmit()" class="grid md:grid-cols-2 gap-6 md:gap-8">
         <div class="space-y-4 sm:space-y-6 w-full">
             <div class="space-y-2">
                 <label for="position" class="block text-xl text-[#010d26] text-tile-regular pl-2">Position Name</label>
@@ -27,7 +26,8 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div class="space-y-2">
-                    <label for="firstName" class="block text-xl text-[#010d26] text-tile-regular pl-2">First Name</label>
+                    <label for="firstName" class="block text-xl text-[#010d26] text-tile-regular pl-2">First
+                        Name</label>
                     <input type="text" id="firstName" formControlName="first_name" placeholder="Enter first name"
                         class="w-full px-5 py-4 rounded-3xl border border-[#9c9c9c] text-tile-inter text-lg placeholder:text-[#a7a7a7] focus:outline-none focus:ring-2 focus:ring-[#0460d9]"
                         [ngClass]="{'border-red-500': hasError('first_name', 'required') || hasError('first_name', 'minlength') || hasError('first_name', 'maxlength')}">
