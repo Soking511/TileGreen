@@ -8,7 +8,6 @@ import { HeaderComponent } from "../../../shared/components/header/header.compon
   selector: 'app-tech-home',
   imports: [FirstSectionTechComponent, SecondSectionTechComponent, FooterHomeComponent, HeaderComponent],
   templateUrl: './tech-home.component.html',
-  styleUrl: './tech-home.component.scss'
 })
 export class TechHomeComponent {
 

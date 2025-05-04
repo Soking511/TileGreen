@@ -4,7 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-product-expansion-section',
   imports: [],
   templateUrl: './product-expansion-section.component.html',
-  styleUrl: './product-expansion-section.component.scss'
 })
 export class ProductExpansionSectionComponent {
 
