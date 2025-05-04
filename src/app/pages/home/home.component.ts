@@ -7,9 +7,11 @@ import { FourthSectionComponent } from './fourth-section/fourth-section.componen
 import { FifthSectionComponent } from './fifth-section/fifth-section.component';
 import { FooterHomeComponent } from './footer-home/footer-home.component';
 import { CaseStudiesSliderComponent } from '../../shared/components/case-studies-slider/case-studies-slider.component';
+import { SeoService } from '../../../services/seo.service';
 
 @Component({
   selector: 'app-home',
+  standalone: true,
   imports: [
     HeaderComponent,
     FirstSectionComponent,
@@ -26,7 +28,18 @@ import { CaseStudiesSliderComponent } from '../../shared/components/case-studies
 export class HomeComponent implements OnInit {
   isLoading = true;
 
+  constructor(private seoService: SeoService) {}
+
   ngOnInit(): void {
+    // Set SEO metadata for home page
+    this.seoService.updateMetadata({
+      title: 'Innovative Green Building Materials from Recycled Plastic',
+      description: 'TileGreen transforms plastic waste into eco-friendly building materials. Our sustainable technology creates durable construction materials with minimal environmental impact.',
+      keywords: 'green building materials, recycled plastic tiles, sustainable construction, eco-friendly materials, plastic waste recycling',
+      ogUrl: 'https://tilegreen.org/home',
+      ogImage: 'assets/images/cover.png'
+    });
+
     // Simulate loading time or wait for data to be fetched
     setTimeout(() => {
       this.isLoading = false;

@@ -1,4 +1,7 @@
-
+<!-- Loading indicator for route transitions -->
+<div class="route-loading-indicator fixed top-0 left-0 w-full h-1 z-50" *ngIf="isRouteLoading">
+  <div class="h-full bg-[#0F8C22] animate-loading-bar"></div>
+</div>
 
 <router-outlet></router-outlet>
 

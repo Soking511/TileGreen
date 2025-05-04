@@ -1,13 +1,18 @@
-import { NgIf } from '@angular/common';
-import { Component, HostListener, inject, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  inject,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { FooterHomeComponent } from '../home/footer-home/footer-home.component';
 import { HeaderComponent } from '../../shared/components/header/header.component';
-import { ButtonComponent } from "../../shared/components/button/button.component";
-import { LogosComponent } from "../../shared/components/logos/logos.component";
-import { DescriptionScrollComponent } from "./description-scroll/description-scroll.component";
+import { LogosComponent } from '../../shared/components/logos/logos.component';
+import { DescriptionScrollComponent } from './description-scroll/description-scroll.component';
 import { ApiService } from '../../../services/api.service';
 import { CompaniesService } from '../../../services/companies.service';
-import { CaseStudiesSliderComponent } from "../../shared/components/case-studies-slider/case-studies-slider.component";
+import { CaseStudiesSliderComponent } from '../../shared/components/case-studies-slider/case-studies-slider.component';
+import { SeoService } from '../../../services/seo.service';
 
 interface SlideItem {
   id: number;
@@ -27,7 +32,13 @@ interface RecognitionLogo {
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [HeaderComponent, FooterHomeComponent, NgIf, ButtonComponent, LogosComponent, DescriptionScrollComponent, CaseStudiesSliderComponent],
+  imports: [
+    HeaderComponent,
+    FooterHomeComponent,
+    LogosComponent,
+    DescriptionScrollComponent,
+    CaseStudiesSliderComponent,
+  ],
   templateUrl: './about.component.html',
 })
 export class AboutComponent implements OnInit, OnDestroy {
@@ -118,14 +129,13 @@ export class AboutComponent implements OnInit, OnDestroy {
     },
   ];
 
-
   currentIndex = 0;
   totalSlides = this.slides.length;
   slideInterval: any;
   private resizeTimeout: any;
 
-  logosService = inject(CompaniesService)
-  constructor(private apiService: ApiService) {}
+  logosService = inject(CompaniesService);
+  constructor(private apiService: ApiService, private seoService: SeoService) {}
 
   @HostListener('window:resize')
   onResize() {
@@ -136,6 +146,15 @@ export class AboutComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    // Set SEO metadata for about page
+    this.seoService.updateMetadata({
+      title: 'About TileGreen - Our Mission and Innovation Story',
+      description: 'Learn about TileGreen\'s mission to transform plastic waste into sustainable building materials. Our team is dedicated to environmental sustainability and innovative technology.',
+      keywords: 'about TileGreen, green building materials, sustainability mission, eco-friendly innovation, plastic recycling technology',
+      ogUrl: 'https://tilegreen.org/about',
+      ogImage: 'assets/images/about/company-image.png'
+    });
+
     setTimeout(() => this.startSlideshow(), 0);
   }
 

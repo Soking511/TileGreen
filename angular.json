@@ -34,7 +34,7 @@
                 "output": "assets"
               }
             ],
-            "styles": ["src/styles.scss",   "node_modules/fullpage.js/dist/fullpage.min.css"          ],
+            "styles": ["src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -51,7 +51,8 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "optimization": true
             },
             "development": {
               "optimization": false,

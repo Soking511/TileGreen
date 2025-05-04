@@ -2,7 +2,7 @@
     <!-- Background gradient overlay -->
     <div class="w-full h-full absolute left-0 top-0 bg-gradient-to-b from-slate-950/0 to-slate-950/80 border"></div>
 
-    <!-- Background image - directly access by currentIndex with gradient overlay -->
+    <!-- Background image with SEO-optimized lazy loading -->
     <div class="w-full h-full absolute inset-0 transition-opacity duration-700">
         <img [src]="caseStudies[currentIndex].imagePath" class="w-full h-full object-cover object-center"
             [alt]="caseStudies[currentIndex].company + ' case study'">

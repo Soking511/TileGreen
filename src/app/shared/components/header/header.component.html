@@ -1,10 +1,10 @@
-<div class="w-full z-40 overflow-hidden flex flex-col justify-between"
+<header class="w-full z-40 overflow-hidden flex flex-col justify-between"
     [ngClass]="{'bg-gradient-to-b from-[#a8a8a8] to-[#424242] h-screen': imagePath}">
 
-    <!-- Background Image with Preloading -->
+    <!-- Background Image with Lazy Loading -->
     @if (imagePath) {
     <img [src]="imagePath" alt="Header Background" class="absolute inset-0 w-full h-full object-cover"
-        fetchpriority="high" [attr.importance]="'high'">
+        fetchpriority="high" [attr.importance]="'high'" loading="eager">
     <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent"></div>
     }
     <!-- isScrolled -->
@@ -15,25 +15,28 @@
             [class.bg-white]="isScrolled" [class.text-black]="isScrolled"
             [ngClass]="imagePath && !isScrolled ? 'text-white' : 'text-black'">
             <div class="flex items-center gap-2 z-20">
-                <svg width="52" class="h-8 sm:h-8 md:h-10" height="48" viewBox="0 0 52 48" fill="none"
-                    [routerLink]="'/home'" class="cursor-pointer" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_118_1154)">
-                        <path
-                            d="M51.9749 40.6678C51.9749 44.6898 48.6596 47.9807 44.6076 47.9807H36.8315C32.7795 47.9807 29.4642 44.6898 29.4642 40.6678V31.2255C29.4642 27.2035 32.7795 23.9127 36.8315 23.9127H48.7004L47.0638 29.3161H36.9137C35.8084 29.3161 34.867 30.2101 34.867 31.3477V40.5868C34.867 41.6839 35.8084 42.6184 36.9137 42.6184H44.4851C45.6313 42.6184 46.5319 41.6839 46.5319 40.5868V39.3195H41.129L39.4918 33.916H51.9749V40.6678Z"
-                            [attr.fill]="imagePath && !isScrolled ? 'white' : '#0F8C22'" />
-                        <path
-                            d="M11.0205 15.8993V22.2203H20.9287V25.3571V43.6314V47.9801H27.6705V43.6314V22.2203H49.1563L51.0203 15.8993H11.0205Z"
-                            [attr.fill]="imagePath && !isScrolled ? 'white' : '#0F8C22'" />
-                        <path
-                            d="M51.9749 0.0199661H45.6068H0.025116V0.61155V6.341V41.659V47.9801H6.39323H11.0205V41.659H6.39323V6.341H45.6068V10.934H51.9749V6.341V0.0199661Z"
-                            [attr.fill]="imagePath && !isScrolled ? 'white' : '#021F59'" />
-                    </g>
-                    <defs>
-                        <clipPath id="clip0_118_1154">
-                            <rect width="52" height="48" fill="white" />
-                        </clipPath>
-                    </defs>
-                </svg>
+                <a [routerLink]="'/home'" aria-label="TileGreen Home Page">
+                    <svg width="52" class="h-8 sm:h-8 md:h-10" height="48" viewBox="0 0 52 48" fill="none"
+                        class="cursor-pointer" xmlns="http://www.w3.org/2000/svg">
+                        <title>TileGreen Logo</title>
+                        <g clip-path="url(#clip0_118_1154)">
+                            <path
+                                d="M51.9749 40.6678C51.9749 44.6898 48.6596 47.9807 44.6076 47.9807H36.8315C32.7795 47.9807 29.4642 44.6898 29.4642 40.6678V31.2255C29.4642 27.2035 32.7795 23.9127 36.8315 23.9127H48.7004L47.0638 29.3161H36.9137C35.8084 29.3161 34.867 30.2101 34.867 31.3477V40.5868C34.867 41.6839 35.8084 42.6184 36.9137 42.6184H44.4851C45.6313 42.6184 46.5319 41.6839 46.5319 40.5868V39.3195H41.129L39.4918 33.916H51.9749V40.6678Z"
+                                [attr.fill]="imagePath && !isScrolled ? 'white' : '#0F8C22'" />
+                            <path
+                                d="M11.0205 15.8993V22.2203H20.9287V25.3571V43.6314V47.9801H27.6705V43.6314V22.2203H49.1563L51.0203 15.8993H11.0205Z"
+                                [attr.fill]="imagePath && !isScrolled ? 'white' : '#0F8C22'" />
+                            <path
+                                d="M51.9749 0.0199661H45.6068H0.025116V0.61155V6.341V41.659V47.9801H6.39323H11.0205V41.659H6.39323V6.341H45.6068V10.934H51.9749V6.341V0.0199661Z"
+                                [attr.fill]="imagePath && !isScrolled ? 'white' : '#021F59'" />
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_118_1154">
+                                <rect width="52" height="48" fill="white" />
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </a>
             </div>
 
             <!-- Improved Mobile Menu Button with responsive colors -->
@@ -148,7 +151,7 @@
                 <!-- Contact Us Button - Updated with click handler -->
                 <div class="ml-4">
                     <a (click)="openContactPopup($event)"
-                        class=" hover:opacity-100 opacity-80 contact-button  relative border rounded-full px-5 lg:px-7 py-1.5 lg:py-2.5 whitespace-nowrap text-sm lg:text-base text-tile-regular tracking-wide"
+                        class="cursor-pointer hover:opacity-100 opacity-80 contact-button  relative border rounded-full px-5 lg:px-7 py-1.5 lg:py-2.5 whitespace-nowrap text-sm lg:text-base text-tile-regular tracking-wide"
                         [ngClass]="imagePath && !isScrolled ? 'border-white text-white' : 'border-black text-black'">
                         <span class="relative z-10">Contact Us</span>
                         <!-- <div class="absolute inset-0 bg-black opacity-25" *ngIf="imagePath"></div> -->
@@ -218,5 +221,5 @@
         </div>
     </div>
     }
-</div>
+</header>
 <!-- Contact popup is now managed globally in app component -->

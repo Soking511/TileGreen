@@ -1,0 +1,11 @@
+# robots.txt for TileGreen
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://tilegreen.org/sitemap.xml
+
+# Prevent crawling of unnecessary files and directories
+Disallow: /assets/fonts/
+Disallow: /*.js$
+Disallow: /*.css$

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { NgFor, NgIf, NgClass } from '@angular/common';
+import { Component, OnInit, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
+import { NgFor, NgIf, NgClass, isPlatformBrowser, DOCUMENT } from '@angular/common';
+import { SeoService } from '../../../../services/seo.service';
 
 interface FaqItem {
   question: string;
@@ -14,7 +15,7 @@ interface FaqItem {
   templateUrl: './qa-careers.component.html',
   standalone: true,
 })
-export class QaCareersComponent {
+export class QaCareersComponent implements OnInit, AfterViewInit {
   faqItems: FaqItem[] = [
     {
       question: 'What benefits do TileGreen employees receive?',
@@ -80,6 +81,44 @@ export class QaCareersComponent {
       ],
     },
   ];
+
+  constructor(
+    private seoService: SeoService,
+    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(DOCUMENT) private document: Document
+  ) {}
+
+  ngOnInit(): void {
+    // Add any initialization logic here
+  }
+
+  ngAfterViewInit(): void {
+    // Add FAQ structured data for better search results
+    if (isPlatformBrowser(this.platformId)) {
+      this.addFaqStructuredData();
+    }
+  }
+
+  private addFaqStructuredData(): void {
+    const faqSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      'mainEntity': this.faqItems.map(item => ({
+        '@type': 'Question',
+        'name': item.question,
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': item.answer
+        }
+      }))
+    };
+
+    // Create script element for JSON-LD
+    const script = this.document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify(faqSchema);
+    this.document.head.appendChild(script);
+  }
 
   toggleItem(item: FaqItem): void {
     // Close other items when opening a new one (accordion behavior)
