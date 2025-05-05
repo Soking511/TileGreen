@@ -33,6 +33,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   @Input() imagePath: string | null = null;
   @Input() navigateTo: string | null = null;
 
+  currentPath: string = '/home';
   isMobileMenuOpen: boolean = false;
   isContactPopupOpen: boolean = false;
   isScrolled: boolean = false;
@@ -57,7 +58,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.isScrolled = window.scrollY > 10;
-
+    this.router.events.subscribe(() => {
+      this.currentPath = this.router.url;
+    });
     // Pre-initialize content to prevent content layout shifts
     if (this.isBrowser) {
       this.preOptimizeLcpElements();

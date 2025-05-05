@@ -15,11 +15,10 @@
             [class.bg-white]="isScrolled" [class.text-black]="isScrolled"
             [ngClass]="imagePath && !isScrolled ? 'text-white' : 'text-black'" aria-label="Main navigation">
             <div class="flex items-center gap-2 z-20">
-                <!-- Logo link -->
-                <a [routerLink]="'/home'" aria-label="TileGreen Home Page - Return to homepage"
+                <a [routerLink]="'/home'" aria-label="TileGreen Home Page"
                     class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-md">
                     <svg width="52" class="h-8 sm:h-8 md:h-10" height="48" viewBox="0 0 52 48" fill="none"
-                        class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="TileGreen logo">
+                        class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <title>TileGreen Logo</title>
                         <g clip-path="url(#clip0_118_1154)">
                             <path
@@ -41,12 +40,12 @@
                 </a>
             </div>
 
-            <!-- Mobile Menu Button -->
+            <!-- Improved Mobile Menu Button with responsive colors and accessibility -->
             <button
                 class="md:hidden flex items-center justify-center z-20 p-2 w-10 h-10 rounded-full transition-all touch-manipulation focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                 [ngClass]="isScrolled ? 'bg-gray-100 hover:bg-gray-200' : 'bg-blue-600/20 hover:bg-blue-600/30 backdrop-blur-sm'"
-                (click)="toggleMobileMenu()" [attr.aria-expanded]="isMobileMenuOpen" aria-controls="mobile-menu"
-                aria-label="Toggle navigation menu">
+                (click)="toggleMobileMenu()" aria-label="Toggle navigation menu" [attr.aria-expanded]="isMobileMenuOpen"
+                aria-controls="mobile-menu">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h12" />
@@ -145,8 +144,8 @@
                             <a [routerLink]="item.link" routerLinkActive="active-link"
                                 [routerLinkActiveOptions]="{exact: item.link === '/home'}"
                                 class="nav-link hover:text-gray-300 py-2 px-1 tracking-wide transition-all duration-200 relative group text-tile-regular focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md"
-                                [attr.aria-label]="'Navigate to ' + item.name"
-                                [attr.aria-current]="isActive(item.link) ? 'page' : undefined" role="menuitem">
+                                [ngClass]="imagePath && !isScrolled ? 'text-white focus:ring-white' : 'text-black focus:ring-blue-500'"
+                                role="menuitem">
                                 {{item.name}}
                                 <span
                                     class="absolute bottom-0 left-0 w-0 h-0.5 bg-current group-hover:w-full transition-all duration-300"
