@@ -172,12 +172,12 @@
 
                 <!-- Form Actions -->
                 <div class="sm:col-span-2 flex flex-wrap justify-between items-center mt-4">
-                    <p class="text-sm md:text-base font-medium my-2">
+                    <!-- <p class="text-sm md:text-base font-medium my-2">
                         Or call us at: <a href="tel:{{phoneNumber}}"
                             class="text-blue-600 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded">
                             {{phoneNumber || "+1 (800) 123-4567"}}
                         </a>
-                    </p>
+                    </p> -->
                     <button type="submit" [disabled]="formSubmitting || contactForm.invalid"
                         [ngClass]="{'opacity-70 cursor-not-allowed': formSubmitting || contactForm.invalid, 'hover:bg-[#192949]': !(formSubmitting || contactForm.invalid)}"
                         class="cursor-pointer px-8 py-2.5 rounded-[50px] bg-[#010d26] text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
