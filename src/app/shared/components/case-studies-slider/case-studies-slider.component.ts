@@ -26,9 +26,7 @@ interface CaseStudy {
   standalone: true,
   imports: [CommonModule],
 })
-export class CaseStudiesSliderComponent
-  implements OnInit, OnDestroy
-{
+export class CaseStudiesSliderComponent implements OnInit, OnDestroy {
   @ViewChild('sliderContainer') sliderContainer!: ElementRef;
 
   caseStudies: CaseStudy[] = [
@@ -37,24 +35,36 @@ export class CaseStudiesSliderComponent
       title: 'Sustainable Outdoor Flooring',
       description:
         'TileGreen supplied interlocking tiles for Henkel, showcasing "Henkel Green". This enhanced the facility\'s exterior and emphasized sustainability.',
-      imagePath: 'https://api-tilegreen.pulslytics.agency/media/images/slider/1.png',
-      logo: 'https://api-tilegreen.pulslytics.agency/media/images/slider/logos/henkel-logo-standalone-svg.png',
+      imagePath:
+        'https://api-tilegreen.pulslytics.agency/media/images/slider/1.png/',
+      logo: 'https://api-tilegreen.pulslytics.agency/media/images/slider/logos/henkel-logo-standalone-svg.png/',
     },
     {
       company: 'Sodic',
       title: 'Branded Walkway Installation',
       description:
         'TileGreen installed interlocking tiles for SODIC, integrating the logo into the landscape. This pavement enhances identity, ensuring durability and aesthetic appeal in a desert setting.',
-      imagePath: 'https://api-tilegreen.pulslytics.agency/media/images/slider/2.png',
-      logo: 'https://api-tilegreen.pulslytics.agency/media/images/slider/logos/SODIC_Logo_Teal_RGB.png',
+      imagePath:
+        'https://api-tilegreen.pulslytics.agency/media/images/slider/2.png/',
+      logo: 'https://api-tilegreen.pulslytics.agency/media/images/slider/logos/SODIC_Logo_Teal_RGB.png/',
+    },
+    {
+      company: 'Sodic',
+      title: 'Branded Walkway Installation',
+      description:
+        'TileGreen and SODIC completed a sustainable paving project with 675 m² of eco-friendly tiles made from recycled plastic, saving 2,893 kg of plastic and 12 million liters of water.',
+      imagePath:
+        'https://api-tilegreen.pulslytics.agency/media/images/slider/5.webp/',
+      logo: 'https://api-tilegreen.pulslytics.agency/media/images/slider/logos/SODIC_Logo_Teal_RGB.png/',
     },
     {
       company: 'Redcon',
       title: 'Sustainable Branded Walkway',
       description:
         'TileGreen and SODIC completed a sustainable paving project with 675 m² of eco-friendly tiles made from recycled plastic, saving 2,893 kg of plastic and 12 million liters of water.',
-      imagePath: 'https://api-tilegreen.pulslytics.agency/media/images/slider/4.png',
-      logo: 'https://api-tilegreen.pulslytics.agency/media/images/slider/logos/Mask group.png',
+      imagePath:
+        'https://api-tilegreen.pulslytics.agency/media/images/slider/4.png/',
+      logo: 'https://api-tilegreen.pulslytics.agency/media/images/slider/logos/Mask group.png/',
     },
   ];
 
@@ -79,7 +89,6 @@ export class CaseStudiesSliderComponent
   }
 
   ngOnDestroy(): void {
-
     // Clean up observers
     if (this.observer) {
       this.observer.disconnect();
@@ -99,8 +108,6 @@ export class CaseStudiesSliderComponent
   get totalCaseStudies(): number {
     return this.caseStudies.length;
   }
-
-
 
   // Override next/prev slide methods
   nextSlide(): void {

@@ -17,19 +17,11 @@
             class="flex flex-col md:flex-row justify-start items-start md:items-end gap-4 xs:gap-6 md:gap-12 lg:gap-16 xl:gap-20 w-full">
             <!-- Left column with logo, company name and project title -->
             <div class="w-full md:w-1/2 lg:w-[45%] flex flex-col justify-start items-start gap-1 xs:gap-2">
-                <!-- Logo placeholder (Youtube-like) -->
-                <div class="w-14 xs:w-16 sm:w-20 h-10 xs:h-12 sm:h-14 relative overflow-hidden">
-                    <div class="w-full h-9 xs:h-11 absolute top-1.5">
-                        <img [src]="caseStudies[currentIndex].logo" alt="{{caseStudies[currentIndex].company}} logo">
-                    </div>
-                </div>
 
                 <!-- Current company name -->
                 <div class="min-h-[3rem] xs:min-h-[4rem] sm:min-h-[5rem]">
-                    <div
-                        class="text-white text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium font-['Neue_Haas_Grotesk_Display_Pro'] transition-all duration-500 leading-tight">
-                        {{caseStudies[currentIndex].company}}
-                    </div>
+                    <img [src]="caseStudies[currentIndex].logo" alt="{{caseStudies[currentIndex].company}} logo">
+
                 </div>
 
                 <!-- Current project title -->
