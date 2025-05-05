@@ -8,6 +8,7 @@ import { ProductExpansionSectionComponent } from "../../../product-expansion-sec
   selector: 'app-first-section-apps',
   imports: [SectionHeaderComponent, ButtonComponent, NgIf, ProductExpansionSectionComponent],
   templateUrl: './first-section-apps.component.html',
+  styleUrls: ['./first-section-apps.component.scss'],
 })
 export class FirstSectionAppsComponent implements OnInit {
   @ViewChild('videoPlayer') videoPlayer: ElementRef<HTMLVideoElement> | undefined;

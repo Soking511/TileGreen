@@ -10,6 +10,7 @@ import { SeoService } from "../../../../services/seo.service";
   standalone: true,
   imports: [FirstSectionTechComponent, SecondSectionTechComponent, FooterHomeComponent, HeaderComponent],
   templateUrl: './tech-home.component.html',
+  styleUrls: ['./tech-home.component.scss'],
 })
 export class TechHomeComponent implements OnInit {
   constructor(private seoService: SeoService) {}

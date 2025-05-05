@@ -10,6 +10,7 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
   standalone: true,
   imports: [FirstSectionAppsComponent, HeaderComponent, FooterHomeComponent],
   templateUrl: './home-apps.component.html',
+  styleUrls: ['./home-apps.component.scss'],
 })
 export class HomeAppsComponent implements OnInit, AfterViewInit {
   constructor(

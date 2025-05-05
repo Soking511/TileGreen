@@ -1,4 +1,4 @@
-@use "tailwindcss" as tw;
+@import "tailwindcss";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -82,14 +82,6 @@
   font-style: normal;
 }
 
-.text-test {
-  font-feature-settings: "liga" off, "clig" off;
-  font-family: "Inter Display";
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
 .text-tile-md {
   font-family: "NeueHaasDisplayMediu", sans-serif;
   font-weight: 500;
@@ -112,19 +104,9 @@ body {
   font-variant-numeric: slashed-zero;
 }
 
-.text-tile-inter-smd {
-  font-family: "Inter_Display_Md";
-  font-weight: 500;
-}
-
 .text-tile-inter-md {
   font-family: "Inter_Display_Md";
   font-weight: 500;
-}
-
-.text-tile-inter-tmd {
-  font-family: "Inter_Display_Md";
-  font-weight: 600;
 }
 
 .text-tile-inter {

@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-second-section-tech',
   imports: [],
   templateUrl: './second-section-tech.component.html',
+  styleUrls: ['./second-section-tech.component.scss'],
 })
 export class SecondSectionTechComponent {
 

@@ -15,6 +15,7 @@ import { SeoService } from '../../../../services/seo.service';
     CareersComponent,
   ],
   templateUrl: './home-careers.component.html',
+  styleUrls: ['./home-careers.component.scss'],
 })
 export class HomeCareersComponent implements OnInit {
   constructor(private seoService: SeoService) {}

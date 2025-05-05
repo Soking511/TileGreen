@@ -1,5 +1,21 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef, Inject, PLATFORM_ID, Renderer2 } from '@angular/core';
-import { RouterOutlet, Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Inject,
+  PLATFORM_ID,
+  Renderer2,
+} from '@angular/core';
+import {
+  RouterOutlet,
+  Router,
+  NavigationStart,
+  NavigationEnd,
+  NavigationCancel,
+  NavigationError,
+} from '@angular/router';
 import { ContactUsPopComponent } from './shared/components/contact-us-pop/contact-us-pop.component';
 import { ContactPopupService } from '../services/contact-popup.service';
 import { Subscription } from 'rxjs';
@@ -12,7 +28,7 @@ import { SeoService } from '../services/seo.service';
   imports: [RouterOutlet, ContactUsPopComponent, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'TileGreen';
@@ -34,15 +50,13 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription = this.contactPopupService.isOpen$.subscribe(
-      (isOpen) => {
-        this.isContactPopupOpen = isOpen;
-        this.cdr.markForCheck();
-      }
-    );
+    this.subscription = this.contactPopupService.isOpen$.subscribe((isOpen) => {
+      this.isContactPopupOpen = isOpen;
+      this.cdr.markForCheck();
+    });
 
     // Add route change detection for loading indicator
-    this.routerSubscription = this.router.events.subscribe(event => {
+    this.routerSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         this.isRouteLoading = true;
         this.cdr.markForCheck();
@@ -60,10 +74,13 @@ export class AppComponent implements OnInit, OnDestroy {
 
     // Set default SEO tags
     this.seoService.updateMetadata({
-      title: 'TileGreen - Transforming Plastic Waste into Sustainable Building Materials',
-      description: 'TileGreen transforms plastic waste into eco-friendly circular building materials. Our innovative technology creates sustainable solutions for construction industry.',
-      keywords: 'green building materials, plastic recycling, sustainable construction, eco tiles, circular economy',
-      ogUrl: 'https://tilegreen.org'
+      title:
+        'TileGreen - Transforming Plastic Waste into Sustainable Building Materials',
+      description:
+        'TileGreen transforms plastic waste into eco-friendly circular building materials. Our innovative technology creates sustainable solutions for construction industry.',
+      keywords:
+        'green building materials, plastic recycling, sustainable construction, eco tiles, circular economy',
+      ogUrl: 'https://tilegreen.org',
     });
 
     if (this.isBrowser) {
@@ -96,9 +113,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
     // Prioritize LCP element rendering
     setTimeout(() => {
-      const lcpElements = document.querySelectorAll('[data-lcp-element="true"]');
+      const lcpElements = document.querySelectorAll(
+        '[data-lcp-element="true"]'
+      );
       if (lcpElements.length > 0) {
-        lcpElements.forEach(element => {
+        lcpElements.forEach((element) => {
           // Add priority to LCP element
           this.renderer.setAttribute(element, 'importance', 'high');
         });
@@ -110,10 +129,10 @@ export class AppComponent implements OnInit, OnDestroy {
     const criticalFonts = [
       'assets/fonts/NeueHaasDisplayBold.ttf',
       'assets/fonts/Inter_18pt-Regular.ttf',
-      'assets/fonts/LibreBaskerville-Italic.ttf'
+      'assets/fonts/LibreBaskerville-Italic.ttf',
     ];
 
-    criticalFonts.forEach(fontUrl => {
+    criticalFonts.forEach((fontUrl) => {
       // Create font preload link for critical fonts
       const link = this.renderer.createElement('link');
       this.renderer.setAttribute(link, 'rel', 'preload');
@@ -138,7 +157,10 @@ export class AppComponent implements OnInit, OnDestroy {
           console.log('LCP:', lastEntry.startTime, 'ms');
         });
 
-        lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
+        lcpObserver.observe({
+          type: 'largest-contentful-paint',
+          buffered: true,
+        });
       }
     }
   }

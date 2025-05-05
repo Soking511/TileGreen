@@ -13,6 +13,7 @@ import { ApiService } from '../../../../services/api.service';
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './form-careers.component.html',
+  styleUrls: ['./form-careers.component.scss'],
 })
 export class FormCareersComponent {
   // Form status flags

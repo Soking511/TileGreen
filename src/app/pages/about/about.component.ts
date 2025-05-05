@@ -39,6 +39,7 @@ interface RecognitionLogo {
     DescriptionScrollComponent,
     CaseStudiesSliderComponent,
   ],
+  styleUrls: ['./about.component.scss'],
   templateUrl: './about.component.html',
 })
 export class AboutComponent implements OnInit, OnDestroy {

@@ -73,7 +73,12 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   private preOptimizeLcpElements(): void {
     // Pre-render text to prevent layout shifts
-    if (this.headTitle1 || this.headTitle2 || this.headTitle3 || this.headTitleLibre) {
+    if (
+      this.headTitle1 ||
+      this.headTitle2 ||
+      this.headTitle3 ||
+      this.headTitleLibre
+    ) {
       // Force immediate parse of fonts to prevent layout shifts during rendering
       document.fonts.ready.then(() => {
         // Font loading completed, content should be stable
@@ -86,29 +91,37 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       const img = new Image();
       img.fetchPriority = 'high';
       img.src = this.imagePath;
-      img.decode().then(() => {
-        console.log('Header image decoded and ready for display');
-      }).catch(err => {
-        console.warn('Image decoding error:', err);
-      });
+      img
+        .decode()
+        .then(() => {
+          console.log('Header image decoded and ready for display');
+        })
+        .catch((err) => {
+          console.warn('Image decoding error:', err);
+        });
     }
   }
 
   private optimizeLcpElements(): void {
     // Find the LCP heading element
-    const lcpElements = this.elementRef.nativeElement.querySelectorAll('[data-lcp-element="true"]');
+    const lcpElements = this.elementRef.nativeElement.querySelectorAll(
+      '[data-lcp-element="true"]'
+    );
 
     if (lcpElements.length > 0) {
       // Use Intersection Observer to prioritize rendering when in viewport
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            // Mark this as highest priority when visible
-            entry.target.setAttribute('importance', 'high');
-            observer.disconnect(); // Stop observing once triggered
-          }
-        });
-      }, { threshold: 0.1 });
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // Mark this as highest priority when visible
+              entry.target.setAttribute('importance', 'high');
+              observer.disconnect(); // Stop observing once triggered
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
 
       lcpElements.forEach((element: Element) => observer.observe(element));
     }

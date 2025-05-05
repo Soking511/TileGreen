@@ -24,6 +24,7 @@ interface SlideItem {
     LinkedPersonComponent,
   ],
   templateUrl: './fifth-section.component.html',
+  styleUrls: ['./fifth-section.component.scss'],
   styles: [
     `
       @keyframes fadeIn {

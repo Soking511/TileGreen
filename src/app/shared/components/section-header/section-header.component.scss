@@ -21,14 +21,3 @@
   order: 1;
   flex-grow: 0;
 }
-
-.line {
-  position: relative;
-  left: calc(
-    178px + 24px + 12px
-  ); /* Width of text + width of rectangle + gap */
-  right: 0;
-  top: 50%;
-  height: 1px;
-  background-color: #464646;
-}

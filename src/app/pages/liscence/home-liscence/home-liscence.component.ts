@@ -16,6 +16,7 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
     FooterHomeComponent,
   ],
   templateUrl: './home-liscence.component.html',
+  styleUrls: ['./home-liscence.component.scss'],
 })
 export class HomeLicenseComponent implements OnInit, AfterViewInit {
   constructor(

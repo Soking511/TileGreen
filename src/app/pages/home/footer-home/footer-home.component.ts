@@ -13,6 +13,7 @@ import { ContactPopupService } from '../../../../services/contact-popup.service'
   selector: 'app-footer-home',
   imports: [NgClass, ReactiveFormsModule, NgIf],
   templateUrl: './footer-home.component.html',
+  styleUrls: ['./footer-home.component.scss'],
 })
 export class FooterHomeComponent implements OnInit {
   @Input() showFirstSection: boolean = false;

@@ -20,19 +20,6 @@
   }
 }
 
-/* Gradient text appearance animation */
-.fade-in-text {
-  opacity: 0;
-  animation: fadeIn 0.8s ease-out forwards;
-  will-change: opacity, transform;
-  backface-visibility: hidden;
-}
-
-/* These classes don't do anything visually - they just help force animation reset */
-.reset-a,
-.reset-b {
-  animation-name: fadeIn;
-}
 
 /* Text container styles */
 .text-container {
@@ -44,37 +31,6 @@
 /* Prevent text selection during animations */
 h1 {
   user-select: none;
-}
-
-/* Scroll indicator styling */
-.scroll-indicator {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 30px;
-  height: 50px;
-  border: 2px solid #0f8c22;
-  border-radius: 15px;
-  opacity: 0.7;
-  transition: opacity 0.3s ease;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: #0f8c22;
-    animation: scrollDown 2s infinite;
-  }
-
-  &.fade-out {
-    opacity: 0.3;
-  }
 }
 
 @keyframes scrollDown {
@@ -89,19 +45,5 @@ h1 {
   100% {
     transform: translate(-50%, 0);
     opacity: 0;
-  }
-}
-
-/* Scroll target styling */
-.scroll-target {
-  position: relative;
-  height: 5px;
-  width: 100%;
-  opacity: 0;
-
-  &.active {
-    opacity: 1;
-    height: 50px;
-    transition: all 0.5s ease-in-out;
   }
 }

@@ -1,9 +1,3 @@
-.logo-text {
-  font-family: "Neue Haas Display", sans-serif;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-}
-
 .nav-link {
   font-family: "Neue Haas Display", sans-serif;
   /* Technology */
@@ -60,21 +54,6 @@
     }
   }
 
-  /* Color variations for different sections */
-  &.products:hover {
-    color: #0f8c22; /* Green for product-related items */
-    &::after {
-      background-color: #0f8c22;
-    }
-  }
-
-  &.about:hover {
-    color: #005b9f; /* Deeper blue for about/company info */
-    &::after {
-      background-color: #005b9f;
-    }
-  }
-
   &.contact:hover {
     color: #e57200; /* Orange for call-to-action items */
     &::after {
@@ -122,42 +101,6 @@
   height: 100%;
 }
 
-/* Fix for mobile menu transparency */
-.md\:hidden.fixed.inset-0 {
-  background-color: transparent !important;
-  backdrop-filter: blur(10px);
-}
-
-/* Style for mobile menu content to make it visible while keeping background transparent */
-.mobile-menu-content {
-  background-color: rgba(0, 0, 0, 0.3);
-  border-radius: 12px;
-  padding: 20px;
-  backdrop-filter: blur(15px);
-}
-
-/* Ensure all background elements are transparent */
-div[class*="bg-transparent"],
-nav[class*="bg-transparent"],
-.bg-transparent {
-  background-color: transparent !important;
-  background-image: none !important;
-}
-
-.bg-transparent {
-  background-color: transparent !important;
-}
-
-/* New approach to transparency issues */
-.header-content {
-  background-color: transparent !important;
-}
-
-/* Remove backgrounds completely instead of setting them transparent */
-.remove-bg {
-  background: none !important;
-}
-
 /* Mobile menu item hover effects */
 .mobile-menu-item {
   transition: background-color 0.3s ease, padding-left 0.2s ease;
@@ -167,31 +110,5 @@ nav[class*="bg-transparent"],
     background-color: rgba(255, 255, 255, 0.1);
     padding-left: 8px;
     border-left: 3px solid #0460d9;
-  }
-}
-
-.head-title {
-  color: #fff;
-
-  font-feature-settings: "liga" off, "clig" off;
-  font-family: "Neue Haas Grotesk Display Pro";
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-.technology-word {
-  color: #fff;
-  font-family: "Libre Baskerville", sans-serif;
-  font-style: italic;
-  font-weight: 400;
-  line-height: normal;
-}
-
-.no-shadow {
-  box-shadow: none !important;
-  &:hover {
-    box-shadow: none !important;
-    transform: none !important;
   }
 }

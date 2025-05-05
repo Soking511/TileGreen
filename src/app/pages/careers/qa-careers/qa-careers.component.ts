@@ -13,6 +13,7 @@ interface FaqItem {
   selector: 'app-qa-careers',
   imports: [NgFor, NgIf, NgClass],
   templateUrl: './qa-careers.component.html',
+  styleUrls: ['./qa-careers.component.scss'],
   standalone: true,
 })
 export class QaCareersComponent implements OnInit, AfterViewInit {

@@ -6,6 +6,7 @@ import { ProductExpansionSectionComponent } from "../../product-expansion-sectio
   selector: 'app-fourth-section',
   imports: [ButtonComponent, ProductExpansionSectionComponent],
   templateUrl: './fourth-section.component.html',
+  styleUrls: ['./fourth-section.component.scss'],
 })
 export class FourthSectionComponent {
 

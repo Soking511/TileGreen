@@ -7,6 +7,7 @@ import { FeatureShowcaseSectionComponent } from "../../feature-showcase-section/
   selector: 'app-first-section',
   imports: [SectionHeaderComponent, ButtonComponent, FeatureShowcaseSectionComponent],
   templateUrl: './first-section.component.html',
+  styleUrls: ['./first-section.component.scss'],
 })
 export class FirstSectionComponent {
 

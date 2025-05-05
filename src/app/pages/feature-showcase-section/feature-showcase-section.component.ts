@@ -4,5 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-feature-showcase-section',
   imports: [],
   templateUrl: './feature-showcase-section.component.html',
+  styleUrls: ['./feature-showcase-section.component.scss'],
 })
 export class FeatureShowcaseSectionComponent {}
