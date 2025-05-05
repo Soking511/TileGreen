@@ -60,8 +60,7 @@ export class CaseStudiesSliderComponent implements OnInit, OnDestroy {
     {
       company: 'Redcon',
       title: 'Sustainable Branded Walkway',
-      description:
-        'TileGreen and SODIC completed a sustainable paving project with 675 m² of eco-friendly tiles made from recycled plastic, saving 2,893 kg of plastic and 12 million liters of water.',
+      description: 'TileGreen and Redcon built an eco-friendly walkway with colorful tiles. The pathway features grass-filled joints for drainage, bordered by gravel and greenery, highlighting Redcon’s sustainable design.',
       imagePath:
         'https://api-tilegreen.pulslytics.agency/media/images/slider/4.png/',
       logo: 'https://api-tilegreen.pulslytics.agency/media/images/slider/logos/Mask group.png/',
