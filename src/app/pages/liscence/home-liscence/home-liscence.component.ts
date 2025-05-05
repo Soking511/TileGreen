@@ -58,7 +58,7 @@ export class HomeLicenseComponent implements OnInit, AfterViewInit {
         '@type': 'Offer',
         'category': 'Green Technology Licensing',
         'availability': 'https://schema.org/InStock',
-        'businessFunction': 'http://purl.org/goodrelations/v1#LeaseOut'
+        'businessFunction': 'https://purl.org/goodrelations/v1#LeaseOut'
       },
       'potentialAction': {
         '@type': 'ContactAction',
