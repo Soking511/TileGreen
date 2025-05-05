@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SeoService {
   constructor(private title: Title, private meta: Meta) {}
@@ -16,7 +16,7 @@ export class SeoService {
     keywords = '',
     ogType = 'website',
     ogUrl = '',
-    ogImage = 'assets/images/cover.png'
+    ogImage = 'https://api-tilegreen.pulslytics.agency/media/assets/images/cover.png',
   }: {
     title?: string;
     description?: string;
@@ -37,7 +37,10 @@ export class SeoService {
     if (description) {
       this.meta.updateTag({ name: 'description', content: description });
       this.meta.updateTag({ property: 'og:description', content: description });
-      this.meta.updateTag({ property: 'twitter:description', content: description });
+      this.meta.updateTag({
+        property: 'twitter:description',
+        content: description,
+      });
     }
 
     // Update keywords
@@ -47,12 +50,12 @@ export class SeoService {
 
     // Update OpenGraph/Twitter tags
     this.meta.updateTag({ property: 'og:type', content: ogType });
-    
+
     if (ogUrl) {
       this.meta.updateTag({ property: 'og:url', content: ogUrl });
       this.meta.updateTag({ property: 'twitter:url', content: ogUrl });
     }
-    
+
     if (ogImage) {
       this.meta.updateTag({ property: 'og:image', content: ogImage });
       this.meta.updateTag({ property: 'twitter:image', content: ogImage });

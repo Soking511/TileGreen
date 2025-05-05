@@ -19,24 +19,35 @@
   <meta property="og:url" content="https://tilegreen.org/">
   <meta property="og:title" content="TileGreen - Transforming Plastic Waste into Sustainable Building Materials">
   <meta property="og:description" content="TileGreen transforms plastic waste into eco-friendly circular building materials. Our innovative technology creates sustainable solutions for construction industry.">
-  <meta property="og:image" content="https://tilegreen.org/assets/images/cover.png">
+  <meta property="og:image" content="https://api-tilegreen.pulslytics.agency/media/images/cover.png">
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://tilegreen.org/">
   <meta property="twitter:title" content="TileGreen - Transforming Plastic Waste into Sustainable Building Materials">
   <meta property="twitter:description" content="TileGreen transforms plastic waste into eco-friendly building materials through innovative recycling technology. Join us in creating a sustainable future.">
-  <meta property="twitter:image" content="https://tilegreen.org/assets/images/cover.png">
 
   <!-- Canonical URL -->
   <link rel="canonical" href="https://tilegreen.org/">
 
-  <!-- Performance optimizations -->
+  <!-- Critical Performance optimizations for LCP -->
   <link rel="preload" as="image" href="assets/images/cover.png" fetchpriority="high">
+
+  <!-- Preload local fonts to improve LCP -->
+  <link rel="preload" href="assets/fonts/Inter_18pt-Bold.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/fonts/Inter_18pt-Medium.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/fonts/Inter_18pt-Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/fonts/Inter_18pt-SemiBold.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/fonts/NeueHaasDisplayBold.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/fonts/LibreBaskerville-Italic.ttf" as="font" type="font/ttf" crossorigin>
+
+  <!-- DNS prefetch and preconnect -->
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
   <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -45,16 +56,68 @@
   <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
 
   <!-- Font loading optimizations -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
   <link rel="preload" href="https://fonts.googleapis.com/icon?family=Material+Icons" as="style">
- 
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Symbols+Outlined"
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- Inline critical CSS for LCP elements -->
+  <style>
+    /* Critical rendering CSS */
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('assets/fonts/Inter_18pt-Regular.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url('assets/fonts/Inter_18pt-Medium.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url('assets/fonts/Inter_18pt-SemiBold.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url('assets/fonts/Inter_18pt-Bold.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'Libre Baskerville';
+      font-style: italic;
+      font-weight: 400;
+      font-display: swap;
+      src: url('assets/fonts/LibreBaskerville-Italic.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'Neue Haas Display';
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url('assets/fonts/NeueHaasDisplayBold.ttf') format('truetype');
+    }
+
+    /* LCP text styling for immediate rendering */
+    [data-lcp-element="true"] {
+      font-family: 'Neue Haas Display', 'Inter', sans-serif;
+      text-rendering: optimizeSpeed;
+      content-visibility: auto;
+    }
+  </style>
 
   <!-- Structured Data for SEO -->
   <script type="application/ld+json">
@@ -63,7 +126,7 @@
       "@type": "Organization",
       "name": "TileGreen",
       "url": "https://tilegreen.org",
-      "logo": "https://tilegreen.org/assets/images/logos/1.png",
+      "logo": "https://api-tilegreen.pulslytics.agency/media/images/logos/1.png",
       "description": "TileGreen transforms plastic waste into eco-friendly circular building materials through innovative technology.",
       "sameAs": [
         "https://www.facebook.com/tilegreen",
