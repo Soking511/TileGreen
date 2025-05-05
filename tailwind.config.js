@@ -4,6 +4,11 @@ module.exports = {
     "./src/**/*.{html,ts}",
   ],
   theme: {
+    screens: {
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+    },
     extend: {
       fontFamily: {
         haas: ['"Neue Haas Grotesk Display Pro"', 'sans-serif'],
@@ -28,9 +33,6 @@ module.exports = {
         fadeOut: 'fadeOut 1s ease-in-out forwards',
         loadingBar: 'loadingProgress 0.8s ease-in-out',
       },
-      screens: {
-        'xs': '480px',
-      }
     },
   },
   plugins: [],
