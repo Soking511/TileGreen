@@ -10,9 +10,12 @@ import {
 } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { CommonModule } from '@angular/common';
-import { ViewportScroller } from '@angular/common';
 import { gsap } from 'gsap';
+// Import ScrollTrigger directly from gsap/all
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Register ScrollTrigger plugin globally
+gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-description-scroll',
@@ -59,12 +62,8 @@ export class DescriptionScrollComponent implements AfterViewInit, OnDestroy {
 
   constructor(
     private el: ElementRef,
-    private ngZone: NgZone,
-    private viewportScroller: ViewportScroller
+    private ngZone: NgZone
   ) {
-    // Register ScrollTrigger plugin
-    gsap.registerPlugin(ScrollTrigger);
-
     // Add non-passive wheel and touch event listeners in the constructor
     this.addNonPassiveEventListeners();
   }
@@ -85,11 +84,14 @@ export class DescriptionScrollComponent implements AfterViewInit, OnDestroy {
     // Clean up all ScrollTrigger instances when component is destroyed
     ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     this.animations.forEach((timeline) => timeline.kill());
+
+    // Clean up event listeners
+    this.removeEventListeners();
   }
 
   private initAnimations() {
     // Get all text elements after view init
-    this.textElements.forEach((element, index) => {
+    this.textElements.forEach((element) => {
       if (!element?.nativeElement) return;
 
       const textContent = element.nativeElement;
@@ -183,6 +185,37 @@ export class DescriptionScrollComponent implements AfterViewInit, OnDestroy {
     window.addEventListener('touchend', this.onWindowTouchEndEvent.bind(this), {
       passive: true,
     });
+  }
+
+  // Clean up event listeners on destroy
+  private removeEventListeners(): void {
+    this.el.nativeElement.removeEventListener(
+      'wheel',
+      this.onWheelEvent.bind(this)
+    );
+    this.el.nativeElement.removeEventListener(
+      'touchmove',
+      this.onTouchMoveEvent.bind(this)
+    );
+    this.el.nativeElement.removeEventListener(
+      'touchstart',
+      this.onTouchStartEvent.bind(this)
+    );
+    this.el.nativeElement.removeEventListener(
+      'touchend',
+      this.onTouchEndEvent.bind(this)
+    );
+
+    window.removeEventListener('wheel', this.onWindowWheelEvent.bind(this));
+    window.removeEventListener(
+      'touchmove',
+      this.onWindowTouchMoveEvent.bind(this)
+    );
+    window.removeEventListener(
+      'touchstart',
+      this.onWindowTouchStartEvent.bind(this)
+    );
+    window.removeEventListener('touchend', this.onWindowTouchEndEvent.bind(this));
   }
 
   // Component-level wheel event handler
@@ -357,16 +390,5 @@ export class DescriptionScrollComponent implements AfterViewInit, OnDestroy {
   // Reset animations by toggling animation flag
   private resetAnimations(): void {
     this.animationResetFlag = !this.animationResetFlag;
-  }
-
-  // Simplified the logic to make it more concise and follow the KISS principle
-  private checkAndUpdateScrollPosition(): void {
-    if (this.isAtEnd && this.scrollToNextSection) {
-      this.scrollToNextSection = false;
-      const targetElement =
-        this.latestElement?.nativeElement ||
-        this.el.nativeElement.nextElementSibling;
-      targetElement?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
   }
 }

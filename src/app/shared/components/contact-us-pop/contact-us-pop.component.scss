@@ -74,6 +74,7 @@ form {
   max-width: 100%;
 }
 
-form input::placeholder, form textarea::placeholder {
-  color: #A7A7A7;
+form input::placeholder,
+form textarea::placeholder {
+  color: #a7a7a7;
 }

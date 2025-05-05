@@ -6,7 +6,6 @@ import {
   ChangeDetectorRef,
   Inject,
   PLATFORM_ID,
-  Renderer2,
 } from '@angular/core';
 import {
   RouterOutlet,
@@ -43,8 +42,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private router: Router,
     private cdr: ChangeDetectorRef,
     private seoService: SeoService,
-    @Inject(PLATFORM_ID) private platformId: Object,
-    private renderer: Renderer2
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
@@ -82,14 +80,6 @@ export class AppComponent implements OnInit, OnDestroy {
         'green building materials, plastic recycling, sustainable construction, eco tiles, circular economy',
       ogUrl: 'https://tilegreen.org',
     });
-
-    if (this.isBrowser) {
-      // Optimize LCP loading
-      this.optimizeLcpLoading();
-
-      // Report LCP performance metric after load
-      this.measureLcpPerformance();
-    }
   }
 
   ngOnDestroy() {
@@ -105,63 +95,5 @@ export class AppComponent implements OnInit, OnDestroy {
 
   closeContactPopup() {
     this.contactPopupService.closePopup();
-  }
-
-  private optimizeLcpLoading(): void {
-    // Preload critical assets
-    this.preloadCriticalFonts();
-
-    // Prioritize LCP element rendering
-    setTimeout(() => {
-      const lcpElements = document.querySelectorAll(
-        '[data-lcp-element="true"]'
-      );
-      if (lcpElements.length > 0) {
-        lcpElements.forEach((element) => {
-          // Add priority to LCP element
-          this.renderer.setAttribute(element, 'importance', 'high');
-        });
-      }
-    }, 0);
-  }
-
-  private preloadCriticalFonts(): void {
-    const criticalFonts = [
-      'assets/fonts/NeueHaasDisplayBold.ttf',
-      'assets/fonts/Inter_18pt-Regular.ttf',
-      'assets/fonts/LibreBaskerville-Italic.ttf',
-    ];
-
-    criticalFonts.forEach((fontUrl) => {
-      // Create font preload link for critical fonts
-      const link = this.renderer.createElement('link');
-      this.renderer.setAttribute(link, 'rel', 'preload');
-      this.renderer.setAttribute(link, 'href', fontUrl);
-      this.renderer.setAttribute(link, 'as', 'font');
-      this.renderer.setAttribute(link, 'type', 'font/ttf');
-      this.renderer.setAttribute(link, 'crossorigin', 'anonymous');
-      this.renderer.appendChild(document.head, link);
-    });
-  }
-
-  private measureLcpPerformance(): void {
-    // Only measure in production or if specifically enabled
-    if (window.location.hostname !== 'localhost') {
-      // Use Performance Observer to monitor LCP
-      if ('PerformanceObserver' in window) {
-        const lcpObserver = new PerformanceObserver((entryList) => {
-          const entries = entryList.getEntries();
-          const lastEntry = entries[entries.length - 1];
-
-          // Log LCP timing (could send to analytics in production)
-          console.log('LCP:', lastEntry.startTime, 'ms');
-        });
-
-        lcpObserver.observe({
-          type: 'largest-contentful-paint',
-          buffered: true,
-        });
-      }
-    }
   }
 }
