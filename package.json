@@ -23,8 +23,7 @@
     "@types/fullpage.js": "^2.9.6",
     "angular-fullpage": "^0.0.5",
     "fullpage.js": "^4.0.35",
-    "gsap": "^3.13.0",
-    "ngx-free-fullpage": "^1.0.1-beta.1",
+    "gsap": "^3.13.0", 
     "rxjs": "~7.8.2",
     "tslib": "^2.8.1",
     "zone.js": "~0.15.0"

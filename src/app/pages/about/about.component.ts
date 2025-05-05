@@ -43,18 +43,18 @@ interface RecognitionLogo {
 })
 export class AboutComponent implements OnInit, OnDestroy {
   brandLogos = [
-    { url: 'assets/images/logos/1.png', alt: 'Brand 1' },
-    { url: 'assets/images/logos/2.png', alt: 'Brand 2' },
-    { url: 'assets/images/logos/3.png', alt: 'Brand 3' },
-    { url: 'assets/images/logos/4.png', alt: 'Brand 4' },
-    { url: 'assets/images/logos/5.png', alt: 'Brand 5' },
-    { url: 'assets/images/logos/6.png', alt: 'Brand 6' },
+    { url: 'https://api-tilegreen.pulslytics.agency/media/images/logos/1.png', alt: 'Brand 1' },
+    { url: 'https://api-tilegreen.pulslytics.agency/media/images/logos/2.png', alt: 'Brand 2' },
+    { url: 'https://api-tilegreen.pulslytics.agency/media/images/logos/3.png', alt: 'Brand 3' },
+    { url: 'https://api-tilegreen.pulslytics.agency/media/images/logos/4.png', alt: 'Brand 4' },
+    { url: 'https://api-tilegreen.pulslytics.agency/media/images/logos/5.png', alt: 'Brand 5' },
+    { url: 'https://api-tilegreen.pulslytics.agency/media/images/logos/6.png', alt: 'Brand 6' },
   ];
 
   slides: SlideItem[] = [
     {
       id: 1,
-      img: 'assets/images/slider/2.png',
+      img: 'https://api-tilegreen.pulslytics.agency/media/images/slider/2.png',
       alt: 'Featured eco project',
       title: 'Plastic Waste Recycling Center',
       description:
@@ -64,7 +64,7 @@ export class AboutComponent implements OnInit, OnDestroy {
     },
     {
       id: 2,
-      img: 'assets/images/slider/3.png',
+      img: 'https://api-tilegreen.pulslytics.agency/media/images/slider/3.png',
       alt: 'Eco project 3',
       title: 'Urban Green Buildings',
       description:
@@ -74,7 +74,7 @@ export class AboutComponent implements OnInit, OnDestroy {
     },
     {
       id: 3,
-      img: 'assets/images/slider/1.png',
+      img: 'https://api-tilegreen.pulslytics.agency/media/images/slider/1.png',
       alt: 'Eco project 4',
       title: 'Community Waste Management',
       description:
@@ -84,7 +84,7 @@ export class AboutComponent implements OnInit, OnDestroy {
     },
     // {
     //   id: 4,
-    //   img: 'assets/images/slider/2.png',
+    //   img: 'https://api-tilegreen.pulslytics.agency/media/images/slider/2.png',
     //   alt: 'Eco project 5',
     //   title: 'Coastal Cleanup Initiative',
     //   description:
@@ -97,35 +97,35 @@ export class AboutComponent implements OnInit, OnDestroy {
   recognitionLogos: RecognitionLogo[] = [
     {
       name: 'Sustainable Business Award',
-      image: 'assets/images/about/logo-award1.png',
+      image: 'https://api-tilegreen.pulslytics.agency/media/images/about/logo-award1.png',
     },
     {
       name: 'Green Tech Innovation',
-      image: 'assets/images/about/logo-award2.png',
+      image: 'https://api-tilegreen.pulslytics.agency/media/images/about/logo-award2.png',
     },
     {
       name: 'Eco Friendly Certification',
-      image: 'assets/images/about/logo-award3.png',
+      image: 'https://api-tilegreen.pulslytics.agency/media/images/about/logo-award3.png',
     },
     {
       name: 'Environmental Excellence',
-      image: 'assets/images/about/logo-award4.png',
+      image: 'https://api-tilegreen.pulslytics.agency/media/images/about/logo-award4.png',
     },
     {
       name: 'Circular Economy Leader',
-      image: 'assets/images/about/logo-award5.png',
+      image: 'https://api-tilegreen.pulslytics.agency/media/images/about/logo-award5.png',
     },
     {
       name: 'Recycling Innovation Award',
-      image: 'assets/images/about/logo-award6.png',
+      image: 'https://api-tilegreen.pulslytics.agency/media/images/about/logo-award6.png',
     },
     {
       name: 'Green Building Partner',
-      image: 'assets/images/about/logo-award7.png',
+      image: 'https://api-tilegreen.pulslytics.agency/media/images/about/logo-award7.png',
     },
     {
       name: 'Sustainability Champion',
-      image: 'assets/images/about/logo-award8.png',
+      image: 'https://api-tilegreen.pulslytics.agency/media/images/about/logo-award8.png',
     },
   ];
 
@@ -152,7 +152,7 @@ export class AboutComponent implements OnInit, OnDestroy {
       description: 'Learn about TileGreen\'s mission to transform plastic waste into sustainable building materials. Our team is dedicated to environmental sustainability and innovative technology.',
       keywords: 'about TileGreen, green building materials, sustainability mission, eco-friendly innovation, plastic recycling technology',
       ogUrl: 'https://tilegreen.org/about',
-      ogImage: 'assets/images/about/company-image.png'
+      ogImage: 'https://api-tilegreen.pulslytics.agency/media/images/about/company-image.png'
     });
 
     setTimeout(() => this.startSlideshow(), 0);
@@ -203,7 +203,7 @@ export class AboutComponent implements OnInit, OnDestroy {
   }
 
   handleImageError(event: any): void {
-    event.target.src = 'assets/images/placeholder.jpg';
+    event.target.src = 'https://api-tilegreen.pulslytics.agency/media/images/placeholder.jpg';
   }
 
   trackBySlide(index: number, item: SlideItem) {

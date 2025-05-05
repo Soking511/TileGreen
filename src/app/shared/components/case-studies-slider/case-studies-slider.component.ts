@@ -5,15 +5,11 @@ import {
   ChangeDetectorRef,
   ElementRef,
   HostListener,
-  inject,
-  Renderer2,
-  AfterViewInit,
   ViewChild,
   PLATFORM_ID,
   Inject,
 } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { NgxFullpageModule } from 'ngx-free-fullpage';
 
 interface CaseStudy {
   company: string;
@@ -41,24 +37,24 @@ export class CaseStudiesSliderComponent
       title: 'Sustainable Outdoor Flooring',
       description:
         'TileGreen supplied interlocking tiles for Henkel, showcasing "Henkel Green". This enhanced the facility\'s exterior and emphasized sustainability.',
-      imagePath: 'assets/images/slider/1.png',
-      logo: 'assets/images/slider/logos/henkel-logo-standalone-svg.png',
+      imagePath: 'https://api-tilegreen.pulslytics.agency/media/images/slider/1.png',
+      logo: 'https://api-tilegreen.pulslytics.agency/media/images/slider/logos/henkel-logo-standalone-svg.png',
     },
     {
       company: 'Sodic',
       title: 'Branded Walkway Installation',
       description:
         'TileGreen installed interlocking tiles for SODIC, integrating the logo into the landscape. This pavement enhances identity, ensuring durability and aesthetic appeal in a desert setting.',
-      imagePath: 'assets/images/slider/2.png',
-      logo: 'assets/images/slider/logos/SODIC_Logo_Teal_RGB.png',
+      imagePath: 'https://api-tilegreen.pulslytics.agency/media/images/slider/2.png',
+      logo: 'https://api-tilegreen.pulslytics.agency/media/images/slider/logos/SODIC_Logo_Teal_RGB.png',
     },
     {
       company: 'Redcon',
       title: 'Sustainable Branded Walkway',
       description:
         'TileGreen and SODIC completed a sustainable paving project with 675 m² of eco-friendly tiles made from recycled plastic, saving 2,893 kg of plastic and 12 million liters of water.',
-      imagePath: 'assets/images/slider/4.png',
-      logo: 'assets/images/slider/logos/Mask group.png',
+      imagePath: 'https://api-tilegreen.pulslytics.agency/media/images/slider/4.png',
+      logo: 'https://api-tilegreen.pulslytics.agency/media/images/slider/logos/Mask group.png',
     },
   ];
 

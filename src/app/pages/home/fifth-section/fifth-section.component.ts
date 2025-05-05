@@ -46,7 +46,7 @@ export class FifthSectionComponent implements OnInit, OnDestroy {
   slides: SlideItem[] = [
     {
       id: 1,
-      img: 'assets/images/slider/2.png',
+      img: 'https://api-tilegreen.pulslytics.agency/media/images/slider/2.png',
       alt: 'Featured eco project',
       title: 'Plastic Waste Recycling Center',
       description:
@@ -56,7 +56,7 @@ export class FifthSectionComponent implements OnInit, OnDestroy {
     },
     {
       id: 2,
-      img: 'assets/images/slider/3.png',
+      img: 'https://api-tilegreen.pulslytics.agency/media/images/slider/3.png',
       alt: 'Eco project 3',
       title: 'Urban Green Buildings',
       description:
@@ -66,7 +66,7 @@ export class FifthSectionComponent implements OnInit, OnDestroy {
     },
     {
       id: 3,
-      img: 'assets/images/slider/1.png',
+      img: 'https://api-tilegreen.pulslytics.agency/media/images/slider/1.png',
       alt: 'Eco project 4',
       title: 'Community Waste Management',
       description:
@@ -140,7 +140,7 @@ export class FifthSectionComponent implements OnInit, OnDestroy {
   }
 
   handleImageError(event: any): void {
-    event.target.src = 'assets/images/placeholder.jpg';
+    event.target.src = 'https://api-tilegreen.pulslytics.agency/media/images/placeholder.jpg';
   }
 
   trackBySlide(index: number, item: SlideItem) {

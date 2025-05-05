@@ -15,11 +15,7 @@ export class LogoCarouselComponent implements OnInit {
 
   ngOnInit(): void {
     // Calculate optimal animation duration based on number of logos
-    if (this.logos.length > 0) {
-      // Adjust speed based on number of logos, with a minimum duration
-      const calculatedDuration = Math.max(20, this.logos.length * 4);
-      this.animationDuration = calculatedDuration;
-    }
+
 
     if (this.animationDuration <= 0) {
       this.animationDuration = 30;

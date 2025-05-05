@@ -31,7 +31,7 @@ export class HomeLicenseComponent implements OnInit, AfterViewInit {
       description: 'Explore licensing opportunities with TileGreen to transform plastic waste into sustainable building materials in your region. Join our global network of eco-friendly construction partners.',
       keywords: 'TileGreen licensing, sustainable building materials license, eco-friendly construction partnership, green technology licensing, plastic recycling business opportunity',
       ogUrl: 'https://tilegreen.org/licenses',
-      ogImage: 'assets/images/license-section/license-hero.png'
+      ogImage: 'https://api-tilegreen.pulslytics.agency/media/images/license-section/license-hero.png'
     });
   }
 
