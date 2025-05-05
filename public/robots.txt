@@ -6,6 +6,6 @@ Allow: /
 Sitemap: https://tilegreen.org/sitemap.xml
 
 # Prevent crawling of unnecessary files and directories
-Disallow: /assets/fonts/
+Disallow: /assets/fonts/ 
 Disallow: /*.js$
 Disallow: /*.css$
