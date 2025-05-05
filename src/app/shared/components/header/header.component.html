@@ -115,7 +115,7 @@
                                 <a [routerLink]="item.link" routerLinkActive="mobile-active-link"
                                     [routerLinkActiveOptions]="{exact: item.link === '/home'}"
                                     (click)="toggleMobileMenu()"
-                                    class="mobile-menu-item flex items-center w-full py-4 px-4 rounded-lg touch-manipulation text-white font-medium tracking-wide text-lg transition-all focus:outline-none focus:ring-2 focus:ring-white/50">
+                                    class="mobile-menu-item flex items-center w-full py-4 px-4 rounded-lg touch-manipulation text-white text-tile-regular tracking-wide text-lg transition-all focus:outline-none focus:ring-2 focus:ring-white/50">
                                     {{item.name}}
                                 </a>
                             </li>
@@ -143,13 +143,11 @@
                         <li role="none">
                             <a [routerLink]="item.link" routerLinkActive="active-link"
                                 [routerLinkActiveOptions]="{exact: item.link === '/home'}"
-                                class="nav-link hover:text-gray-300 py-1.5 px-1 tracking-wide transition-all duration-200 relative group text-tile-regular focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md"
+                                class="lg:text-xl nav-link hover:text-gray-300 py-1.5 px-1 tracking-wide transition-all duration-200 relative group text-tile-regular focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md "
                                 [ngClass]="imagePath && !isScrolled ? 'text-white focus:ring-white' : 'text-black focus:ring-blue-500'"
                                 role="menuitem">
                                 {{item.name}}
-                                <span
-                                    class="absolute bottom-0 left-0 w-0 h-0.5 bg-current group-hover:w-full transition-all duration-300"
-                                    [ngClass]="{'w-full': isActive(item.link)}"></span>
+
                             </a>
                         </li>
                         }
@@ -171,12 +169,13 @@
 
     @if (imagePath) {
     <!-- Bottom Section with divider and heading - Fully centered -->
-    <div class="relative w-full z-10 flex flex-col items-center justify-center h-full pt-62">
+    <div class="relative w-full z-10 flex flex-col items-center justify-end h-full ">
         <!-- Main Heading - Centered both horizontally and vertically -->
-        <h1 class="text-white text-tile-md text-center max-w-6xl" id="main-heading">
-            <span class="text-white text-4xl md:text-8xl text-tile-regular font-display">{{headTitle1}}
+        <h1 class="text-white text-tile-md text-center max-w-7xl" id="main-heading">
+            <span class="text-4xl md:text-8xl text-tile-regular font-display">{{headTitle1}}
                 {{headTitle2}}</span>
-            <span class="text-white text-4xl md:text-8xl text-tile-regular font-display"> {{headTitle3}}</span>
+                <br>
+            <span class="text-4xl md:text-8xl text-tile-regular font-display"> {{headTitle3}}</span>
         </h1>
 
         <!-- Bottom content - Also centered -->
