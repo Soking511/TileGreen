@@ -11,13 +11,13 @@
     <!-- Content Container -->
     <div class="fixed w-screen z-40 flex flex-col">
         <!-- Nav Section -->
-        <nav class="flex flex-wrap items-center justify-between font-neue-haas py-3 sm:py-4 md:py-5 w-full px-4 sm:px-6 md:px-26"
+        <nav class="flex flex-wrap items-center justify-between font-neue-haas py-2 xs:py-3 sm:py-4 md:py-5 w-full px-3 xs:px-4 sm:px-6 md:px-26"
             [class.bg-white]="isScrolled" [class.text-black]="isScrolled"
             [ngClass]="imagePath && !isScrolled ? 'text-white' : 'text-black'" aria-label="Main navigation">
-            <div class="flex items-center gap-2 z-20">
+            <div class="flex items-center gap-1 xs:gap-2 z-20">
                 <a [routerLink]="'/home'" aria-label="TileGreen Home Page"
                     class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-md">
-                    <svg width="52" class="h-8 sm:h-8 md:h-10" height="48" viewBox="0 0 52 48" fill="none"
+                    <svg width="52" class="h-6 xs:h-7 sm:h-8 md:h-10" height="48" viewBox="0 0 52 48" fill="none"
                         class="cursor-pointer" xmlns="https://www.w3.org/2000/svg" aria-hidden="true">
                         <title>TileGreen Logo</title>
                         <g clip-path="url(#clip0_118_1154)">
@@ -40,9 +40,9 @@
                 </a>
             </div>
 
-            <!-- Improved Mobile Menu Button with responsive colors and accessibility -->
+            <!-- Mobile Menu Button -->
             <button
-                class="md:hidden flex items-center justify-center z-20 p-2 w-10 h-10 rounded-full transition-all touch-manipulation focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                class="md:hidden flex items-center justify-center z-20 p-1.5 xs:p-2 w-8 h-8 xs:w-10 xs:h-10 rounded-full transition-all touch-manipulation focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                 [ngClass]="isScrolled ? 'bg-gray-100 hover:bg-gray-200' : 'bg-blue-600/20 hover:bg-blue-600/30 backdrop-blur-sm'"
                 (click)="toggleMobileMenu()" aria-label="Toggle navigation menu" [attr.aria-expanded]="isMobileMenuOpen"
                 aria-controls="mobile-menu">
@@ -52,7 +52,7 @@
                 </svg>
             </button>
 
-            <!-- Enhanced Mobile menu with improved keyboard accessibility -->
+            <!-- Mobile Menu -->
             <div id="mobile-menu"
                 class="md:hidden fixed inset-0 z-50 transform transition-all duration-300 ease-in-out overflow-hidden"
                 [ngClass]="isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'"
@@ -133,17 +133,17 @@
                 </div>
             </div>
 
-            <!-- Desktop Navigation with improved keyboard accessibility -->
+            <!-- Desktop Navigation -->
             <div class="hidden md:flex md:items-center md:justify-between md:flex-grow">
                 <!-- Navigation Links - Centered -->
                 <div class="flex-grow flex justify-center">
-                    <ul class="flex flex-wrap justify-center space-x-6 lg:space-x-8 xl:space-x-12 text-sm lg:text-base"
+                    <ul class="flex flex-wrap justify-center space-x-4 lg:space-x-6 xl:space-x-8 text-sm lg:text-base"
                         role="menubar">
                         @for (item of navbarItems; track item) {
                         <li role="none">
                             <a [routerLink]="item.link" routerLinkActive="active-link"
                                 [routerLinkActiveOptions]="{exact: item.link === '/home'}"
-                                class="nav-link hover:text-gray-300 py-2 px-1 tracking-wide transition-all duration-200 relative group text-tile-regular focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md"
+                                class="nav-link hover:text-gray-300 py-1.5 px-1 tracking-wide transition-all duration-200 relative group text-tile-regular focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md"
                                 [ngClass]="imagePath && !isScrolled ? 'text-white focus:ring-white' : 'text-black focus:ring-blue-500'"
                                 role="menuitem">
                                 {{item.name}}
@@ -156,10 +156,10 @@
                     </ul>
                 </div>
 
-                <!-- Contact Us Button - Updated with accessibility and keyboard navigation  -->
+                <!-- Contact Us Button -->
                 <div class="ml-4">
                     <button (click)="openContactPopup($event)"
-                        class="cursor-pointer hover:opacity-100 opacity-80 contact-button relative border rounded-full px-5 lg:px-7 py-1.5 lg:py-2.5 whitespace-nowrap text-sm lg:text-base text-tile-regular tracking-wide focus:outline-none focus:ring-2"
+                        class="cursor-pointer hover:opacity-100 opacity-80 contact-button relative border rounded-full px-4 lg:px-5 py-1 lg:py-2 whitespace-nowrap text-sm lg:text-base text-tile-regular tracking-wide focus:outline-none focus:ring-2"
                         [ngClass]="imagePath && !isScrolled ? 'border-white text-white focus:ring-white' : 'border-black text-black focus:ring-blue-500'"
                         aria-label="Open contact form">
                         <span class="relative z-10">Contact Us</span>
@@ -174,12 +174,10 @@
     <div class="relative w-full z-10 flex flex-col items-center justify-center h-full pt-62">
         <!-- Main Heading - Centered both horizontally and vertically -->
         <div class="px-4 sm:px-6 md:px-8 w-full flex items-center justify-center">
-            <h1 class="text-3xl sm:text-4xl md:text-6xl text-white text-tile-md text-center" id="main-heading">
-                <div class="max-w-6xl mx-auto">
+            <h1 class="text-3xl sm:text-4xl md:text-6xl text-white text-tile-md text-center max-w-6xl" id="main-heading">
                     <span class="text-white text-4xl md:text-8xl text-tile-regular font-display">{{headTitle1}}
                         {{headTitle2}}</span>
-                    <span class="text-white text-4xl md:text-8xl text-tile-regular font-display">{{headTitle3}}</span>
-                </div>
+                    <span class="text-white text-4xl md:text-8xl text-tile-regular font-display"> {{headTitle3}}</span>
             </h1>
         </div>
 

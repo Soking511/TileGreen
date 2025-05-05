@@ -1,16 +1,11 @@
 .nav-link {
   font-family: "Neue Haas Display", sans-serif;
-  /* Technology */
-  width: 99px;
-  height: 24px;
-
   font-style: normal;
   font-weight: 500;
-  font-size: 20px;
-  line-height: 24px;
-  /* identical to box height */
-
+  line-height: 1.2;
   position: relative;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 
   &::after {
     content: "";
@@ -25,15 +20,14 @@
 
   &:hover::after {
     width: 100%;
-    background-color: #0460d9; /* Match the text color */
+    background-color: #0460d9;
     opacity: 0.7;
   }
 
-  /* Enhanced hover effects with color logic */
   transition: color 0.3s ease, transform 0.2s ease;
 
   &:hover {
-    color: #0460d9; /* Primary blue for main navigation */
+    color: #0460d9;
     transform: translateY(-1px);
   }
 
@@ -42,7 +36,6 @@
     font-weight: 600;
   }
 
-  /* Active link styles */
   &.active-link {
     color: #0460d9;
     font-weight: 600;
@@ -55,13 +48,12 @@
   }
 
   &.contact:hover {
-    color: #e57200; /* Orange for call-to-action items */
+    color: #e57200;
     &::after {
       background-color: #e57200;
     }
   }
 
-  /* Inside auto layout */
   flex: none;
   order: 1;
   flex-grow: 0;
@@ -70,27 +62,24 @@
 .contact-button {
   font-weight: 500;
   transition: all 0.3s ease;
-
   position: relative;
   overflow: hidden;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(4, 96, 217, 0.2);
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 }
 
 :host {
   display: block;
   width: 100%;
-  // position: relative;
-  top: 0;
-  left: 0;
-  right: 0;
   z-index: 100;
   background-color: transparent !important;
 }
@@ -101,14 +90,21 @@
   height: 100%;
 }
 
-/* Mobile menu item hover effects */
+/* Mobile menu specific styles */
 .mobile-menu-item {
-  transition: background-color 0.3s ease, padding-left 0.2s ease;
-  border-left: 0px solid transparent;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+  background-color: transparent;
 
-  &:hover {
+  &:hover, &:focus {
     background-color: rgba(255, 255, 255, 0.1);
-    padding-left: 8px;
-    border-left: 3px solid #0460d9;
+    border-left-color: #0460d9;
+    padding-left: 1.25rem;
+  }
+
+  &.mobile-active-link {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-left-color: #0460d9;
+    padding-left: 1.25rem;
   }
 }
