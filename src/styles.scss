@@ -78,22 +78,25 @@
 .text-tile-regular {
   font-family: "Neue Haas Display", sans-serif;
   font-weight: 500;
-  line-height: normal;
+  line-height: 1.5;
   font-style: normal;
+  letter-spacing: -0.01em;
 }
 
 .text-tile-md {
   font-family: "NeueHaasDisplayMediu", sans-serif;
   font-weight: 500;
-  line-height: normal;
+  line-height: 1.3;
   font-style: normal;
+  letter-spacing: -0.02em;
 }
 
 .text-tile-bold {
   font-family: "Neue_Haas_Grotesk_Display_Bold", sans-serif;
   font-style: normal;
   font-weight: 600;
-  line-height: normal;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 body {
@@ -105,22 +108,56 @@ body {
 }
 
 .text-tile-inter-md {
-  font-family: "Inter_Display_Md";
+  font-family: "Inter_Display_Md", sans-serif;
   font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.015em;
 }
 
 .text-tile-inter {
   font-family: "Inter_Display", sans-serif;
   font-weight: 400;
   font-style: normal;
-  line-height: normal;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
 }
+
 .text-tile-inter-bold {
   font-family: "Inter_Display_Bold", sans-serif;
-  font-weight: 500;
-  font-style: normal;
-  line-height: normal;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
 }
+
+/* Global text styles */
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+  max-width: 75ch;
+}
+
+/* Mobile-first responsive text sizing */
+@media screen and (max-width: 480px) {
+  .text-responsive {
+    font-size: clamp(1rem, 4vw, 1.125rem);
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .text-responsive {
+    font-size: clamp(1.125rem, 4vw, 1.25rem);
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .text-responsive {
+    font-size: clamp(1.25rem, 4vw, 1.5rem);
+  }
+}
+
 /* Custom styles below this line */
 
 // /* Modern animations for the About page */

@@ -1,86 +1,44 @@
-<section class="py-8 sm:py-10 md:py-12 lg:py-16">
-    <div class="flex flex-col lg:flex-row gap-6 md:gap-10 items-center justify-center max-w-7xl mx-auto px-4">
-        <!-- Image section -->
-        <div class="w-full lg:w-1/2 flex items-center justify-center">
-            <div class="w-full max-w-[700px]">
-                <img class="w-full h-[300px] sm:h-[400px] md:h-[550px] rounded-3xl object-cover bg-no-repeat bg-center shadow-md"
-                    loading="lazy" src="https://api-tilegreen.pulslytics.agency/media/images/Frame9.png" alt="Building materials showcase">
+<section class="container mx-auto py-6 sm:py-8 md:py-12 lg:py-16">
+    <!-- Title section visible only on mobile -->
+    <div class="lg:hidden mb-6 px-4">
+        <h2 class="text-2xl md:text-3xl text-tile-md text-[#010D26] leading-tight">
+            We started with one product
+        </h2>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-6 lg:gap-8 items-stretch justify-between max-w-7xl mx-auto px-4">
+        <!-- Image section with enhanced visuals -->
+        <div class="w-full lg:w-[46%] flex order-2 lg:order-1">
+            <div class="relative aspect-[21/9] overflow-hidden rounded-2xl shadow-md group">
+                <img class="absolute inset-0 object-cover transition-transform duration-700 group-hover:scale-105"
+                    src="https://api-tilegreen.pulslytics.agency/media/images/Frame9.png"
+                    alt="Building materials showcase">
             </div>
         </div>
 
         <!-- Content section -->
-        <div class="w-full lg:w-1/2 flex flex-col gap-6 md:gap-6">
-            <!-- Text content with enhanced styling -->
-            <div class="flex flex-col gap-6">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl text-tile-md text-[#010D26] leading-tight">
+        <div class="w-full lg:w-[50%] flex flex-col justify-between gap-3 order-3 lg:order-2">
+            <!-- Title hidden on mobile, visible on desktop -->
+            <div class="hidden lg:block">
+                <h2 class="text-2xl md:text-3xl text-tile-md text-[#010D26] leading-tight">
                     We started with one product
                 </h2>
-                <p class="text-lg md:text-md text-[#818896] leading-relaxed">
-                    for producing outdoor interlocking "paving tiles".
-                    Anticipate more technologies for more green building materials soon.
-
-                    It's designed for durability and sustainability, serving as an eco-friendly alternative to
-                    traditional concrete pavers.
-                </p>
             </div>
 
-            <!-- Product cards with enhanced styling - 2x2 grid -->
-            <div class="product-card grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <!-- Card 1 - Image above text -->
-                <div
-                    class="flex flex-col p-3 rounded-xl border border-[#c0c0c0] transition-all duration-300 group hover:shadow-md">
-                    <div class="rounded-lg overflow-hidden w-full h-24 mb-3 flex-shrink-0 mx-auto max-w-[240px]">
-                        <img src="https://api-tilegreen.pulslytics.agency/media/images/rectangle-12.png"
-                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                            alt="Roofing tiles" />
-                    </div>
-                    <div class="text-center">
-                        <p class="text-xl text-[#010D26] text-tile-md transition-colors">
-                            Roofing tiles</p>
-                    </div>
-                </div>
+            <!-- Text content -->
+            <p class="text-base text-[#818896] leading-snug">
+                for producing outdoor interlocking "paving tiles".
+                Anticipate more technologies for more green building materials soon.
+                It's designed for durability and sustainability, serving as an eco-friendly alternative to
+                traditional concrete pavers.
+            </p>
 
-                <!-- Card 2 - Image above text -->
-                <div
-                    class="flex flex-col p-3 rounded-xl border border-[#c0c0c0] transition-all duration-300 group hover:shadow-md">
-                    <div class="rounded-lg overflow-hidden w-full h-24 mb-3 flex-shrink-0 mx-auto max-w-[240px]">
-                        <img src="https://api-tilegreen.pulslytics.agency/media/images/rectangle-12-4.png"
-                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                            alt="Outdoor Furniture" />
-                    </div>
-                    <div class="text-center">
-                        <p class="text-xl text-[#010D26] text-tile-md transition-colors">
-                            Outdoor Furniture</p>
-                    </div>
-                </div>
-
-                <!-- Card 3 - Image above text -->
-                <div
-                    class="flex flex-col p-3 rounded-xl border border-[#c0c0c0] transition-all duration-300 group hover:shadow-md">
-                    <div class="rounded-lg overflow-hidden w-full h-24 mb-3 flex-shrink-0 mx-auto max-w-[240px]">
-                        <img src="https://api-tilegreen.pulslytics.agency/media/images/rectangle-12-3.png"
-                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                            alt="Cladding Sheets" />
-                    </div>
-                    <div class="text-center">
-                        <p class="text-xl text-[#010D26] text-tile-md transition-colors">
-                            Cladding Sheets</p>
-                    </div>
-                </div>
-
-                <!-- Card 4 - Image above text -->
-                <div
-                    class="flex flex-col p-3 rounded-xl border border-[#c0c0c0] transition-all duration-300 group hover:shadow-md">
-                    <div class="rounded-lg overflow-hidden w-full h-24 mb-3 flex-shrink-0 mx-auto max-w-[240px]">
-                        <img src="https://api-tilegreen.pulslytics.agency/media/images/rectangle-12-2.png"
-                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                            alt="Panels" />
-                    </div>
-                    <div class="text-center">
-                        <p class="text-xl text-[#010D26] text-tile-md transition-colors">
-                            Panels</p>
-                    </div>
-                </div>
+            <!-- Product cards -->
+            <div class="product-card grid grid-cols-2 gap-2">
+                @for (product of products; track product.title) {
+                <app-product-card [imageUrl]="product.imageUrl" [title]="product.title">
+                </app-product-card>
+                }
             </div>
         </div>
     </div>

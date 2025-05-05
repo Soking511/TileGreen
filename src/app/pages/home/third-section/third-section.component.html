@@ -1,75 +1,82 @@
-<section class="py-8 sm:py-10 md:py-12 lg:py-16">
+<section class="py-4 sm:py-6 md:py-8 lg:py-10 min-h-screen flex flex-col">
     <app-section-header title="Solutions" />
 
-    <!-- Header Section -->
-    <div class="">
-        <h2 class="text-center pb-8 sm:pb-10 md:pb-12 lg:pb-16">
-            <span class="text-[#818896] text-3xl lg:text-5xl text-tile-reqular">We Started with the Question:
-                <br></span>
-
-            <span class="text-[#010D26] text-3xl lg:text-5xl text-tile-md"> How to reduce Plastic Waste and Carbon
-                Emissions</span>
-            <span class="text-[#010D26] text-3xl lg:text-5xl text-tile-md">?</span>
-
+    <!-- Header Section with improved responsive design -->
+    <div class="container mx-auto px-4">
+        <h2 class="text-center pb-6 sm:pb-8 md:pb-10">
+            <span class="text-[#818896] text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-tile-reqular block sm:inline">
+                We Started with the Question:
+            </span>
+            <span
+                class="text-[#010D26] text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-tile-md block sm:inline mt-2 sm:mt-0">
+                How to reduce Plastic Waste and Carbon Emissions?
+            </span>
         </h2>
     </div>
-    <!-- Content Section -->
-    <div class="flex flex-col md:flex-row items-start gap-6 md:gap-8">
-        <!-- Left Column: Benefits -->
-        <div class="w-full md:w-full mb-8 md:mb-0">
-            <h3 class="text-5xl text-tile-reqular text-[#010D26] mb-6 md:mb-[45px]">
+
+    <!-- Content Section with improved responsive layout -->
+    <div
+        class="container mx-auto px-4 flex flex-col md:flex-row items-start gap-4 sm:gap-6 md:gap-8 mt-6 sm:mt-8 md:mt-10">
+        <!-- Left Column: Benefits with better scaling -->
+        <div class="w-full md:w-1/2 lg:w-[45%]">
+            <h3
+                class="text-3xl sm:text-4xl md:text-[40px] lg:text-5xl text-tile-reqular text-[#010D26] mb-4 sm:mb-6 md:mb-8">
                 Sustainable Construction Starts with Re-PAC
             </h3>
 
-            <ul class="space-y-4 md:space-y-[38px]">
+            <ul class="space-y-3 sm:space-y-4 md:space-y-6">
                 <li class="flex items-start">
-                    <div class="flex-shrink-0 h-5 w-5 sm:h-6 sm:w-6 rounded bg-blue-600 mr-3 md:mr-4"></div>
-                    <p class="text-tile-inter sm:text-lg">
-                        It doesn't crack, rot, rust, erode, or interact <br> with chemicals
+                    <div class="flex-shrink-0 h-5 w-5 sm:h-6 sm:w-6 rounded bg-blue-600 mr-3"></div>
+                    <p class="text-base sm:text-lg md:text-xl text-tile-inter">
+                        It doesn't crack, rot, rust, erode, or interact with chemicals
                     </p>
                 </li>
 
                 <li class="flex items-start">
-                    <div class="flex-shrink-0 h-5 w-5 sm:h-6 sm:w-6 rounded bg-blue-600 mr-3 md:mr-4"></div>
-                    <p class="text-tile-inter sm:text-lg">
+                    <div class="flex-shrink-0 h-5 w-5 sm:h-6 sm:w-6 rounded bg-blue-600 mr-3"></div>
+                    <p class="text-base sm:text-lg md:text-xl text-tile-inter">
                         It is a carbon negative and recyclable
                     </p>
                 </li>
 
                 <li class="flex items-start">
-                    <div class="flex-shrink-0 h-5 w-5 sm:h-6 sm:w-6 rounded bg-blue-600 mr-3 md:mr-4"></div>
-                    <p class="text-tile-inter sm:text-lg">
-                        lifetime cost saving as the material is more <br> durable without extra upfront cost <br>
-                        increase.
+                    <div class="flex-shrink-0 h-5 w-5 sm:h-6 sm:w-6 rounded bg-blue-600 mr-3"></div>
+                    <p class="text-base sm:text-lg md:text-xl text-tile-inter">
+                        lifetime cost saving as the material is more durable without extra upfront cost increase.
                     </p>
                 </li>
             </ul>
         </div>
 
-        <!-- Right Column: Product Image -->
-        <div class="w-full md:w-5xl">
-            <div class="overflow-hidden">
-                <img src="/https://api-tilegreen.pulslytics.agency/media/images/carbon.webp" alt="Close-up of Re-PAC sustainable construction material"
-                    class="image-carbon w-full h-[400px] object-cover">
+        <!-- Right Column: Product Image with responsive sizing -->
+        <div class="w-full md:w-1/2 lg:w-[55%] mt-6 md:mt-0">
+            <div class="overflow-hidden rounded-2xl shadow-lg">
+                <img src="https://api-tilegreen.pulslytics.agency/media/images/carbon.webp/"
+                    alt="Close-up of Re-PAC sustainable construction material"
+                    class="w-full aspect-[16/9] object-cover transform hover:scale-105 transition-transform duration-500">
             </div>
         </div>
     </div>
 </section>
 
-<!-- Recycling Journey Section - Simple Mobile Design -->
+<!-- Recycling Journey Section with improved responsive design -->
 <section class="pt-8 sm:pt-10 md:pt-12 lg:pt-16">
     <!-- Header Section with Title and Hero Image -->
-    <div class="flex flex-col lg:flex-row items-center lg:items-start">
-        <div class="w-full lg: w-full mb-6 lg:mb-0">
-            <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center lg:text-left ">
-                <span class="text-[#818896] text-tile-regular">From Plastic Waste to Re-PAC</span>
-                <span class="text-[#010D26] block lg:inline text-tile-regular">:
-                    <b><span>The Sustainable Recycling Journey</span></b></span>
-            </h2>
-        </div>
-        <div class="w-full flex justify-center lg:justify-end mt-4 lg:mt-32">
-            <img src="https://api-tilegreen.pulslytics.agency/media/images/tras.webp/" alt="Recycling process visual"
-                class="z-10 w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[465px] lg:h-[465px] rounded-full object-cover transition-all duration-300" />
+    <div class="container mx-auto px-4 mt-12 sm:mt-16 md:mt-20 lg:mt-24">
+        <div class="flex flex-col lg:flex-row items-start justify-between gap-6 md:gap-8 lg:gap-12">
+            <!-- Title Section -->
+            <div class="w-full lg:w-1/2">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+                    <span class="text-[#818896] text-tile-regular block mb-2">From Plastic Waste to Re-PAC:</span>
+                    <span class="text-[#010D26] text-tile-regular font-bold">The Sustainable Recycling Journey</span>
+                </h2>
+            </div>
+
+            <!-- Hero Image with responsive sizing -->
+            <div class="w-full lg:w-1/2 flex justify-center lg:justify-end">
+                <img src="https://api-tilegreen.pulslytics.agency/media/images/tras.webp" alt="Recycling process visual"
+                    class="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-[400px] lg:h-[400px] rounded-full object-cover transition-all duration-300 hover:shadow-xl" />
+            </div>
         </div>
     </div>
 
@@ -79,12 +86,13 @@
     <div class="flex flex-col md:flex-row items-center relative">
         <div class="w-full md:w-1/2 mb-6 md:mb-0 order-2 md:order-1 relative">
             <!-- Desktop curved line -->
-            <div class="hidden md:block absolute md:-mt-105 md:ml-28 sm:ml-92">
+            <!-- <div class="hidden md:block absolute md:-mt-105 md:ml-28 sm:ml-92">
                 <svg width="563" height="406" viewBox="0 0 563 406" fill="none" xmlns="https://www.w3.org/2000/svg">
-                    <path d="M2.10608 2C-1.8671 173.359 104.349 489.339 561 382.393" stroke="#C3C3C3" stroke-width="4" stroke-linecap="round"/>
-                    </svg>
+                    <path d="M2.10608 2C-1.8671 173.359 104.349 489.339 561 382.393" stroke="#C3C3C3" stroke-width="4"
+                        stroke-linecap="round" />
+                </svg>
 
-            </div>
+            </div> -->
             <!-- Mobile timeline connector -->
             <div class="block md:hidden w-1 h-16 bg-gray-300 mx-auto my-6"></div>
         </div>
@@ -131,8 +139,9 @@
         <div class="w-full md:w-1/2">
             <div class="hidden md:block absolute -mt-95 lg:-ml-65 md:-ml-35">
                 <svg width="446" height="423" viewBox="0 0 446 423" fill="none" xmlns="https://www.w3.org/2000/svg">
-                    <path d="M443.916 2C447.058 180.605 363.073 509.948 1.99999 398.479" stroke="#C3C3C3" stroke-width="4" stroke-linecap="round"/>
-                    </svg>
+                    <path d="M443.916 2C447.058 180.605 363.073 509.948 1.99999 398.479" stroke="#C3C3C3"
+                        stroke-width="4" stroke-linecap="round" />
+                </svg>
 
             </div>
         </div>
@@ -143,8 +152,9 @@
     <div class="hidden md:flex justify-center items-center w-full md:-ml-50 md:mt-10">
         <div class="relative">
             <svg width="495" height="406" viewBox="0 0 495 406" fill="none" xmlns="https://www.w3.org/2000/svg">
-                <path d="M2.09318 2C-1.39668 173.359 91.8989 489.339 493 382.393" stroke="#C3C3C3" stroke-width="4" stroke-linecap="round"/>
-                </svg>
+                <path d="M2.09318 2C-1.39668 173.359 91.8989 489.339 493 382.393" stroke="#C3C3C3" stroke-width="4"
+                    stroke-linecap="round" />
+            </svg>
 
 
         </div>
