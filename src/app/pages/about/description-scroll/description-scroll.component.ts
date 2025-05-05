@@ -60,10 +60,7 @@ export class DescriptionScrollComponent implements AfterViewInit, OnDestroy {
   private lastTouchY: number | null = null;
   private animations: gsap.core.Timeline[] = [];
 
-  constructor(
-    private el: ElementRef,
-    private ngZone: NgZone
-  ) {
+  constructor(private el: ElementRef, private ngZone: NgZone) {
     // Add non-passive wheel and touch event listeners in the constructor
     this.addNonPassiveEventListeners();
   }
@@ -215,7 +212,10 @@ export class DescriptionScrollComponent implements AfterViewInit, OnDestroy {
       'touchstart',
       this.onWindowTouchStartEvent.bind(this)
     );
-    window.removeEventListener('touchend', this.onWindowTouchEndEvent.bind(this));
+    window.removeEventListener(
+      'touchend',
+      this.onWindowTouchEndEvent.bind(this)
+    );
   }
 
   // Component-level wheel event handler

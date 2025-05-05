@@ -1,180 +1,246 @@
-<!-- Popup Container - Only visible when isOpen is true -->
-<div *ngIf="isOpen" class="popup-wrapper fixed inset-0 z-50 flex items-center justify-center overflow-auto py-4"
-    (click)="onBackdropClick($event)">
-    <div class="popup-backdrop absolute inset-0 bg-black bg-opacity-60 transition-opacity duration-300"></div>
+<!-- Popup Container with keyboard trap and escape key handling -->
+<div *ngIf="isOpen"
+     class="popup-wrapper fixed inset-0 z-50 flex items-center justify-center overflow-auto py-4"
+     (click)="onBackdropClick($event)"
+     (keydown.escape)="close()"
+     role="dialog"
+     aria-labelledby="contact-form-title"
+     aria-modal="true">
 
-    <div
-        class="popup-container relative w-full sm:w-11/12 md:w-2/3 lg:w-3/5 xl:w-1/2 max-w-3xl mx-auto z-10 bg-white p-4 sm:p-6 md:p-7 rounded-2xl md:rounded-3xl shadow-xl" [@slideInOut]>
+    <!-- Backdrop -->
+    <div class="popup-backdrop absolute inset-0 bg-black bg-opacity-60 transition-opacity duration-300"
+         aria-hidden="true">
+    </div>
+
+    <!-- Popup Content -->
+    <div class="popup-container relative w-full sm:w-11/12 md:w-2/3 lg:w-3/5 xl:w-1/2 max-w-3xl mx-auto z-10 bg-white p-4 sm:p-6 md:p-7 rounded-2xl md:rounded-3xl shadow-xl"
+         [@slideInOut]
+         role="document"
+         cdkTrapFocus>
+
         <!-- Close Button -->
-        <button
-            class="cursor-pointer absolute -right-2 m-4 -top-2 md:right-1 md:top-1 z-20 w-8 h-8 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white border border-gray-200 hover:bg-gray-100"
-            (click)="close()" aria-label="Close popup">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        <button class="cursor-pointer absolute -right-2 m-4 -top-2 md:right-1 md:top-1 z-20 w-8 h-8 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white border border-gray-200 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                (click)="close()"
+                aria-label="Close contact form">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 class="h-6 w-6 text-gray-700"
+                 fill="none"
+                 viewBox="0 0 24 24"
+                 stroke="currentColor"
+                 aria-hidden="true">
+                <path stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M6 18L18 6M6 6l12 12" />
             </svg>
         </button>
 
-        <!-- Header -->
-        <h2 class="text-2xl md:text-3xl text-[#010d26] mb-2">Contact Us</h2>
-        <p class="text-base md:text-lg text-[#818896] mb-6">Fill out the following form and we'll get back to you.</p>
+        <!-- Form Section -->
+        <div class="relative">
+            <!-- Header -->
+            <h2 id="contact-form-title" class="text-2xl md:text-3xl text-[#010d26] mb-2">Contact Us</h2>
+            <p class="text-base md:text-lg text-[#818896] mb-6">Fill out the following form and we'll get back to you.</p>
 
-        <!-- Form -->
-        <form [formGroup]="contactForm" (submit)="onSubmit()" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <!-- Full Name -->
-            <div class="sm:col-span-2">
-                <label for="full_name" class="block text-base md:text-lg text-[#010d26] mb-1">
-                    Full Name <span class="text-red-500">*</span>
-                </label>
-                <input id="full_name" formControlName="full_name" type="text" placeholder="Enter your full name"
-                    class="w-full px-4 py-2.5 rounded-xl border border-[#9c9c9c] focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                    [class.border-red-500]="isFieldInvalid('full_name')">
-                <div class="h-4 text-red-500 text-xs md:text-sm mt-1">
-                    <span *ngIf="getFieldError('full_name', 'required')">Full name is required</span>
+            <!-- Contact Form -->
+            <form [formGroup]="contactForm"
+                  (submit)="onSubmit()"
+                  class="grid grid-cols-1 sm:grid-cols-2 gap-4"
+                  novalidate>
+                <!-- Full Name -->
+                <div class="sm:col-span-2">
+                    <label for="full_name" class="block text-base md:text-lg text-[#010d26] mb-1">
+                        Full Name <span class="text-red-500">*</span>
+                    </label>
+                    <input id="full_name" formControlName="full_name" type="text" placeholder="Enter your full name"
+                        class="w-full px-4 py-2.5 rounded-xl border border-[#9c9c9c] focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                        [class.border-red-500]="isFieldInvalid('full_name')"
+                        [attr.aria-invalid]="contactForm.get('full_name')?.invalid && contactForm.get('full_name')?.touched"
+                        aria-describedby="full_name-error" required>
+                    <div id="full_name-error" class="h-4 text-red-500 text-xs md:text-sm mt-1"
+                        *ngIf="getFieldError('full_name', 'required')">
+                        Full name is required
+                    </div>
                 </div>
-            </div>
 
-            <!-- Email -->
-            <div>
-                <label for="email" class="block text-base md:text-lg text-[#010d26] mb-1">
-                    Email Address <span class="text-red-500">*</span>
-                </label>
-                <input id="email" formControlName="email" type="email" placeholder="Enter email address"
-                    class="w-full px-4 py-2.5 rounded-xl border border-[#9c9c9c] focus:ring-2 focus:ring-blue-400"
-                    [class.border-red-500]="isFieldInvalid('email')">
-                <div class="h-4 text-red-500 text-xs md:text-sm mt-1">
-                    <span *ngIf="getFieldError('email', 'required')">Email is required</span>
-                    <span *ngIf="getFieldError('email', 'email')">Please enter a valid email</span>
+                <!-- Email -->
+                <div>
+                    <label for="email" class="block text-base md:text-lg text-[#010d26] mb-1">
+                        Email Address <span class="text-red-500">*</span>
+                    </label>
+                    <input id="email" formControlName="email" type="email" placeholder="Enter email address"
+                        class="w-full px-4 py-2.5 rounded-xl border border-[#9c9c9c] focus:ring-2 focus:ring-blue-400"
+                        [class.border-red-500]="isFieldInvalid('email')"
+                        [attr.aria-invalid]="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
+                        aria-describedby="email-error" required>
+                    <div id="email-error" class="h-4 text-red-500 text-xs md:text-sm mt-1">
+                        <span *ngIf="getFieldError('email', 'required')">Email is required</span>
+                        <span *ngIf="getFieldError('email', 'email')">Please enter a valid email</span>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Phone -->
-            <div>
-                <label for="phone" class="block text-base md:text-lg text-[#010d26] mb-1">
-                    Phone Number <span class="text-red-500">*</span>
-                </label>
-                <input id="phone" formControlName="phone" type="tel" placeholder="Enter phone number"
-                    class="w-full px-4 py-2.5 rounded-xl border border-[#9c9c9c] focus:ring-2 focus:ring-blue-400"
-                    [class.border-red-500]="isFieldInvalid('phone')">
-                <div class="h-4 text-red-500 text-xs md:text-sm mt-1">
-                    <span *ngIf="isFieldInvalid('phone')">Valid phone number is required</span>
+                <!-- Phone -->
+                <div>
+                    <label for="phone" class="block text-base md:text-lg text-[#010d26] mb-1">
+                        Phone Number <span class="text-red-500">*</span>
+                    </label>
+                    <input id="phone" formControlName="phone" type="tel" placeholder="Enter phone number"
+                        class="w-full px-4 py-2.5 rounded-xl border border-[#9c9c9c] focus:ring-2 focus:ring-blue-400"
+                        [class.border-red-500]="isFieldInvalid('phone')"
+                        [attr.aria-invalid]="contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched"
+                        aria-describedby="phone-error" required>
+                    <div id="phone-error" class="h-4 text-red-500 text-xs md:text-sm mt-1"
+                        *ngIf="isFieldInvalid('phone')">Valid phone number is required</div>
                 </div>
-            </div>
 
-            <!-- Position -->
-            <div>
-                <label for="position" class="block text-base md:text-lg text-[#010d26] mb-1">
-                    Position <span class="text-red-500">*</span>
-                </label>
-                <input id="position" formControlName="position" type="text" placeholder="Enter your position"
-                    class="w-full px-4 py-2.5 rounded-xl border border-[#9c9c9c] focus:ring-2 focus:ring-blue-400"
-                    [class.border-red-500]="isFieldInvalid('position')">
-                <div class="h-4 text-red-500 text-xs md:text-sm mt-1">
-                    <span *ngIf="isFieldInvalid('position')">Position is required</span>
+                <!-- Position -->
+                <div>
+                    <label for="position" class="block text-base md:text-lg text-[#010d26] mb-1">
+                        Position <span class="text-red-500">*</span>
+                    </label>
+                    <input id="position" formControlName="position" type="text" placeholder="Enter your position"
+                        class="w-full px-4 py-2.5 rounded-xl border border-[#9c9c9c] focus:ring-2 focus:ring-blue-400"
+                        [class.border-red-500]="isFieldInvalid('position')"
+                        [attr.aria-invalid]="contactForm.get('position')?.invalid && contactForm.get('position')?.touched"
+                        aria-describedby="position-error" required>
+                    <div id="position-error" class="h-4 text-red-500 text-xs md:text-sm mt-1"
+                        *ngIf="isFieldInvalid('position')">Position is required</div>
                 </div>
-            </div>
 
-            <!-- Company -->
-            <div>
-                <label for="company_name" class="block text-base md:text-lg text-[#010d26] mb-1">
-                    Company <span class="text-red-500">*</span>
-                </label>
-                <input id="company_name" formControlName="company_name" type="text" placeholder="Enter company name"
-                    class="w-full px-4 py-2.5 rounded-xl border border-[#9c9c9c] focus:ring-2 focus:ring-blue-400"
-                    [class.border-red-500]="isFieldInvalid('company_name')">
-                <div class="h-4 text-red-500 text-xs md:text-sm mt-1">
-                    <span *ngIf="isFieldInvalid('company_name')">Company name is required</span>
+                <!-- Company -->
+                <div>
+                    <label for="company_name" class="block text-base md:text-lg text-[#010d26] mb-1">
+                        Company <span class="text-red-500">*</span>
+                    </label>
+                    <input id="company_name" formControlName="company_name" type="text" placeholder="Enter company name"
+                        class="w-full px-4 py-2.5 rounded-xl border border-[#9c9c9c] focus:ring-2 focus:ring-blue-400"
+                        [class.border-red-500]="isFieldInvalid('company_name')"
+                        [attr.aria-invalid]="contactForm.get('company_name')?.invalid && contactForm.get('company_name')?.touched"
+                        aria-describedby="company_name-error" required>
+                    <div id="company_name-error" class="h-4 text-red-500 text-xs md:text-sm mt-1"
+                        *ngIf="isFieldInvalid('company_name')">Company name is required</div>
                 </div>
-            </div>
 
-            <!-- Industry -->
-            <div>
-                <label for="industry" class="block text-base md:text-lg text-[#010d26] mb-1">
-                    Industry <span class="text-red-500">*</span>
-                </label>
-                <input id="industry" formControlName="industry" type="text" placeholder="Enter industry"
-                    class="w-full px-4 py-2.5 rounded-xl border border-[#9c9c9c] focus:ring-2 focus:ring-blue-400"
-                    [class.border-red-500]="isFieldInvalid('industry')">
-                <div class="h-4 text-red-500 text-xs md:text-sm mt-1">
-                    <span *ngIf="isFieldInvalid('industry')">Industry is required</span>
+                <!-- Industry -->
+                <div>
+                    <label for="industry" class="block text-base md:text-lg text-[#010d26] mb-1">
+                        Industry <span class="text-red-500">*</span>
+                    </label>
+                    <input id="industry" formControlName="industry" type="text" placeholder="Enter industry"
+                        class="w-full px-4 py-2.5 rounded-xl border border-[#9c9c9c] focus:ring-2 focus:ring-blue-400"
+                        [class.border-red-500]="isFieldInvalid('industry')"
+                        [attr.aria-invalid]="contactForm.get('industry')?.invalid && contactForm.get('industry')?.touched"
+                        aria-describedby="industry-error" required>
+                    <div id="industry-error" class="h-4 text-red-500 text-xs md:text-sm mt-1"
+                        *ngIf="isFieldInvalid('industry')">Industry is required</div>
                 </div>
-            </div>
 
-            <!-- Country/Region -->
-            <div>
-                <label for="country_region" class="block text-base md:text-lg text-[#010d26] mb-1">
-                    Country/Region <span class="text-red-500">*</span>
-                </label>
-                <input id="country_region" formControlName="country_region" type="text"
-                    placeholder="Enter country/region"
-                    class="w-full px-4 py-2.5 rounded-xl border border-[#9c9c9c] focus:ring-2 focus:ring-blue-400"
-                    [class.border-red-500]="isFieldInvalid('country_region')">
-                <div class="h-4 text-red-500 text-xs md:text-sm mt-1">
-                    <span *ngIf="isFieldInvalid('country_region')">Country/Region is required</span>
+                <!-- Country/Region -->
+                <div>
+                    <label for="country_region" class="block text-base md:text-lg text-[#010d26] mb-1">
+                        Country/Region <span class="text-red-500">*</span>
+                    </label>
+                    <input id="country_region" formControlName="country_region" type="text"
+                        placeholder="Enter country/region"
+                        class="w-full px-4 py-2.5 rounded-xl border border-[#9c9c9c] focus:ring-2 focus:ring-blue-400"
+                        [class.border-red-500]="isFieldInvalid('country_region')"
+                        [attr.aria-invalid]="contactForm.get('country_region')?.invalid && contactForm.get('country_region')?.touched"
+                        aria-describedby="country_region-error" required>
+                    <div id="country_region-error" class="h-4 text-red-500 text-xs md:text-sm mt-1"
+                        *ngIf="isFieldInvalid('country_region')">Country/Region is required</div>
                 </div>
-            </div>
 
-            <!-- Message -->
-            <div class="sm:col-span-2">
-                <label for="message" class="block text-base md:text-lg text-[#010d26] mb-1">
-                    Message <span class="text-red-500">*</span>
-                </label>
-                <textarea id="message" formControlName="message" placeholder="Enter your message"
-                    class="w-full h-24 px-4 py-2.5 rounded-xl border border-[#9c9c9c] focus:ring-2 focus:ring-blue-400 resize-none"
-                    [class.border-red-500]="isFieldInvalid('message')"></textarea>
-                <div class="h-4 text-red-500 text-xs md:text-sm mt-1">
-                    <span *ngIf="isFieldInvalid('message')">Message is required</span>
+                <!-- Message -->
+                <div class="sm:col-span-2">
+                    <label for="message" class="block text-base md:text-lg text-[#010d26] mb-1">
+                        Message <span class="text-red-500">*</span>
+                    </label>
+                    <textarea id="message" formControlName="message" placeholder="Enter your message"
+                        class="w-full h-24 px-4 py-2.5 rounded-xl border border-[#9c9c9c] focus:ring-2 focus:ring-blue-400 resize-none"
+                        [class.border-red-500]="isFieldInvalid('message')"
+                        [attr.aria-invalid]="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"
+                        aria-describedby="message-error" required></textarea>
+                    <div id="message-error" class="h-4 text-red-500 text-xs md:text-sm mt-1"
+                        *ngIf="isFieldInvalid('message')">Message is required</div>
                 </div>
-            </div>
 
-            <!-- Form Status Messages -->
-            <div *ngIf="formSubmitted" class="sm:col-span-2 mt-2">
-                <div *ngIf="formSubmitSuccess"
-                    class="p-4 bg-green-100 text-green-800 rounded-lg flex items-center border-l-4 border-green-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    Thank you! Your form has been submitted successfully. We will contact you soon.
+                <!-- Form Status Messages with ARIA live regions -->
+                <div *ngIf="formSubmitted"
+                     class="sm:col-span-2 mt-2"
+                     role="status"
+                     aria-live="polite">
+                    <div *ngIf="formSubmitSuccess"
+                         class="p-4 bg-green-100 text-green-800 rounded-lg flex items-center border-l-4 border-green-500">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             class="h-5 w-5 mr-2"
+                             fill="none"
+                             viewBox="0 0 24 24"
+                             stroke="currentColor"
+                             aria-hidden="true">
+                            <path stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M5 13l4 4L19 7" />
+                        </svg>
+                        Thank you! Your form has been submitted successfully. We will contact you soon.
+                    </div>
+                    <div *ngIf="formSubmitError"
+                         class="p-4 bg-red-100 text-red-800 rounded-lg flex items-center border-l-4 border-red-500">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             class="h-5 w-5 mr-2"
+                             fill="none"
+                             viewBox="0 0 24 24"
+                             stroke="currentColor"
+                             aria-hidden="true">
+                            <path stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                        There was an error submitting your form. Please try again later.
+                    </div>
                 </div>
-                <div *ngIf="formSubmitError"
-                    class="p-4 bg-red-100 text-red-800 rounded-lg flex items-center border-l-4 border-red-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                    </svg>
-                    There was an error submitting your form. Please try again later.
-                </div>
-            </div>
 
-            <!-- Form Actions -->
-            <div class="sm:col-span-2 flex flex-wrap justify-between items-center mt-4">
-                <p class="text-sm md:text-base font-medium my-2">
-                    Or call us at: <a href="tel:{{phoneNumber}}" class="text-blue-600 hover:underline">{{phoneNumber ||
-                        "+1 (800) 123-4567"}}</a>
-                </p>
-                <button type="button" [disabled]="formSubmitting" (click)="onSubmit()"
-                    [ngClass]="{'opacity-70 cursor-not-allowed': formSubmitting || contactForm.invalid, 'hover:bg-[#192949]': !(formSubmitting || contactForm.invalid)}"
-                    class="cursor-pointer px-8 py-2.5 rounded-[50px] bg-[#010d26] text-white transition-all duration-200">
-                    <ng-container *ngIf="!formSubmitting; else submittingTemplate">
-                        <span class="text-base md:text-lg">Apply</span>
-                    </ng-container>
-                    <ng-template #submittingTemplate>
-                        <div class="flex items-center">
-                            <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg"
-                                fill="none" viewBox="0 0 24 24">
-                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                    stroke-width="4"></circle>
-                                <path class="opacity-75" fill="currentColor"
-                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                                </path>
-                            </svg>
-                            Submitting...
-                        </div>
-                    </ng-template>
-                </button>
-            </div>
-        </form>
+                <!-- Form Actions -->
+                <div class="sm:col-span-2 flex flex-wrap justify-between items-center mt-4">
+                    <p class="text-sm md:text-base font-medium my-2">
+                        Or call us at: <a href="tel:{{phoneNumber}}"
+                                        class="text-blue-600 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded">
+                            {{phoneNumber || "+1 (800) 123-4567"}}
+                        </a>
+                    </p>
+                    <button type="submit"
+                            [disabled]="formSubmitting || contactForm.invalid"
+                            [ngClass]="{'opacity-70 cursor-not-allowed': formSubmitting || contactForm.invalid, 'hover:bg-[#192949]': !(formSubmitting || contactForm.invalid)}"
+                            class="cursor-pointer px-8 py-2.5 rounded-[50px] bg-[#010d26] text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                            aria-label="Submit contact form">
+                        <ng-container *ngIf="!formSubmitting; else submittingTemplate">
+                            <span class="text-base md:text-lg">Submit</span>
+                        </ng-container>
+                        <ng-template #submittingTemplate>
+                            <div class="flex items-center" aria-label="Submitting form">
+                                <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+                                     xmlns="http://www.w3.org/2000/svg"
+                                     fill="none"
+                                     viewBox="0 0 24 24"
+                                     aria-hidden="true">
+                                    <circle class="opacity-25"
+                                            cx="12"
+                                            cy="12"
+                                            r="10"
+                                            stroke="currentColor"
+                                            stroke-width="4">
+                                    </circle>
+                                    <path class="opacity-75"
+                                          fill="currentColor"
+                                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                    </path>
+                                </svg>
+                                <span>Submitting...</span>
+                            </div>
+                        </ng-template>
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

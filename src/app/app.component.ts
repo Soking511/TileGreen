@@ -109,7 +109,7 @@ export class AppComponent implements OnInit, OnDestroy {
     const criticalFonts = [
       'assets/fonts/NeueHaasDisplayRoman.ttf',
       'assets/fonts/LibreBaskerville-Italic.ttf',
-      'assets/fonts/NeueHaasDisplayMediu.ttf'
+      'assets/fonts/NeueHaasDisplayMediu.ttf',
     ];
 
     criticalFonts.forEach((fontUrl) => {
