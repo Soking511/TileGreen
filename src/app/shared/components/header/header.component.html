@@ -3,7 +3,7 @@
 
     <!-- Background Image with Lazy Loading -->
     @if (imagePath) {
-    <img [src]="imagePath" alt="Header Background" class="absolute inset-0 w-full h-full object-cover"
+    <img [src]="imagePath" alt="Header Background" class="absolute inset-0 w-full h-screen object-cover"
         fetchpriority="high" [attr.importance]="'high'" loading="eager" decoding="async">
     <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent"></div>
     }
