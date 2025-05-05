@@ -6,6 +6,7 @@ import {
   ChangeDetectorRef,
   Inject,
   PLATFORM_ID,
+  Renderer2,
 } from '@angular/core';
 import {
   RouterOutlet,
@@ -42,7 +43,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private router: Router,
     private cdr: ChangeDetectorRef,
     private seoService: SeoService,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private renderer: Renderer2
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
@@ -80,6 +82,12 @@ export class AppComponent implements OnInit, OnDestroy {
         'green building materials, plastic recycling, sustainable construction, eco tiles, circular economy',
       ogUrl: 'https://tilegreen.org',
     });
+
+    // Preload critical fonts for LCP optimization
+    if (this.isBrowser) {
+      this.preloadCriticalFonts();
+      this.optimizeLcpLoading();
+    }
   }
 
   ngOnDestroy() {
@@ -95,5 +103,39 @@ export class AppComponent implements OnInit, OnDestroy {
 
   closeContactPopup() {
     this.contactPopupService.closePopup();
+  }
+
+  private preloadCriticalFonts(): void {
+    const criticalFonts = [
+      'assets/fonts/NeueHaasDisplayRoman.ttf',
+      'assets/fonts/LibreBaskerville-Italic.ttf',
+      'assets/fonts/NeueHaasDisplayMediu.ttf'
+    ];
+
+    criticalFonts.forEach((fontUrl) => {
+      // Create font preload link for critical fonts
+      const link = this.renderer.createElement('link');
+      this.renderer.setAttribute(link, 'rel', 'preload');
+      this.renderer.setAttribute(link, 'href', fontUrl);
+      this.renderer.setAttribute(link, 'as', 'font');
+      this.renderer.setAttribute(link, 'type', 'font/ttf');
+      this.renderer.setAttribute(link, 'crossorigin', 'anonymous');
+      this.renderer.appendChild(document.head, link);
+    });
+  }
+
+  private optimizeLcpLoading(): void {
+    // Prioritize LCP element rendering
+    setTimeout(() => {
+      const lcpElements = document.querySelectorAll(
+        '[data-lcp-element="true"]'
+      );
+      if (lcpElements.length > 0) {
+        lcpElements.forEach((element) => {
+          // Add priority to LCP element
+          this.renderer.setAttribute(element, 'importance', 'high');
+        });
+      }
+    }, 0);
   }
 }

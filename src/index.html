@@ -34,16 +34,20 @@
   <!-- Canonical URL -->
   <link rel="canonical" href="https://tilegreen.org/">
 
-  <!-- Critical Performance optimizations for LCP -->
-  <link rel="preload" as="image" href="https://api-tilegreen.pulslytics.agency/media/images/cover.webp/" fetchpriority="high">
+  <!-- Priority Resources for LCP optimization -->
+  <link rel="preload" as="image" href="https://api-tilegreen.pulslytics.agency/media/images/cover.webp/" importance="high" fetchpriority="high">
 
-  <!-- Preload local fonts to improve LCP -->
+  <!-- High priority preload for critical fonts used in LCP element -->
+  <link rel="preload" href="assets/fonts/NeueHaasDisplayRoman.ttf" as="font" type="font/ttf" crossorigin importance="high">
+  <link rel="preload" href="assets/fonts/LibreBaskerville-Italic.ttf" as="font" type="font/ttf" crossorigin importance="high">
+  <link rel="preload" href="assets/fonts/NeueHaasDisplayMediu.ttf" as="font" type="font/ttf" crossorigin importance="high">
+  
+  <!-- Lower priority preloads for other fonts -->
   <link rel="preload" href="assets/fonts/Inter_18pt-Bold.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="assets/fonts/Inter_18pt-Medium.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="assets/fonts/Inter_18pt-Regular.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="assets/fonts/Inter_18pt-SemiBold.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="assets/fonts/NeueHaasDisplayBold.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="preload" href="assets/fonts/LibreBaskerville-Italic.ttf" as="font" type="font/ttf" crossorigin>
 
   <!-- DNS prefetch and preconnect -->
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
@@ -121,13 +125,98 @@
       src: url('assets/fonts/NeueHaasDisplayBold.ttf') format('truetype');
     }
 
+    @font-face {
+      font-family: 'Neue Haas Display';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url('assets/fonts/NeueHaasDisplayRoman.ttf') format('truetype');
+    }
+
+    @font-face {
+      font-family: 'Neue Haas Display';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('assets/fonts/NeueHaasDisplayMediu.ttf') format('truetype');
+    }
+
     /* LCP text styling for immediate rendering */
     [data-lcp-element="true"] {
       font-family: 'Neue Haas Display', 'Inter', sans-serif;
       text-rendering: optimizeSpeed;
       content-visibility: auto;
+      contain-intrinsic-size: auto 500px;
+      will-change: contents;
+    }
+
+    /* Pre-render text placeholders to avoid layout shift */
+    .text-tile-regular {
+      font-family: 'Neue Haas Display', sans-serif;
+      font-weight: 500;
+    }
+
+    .font-libre {
+      font-family: 'Libre Baskerville', serif;
+      font-style: italic;
+    }
+
+    /* Hide FOUC and flash of unstyled content */
+    body {
+      opacity: 1;
+      transition: opacity 0.3s ease-in;
+    }
+
+    html.loading body {
+      opacity: 0;
     }
   </style>
+
+  <script>
+    // Mark as loading initially
+    document.documentElement.classList.add('loading');
+    
+    // Fast page load optimization
+    window.addEventListener("DOMContentLoaded", () => {
+      // Prioritize LCP element rendering
+      const lcpElement = document.querySelector('[data-lcp-element="true"]');
+      if (lcpElement) {
+        lcpElement.setAttribute('importance', 'high');
+        // Add specific font loading for LCP text
+        const lcpFont = new FontFace('Neue Haas Display', 'url(assets/fonts/NeueHaasDisplayRoman.ttf)', {
+          weight: '500',
+          display: 'swap'
+        });
+        lcpFont.load().then(() => {
+          document.fonts.add(lcpFont);
+          // Remove loading class once fonts are ready
+          document.documentElement.classList.remove('loading');
+        }).catch(err => {
+          console.error('Font loading error:', err);
+          // Remove loading class even if font fails
+          document.documentElement.classList.remove('loading');
+        });
+      } else {
+        document.documentElement.classList.remove('loading');
+      }
+    });
+
+    // Layout Stability API monitoring
+    if ('LayoutShift' in window) {
+      let cumulativeLayoutShiftScore = 0;
+      
+      const observer = new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) {
+          // Only count layout shifts without recent user input
+          if (!entry.hadRecentInput) {
+            cumulativeLayoutShiftScore += entry.value;
+          }
+        }
+      });
+      
+      observer.observe({type: 'layout-shift', buffered: true});
+    }
+  </script>
 
   <!-- Structured Data for SEO -->
   <script type="application/ld+json">
