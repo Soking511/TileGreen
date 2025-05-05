@@ -60,7 +60,8 @@ export class CaseStudiesSliderComponent implements OnInit, OnDestroy {
     {
       company: 'Redcon',
       title: 'Sustainable Branded Walkway',
-      description: 'TileGreen and Redcon built an eco-friendly walkway with colorful tiles. The pathway features grass-filled joints for drainage, bordered by gravel and greenery, highlighting Redcon’s sustainable design.',
+      description:
+        'TileGreen and Redcon built an eco-friendly walkway with colorful tiles. The pathway features grass-filled joints for drainage, bordered by gravel and greenery, highlighting Redcon’s sustainable design.',
       imagePath:
         'https://api-tilegreen.pulslytics.agency/media/images/slider/4.png/',
       logo: 'https://api-tilegreen.pulslytics.agency/media/images/slider/logos/Mask group.png/',
@@ -107,7 +108,9 @@ export class CaseStudiesSliderComponent implements OnInit, OnDestroy {
 
   prevSlide(): void {
     // Change the slide and restore visibility
-    this.currentIndex = (this.currentIndex - 1 + this.caseStudies.length) % this.caseStudies.length;
+    this.currentIndex =
+      (this.currentIndex - 1 + this.caseStudies.length) %
+      this.caseStudies.length;
     this.cdr.detectChanges();
   }
 
