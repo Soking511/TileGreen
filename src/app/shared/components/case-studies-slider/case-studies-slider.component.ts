@@ -95,38 +95,20 @@ export class CaseStudiesSliderComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Preload all images for smoother transitions
-  private preloadImages(): void {
-    this.caseStudies.forEach((study) => {
-      const img = new Image();
-      img.src = study.imagePath;
-      const logoImg = new Image();
-      logoImg.src = study.logo;
-    });
-  }
-
   get totalCaseStudies(): number {
     return this.caseStudies.length;
   }
 
   // Override next/prev slide methods
   nextSlide(): void {
-    // First set visibility to false for smooth transition
-    this.cdr.detectChanges();
-
     // Change the slide and restore visibility
     this.currentIndex = (this.currentIndex + 1) % this.caseStudies.length;
     this.cdr.detectChanges();
   }
 
   prevSlide(): void {
-    // First set visibility to false for smooth transition
-    this.cdr.detectChanges();
-
     // Change the slide and restore visibility
-    this.currentIndex =
-      (this.currentIndex - 1 + this.caseStudies.length) %
-      this.caseStudies.length;
+    this.currentIndex = (this.currentIndex - 1 + this.caseStudies.length) % this.caseStudies.length;
     this.cdr.detectChanges();
   }
 
@@ -136,9 +118,6 @@ export class CaseStudiesSliderComponent implements OnInit, OnDestroy {
       index < this.caseStudies.length &&
       index !== this.currentIndex
     ) {
-      // First set visibility to false for smooth transition
-      this.cdr.detectChanges();
-
       // Change the slide and restore visibility
       this.currentIndex = index;
       this.cdr.detectChanges();
