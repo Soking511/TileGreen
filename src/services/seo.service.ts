@@ -16,7 +16,7 @@ export class SeoService {
     keywords = '',
     ogType = 'website',
     ogUrl = '',
-    ogImage = 'https://api-tilegreen.pulslytics.agency/media/assets/images/cover.png',
+    ogImage = 'https://api-tilegreen.pulslytics.agency/media/assets/images/cover.webp/',
   }: {
     title?: string;
     description?: string;

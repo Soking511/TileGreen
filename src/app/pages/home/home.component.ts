@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
       description: 'TileGreen transforms plastic waste into eco-friendly building materials. Our sustainable technology creates durable construction materials with minimal environmental impact.',
       keywords: 'green building materials, recycled plastic tiles, sustainable construction, eco-friendly materials, plastic waste recycling',
       ogUrl: 'https://tilegreen.org/home',
-      ogImage: 'https://api-tilegreen.pulslytics.agency/media/images/cover.png'
+      ogImage: 'https://api-tilegreen.pulslytics.agency/media/images/cover.webp/'
     });
 
     // Simulate loading time or wait for data to be fetched
