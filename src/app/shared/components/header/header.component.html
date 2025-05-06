@@ -171,10 +171,11 @@
     <!-- Bottom Section with divider and heading - Fully centered -->
     <div class="relative w-full z-10 flex flex-col items-center justify-end h-full pb-32">
         <!-- Main Heading - Centered both horizontally and vertically -->
-        <h1 class="text-white text-[63px] md:text-7xl lg:text-8xl text-tile-regular text-center" id="main-heading">
-            {{headTitle1}}
-            {{headTitle2}}<br>
-            {{headTitle3}}
+        <h1 class="text-white text-[63px] md:text-7xl lg:text-8xl text-tile-regular text-center" id="main-heading"
+            data-lcp-element="true" fetchpriority="high">
+            <span [innerHTML]="headTitle1"> </span>
+            <span [innerHTML]="headTitle2"> </span><br>
+            <span [innerHTML]="headTitle3"> </span>
         </h1>
 
         <!-- Bottom content - Also centered -->

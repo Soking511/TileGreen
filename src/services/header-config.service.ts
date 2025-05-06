@@ -25,8 +25,8 @@ export class HeaderConfigService {
   // Routes configuration map
   private readonly routeConfigs: Record<string, HeaderConfig> = {
     home: {
-      headTitle1: 'Innovating',
-      headTitle2: 'technology',
+      headTitle1: 'Innovating ',
+      headTitle2: ' technology',
       headTitle3: 'to transform our world',
       description1:
         'Green Technologies to transform plastic waste into circular green building materials, Pioneering the future ',
