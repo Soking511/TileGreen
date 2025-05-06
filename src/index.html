@@ -35,7 +35,8 @@
   <link rel="canonical" href="https://tilegreen.org/">
 
   <!-- Critical Performance optimizations for LCP -->
-  <link rel="preload" as="image" href="https://api-tilegreen.pulslytics.agency/media/images/cover.webp/" fetchpriority="high">
+  <link rel="preload" as="image" href="https://api-tilegreen.pulslytics.agency/media/images/cover.webp/"
+    fetchpriority="high">
 
   <!-- Preload local fonts to improve LCP -->
   <link rel="preload" href="assets/fonts/Inter_18pt-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
@@ -62,8 +63,10 @@
   <!-- <link rel="dns-prefetch" href="https://api-tilegreen.pulslytics.agency"> -->
 
 
-  <link rel="preload" as="image" href="https://api-tilegreen.pulslytics.agency/media/images/cover.webp/" fetchpriority="high" imagesizes="100vw">
-  <link rel="preload" as="image" href="https://api-tilegreen.pulslytics.agency/media/images/section1.png" fetchpriority="high">
+  <link rel="preload" as="image" href="https://api-tilegreen.pulslytics.agency/media/images/cover.webp/"
+    fetchpriority="high" imagesizes="100vw">
+  <link rel="preload" as="image" href="https://api-tilegreen.pulslytics.agency/media/images/section1.png"
+    fetchpriority="high">
 
   <meta http-equiv="Priority" content="high">
 
@@ -193,41 +196,8 @@
       }
     }
   </script>
-
-  <!-- Adding MIME type for scripts (fixes the module script issue) -->
-  <script type="text/javascript">
-    // This script ensures proper MIME type handling for scripts
-    (function() {
-      // Create a dynamic script element to check if ES modules are supported
-      const script = document.createElement('script');
-      script.type = 'module';
-      script.text = 'window.ES_MODULES_SUPPORTED = true;';
-      document.head.appendChild(script);
-    })();
-  </script>
 </head>
 
-<body class="max-w-full">
-  <app-root></app-root>
-
-  <!-- Remove modulepreload, as it can cause MIME type issues -->
-  <!-- Dynamically load scripts when app is ready -->
-  <script>
-    // Fallback to classic script loading if modules aren't supported
-    window.addEventListener('DOMContentLoaded', function() {
-      if (!window.ES_MODULES_SUPPORTED) {
-        console.log('ES Modules not supported, using fallback script loading');
-        const scripts = ['runtime.js', 'polyfills.js', 'main.js'];
-        scripts.forEach(function(src) {
-          const script = document.createElement('script');
-          script.src = src;
-          script.async = false;
-          script.defer = true;
-          document.body.appendChild(script);
-        });
-      }
-    });
-  </script>
-</body>
+<app-root></app-root>
 
 </html>
