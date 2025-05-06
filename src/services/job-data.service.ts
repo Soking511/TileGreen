@@ -14,7 +14,7 @@ export interface JobPosition {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class JobDataService {
   private jobCategories: JobCategory[] = [

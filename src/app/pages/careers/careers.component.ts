@@ -7,8 +7,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { ApiService } from '../../../services/api.service';
-import { JobCategory, JobPosition, JobDataService } from '../../../services/job-data.service';
-import { FormCareersComponent } from "./form-careers/form-careers.component";
+import {
+  JobCategory,
+  JobPosition,
+  JobDataService,
+} from '../../../services/job-data.service';
+import { FormCareersComponent } from './form-careers/form-careers.component';
 
 @Component({
   selector: 'app-careers',
@@ -61,7 +65,10 @@ export class CareersComponent implements OnInit {
   resume: File | null = null;
   fileUploaded: boolean = false;
 
-  constructor(private apiService: ApiService, private jobDataService: JobDataService) {}
+  constructor(
+    private apiService: ApiService,
+    private jobDataService: JobDataService
+  ) {}
 
   ngOnInit(): void {
     // Load job data from service

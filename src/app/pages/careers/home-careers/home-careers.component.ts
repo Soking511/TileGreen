@@ -8,7 +8,12 @@ import { NgOptimizedImage } from '@angular/common';
 @Component({
   selector: 'app-home-careers',
   standalone: true,
-  imports: [CommonModule, FooterHomeComponent, CareersComponent, NgOptimizedImage],
+  imports: [
+    CommonModule,
+    FooterHomeComponent,
+    CareersComponent,
+    NgOptimizedImage,
+  ],
   templateUrl: './home-careers.component.html',
   styleUrls: ['./home-careers.component.scss'],
 })
