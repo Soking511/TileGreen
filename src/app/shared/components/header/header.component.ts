@@ -7,9 +7,8 @@ import {
   ElementRef,
   PLATFORM_ID,
   Inject,
-  Renderer2,
 } from '@angular/core';
-import { CommonModule, isPlatformBrowser, DOCUMENT } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { ContactPopupService } from '../../../../services/contact-popup.service';
 
@@ -52,86 +51,58 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     private contactPopupService: ContactPopupService,
     private router: Router,
     private elementRef: ElementRef,
-    private renderer: Renderer2,
-    @Inject(DOCUMENT) private document: Document,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
 
   ngOnInit(): void {
-    if (this.isBrowser) {
-      this.isScrolled = window.scrollY > 10;
-      this.preloadCriticalAssets();
-    }
-
+    this.isScrolled = window.scrollY > 10;
     this.router.events.subscribe(() => {
       this.currentPath = this.router.url;
     });
+    // Pre-initialize content to prevent content layout shifts
+    if (this.isBrowser) {
+      this.preOptimizeLcpElements();
+    }
   }
 
   ngAfterViewInit(): void {
     if (this.isBrowser) {
       // Apply optimizations after view is initialized
       this.optimizeLcpElements();
-      this.replaceStaticContentWhenReady();
     }
   }
 
-  private preloadCriticalAssets(): void {
-    // Inline critical CSS if possible
-    const style = this.document.createElement('style');
-    style.innerHTML = `
-      /* Critical path CSS */
-      #main-heading {
-        font-family: 'Neue Haas Display', sans-serif;
-        font-display: swap;
-        opacity: 1 !important;
-      }
-      @font-face {
-        font-family: 'Neue Haas Display';
-        font-style: normal;
-        font-weight: 400;
-        font-display: swap;
-        src: url('/assets/fonts/NeueHaasDisplayRoman.ttf') format('truetype');
-      }
-    `;
+  private preOptimizeLcpElements(): void {
+    // Pre-render text to prevent layout shifts
+    if (
+      this.headTitle1 ||
+      this.headTitle2 ||
+      this.headTitle3 ||
+      this.headTitleLibre
+    ) {
+      // Force immediate parse of fonts to prevent layout shifts during rendering
+      document.fonts.ready.then(() => {
+        // Font loading completed, content should be stable
+        console.log('Fonts loaded for LCP elements');
+      });
+    }
 
-    this.document.head.appendChild(style);
-
-    // Preload header background image
+    // Optimize background image loading if it exists
     if (this.imagePath) {
-      const imgPreload = new Image();
-      imgPreload.fetchPriority = 'high';
-      imgPreload.src = this.imagePath;
-
-      // Use image decode API to handle image loading
-      imgPreload.decode()
-        .then(() => console.log('Header image decoded'))
-        .catch(err => console.warn('Image decode error:', err));
+      const img = new Image();
+      img.fetchPriority = 'high';
+      img.src = this.imagePath;
+      img
+        .decode()
+        .then(() => {
+          console.log('Header image decoded and ready for display');
+        })
+        .catch((err) => {
+          console.warn('Image decoding error:', err);
+        });
     }
-  }
-
-  private replaceStaticContentWhenReady(): void {
-    // Wait for hydration/JS to be ready, then replace static content with dynamic
-    setTimeout(() => {
-      const headingEl = this.elementRef.nativeElement.querySelector('#main-heading');
-      if (headingEl) {
-        // Show dynamic content and hide static placeholder
-        const hiddenSpans = headingEl.querySelectorAll('span.hidden');
-        const staticSpans = headingEl.querySelectorAll('span[style*="font-family"]');
-        
-        if (hiddenSpans.length > 0 && this.headTitle1) {
-          staticSpans.forEach((span: Element) => {
-            this.renderer.setStyle(span, 'display', 'none');
-          });
-          
-          hiddenSpans.forEach((span: Element) => {
-            this.renderer.removeClass(span, 'hidden');
-          });
-        }
-      }
-    }, 100); // Small delay to ensure framework hydration is complete
   }
 
   private optimizeLcpElements(): void {

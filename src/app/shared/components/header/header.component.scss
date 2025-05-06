@@ -113,25 +113,9 @@
   @media screen and (max-width: 768px) {
     line-height: 4.5rem;
     word-spacing: -0.1em;
-    will-change: transform; /* Hardware acceleration */
-    contain: content; /* Better performance with layout containment */
   }
 
   @media screen and (min-width: 769px) {
     line-height: 1.1;
-    will-change: transform;
-    contain: content;
-  }
-  
-  /* Enable GPU acceleration for smoother rendering */
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  
-  /* Prevent layout shifts */
-  min-height: 5rem;
-  
-  /* Ensure text is visible during font loading */
-  &.fallback-fonts {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   }
 }
