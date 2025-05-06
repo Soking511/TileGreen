@@ -34,8 +34,8 @@ export const appConfig: ApplicationConfig = {
       withInMemoryScrolling({
         scrollPositionRestoration: 'enabled', // enable position restoration
       }),
-      withPreloading(PreloadAllModules)
-      // withPreloading(SelectivePreloadingStrategy) // Only preload marked routes
+      // withPreloading(PreloadAllModules)
+      withPreloading(SelectivePreloadingStrategy) // Only preload marked routes
     ),
     provideHttpClient(withInterceptorsFromDi()),
     provideAnimations(),
