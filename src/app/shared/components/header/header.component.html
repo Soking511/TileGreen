@@ -15,8 +15,8 @@
             [class.bg-white]="isScrolled" [class.text-black]="isScrolled"
             [ngClass]="imagePath && !isScrolled ? 'text-white' : 'text-black'" aria-label="Main navigation">
             <div class="flex items-center gap-1 xs:gap-2 z-20">
-                <a [routerLink]="'/home'" aria-label="TileGreen Home Page"
-                    class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-md" >
+                <a href="/home" [routerLink]="'/home'" aria-label="TileGreen Home Page"
+                    class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-md">
                     <svg width="42" class="h-2 xs:h-7 sm:h-5 md:h-5" height="48" viewBox="0 0 52 48" fill="none"
                         class="cursor-pointer" xmlns="https://www.w3.org/2000/svg" aria-hidden="true">
                         <title>TileGreen Logo</title>
@@ -70,7 +70,7 @@
                     <!-- Header with logo and close button -->
                     <div class="flex justify-between items-center px-6 py-4 border-b border-white/10">
                         <div class="flex items-center gap-2">
-                            <a [routerLink]="'/home'" aria-label="TileGreen Home Page"
+                            <a href="/home" [routerLink]="'/home'" aria-label="TileGreen Home Page"
                                 class="focus:outline-none focus:ring-2 focus:ring-white rounded-md">
                                 <svg width="40" height="38" viewBox="0 0 52 48" fill="none" class="cursor-pointer"
                                     xmlns="https://www.w3.org/2000/svg" aria-hidden="true">
