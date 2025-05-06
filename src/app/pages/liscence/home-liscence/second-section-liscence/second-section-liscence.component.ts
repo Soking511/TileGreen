@@ -15,7 +15,7 @@ import { QaService } from '../../../../../services/qa.service';
 // head-numbers
 @Component({
   selector: 'app-second-section-liscence',
-  imports: [NgFor, NgIf, ReactiveFormsModule, NgClass, ButtonComponent],
+  imports: [NgIf, ReactiveFormsModule, NgClass, ButtonComponent],
   templateUrl: './second-section-liscence.component.html',
   styleUrls: ['./second-section-liscence.component.scss'],
 })
@@ -149,7 +149,7 @@ export class SecondSectionLiscenceComponent {
   scrollToSection() {
     this.targetSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
   }
-  
+
   getKeyBenefit(item: IFaqItem, index: number): string {
     return item.keyBenefits && item.keyBenefits.length > index
       ? item.keyBenefits[index]

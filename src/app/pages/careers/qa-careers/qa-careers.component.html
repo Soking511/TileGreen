@@ -4,8 +4,9 @@
     <div class="max-w-6xl mx-auto px-4">
         <div class="flex flex-col justify-start items-start w-full gap-5">
             <!-- FAQ Items -->
-            <div *ngFor="let item of faqItems"
-                class="flex flex-col w-full overflow-hidden rounded-3xl border border-[#adadad] transition-all duration-300"
+            @for( item of faqItems; track item ){
+
+            <div class="flex flex-col w-full overflow-hidden rounded-3xl border border-[#adadad] transition-all duration-300"
                 [ngClass]="{'shadow-lg': item.isOpen, 'border-[#0460d9]': item.isOpen}">
                 <button (click)="toggleItem(item)"
                     class="flex justify-between items-center w-full px-[45px] py-[41px] text-left hover:bg-gray-50 focus:outline-none"
@@ -36,7 +37,9 @@
                         <div *ngIf="item.isOpen && item.keyHighlights" class="mt-6">
                             <p class="text-lg font-medium text-[#010d26] mb-3">Key Highlights:</p>
                             <ul class="space-y-2">
-                                <li *ngFor="let highlight of item.keyHighlights" class="flex items-start gap-2">
+
+                                @for( highlight of item.keyHighlights; track highlight ){
+                                <li class="flex items-start gap-2">
                                     <svg class="w-5 h-5 text-[#0460d9] mt-1 flex-shrink-0" fill="currentColor"
                                         viewBox="0 0 20 20" xmlns="https://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
@@ -45,11 +48,13 @@
                                     </svg>
                                     <span class="text-gray-800">{{ highlight }}</span>
                                 </li>
+                                }
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
+            }
         </div>
     </div>
 </div>

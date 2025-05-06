@@ -17,7 +17,7 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
   templateUrl: './home-apps.component.html',
   styleUrls: ['./home-apps.component.scss'],
 })
-export class HomeAppsComponent implements OnInit, AfterViewInit {
+export class HomeAppsComponent {
   constructor(
     private seoService: SeoService,
     @Inject(PLATFORM_ID) private platformId: Object,

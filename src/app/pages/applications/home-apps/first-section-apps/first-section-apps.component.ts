@@ -10,14 +10,10 @@ import { ProductExpansionSectionComponent } from "../../../product-expansion-sec
   templateUrl: './first-section-apps.component.html',
   styleUrls: ['./first-section-apps.component.scss'],
 })
-export class FirstSectionAppsComponent implements OnInit {
+export class FirstSectionAppsComponent {
   @ViewChild('videoPlayer') videoPlayer: ElementRef<HTMLVideoElement> | undefined;
   videoLoaded = false;
   isPlaying = false;
-
-  ngOnInit(): void {
-    // Existing init code
-  }
 
   onVideoLoaded(): void {
     this.videoLoaded = true;

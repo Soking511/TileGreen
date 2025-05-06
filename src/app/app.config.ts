@@ -1,14 +1,13 @@
 import {
   ApplicationConfig,
   provideZoneChangeDetection,
-  isDevMode,
-  enableProdMode,
 } from '@angular/core';
 import {
   provideRouter,
   withInMemoryScrolling,
   withPreloading,
   PreloadingStrategy,
+  PreloadAllModules,
 } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { routes } from './app.routes';
@@ -19,12 +18,7 @@ import {
 import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 
-// Enable production mode if we're not in development
-if (!isDevMode()) {
-  enableProdMode();
-}
 
-// Custom preloading strategy to only preload routes with preload: true flag
 @Injectable({ providedIn: 'root' })
 export class SelectivePreloadingStrategy implements PreloadingStrategy {
   preload(route: any, load: () => Observable<any>): Observable<any> {
@@ -40,7 +34,8 @@ export const appConfig: ApplicationConfig = {
       withInMemoryScrolling({
         scrollPositionRestoration: 'enabled', // enable position restoration
       }),
-      withPreloading(SelectivePreloadingStrategy) // Only preload marked routes
+      withPreloading(PreloadAllModules)
+      // withPreloading(SelectivePreloadingStrategy) // Only preload marked routes
     ),
     provideHttpClient(withInterceptorsFromDi()),
     provideAnimations(),

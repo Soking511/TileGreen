@@ -12,7 +12,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { ContactUsPopComponent } from './shared/components/contact-us-pop/contact-us-pop.component';
 import { ContactPopupService } from '../services/contact-popup.service';
 import { SeoService } from '../services/seo.service';
-import { EMPTY, Subscription, filter, takeUntil } from 'rxjs';
+import { Subscription, filter } from 'rxjs';
 import { HeaderConfigService } from '../services/header-config.service';
 import { PerformanceService } from '../services/performance.service';
 
