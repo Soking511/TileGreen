@@ -25,7 +25,8 @@
             <div class="w-full h-full flex items-center">
                 <img src="https://api-tilegreen.pulslytics.agency/media/images/section1.webp/"
                     class="w-full h-full rounded-2xl sm:rounded-3xl shadow-lg object-cover"
-                    alt="Machine learning technology for recycling" loading="lazy" />
+                    alt="Machine learning technology for recycling" loading="lazy" fetchpriority="high"
+                    sizes="(min-width: 768px) 50vw, 100vw" />
             </div>
         </div>
 
@@ -33,7 +34,7 @@
         <div class="block md:hidden w-full my-4 px-1">
             <img src="https://api-tilegreen.pulslytics.agency/media/images/section1.webp/"
                 class="w-full h-auto rounded-2xl shadow-lg object-cover" alt="Machine learning technology for recycling"
-                loading="lazy" />
+                loading="lazy" fetchpriority="high" sizes="100vw" />
         </div>
     </div>
 
@@ -96,7 +97,9 @@
             <div class="w-full lg:w-1/2">
                 <img src="https://api-tilegreen.pulslytics.agency/media/images/section3.webp/"
                     alt="TileGreen's recycling facility with workers monitoring machines processing plastic waste"
-                    class="w-full h-auto rounded-lg shadow-lg object-cover max-h-[400px]" loading="lazy">
+                    class="w-full h-auto rounded-lg shadow-lg object-cover max-h-[400px]" loading="lazy"
+                    fetchpriority="high" sizes="(min-width: 1024px) 50vw, 100vw" onload="this.classList.add('loaded')"
+                    style="transition: opacity 0.3s ease-in-out;" />
             </div>
 
             <div class="w-full lg:w-1/2">
