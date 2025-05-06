@@ -81,7 +81,11 @@
         </div>
         }
     </div>
-    <app-form-careers />
+    <!-- @if(formComponentLoaded) { -->
+        <!-- @defer { -->
+            <app-form-careers />
+        <!-- } -->
+    <!-- } -->
 </section>
 
 <!-- Job Application Popup/Modal -->

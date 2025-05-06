@@ -163,7 +163,7 @@
 
             <!-- Submit Button -->
             <button type="submit" [disabled]="formSubmitting"
-                class="relative w-full py-3 sm:py-4 px-4 sm:px-6 bg-[#010d26] hover:bg-[#021f59] transition-colors duration-200 text-white text-lg sm:text-xl rounded-full disabled:bg-gray-400 disabled:cursor-not-allowed text-tile-regular">
+                class="cursor-pointer relative w-full py-3 sm:py-4 px-4 sm:px-6 bg-[#010d26] hover:bg-[#021f59] transition-colors duration-200 text-white text-lg sm:text-xl rounded-full disabled:bg-gray-400 disabled:cursor-not-allowed text-tile-regular">
                 <span *ngIf="!formSubmitting">Join the Waitlist</span>
                 <span *ngIf="formSubmitting" class="flex items-center justify-center">
                     <svg class="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="https://www.w3.org/2000/svg"

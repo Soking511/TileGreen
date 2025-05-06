@@ -2,77 +2,90 @@ import {
   Component,
   OnInit,
   OnDestroy,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Inject,
+  inject,
   PLATFORM_ID,
-  Renderer2,
+  ChangeDetectionStrategy,
 } from '@angular/core';
-import {
-  RouterOutlet,
-  Router,
-  NavigationStart,
-  NavigationEnd,
-  NavigationCancel,
-  NavigationError,
-} from '@angular/router';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
+import { HeaderComponent } from './shared/components/header/header.component';
 import { ContactUsPopComponent } from './shared/components/contact-us-pop/contact-us-pop.component';
 import { ContactPopupService } from '../services/contact-popup.service';
-import { Subscription } from 'rxjs';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { SeoService } from '../services/seo.service';
+import { EMPTY, Subscription, filter, takeUntil } from 'rxjs';
+import { HeaderConfigService } from '../services/header-config.service';
+import { PerformanceService } from '../services/performance.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ContactUsPopComponent, CommonModule],
+  imports: [RouterOutlet, ContactUsPopComponent, CommonModule, HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit, OnDestroy {
-  title = 'TileGreen';
-  isContactPopupOpen = false;
-  isRouteLoading = false;
-  isBrowser: boolean;
-  private subscription: Subscription | null = null;
-  private routerSubscription: Subscription | null = null;
+  // Injected services using the new inject pattern
+  private readonly router = inject(Router);
+  private readonly contactPopupService = inject(ContactPopupService);
+  private readonly seoService = inject(SeoService);
+  private readonly headerConfigService = inject(HeaderConfigService);
+  private readonly performanceService = inject(PerformanceService);
+  private readonly platformId = inject(PLATFORM_ID);
 
-  constructor(
-    private contactPopupService: ContactPopupService,
-    private router: Router,
-    private cdr: ChangeDetectorRef,
-    private seoService: SeoService,
-    @Inject(PLATFORM_ID) private platformId: Object,
-    private renderer: Renderer2
-  ) {
-    this.isBrowser = isPlatformBrowser(this.platformId);
+  // Public properties accessed by the template
+  protected isContactPopupOpen = false;
+  protected isRouteLoading = false;
+  protected headerConfig = this.headerConfigService.defaultConfig;
+
+  // Private subscriptions
+  private subscription = new Subscription();
+  private isBrowser = isPlatformBrowser(this.platformId);
+
+  ngOnInit(): void {
+    this.initContactPopupListener();
+    this.initRouteChangeListener();
+    this.initSeoDefaults();
+
+    if (this.isBrowser) {
+      this.performanceService.optimizePageLoad();
+    }
   }
 
-  ngOnInit() {
-    this.subscription = this.contactPopupService.isOpen$.subscribe((isOpen) => {
-      this.isContactPopupOpen = isOpen;
-      this.cdr.markForCheck();
-    });
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
-    // Add route change detection for loading indicator
-    this.routerSubscription = this.router.events.subscribe((event) => {
-      if (event instanceof NavigationStart) {
-        this.isRouteLoading = true;
-        this.cdr.markForCheck();
-      } else if (
-        event instanceof NavigationEnd ||
-        event instanceof NavigationCancel ||
-        event instanceof NavigationError
-      ) {
-        setTimeout(() => {
-          this.isRouteLoading = false;
-          this.cdr.markForCheck();
-        }, 300); // Short delay to ensure the animation is visible
-      }
-    });
+  protected closeContactPopup(): void {
+    this.contactPopupService.closePopup();
+  }
 
-    // Set default SEO tags
+  private initContactPopupListener(): void {
+    this.subscription.add(
+      this.contactPopupService.isOpen$.subscribe((isOpen) => {
+        this.isContactPopupOpen = isOpen;
+      })
+    );
+  }
+
+  private initRouteChangeListener(): void {
+    // Handle route loading state
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event: any) => {
+        this.updateHeaderConfig(event.url);
+        this.isRouteLoading = false;
+      });
+
+    // Set initial configuration based on current route
+    this.updateHeaderConfig(this.router.url);
+  }
+
+  private updateHeaderConfig(url: string): void {
+    this.headerConfig = this.headerConfigService.getConfigForRoute(url);
+  }
+
+  private initSeoDefaults(): void {
     this.seoService.updateMetadata({
       title:
         'TileGreen - Transforming Plastic Waste into Sustainable Building Materials',
@@ -82,60 +95,5 @@ export class AppComponent implements OnInit, OnDestroy {
         'green building materials, plastic recycling, sustainable construction, eco tiles, circular economy',
       ogUrl: 'https://tilegreen.org',
     });
-
-    // Preload critical fonts for LCP optimization
-    if (this.isBrowser) {
-      this.preloadCriticalFonts();
-      this.optimizeLcpLoading();
-    }
-  }
-
-  ngOnDestroy() {
-    // Clean up subscriptions when component is destroyed
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
-
-    if (this.routerSubscription) {
-      this.routerSubscription.unsubscribe();
-    }
-  }
-
-  closeContactPopup() {
-    this.contactPopupService.closePopup();
-  }
-
-  private preloadCriticalFonts(): void {
-    const criticalFonts = [
-      'assets/fonts/NeueHaasDisplayRoman.ttf',
-      'assets/fonts/LibreBaskerville-Italic.ttf',
-      'assets/fonts/NeueHaasDisplayMediu.ttf',
-    ];
-
-    criticalFonts.forEach((fontUrl) => {
-      // Create font preload link for critical fonts
-      const link = this.renderer.createElement('link');
-      this.renderer.setAttribute(link, 'rel', 'preload');
-      this.renderer.setAttribute(link, 'href', fontUrl);
-      this.renderer.setAttribute(link, 'as', 'font');
-      this.renderer.setAttribute(link, 'type', 'font/ttf');
-      this.renderer.setAttribute(link, 'crossorigin', 'anonymous');
-      this.renderer.appendChild(document.head, link);
-    });
-  }
-
-  private optimizeLcpLoading(): void {
-    // Prioritize LCP element rendering
-    setTimeout(() => {
-      const lcpElements = document.querySelectorAll(
-        '[data-lcp-element="true"]'
-      );
-      if (lcpElements.length > 0) {
-        lcpElements.forEach((element) => {
-          // Add priority to LCP element
-          this.renderer.setAttribute(element, 'importance', 'high');
-        });
-      }
-    }, 0);
   }
 }

@@ -3,6 +3,14 @@
   <div class="h-full bg-[#0F8C22] animate-loading-bar"></div>
 </div>
 
+<!-- Global header component -->
+<app-header [button1Text]="headerConfig.button1Text" [button2Text]="headerConfig.button2Text ?? null"
+  [headTitle1]="headerConfig.headTitle1" [headTitle2]="headerConfig.headTitle2"
+  [headTitle2_2]="headerConfig.headTitle2_2 ?? null" [headTitle3]="headerConfig.headTitle3"
+  [headTitleLibre]="headerConfig.headTitleLibre ?? null" [headTitle2Font]="headerConfig.headTitle2Font ?? null"
+  [description1]="headerConfig.description1" [description2]="headerConfig.description2 ?? null"
+  [imagePath]="headerConfig.imagePath" [navigateTo]="headerConfig.navigateTo"></app-header>
+
 <router-outlet></router-outlet>
 
 <!-- Global contact popup that can be triggered from anywhere -->
