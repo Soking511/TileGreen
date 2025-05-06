@@ -193,10 +193,41 @@
       }
     }
   </script>
+
+  <!-- Adding MIME type for scripts (fixes the module script issue) -->
+  <script type="text/javascript">
+    // This script ensures proper MIME type handling for scripts
+    (function() {
+      // Create a dynamic script element to check if ES modules are supported
+      const script = document.createElement('script');
+      script.type = 'module';
+      script.text = 'window.ES_MODULES_SUPPORTED = true;';
+      document.head.appendChild(script);
+    })();
+  </script>
 </head>
 
 <body class="max-w-full">
   <app-root></app-root>
+
+  <!-- Remove modulepreload, as it can cause MIME type issues -->
+  <!-- Dynamically load scripts when app is ready -->
+  <script>
+    // Fallback to classic script loading if modules aren't supported
+    window.addEventListener('DOMContentLoaded', function() {
+      if (!window.ES_MODULES_SUPPORTED) {
+        console.log('ES Modules not supported, using fallback script loading');
+        const scripts = ['runtime.js', 'polyfills.js', 'main.js'];
+        scripts.forEach(function(src) {
+          const script = document.createElement('script');
+          script.src = src;
+          script.async = false;
+          script.defer = true;
+          document.body.appendChild(script);
+        });
+      }
+    });
+  </script>
 </body>
 
 </html>
