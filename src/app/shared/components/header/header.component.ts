@@ -22,14 +22,14 @@ import { ContactPopupService } from '../../../../services/contact-popup.service'
 export class HeaderComponent implements OnInit, AfterViewInit {
   @Input() button1Text: string | null | undefined = null;
   @Input() button2Text: string | null | undefined = null;
-  @Input() headTitle1: string | null | undefined = null;
-  @Input() headTitle2: string | null | undefined = null;
-  @Input() headTitle2_2: string | null | undefined = null;
-  @Input() headTitle3: string | null | undefined = null;
+  @Input() headTitle1: string | null | undefined = '';
+  @Input() headTitle2: string | null | undefined = '';
+  @Input() headTitle2_2: string | null | undefined = '';
+  @Input() headTitle3: string | null | undefined = '';
   @Input() headTitleLibre: string | null | undefined = null;
   @Input() headTitle2Font: string | null | undefined = null;
-  @Input() description1: string | null | undefined = null;
-  @Input() description2: string | null | undefined = null;
+  @Input() description1: string | null | undefined = '';
+  @Input() description2: string | null | undefined = '';
   @Input() imagePath: string | null | undefined = null;
   @Input() navigateTo: string | null | undefined = null;
 
