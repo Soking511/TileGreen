@@ -7,7 +7,7 @@ import {
 } from '@angular/animations';
 import { Component } from '@angular/core';
 import { bounceInUpAnimation } from '../../../services/site-animations.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { AnimateOnScrollDirective } from '../../shared/directives/animate-on-scroll.directive';
 
 @Component({
@@ -20,7 +20,7 @@ import { AnimateOnScrollDirective } from '../../shared/directives/animate-on-scr
       transition('* => true', useAnimation(bounceInUpAnimation)),
     ]),
   ],
-  imports: [CommonModule, AnimateOnScrollDirective],
+  imports: [CommonModule, AnimateOnScrollDirective, NgOptimizedImage],
   templateUrl: './feature-showcase-section.component.html',
   styleUrls: ['./feature-showcase-section.component.scss'],
 })

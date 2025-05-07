@@ -13,6 +13,7 @@ import { SectionHeaderComponent } from '../../../shared/components/section-heade
 import { FeatureShowcaseSectionComponent } from '../../feature-showcase-section/feature-showcase-section.component';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
 import { AnimateOnScrollDirective } from '../../../shared/directives/animate-on-scroll.directive';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-first-section',
@@ -40,7 +41,8 @@ import { AnimateOnScrollDirective } from '../../../shared/directives/animate-on-
     SectionHeaderComponent,
     FeatureShowcaseSectionComponent,
     ButtonComponent,
-    AnimateOnScrollDirective
+    AnimateOnScrollDirective,
+    NgOptimizedImage
   ],
 })
 export class FirstSectionComponent {

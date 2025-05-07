@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { SectionHeaderComponent } from '../../../shared/components/section-header/section-header.component';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
 import { LinkedPersonComponent } from '../../../shared/components/linked-person/linked-person.component';
@@ -25,7 +25,8 @@ interface SlideItem {
     SectionHeaderComponent,
     ButtonComponent,
     LinkedPersonComponent,
-    AnimateOnScrollDirective
+    AnimateOnScrollDirective,
+    NgOptimizedImage
   ],
   templateUrl: './fifth-section.component.html',
   styleUrls: ['./fifth-section.component.scss'],
