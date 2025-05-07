@@ -25,9 +25,7 @@ export class HeaderConfigService {
   // Routes configuration map
   private readonly routeConfigs: Record<string, HeaderConfig> = {
     home: {
-      headTitle1: 'Innovating ',
-      headTitle2: ' technology',
-      headTitle3: 'to transform our world',
+      headTitle1: 'Innovating technology to transform our world',
       description1:
         'Green Technologies to transform plastic waste into circular green building materials, Pioneering the future ',
       button1Text: 'Discover Our Technology',
@@ -37,8 +35,7 @@ export class HeaderConfigService {
       navigateTo: '/technology',
     },
     technology: {
-      headTitle1: 'Innovating a Greener',
-      headTitle3: ' Tomorrow',
+      headTitle1: 'Innovating a Greener Tomorrow',
       description1:
         "we're paving the way for a greener and more sustainable future",
       button2Text: "Let's Talk",
@@ -46,8 +43,7 @@ export class HeaderConfigService {
         'https://api-tilegreen.pulslytics.agency/media/images/header/TGBackground3.webp/',
     },
     applications: {
-      headTitle1: 'Sustainable Construction',
-      headTitle3: 'Starts with Re-PAC',
+      headTitle1: 'Sustainable Construction Starts with Re-PAC',
       description1:
         'We ensure a greener future for construction through our innovative technology',
       button2Text: "Let's Talk",
@@ -56,9 +52,7 @@ export class HeaderConfigService {
     },
     careers: {},
     licenses: {
-      headTitle1: "Bring TileGreen's",
-      headTitle2: 'Technology',
-      headTitle3: 'to Your Market',
+      headTitle1: "Bring TileGreen's Technology to Your Market",
       description1:
         'Turn unrecyclable plastic into high-performance, carbon-negative',
       imagePath:
@@ -91,6 +85,5 @@ export class HeaderConfigService {
     } else {
       return this.routeConfigs['home'];
     }
-    return this.defaultConfig;
   }
 }
