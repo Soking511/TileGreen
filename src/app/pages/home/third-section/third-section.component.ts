@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
-import { trigger, state, style, transition, useAnimation } from '@angular/animations';
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  useAnimation,
+} from '@angular/animations';
 import { bounceInUpAnimation } from '../../../../services/site-animations.service';
 import { SectionHeaderComponent } from '../../../shared/components/section-header/section-header.component';
 import { AnimateOnScrollDirective } from '../../../shared/directives/animate-on-scroll.directive';

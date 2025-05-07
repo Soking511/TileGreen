@@ -4,6 +4,7 @@ import { ProductExpansionSectionComponent } from '../../product-expansion-sectio
 import { AnimateOnScrollDirective } from '../../../shared/directives/animate-on-scroll.directive';
 import { trigger, state, style, transition, useAnimation } from '@angular/animations';
 import { flipInYAnimation } from '../../../../services/site-animations.service';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-fourth-section',
@@ -11,6 +12,7 @@ import { flipInYAnimation } from '../../../../services/site-animations.service';
     ButtonComponent,
     ProductExpansionSectionComponent,
     AnimateOnScrollDirective,
+    NgOptimizedImage
   ],
   templateUrl: './fourth-section.component.html',
   styleUrls: ['./fourth-section.component.scss'],

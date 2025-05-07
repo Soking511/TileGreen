@@ -1,11 +1,22 @@
-import { Directive, ElementRef, Input, OnDestroy, OnInit, Output, EventEmitter } from '@angular/core';
-import { AnimationObserverService, AnimationConfig } from '../../../services/animation-observer.service';
+import {
+  Directive,
+  ElementRef,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  EventEmitter,
+} from '@angular/core';
+import {
+  AnimationObserverService,
+  AnimationConfig,
+} from '../../../services/animation-observer.service';
 import { Subject, takeUntil } from 'rxjs';
 
 @Directive({
   selector: '[animateOnScroll]',
   standalone: true,
-  exportAs: 'animateOnScroll'
+  exportAs: 'animateOnScroll',
 })
 export class AnimateOnScrollDirective implements OnInit, OnDestroy {
   @Input() animationConfig: AnimationConfig = {};
@@ -27,13 +38,13 @@ export class AnimateOnScrollDirective implements OnInit, OnDestroy {
   ngOnInit() {
     const config: AnimationConfig = {
       threshold: 0.3,
-      ...this.animationConfig
+      ...this.animationConfig,
     };
 
     this.animationObserver
       .observe(this.el, config)
       .pipe(takeUntil(this.destroy$))
-      .subscribe(isInView => {
+      .subscribe((isInView) => {
         this._isInView = isInView;
         this.isInViewChange.emit(isInView);
 
