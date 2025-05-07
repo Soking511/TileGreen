@@ -74,6 +74,7 @@ export class CaseStudiesSliderComponent implements OnInit, OnDestroy {
   // Scroll hijacking properties
   isScrollHijackEnabled = true;
   isInView = false;
+  stopSpamming=false;
   private observer: IntersectionObserver | null = null;
 
   constructor(
@@ -102,16 +103,30 @@ export class CaseStudiesSliderComponent implements OnInit, OnDestroy {
   // Override next/prev slide methods
   nextSlide(): void {
     // Change the slide and restore visibility
-    this.currentIndex = (this.currentIndex + 1) % this.caseStudies.length;
-    this.cdr.detectChanges();
+    if ( this.stopSpamming ) return;
+    this.stopSpamming=true;
+    if ( this.currentIndex + 1 < this.caseStudies.length) {
+      this.currentIndex++;
+    } else {
+      this.currentIndex = 0;
+    }
+    setTimeout(() => {
+      this.stopSpamming=false;
+    }, 150);
   }
 
   prevSlide(): void {
-    // Change the slide and restore visibility
-    this.currentIndex =
-      (this.currentIndex - 1 + this.caseStudies.length) %
-      this.caseStudies.length;
-    this.cdr.detectChanges();
+    if ( this.stopSpamming ) return;
+    this.stopSpamming=true;
+
+    if ( this.currentIndex - 1 >= 0) {
+      this.currentIndex--;
+    } else {
+      this.currentIndex = this.caseStudies.length - 1;
+    }
+    setTimeout(() => {
+      this.stopSpamming=false;
+    }, 150);
   }
 
   goToSlide(index: number): void {
@@ -122,7 +137,6 @@ export class CaseStudiesSliderComponent implements OnInit, OnDestroy {
     ) {
       // Change the slide and restore visibility
       this.currentIndex = index;
-      this.cdr.detectChanges();
     }
   }
 
@@ -175,11 +189,5 @@ export class CaseStudiesSliderComponent implements OnInit, OnDestroy {
   private isSwiping = false;
   private swipeDirection: 'left' | 'right' | null = null;
 
-  // Handle window resize for responsive adjustments
-  @HostListener('window:resize')
-  onResize(): void {
-    if (this.isBrowser) {
-      this.cdr.detectChanges();
-    }
-  }
+
 }

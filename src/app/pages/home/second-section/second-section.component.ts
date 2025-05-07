@@ -1,8 +1,8 @@
-import { Component, ElementRef, inject, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { LogosComponent } from "../../../shared/components/logos/logos.component";
 import { ArticleService } from '../../../../services/article.service';
 import { trigger, state, style, transition, useAnimation } from '@angular/animations';
-import { fadeInRightAnimation } from '../../../../services/site-animations.service';
+import { fadeInLeftAnimation, fadeInRightAnimation } from '../../../../services/site-animations.service';
 
 @Component({
   selector: 'app-second-section',
@@ -14,6 +14,11 @@ import { fadeInRightAnimation } from '../../../../services/site-animations.servi
       state('*', style({ visibility: 'hidden' })),
       state('true', style({ visibility: 'visible' })),
       transition('* => true', useAnimation(fadeInRightAnimation)),
+    ]),
+    trigger('fadeInLeftAnimation', [
+      state('*', style({ visibility: 'hidden' })),
+      state('true', style({ visibility: 'visible' })),
+      transition('* => true', useAnimation(fadeInLeftAnimation)),
     ]),
   ],
 })
@@ -30,8 +35,10 @@ export class SecondSectionComponent {
   articleService = inject(ArticleService);
 
   @ViewChild('animateElement') animateElement?: ElementRef;
+  @ViewChildren('animateElements') animateElements?: QueryList<ElementRef>;
 
-  isInView: boolean = false;
+  // Store animation states for each element
+  isInViewStates: boolean[] = [];
 
   ngAfterViewInit(): void {
     const observer = new IntersectionObserver(
@@ -39,22 +46,29 @@ export class SecondSectionComponent {
         entries.forEach((entry) => {
           console.debug(entry.isIntersecting);
 
-          if (entry.isIntersecting) {
-            this.isInView = true;
+          if (entry.isIntersecting && this.animateElements) {
+            // Find the index of the element and mark it as 'true' in the isInViewsStates boolean array
+            const index = this.animateElements
+              .toArray()
+              .findIndex((el) => el.nativeElement === entry.target);
+            if (index !== -1) {
+              this.isInViewStates[index] = true; // This will trigger the animation for the related element
 
-            if (this.animateElement) {
-              observer.unobserve(this.animateElement.nativeElement);
+              // Stop observing this element
+              observer.unobserve(entry.target); // unobserve the related element after the animation has triggered
             }
           }
         });
       },
       {
-        threshold: 0.1,
+        threshold: 0.2, // Trigger only when at least 10% of the element is in view
       }
     );
 
-    if (this.animateElement) {
-      observer.observe(this.animateElement.nativeElement);
+    if (this.animateElements) {
+      this.animateElements.forEach((el) => {
+        observer.observe(el.nativeElement);
+      });
     }
   }
 

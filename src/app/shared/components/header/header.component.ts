@@ -105,7 +105,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         });
       },
       {
-        threshold: 0.1, // Trigger only when at least 10% of the element is in view
+        threshold: 0.2, // Trigger only when at least 10% of the element is in view
       }
     );
 

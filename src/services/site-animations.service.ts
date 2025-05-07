@@ -38,8 +38,8 @@ export const fadeInUpAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '1s',
-      delay: '300ms',
+      duration: '0.3s',
+      delay: '0ms',
       distance: '25%',
     },
   }
@@ -72,8 +72,8 @@ export const fadeOutRightAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '1s',
-      delay: '300ms',
+      duration: '0.6s',
+      delay: '0ms',
       distance: '100%',
     },
   }
@@ -106,7 +106,7 @@ export const fadeOutLeftAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '1s',
+      duration: '0.6s',
       delay: '0ms',
       distance: '100%',
     },
@@ -139,7 +139,7 @@ export const fadeInRightAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '1s',
+      duration: '0.6s',
       delay: '0ms',
       distance: '100%',
     },
@@ -172,8 +172,8 @@ export const fadeInLeftAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '1s',
-      delay: '300ms',
+      duration: '0.6s',
+      delay: '0ms',
       distance: '100%',
     },
   }
@@ -205,6 +205,7 @@ export const zoomInAnimation: AnimationReferenceMetadata = animation(
     params: {
       duration: '0.6s',
       delay: '0s',
+      distance: '100%',
     },
   }
 );
@@ -400,8 +401,8 @@ export const bounceInAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '0.75s',
-      delay: '0.25s',
+      duration: '0.35s',
+      delay: '0s',
     },
   }
 );
@@ -441,7 +442,267 @@ export const bounceOutAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '0.75s',
+      duration: '0.55s',
+      delay: '0s',
+    },
+  }
+);
+
+export const bounceInUpAnimation: AnimationReferenceMetadata = animation(
+  [
+    style({ visibility: 'hidden' }),
+    animate(
+      '{{ duration }} {{ delay }}',
+      keyframes([
+        style({
+          visibility: 'visible',
+          opacity: 0,
+          transform: 'translate3d(0, {{ distance }}, 0)',
+          easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)',
+          offset: 0,
+        }),
+        style({
+          opacity: 1,
+          transform: 'translate3d(0, -20px, 0)',
+          easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)',
+          offset: 0.6,
+        }),
+        style({
+          transform: 'translate3d(0, 10px, 0)',
+          easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)',
+          offset: 0.75,
+        }),
+        style({
+          transform: 'translate3d(0, -5px, 0)',
+          easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)',
+          offset: 0.9,
+        }),
+        style({
+          opacity: 1,
+          transform: 'translate3d(0, 0, 0)',
+          easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)',
+          offset: 1,
+        }),
+      ])
+    ),
+  ],
+  {
+    params: {
+      duration: '0.6s',
+      delay: '0s',
+      distance: '100%',
+    },
+  }
+);
+
+export const slideInUpAnimation: AnimationReferenceMetadata = animation(
+  [
+    style({ visibility: 'hidden' }),
+    animate(
+      '{{ duration }} {{ delay }}',
+      keyframes([
+        style({
+          visibility: 'visible',
+          transform: 'translate3d(0, {{ distance }}, 0)',
+          offset: 0,
+        }),
+        style({
+          transform: 'translate3d(0, 0, 0)',
+          offset: 1,
+        }),
+      ])
+    ),
+  ],
+  {
+    params: {
+      duration: '0.6s',
+      delay: '0s',
+      distance: '100%',
+    },
+  }
+);
+
+export const slideInDownAnimation: AnimationReferenceMetadata = animation(
+  [
+    style({ visibility: 'hidden' }),
+    animate(
+      '{{ duration }} {{ delay }}',
+      keyframes([
+        style({
+          visibility: 'visible',
+          transform: 'translate3d(0, -{{ distance }}, 0)',
+          offset: 0,
+        }),
+        style({
+          transform: 'translate3d(0, 0, 0)',
+          offset: 1,
+        }),
+      ])
+    ),
+  ],
+  {
+    params: {
+      duration: '0.6s',
+      delay: '0s',
+      distance: '100%',
+    },
+  }
+);
+
+export const flipInXAnimation: AnimationReferenceMetadata = animation(
+  [
+    style({ visibility: 'hidden' }),
+    animate(
+      '{{ duration }} {{ delay }}',
+      keyframes([
+        style({
+          visibility: 'visible',
+          transform: 'perspective(400px) rotate3d(1, 0, 0, 90deg)',
+          opacity: 0,
+          offset: 0,
+        }),
+        style({
+          transform: 'perspective(400px) rotate3d(1, 0, 0, -20deg)',
+          offset: 0.4,
+        }),
+        style({
+          transform: 'perspective(400px) rotate3d(1, 0, 0, 10deg)',
+          opacity: 1,
+          offset: 0.6,
+        }),
+        style({
+          transform: 'perspective(400px) rotate3d(1, 0, 0, -5deg)',
+          offset: 0.8,
+        }),
+        style({
+          transform: 'perspective(400px)',
+          offset: 1,
+        }),
+      ])
+    ),
+  ],
+  {
+    params: {
+      duration: '0.8s',
+      delay: '0s',
+    },
+  }
+);
+
+export const flipInYAnimation: AnimationReferenceMetadata = animation(
+  [
+    style({ visibility: 'hidden' }),
+    animate(
+      '{{ duration }} {{ delay }}',
+      keyframes([
+        style({
+          visibility: 'visible',
+          transform: 'perspective(400px) rotate3d(0, 1, 0, 90deg)',
+          opacity: 0,
+          offset: 0,
+        }),
+        style({
+          transform: 'perspective(400px) rotate3d(0, 1, 0, -20deg)',
+          offset: 0.4,
+        }),
+        style({
+          transform: 'perspective(400px) rotate3d(0, 1, 0, 10deg)',
+          opacity: 1,
+          offset: 0.6,
+        }),
+        style({
+          transform: 'perspective(400px) rotate3d(0, 1, 0, -5deg)',
+          offset: 0.8,
+        }),
+        style({
+          transform: 'perspective(400px)',
+          offset: 1,
+        }),
+      ])
+    ),
+  ],
+  {
+    params: {
+      duration: '0.8s',
+      delay: '0s',
+    },
+  }
+);
+
+export const pulseAnimation: AnimationReferenceMetadata = animation(
+  [
+    animate(
+      '{{ duration }} {{ delay }}',
+      keyframes([
+        style({
+          transform: 'scale3d(1, 1, 1)',
+          offset: 0,
+        }),
+        style({
+          transform: 'scale3d({{ scale }}, {{ scale }}, {{ scale }})',
+          offset: 0.5,
+        }),
+        style({
+          transform: 'scale3d(1, 1, 1)',
+          offset: 1,
+        }),
+      ])
+    ),
+  ],
+  {
+    params: {
+      duration: '0.3s',
+      delay: '0s',
+      scale: '1.05',
+    },
+  }
+);
+
+export const shakeAnimation: AnimationReferenceMetadata = animation(
+  [
+    animate(
+      '{{ duration }} {{ delay }}',
+      keyframes([
+        style({ transform: 'translate3d(0, 0, 0)', offset: 0 }),
+        style({ transform: 'translate3d(-10px, 0, 0)', offset: 0.1 }),
+        style({ transform: 'translate3d(10px, 0, 0)', offset: 0.2 }),
+        style({ transform: 'translate3d(-10px, 0, 0)', offset: 0.3 }),
+        style({ transform: 'translate3d(10px, 0, 0)', offset: 0.4 }),
+        style({ transform: 'translate3d(-10px, 0, 0)', offset: 0.5 }),
+        style({ transform: 'translate3d(10px, 0, 0)', offset: 0.6 }),
+        style({ transform: 'translate3d(-10px, 0, 0)', offset: 0.7 }),
+        style({ transform: 'translate3d(10px, 0, 0)', offset: 0.8 }),
+        style({ transform: 'translate3d(-10px, 0, 0)', offset: 0.9 }),
+        style({ transform: 'translate3d(0, 0, 0)', offset: 1 }),
+      ])
+    ),
+  ],
+  {
+    params: {
+      duration: '0.8s',
+      delay: '0s',
+    },
+  }
+);
+
+export const rubberBandAnimation: AnimationReferenceMetadata = animation(
+  [
+    animate(
+      '{{ duration }} {{ delay }}',
+      keyframes([
+        style({ transform: 'scale3d(1, 1, 1)', offset: 0 }),
+        style({ transform: 'scale3d(1.25, 0.75, 1)', offset: 0.3 }),
+        style({ transform: 'scale3d(0.75, 1.25, 1)', offset: 0.4 }),
+        style({ transform: 'scale3d(1.15, 0.85, 1)', offset: 0.5 }),
+        style({ transform: 'scale3d(0.95, 1.05, 1)', offset: 0.65 }),
+        style({ transform: 'scale3d(1.05, 0.95, 1)', offset: 0.75 }),
+        style({ transform: 'scale3d(1, 1, 1)', offset: 1 }),
+      ])
+    ),
+  ],
+  {
+    params: {
+      duration: '0.8s',
       delay: '0s',
     },
   }

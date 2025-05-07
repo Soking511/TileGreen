@@ -171,7 +171,7 @@
     <!-- Bottom Section with divider and heading - Fully centered -->
     <div class="relative w-full z-10 flex flex-col items-center justify-end h-full pb-32">
         <!-- Main Heading - Centered both horizontally and vertically -->
-        <div #animateElement [@fadeInUp]="isInView"  class="duration-1000 delay-500 animate-once text-white text-[63px] md:text-7xl lg:text-8xl text-tile-regular text-center"
+        <div #animateElement [@fadeInUp]="true"  class="duration-1000 delay-500 animate-once text-white text-[63px] md:text-7xl lg:text-8xl text-tile-regular text-center"
             id="main-heading" data-lcp-element="true" fetchpriority="high">
             <span [innerHTML]="headTitle1"> </span>
             <span [innerHTML]="headTitle2"> </span><br>
@@ -179,7 +179,7 @@
         </div>
 
         <!-- Bottom content - Also centered -->
-        <div #animateElement [@fadeInUp]="isInView" class="container mx-auto px-4 sm:px-6 md:px-8 py-5 sm:py-6 md:py-8 mt-8 ">
+        <div #animateElement [@fadeInUp]="true" class="container mx-auto px-4 sm:px-6 md:px-8 py-5 sm:py-6 md:py-8 mt-8 ">
             <div class="flex flex-col items-center justify-center text-center">
                 <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-white max-w-3xl mx-auto mb-6"
                     aria-describedby="main-heading">

@@ -1,9 +1,13 @@
 import {
   Component,
+  ElementRef,
   HostListener,
   inject,
   OnDestroy,
   OnInit,
+  QueryList,
+  ViewChild,
+  ViewChildren,
 } from '@angular/core';
 import { FooterHomeComponent } from '../home/footer-home/footer-home.component';
 import { LogosComponent } from '../../shared/components/logos/logos.component';
@@ -12,6 +16,8 @@ import { ApiService } from '../../../services/api.service';
 import { CompaniesService } from '../../../services/companies.service';
 import { CaseStudiesSliderComponent } from '../../shared/components/case-studies-slider/case-studies-slider.component';
 import { SeoService } from '../../../services/seo.service';
+import { trigger, state, style, transition, useAnimation } from '@angular/animations';
+import { fadeInLeftAnimation } from '../../../services/site-animations.service';
 
 interface SlideItem {
   id: number;
@@ -31,6 +37,13 @@ interface RecognitionLogo {
 @Component({
   selector: 'app-about',
   standalone: true,
+  animations: [
+    trigger('fadeInLeftAnimation', [
+      state('*', style({ visibility: 'hidden' })),
+      state('true', style({ visibility: 'visible' })),
+      transition('* => true', useAnimation(fadeInLeftAnimation)),
+    ]),
+  ],
   imports: [
     FooterHomeComponent,
     LogosComponent,
@@ -99,16 +112,6 @@ export class AboutComponent implements OnInit, OnDestroy {
       category: 'Community',
       location: 'Nairobi, KE',
     },
-    // {
-    //   id: 4,
-    //   img: 'https://api-tilegreen.pulslytics.agency/media/images/slider/2.png',
-    //   alt: 'Eco project 5',
-    //   title: 'Coastal Cleanup Initiative',
-    //   description:
-    //     'Transforming ocean plastic into valuable building materials while cleaning up coastal environments.',
-    //   category: 'Conservation',
-    //   location: 'Manila, PH',
-    // },
   ];
 
   recognitionLogos: RecognitionLogo[] = [
@@ -154,12 +157,18 @@ export class AboutComponent implements OnInit, OnDestroy {
     },
   ];
 
-  currentIndex = 0;
-  totalSlides = this.slides.length;
-  slideInterval: any;
-  private resizeTimeout: any;
-
   logosService = inject(CompaniesService);
+  totalSlides = this.slides.length;
+  resizeTimeout: any;
+  slideInterval: any;
+  currentIndex = 0;
+  isInViewStates: boolean[] = [];
+
+
+  @ViewChild('animateElement') animateElement?: ElementRef;
+  @ViewChildren('animateElements') animateElements?: QueryList<ElementRef>;
+
+  // Store animation states for each element
   constructor(private apiService: ApiService, private seoService: SeoService) {}
 
   @HostListener('window:resize')
@@ -235,7 +244,36 @@ export class AboutComponent implements OnInit, OnDestroy {
       'https://api-tilegreen.pulslytics.agency/media/images/placeholder.jpg';
   }
 
-  trackBySlide(index: number, item: SlideItem) {
-    return item.id;
+
+  ngAfterViewInit(): void {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          console.debug(entry.isIntersecting);
+
+          if (entry.isIntersecting && this.animateElements) {
+            // Find the index of the element and mark it as 'true' in the isInViewsStates boolean array
+            const index = this.animateElements
+              .toArray()
+              .findIndex((el) => el.nativeElement === entry.target);
+            if (index !== -1) {
+              this.isInViewStates[index] = true; // This will trigger the animation for the related element
+
+              // Stop observing this element
+              observer.unobserve(entry.target); // unobserve the related element after the animation has triggered
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.2, // Trigger only when at least 10% of the element is in view
+      }
+    );
+
+    if (this.animateElements) {
+      this.animateElements.forEach((el) => {
+        observer.observe(el.nativeElement);
+      });
+    }
   }
 }

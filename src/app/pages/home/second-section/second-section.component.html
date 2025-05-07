@@ -1,5 +1,5 @@
 <!-- Section One -->
-<section #animateElement [@fadeInRightAnimation]="isInView" class="pb-8 sm:pb-10 md:pb-12 lg:pb-16">
+<section #animateElements [@fadeInRightAnimation]="isInViewStates[0]" class="pb-8 sm:pb-10 md:pb-12 lg:pb-16">
     <div class="flex flex-col md:flex-row items-center pb-8 sm:pb-10 md:pb-12 lg:pb-16">
         <!-- Eucalyptus branch image on the left -->
         <div class="">
@@ -95,7 +95,7 @@
 
 
 
-<section class="py-8 sm:py-10 md:py-12 lg:py-16">
+<section class="py-8 sm:py-10 md:py-12 lg:py-16" #animateElements [@fadeInLeftAnimation]="isInViewStates[1]">
     <app-logos />
     <div class="flex flex-col md:flex-row items-center justify-center">
         <div
