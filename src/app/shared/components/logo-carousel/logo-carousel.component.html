@@ -7,7 +7,7 @@
                 <div class="logo-group">
                     @for (company of logos; track company.company_name) {
                     <div class="logo-item">
-                        <img [src]="company.logo" [alt]="company.company_name" class="logo logo-small" width="200"
+                        <img ngSrc="{{company.logo}}" [alt]="company.company_name" class="logo logo-small" width="200"
                             height="80">
                     </div>
                     }
@@ -17,7 +17,7 @@
                 <div class="logo-group">
                     @for (company of logos; track company.company_name) {
                     <div class="logo-item">
-                        <img [src]="company.logo" [alt]="company.company_name" class="logo logo-small" width="200"
+                        <img ngSrc="{{company.logo}}" [alt]="company.company_name" class="logo logo-small" width="200"
                             height="80">
                     </div>
                     }

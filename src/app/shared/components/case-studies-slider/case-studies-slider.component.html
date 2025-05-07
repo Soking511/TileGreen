@@ -4,8 +4,8 @@
 
     <!-- Background image with SEO-optimized lazy loading -->
     <div class="w-full h-full absolute inset-0 transition-opacity duration-700">
-        <img [src]="caseStudies[currentIndex].imagePath" class="w-full h-full object-cover object-center"
-            [alt]="caseStudies[currentIndex].company + ' case study'" width="1920" height="1080">
+        <img [ngSrc]="caseStudies[currentIndex].imagePath" class="w-full h-full object-cover object-center"
+            [alt]="caseStudies[currentIndex].company + ' case study'" width="1920" height="1080" priority>
         <div class="absolute inset-0 bg-gradient-to-t from-[#010D26] via-[#010D2680] to-[#010D2600]"></div>
     </div>
 

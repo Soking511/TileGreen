@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ICompany } from '../../interfaces/companiesInterface';
 
 @Component({
   selector: 'app-logo-carousel',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgOptimizedImage],
   templateUrl: './logo-carousel.component.html',
   styleUrls: ['./logo-carousel.component.scss'],
 })

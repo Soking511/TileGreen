@@ -9,7 +9,7 @@ import {
   PLATFORM_ID,
   Inject,
 } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser, NgOptimizedImage } from '@angular/common';
 
 interface CaseStudy {
   company: string;
@@ -24,7 +24,7 @@ interface CaseStudy {
   templateUrl: './case-studies-slider.component.html',
   styleUrls: ['./case-studies-slider.component.scss'],
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgOptimizedImage],
 })
 export class CaseStudiesSliderComponent implements OnInit, OnDestroy {
   @ViewChild('sliderContainer') sliderContainer!: ElementRef;

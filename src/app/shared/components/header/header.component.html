@@ -4,7 +4,7 @@
     <!-- Background Image with Lazy Loading -->
     @if (imagePath) {
     <img [src]="imagePath" alt="Header Background" class="absolute inset-0 w-full h-screen object-cover"
-        fetchpriority="high" [attr.importance]="'high'" loading="eager" decoding="async" width="1920" height="1080">
+        priority [sizes]="'100vw'" width="1920" height="1080">
     <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent"></div>
     }
 
@@ -169,7 +169,7 @@
 
     @if (imagePath) {
     <!-- Bottom Section with divider and heading - Fully centered -->
-    <div class="relative w-full z-10 flex flex-col items-center justify-end h-full pb-32">
+    <div class="relative w-full z-10 flex flex-col items-center justify-center h-full mt-20 ">
         <!-- Main Heading - Centered both horizontally and vertically -->
         <span #animateElement [@fadeInUp]="true"
             class="max-w-3xl duration-1000 delay-500 animate-once text-white text-[110px] md:text-7xl text-tile-regular text-center"
