@@ -13,7 +13,6 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { ContactPopupService } from '../../../../services/contact-popup.service';
 import {
-  animate,
   state,
   style,
   transition,
@@ -21,11 +20,12 @@ import {
   useAnimation,
 } from '@angular/animations';
 import { fadeInUpAnimation } from '../../../../services/site-animations.service';
+import { AnimateOnScrollDirective } from '../../directives/animate-on-scroll.directive';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive],
+  imports: [CommonModule, RouterLink, RouterLinkActive, AnimateOnScrollDirective],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   animations: [
@@ -82,72 +82,41 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.router.events.subscribe(() => {
       this.currentPath = this.router.url;
     });
-    // Pre-initialize content to prevent content layout shifts
     if (this.isBrowser) {
       this.preOptimizeLcpElements();
     }
   }
 
   ngAfterViewInit(): void {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          console.debug(entry.isIntersecting);
-
-          if (entry.isIntersecting) {
-            this.isInView = true; // This will trigger the animation
-
-            // Unobserve the element after the animation is triggered
-            if (this.animateElement) {
-              observer.unobserve(this.animateElement.nativeElement);
-            }
-          }
-        });
-      },
-      {
-        threshold: 0.2, // Trigger only when at least 10% of the element is in view
-      }
-    );
-
-    // Start observing the component's element that has #animateElement set
-    if (this.animateElement) {
-      observer.observe(this.animateElement.nativeElement);
-    }
     if (this.isBrowser) {
-      // Apply optimizations after view is initialized
       this.optimizeLcpElements();
     }
   }
 
   private preOptimizeLcpElements(): void {
-    // Pre-render text to prevent layout shifts
     if (
       this.headTitle1 ||
       this.headTitle2 ||
       this.headTitle3 ||
       this.headTitleLibre
     ) {
-      // Force immediate parse of fonts to prevent layout shifts during rendering
       document.fonts.ready.then(() => {
-        // Font loading completed, content should be stable
-        console.log('Fonts loaded for LCP elements');
+        // console.log('Fonts loaded for LCP elements');
       });
     }
 
     // Optimize background image loading if it exists
-    if (this.imagePath) {
-      const img = new Image();
-      img.fetchPriority = 'high';
-      img.src = this.imagePath;
-      img
-        .decode()
-        .then(() => {
-          console.log('Header image decoded and ready for display');
-        })
-        .catch((err) => {
-          console.warn('Image decoding error:', err);
-        });
-    }
+    // if (this.imagePath) {
+    //   const img = new Image();
+    //   img.fetchPriority = 'high';
+    //   img.src = this.imagePath;
+    //   img
+    //     .decode()
+    //     .then(() => {
+    //     })
+    //     .catch((err) => {
+    //     });
+    // }
   }
 
   private optimizeLcpElements(): void {
@@ -221,7 +190,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   isActive(route: string): boolean {
     if (route === '/home') {
-      // Exact match for home route
       return this.router.url === route;
     }
     // Partial match for other routes

@@ -29,7 +29,7 @@
             <!-- Mobile-optimized layout without shadows -->
             <div class="sm:hidden flex flex-col gap-5">
                 <!-- First image with proper sizing for mobile - reduced height -->
-                <div class="rounded-xl overflow-hidden relative group">
+                <div animateOnScroll #personPhoneOne="animateOnScroll" [@bounceInAnimation]="personPhoneOne.isInView" class="rounded-xl overflow-hidden relative group">
                     <img class="w-full mx-auto object-contain"
                         src="https://api-tilegreen.pulslytics.agency/media/images/person/1.png"
                         alt="TileGreen innovation" style="max-height: 60vh;" />
@@ -44,7 +44,7 @@
                 </div>
 
                 <!-- Second image with proper sizing for mobile - reduced height -->
-                <div class="rounded-xl overflow-hidden relative group">
+                <div animateOnScroll #personPhoneTwo="animateOnScroll" [@bounceInAnimation]="personPhoneTwo.isInView" class="rounded-xl overflow-hidden relative group">
                     <img class="w-full mx-auto object-contain"
                         src="https://api-tilegreen.pulslytics.agency/media/images/person/2.png"
                         alt="TileGreen sustainability" style="max-height: 60vh;" />
@@ -61,7 +61,7 @@
             <!-- Tablet and desktop layout with the same hover effect -->
             <div class="hidden sm:flex flex-row gap-4">
                 <!-- Left column image with object-contain to prevent cropping - further increased max-height -->
-                <div class="w-1/2">
+                <div animateOnScroll #personDeskTwo="animateOnScroll" [@bounceInAnimation]="personDeskTwo.isInView" class="w-1/2">
                     <div class="rounded-3xl h-auto relative group">
                         <img class="rounded-full w-full object-contain max-h-[700px] transition-opacity duration-300"
                             src="https://api-tilegreen.pulslytics.agency/media/images/person/1.png"
@@ -79,7 +79,7 @@
                 </div>
                 <!-- Right column image with object-contain to prevent cropping - further increased max-height -->
                 <div class="w-1/2">
-                    <div class="rounded-3xl h-auto relative group">
+                    <div class="rounded-3xl h-auto relative group" animateOnScroll #personDeskOne="animateOnScroll" [@bounceInAnimation]="personDeskOne.isInView">
                         <img class="rounded-full w-full object-contain max-h-[700px] transition-opacity duration-300"
                             src="https://api-tilegreen.pulslytics.agency/media/images/person/2.png"
                             alt="TileGreen sustainability" />

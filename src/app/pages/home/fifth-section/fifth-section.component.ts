@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { SectionHeaderComponent } from '../../../shared/components/section-header/section-header.component';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
 import { LinkedPersonComponent } from '../../../shared/components/linked-person/linked-person.component';
+import { AnimateOnScrollDirective } from '../../../shared/directives/animate-on-scroll.directive';
+import { trigger, state, style, transition, useAnimation } from '@angular/animations';
+import { bounceInAnimation } from '../../../../services/site-animations.service';
 
 interface SlideItem {
   id: number;
@@ -22,9 +25,17 @@ interface SlideItem {
     SectionHeaderComponent,
     ButtonComponent,
     LinkedPersonComponent,
+    AnimateOnScrollDirective
   ],
   templateUrl: './fifth-section.component.html',
   styleUrls: ['./fifth-section.component.scss'],
+  animations: [
+    trigger('bounceInAnimation', [
+      state('*', style({ visibility: 'hidden' })),
+      state('true', style({ visibility: 'visible' })),
+      transition('* => true', useAnimation(bounceInAnimation)),
+    ]),
+  ],
   styles: [
     `
       @keyframes fadeIn {

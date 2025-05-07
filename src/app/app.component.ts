@@ -15,11 +15,12 @@ import { SeoService } from '../services/seo.service';
 import { Subscription, filter } from 'rxjs';
 import { HeaderConfigService } from '../services/header-config.service';
 import { PerformanceService } from '../services/performance.service';
+import { AnimateOnScrollDirective } from './shared/directives/animate-on-scroll.directive';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ContactUsPopComponent, CommonModule, HeaderComponent],
+  imports: [RouterOutlet, ContactUsPopComponent, CommonModule, HeaderComponent, AnimateOnScrollDirective],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

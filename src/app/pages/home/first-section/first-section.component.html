@@ -1,6 +1,7 @@
 <!-- section 1 - Responsive Layout -->
 
-<section #animateElements [@fadeInLeftAnimation]="isInViewStates[0]" class=" py-8 sm:py-10 md:py-12 lg:py-16">
+<section animateOnScroll #scroll2="animateOnScroll" [@fadeInLeftAnimation]="scroll2.isInView"
+    class=" py-8 sm:py-10 md:py-12 lg:py-16">
 
     <app-section-header title="What Makes us special" />
 
@@ -42,7 +43,8 @@
 
 
 <!-- Green Building Material Tech Leader Section -->
-<section class="py-8 sm:py-10 md:py-12 lg:py-16 " #animateElements [@fadeInRightAnimation]="isInViewStates[1]">
+<section class="py-8 sm:py-10 md:py-12 lg:py-16" animateOnScroll #greenBuildingSection="animateOnScroll"
+    [@fadeInRightAnimation]="greenBuildingSection.isInView">
 
     <div class="mx-auto">
         <!-- Heading -->
@@ -83,7 +85,8 @@
 </section>
 
 <!-- What we offer section -->
-<section class="py-8 sm:py-10 md:py-12 lg:py-16" #animateElements [@bounceInAnimation]="isInViewStates[2]">
+<section class="py-8 sm:py-10 md:py-12 lg:py-16" animateOnScroll #whatWeOfferSection="animateOnScroll"
+    [@bounceInAnimation]="whatWeOfferSection.isInView">
     <div>
         <app-section-header title="What we offer?" />
         <div class="max-w-6xl">

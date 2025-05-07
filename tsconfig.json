@@ -23,7 +23,8 @@
     "forceConsistentCasingInFileNames": true,
     "useDefineForClassFields": false,
     "noUnusedLocals": false,
-    "noUnusedParameters": false
+    "noUnusedParameters": false,
+    "typeRoots": ["./node_modules/@types", "./src/types"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

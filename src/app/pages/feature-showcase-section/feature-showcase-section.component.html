@@ -10,8 +10,8 @@
                 hardware for streamlined operations.
             </span>
 
-            <div class="grid grid-cols-3 sm:grid-cols-3 gap-4 sm:gap-8" #animateElements
-                [@bounceInUpAnimation]="isInViewStates[0]">
+            <div class="grid grid-cols-3 sm:grid-cols-3 gap-4 sm:gap-8" animateOnScroll #scroll="animateOnScroll"
+                [@bounceInUpAnimation]="scroll.isInView">
                 <div class="text-center">
                     <div class="flex justify-center mb-3">
                         <div class="w-24 h-24 flex items-center justify-center text-blue-600">
@@ -99,8 +99,8 @@
                 resources.
             </span>
 
-            <div class="grid grid-cols-3 sm:grid-cols-3 gap-4 sm:gap-8 order-4 md:order-3 sm:order-last" #animateElements
-            [@bounceInUpAnimation]="isInViewStates[1]">
+            <div class="grid grid-cols-3 sm:grid-cols-3 gap-4 sm:gap-8 order-4 md:order-3 sm:order-last" animateOnScroll #scroll2="animateOnScroll"
+            [@bounceInUpAnimation]="scroll2.isInView">
                 <div class="text-center">
                     <div class="flex justify-center mb-3">
                         <div class="w-24 h-24 flex items-center justify-center text-blue-600">

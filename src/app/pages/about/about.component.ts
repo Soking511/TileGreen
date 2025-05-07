@@ -1,13 +1,9 @@
 import {
   Component,
-  ElementRef,
   HostListener,
   inject,
   OnDestroy,
   OnInit,
-  QueryList,
-  ViewChild,
-  ViewChildren,
 } from '@angular/core';
 import { FooterHomeComponent } from '../home/footer-home/footer-home.component';
 import { LogosComponent } from '../../shared/components/logos/logos.component';
@@ -18,6 +14,7 @@ import { CaseStudiesSliderComponent } from '../../shared/components/case-studies
 import { SeoService } from '../../../services/seo.service';
 import { trigger, state, style, transition, useAnimation } from '@angular/animations';
 import { fadeInLeftAnimation } from '../../../services/site-animations.service';
+import { AnimateOnScrollDirective } from '../../shared/directives/animate-on-scroll.directive';
 
 interface SlideItem {
   id: number;
@@ -49,6 +46,7 @@ interface RecognitionLogo {
     LogosComponent,
     DescriptionScrollComponent,
     CaseStudiesSliderComponent,
+    AnimateOnScrollDirective
   ],
   styleUrls: ['./about.component.scss'],
   templateUrl: './about.component.html',
@@ -162,13 +160,6 @@ export class AboutComponent implements OnInit, OnDestroy {
   resizeTimeout: any;
   slideInterval: any;
   currentIndex = 0;
-  isInViewStates: boolean[] = [];
-
-
-  @ViewChild('animateElement') animateElement?: ElementRef;
-  @ViewChildren('animateElements') animateElements?: QueryList<ElementRef>;
-
-  // Store animation states for each element
   constructor(private apiService: ApiService, private seoService: SeoService) {}
 
   @HostListener('window:resize')
@@ -244,36 +235,4 @@ export class AboutComponent implements OnInit, OnDestroy {
       'https://api-tilegreen.pulslytics.agency/media/images/placeholder.jpg';
   }
 
-
-  ngAfterViewInit(): void {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          console.debug(entry.isIntersecting);
-
-          if (entry.isIntersecting && this.animateElements) {
-            // Find the index of the element and mark it as 'true' in the isInViewsStates boolean array
-            const index = this.animateElements
-              .toArray()
-              .findIndex((el) => el.nativeElement === entry.target);
-            if (index !== -1) {
-              this.isInViewStates[index] = true; // This will trigger the animation for the related element
-
-              // Stop observing this element
-              observer.unobserve(entry.target); // unobserve the related element after the animation has triggered
-            }
-          }
-        });
-      },
-      {
-        threshold: 0.2, // Trigger only when at least 10% of the element is in view
-      }
-    );
-
-    if (this.animateElements) {
-      this.animateElements.forEach((el) => {
-        observer.observe(el.nativeElement);
-      });
-    }
-  }
 }
