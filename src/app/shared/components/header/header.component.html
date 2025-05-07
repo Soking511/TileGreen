@@ -171,13 +171,11 @@
     <!-- Bottom Section with divider and heading - Fully centered -->
     <div class="relative w-full z-10 flex flex-col items-center justify-end h-full pb-32">
         <!-- Main Heading - Centered both horizontally and vertically -->
-        <div #animateElement [@fadeInUp]="true"
-            class="max-w-5xl duration-1000 delay-500 animate-once text-white text-[63px] md:text-7xl text-tile-regular text-center"
-            id="main-heading" data-lcp-element="true" fetchpriority="high">
-            <span [innerHTML]="headTitle1"> </span>
-            <!-- <span [innerHTML]="headTitle2"> </span><br> -->
-            <!-- <span [innerHTML]="headTitle3"> </span> -->
-        </div>
+        <span #animateElement [@fadeInUp]="true"
+            class="max-w-3xl duration-1000 delay-500 animate-once text-white text-[110px] md:text-7xl text-tile-regular text-center"
+            [innerHTML]="headTitle1"> </span>
+        <!-- <span [innerHTML]="headTitle2"> </span><br> -->
+        <!-- <span [innerHTML]="headTitle3"> </span> -->
 
         <!-- Bottom content - Also centered -->
         <div #animateElement [@fadeInUp]="true"
