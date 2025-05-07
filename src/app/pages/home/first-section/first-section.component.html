@@ -1,6 +1,6 @@
 <!-- section 1 - Responsive Layout -->
 
-<section class="py-8 sm:py-10 md:py-12 lg:py-16">
+<section #animateElements [@fadeInLeftAnimation]="isInViewStates[0]" class=" py-8 sm:py-10 md:py-12 lg:py-16">
 
     <app-section-header title="What Makes us special" />
 
@@ -39,9 +39,10 @@
     </div>
 
 </section>
-<!-- Rest of the existing sections -->
+
+
 <!-- Green Building Material Tech Leader Section -->
-<section class="py-8 sm:py-10 md:py-12 lg:py-16">
+<section class="py-8 sm:py-10 md:py-12 lg:py-16 " #animateElements [@fadeInRightAnimation]="isInViewStates[1]">
 
     <div class="mx-auto">
         <!-- Heading -->
@@ -82,7 +83,7 @@
 </section>
 
 <!-- What we offer section -->
-<section class="py-8 sm:py-10 md:py-12 lg:py-16">
+<section class="py-8 sm:py-10 md:py-12 lg:py-16" #animateElements [@bounceInAnimation]="isInViewStates[2]">
     <div>
         <app-section-header title="What we offer?" />
         <div class="max-w-6xl">

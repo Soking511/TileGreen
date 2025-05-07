@@ -14,6 +14,7 @@ module.exports = {
         haas: ['"Neue Haas Grotesk Display Pro"', 'sans-serif'],
       },
       keyframes: {
+
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
@@ -26,7 +27,8 @@ module.exports = {
           '0%': { width: '0' },
           '50%': { width: '70%' },
           '100%': { width: '100%' },
-        }
+        },
+
       },
       animation: {
         fadeIn: 'fadeIn 1s ease-in-out forwards',

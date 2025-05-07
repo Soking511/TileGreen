@@ -7,10 +7,20 @@ import {
   ElementRef,
   PLATFORM_ID,
   Inject,
+  ViewChild,
 } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { ContactPopupService } from '../../../../services/contact-popup.service';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+  useAnimation,
+} from '@angular/animations';
+import { fadeInUpAnimation } from '../../../../services/site-animations.service';
 
 @Component({
   selector: 'app-header',
@@ -18,6 +28,13 @@ import { ContactPopupService } from '../../../../services/contact-popup.service'
   imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
+  animations: [
+    trigger('fadeInUp', [
+      state('*', style({ visibility: 'hidden' })),
+      state('true', style({ visibility: 'visible' })),
+      transition('* => true', useAnimation(fadeInUpAnimation)),
+    ]),
+  ],
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
   @Input() button1Text: string | null | undefined = null;
@@ -32,6 +49,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   @Input() description2: string | null | undefined = '';
   @Input() imagePath: string | null | undefined = null;
   @Input() navigateTo: string | null | undefined = null;
+
+  @ViewChild('animateElement') animateElement?: ElementRef;
+
+  public isInView: boolean = false;
 
   currentPath: string = '/home';
   isMobileMenuOpen: boolean = false;
@@ -68,6 +89,30 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          console.debug(entry.isIntersecting);
+
+          if (entry.isIntersecting) {
+            this.isInView = true; // This will trigger the animation
+
+            // Unobserve the element after the animation is triggered
+            if (this.animateElement) {
+              observer.unobserve(this.animateElement.nativeElement);
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.1, // Trigger only when at least 10% of the element is in view
+      }
+    );
+
+    // Start observing the component's element that has #animateElement set
+    if (this.animateElement) {
+      observer.observe(this.animateElement.nativeElement);
+    }
     if (this.isBrowser) {
       // Apply optimizations after view is initialized
       this.optimizeLcpElements();
