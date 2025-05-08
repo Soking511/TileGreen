@@ -72,7 +72,7 @@ export const fadeOutRightAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '1s',
+      duration: '1.3s',
       delay: '0ms',
       distance: '100%',
     },
@@ -106,7 +106,7 @@ export const fadeOutLeftAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '1s',
+      duration: '1.3s',
       delay: '0ms',
       distance: '100%',
     },
@@ -139,7 +139,7 @@ export const fadeInRightAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '1s',
+      duration: '1.3s',
       delay: '0ms',
       distance: '100%',
     },
@@ -172,7 +172,7 @@ export const fadeInLeftAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '1s',
+      duration: '1.3s',
       delay: '0ms',
       distance: '100%',
     },
@@ -203,7 +203,7 @@ export const zoomInAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '1s',
+      duration: '1.3s',
       delay: '0s',
       distance: '100%',
     },
@@ -234,7 +234,7 @@ export const zoomOutAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '1s',
+      duration: '1.3s',
       delay: '0s',
     },
   }
@@ -262,7 +262,7 @@ export const fadeInAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '1s',
+      duration: '1.3s',
       delay: '0s',
     },
   }
@@ -290,7 +290,7 @@ export const fadeOutAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '1s',
+      duration: '1.3s',
       delay: '0s',
     },
   }
@@ -350,7 +350,7 @@ export const rotateOutAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '1s',
+      duration: '1.3s',
       delay: '0s',
     },
   }
@@ -401,7 +401,7 @@ export const bounceInAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '1s',
+      duration: '1.3s',
       delay: '0s',
     },
   }
@@ -442,7 +442,7 @@ export const bounceOutAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '1s',
+      duration: '1.3s',
       delay: '0s',
     },
   }
@@ -488,7 +488,7 @@ export const bounceInUpAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '1s',
+      duration: '1.3s',
       delay: '0s',
       distance: '100%',
     },
@@ -515,7 +515,7 @@ export const slideInUpAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '1s',
+      duration: '1.3s',
       delay: '0s',
       distance: '100%',
     },
@@ -542,7 +542,7 @@ export const slideInDownAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '1s',
+      duration: '1.3s',
       delay: '0s',
       distance: '100%',
     },
@@ -583,7 +583,7 @@ export const flipInXAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '1s',
+      duration: '1.3s',
       delay: '0s',
     },
   }
@@ -623,7 +623,7 @@ export const flipInYAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '1s',
+      duration: '1.3s',
       delay: '0s',
     },
   }
@@ -651,7 +651,7 @@ export const pulseAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '1s',
+      duration: '1.3s',
       delay: '0s',
       scale: '1.05',
     },
@@ -679,7 +679,7 @@ export const shakeAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '1s',
+      duration: '1.3s',
       delay: '0s',
     },
   }
@@ -702,7 +702,7 @@ export const rubberBandAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '1s',
+      duration: '1.3s',
       delay: '0s',
     },
   }
