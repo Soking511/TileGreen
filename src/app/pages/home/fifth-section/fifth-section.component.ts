@@ -59,7 +59,7 @@ export class FifthSectionComponent implements OnInit, OnDestroy {
   slides: SlideItem[] = [
     {
       id: 1,
-      img: 'https://api-tilegreen.pulslytics.agency/media/images/slider/2.png',
+      img: 'https://api-tilegreen.pulslytics.agency/media/images/slider/2.webp/',
       alt: 'Featured eco project',
       title: 'Plastic Waste Recycling Center',
       description:
@@ -69,7 +69,7 @@ export class FifthSectionComponent implements OnInit, OnDestroy {
     },
     {
       id: 2,
-      img: 'https://api-tilegreen.pulslytics.agency/media/images/slider/3.png',
+      img: 'https://api-tilegreen.pulslytics.agency/media/images/slider/3.webp/',
       alt: 'Eco project 3',
       title: 'Urban Green Buildings',
       description:

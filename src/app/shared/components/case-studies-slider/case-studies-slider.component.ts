@@ -51,7 +51,7 @@ export class CaseStudiesSliderComponent implements OnInit, OnDestroy {
       description:
         'TileGreen installed interlocking tiles for SODIC, integrating the logo into the landscape. This pavement enhances identity, ensuring durability and aesthetic appeal in a desert setting.',
       imagePath:
-        'https://api-tilegreen.pulslytics.agency/media/images/slider/2.png/',
+        'https://api-tilegreen.pulslytics.agency/media/images/slider/2.webp/',
       logo: 'https://api-tilegreen.pulslytics.agency/media/images/slider/logos/SODIC_Logo_Teal_RGB.png/',
     },
     {
@@ -69,7 +69,7 @@ export class CaseStudiesSliderComponent implements OnInit, OnDestroy {
       description:
         'TileGreen and Redcon built an eco-friendly walkway with colorful tiles. The pathway features grass-filled joints for drainage, bordered by gravel and greenery, highlighting Redcon’s sustainable design.',
       imagePath:
-        'https://api-tilegreen.pulslytics.agency/media/images/slider/4.png/',
+        'https://api-tilegreen.pulslytics.agency/media/images/slider/4.webp/',
       logo: 'https://api-tilegreen.pulslytics.agency/media/images/slider/logos/Mask group.png/',
     },
   ];
