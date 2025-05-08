@@ -4,7 +4,8 @@
     "default": {
       "runner": "nx/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "test"]
+        "cacheableOperations": ["build", "test"],
+        "accessToken": "MDUyMTdmYmUtMWI5ZS00OTdkLThhOTUtZmQ0Zjc1MzU0YjBmfHJlYWQtd3JpdGU="
       }
     }
   },
@@ -30,6 +31,5 @@
       "!{projectRoot}/**/*.spec.[jt]s"
     ]
   },
-  "nxCloudId": "681c3620b6f96637e02b7552"
+  "nxCloudId": "681c3052b6f96637e02b7544"
 }
-

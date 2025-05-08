@@ -5,7 +5,7 @@
     @if (imagePath) {
     <img [src]="imagePath" alt="Header Background" class="absolute inset-0 w-full h-full object-cover" priority
         width="1920" height="1080">
-    <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent "></div>
     }
 
     <!-- Content Container -->
@@ -172,7 +172,8 @@
     <div class="relative w-full z-10 flex flex-col items-center justify-center h-full mt-16 md:mt-20 pb-4 md:pb-0">
         <!-- Main Heading - Centered both horizontally and vertically -->
         <span #animateElement [@fadeInUp]="true"
-            class="max-w-3xl text-white text-3xl sm:text-4xl md:text-7xl text-tile-regular text-center" [innerHTML]="headTitle1">
+            class="max-w-3xl text-white text-3xl px-4 sm:text-5xl md:text-7xl text-tile-regular text-center"
+            [innerHTML]="headTitle1">
         </span>
 
         <!-- Bottom content - Also centered -->
