@@ -66,6 +66,14 @@ export class ApiService {
       );
   }
 
+  // For FormData (files and form fields)
+  postFormData(endpoint: string, formData: FormData): Observable<any> {
+    const url = this.baseURL + endpoint;
+
+    // Don't set Content-Type header - browser will set it with correct boundary for FormData
+    return this.http.post(url, formData);
+  }
+
   // Helper method to create FormData from a form group and a file
   createFormDataWithFile(
     formGroup: any,

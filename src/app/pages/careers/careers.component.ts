@@ -149,21 +149,17 @@ export class CareersComponent implements OnInit {
       this.formSubmitSuccess = false;
       this.formSubmitError = false;
 
-      // Create FormData object to send file along with form data
       const formData = new FormData();
 
-      // Append all form fields
       Object.keys(this.positionForm.controls).forEach((key) => {
         formData.append(key, this.positionForm.get(key)?.value);
       });
 
-      // Append resume file
       if (this.resume) {
-        formData.append('resume', this.resume);
+        formData.append('resume', this.resume, this.resume.name);
       }
 
-      // Send form data to server
-      this.apiService.post('/ApplyJob', formData).subscribe(
+      this.apiService.postFormData('/ApplyJob', formData).subscribe(
         (response) => {
           console.log('Form submitted successfully', response);
           this.formSubmitting = false;
