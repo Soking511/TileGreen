@@ -71,7 +71,7 @@ export class ApiService {
     const url = this.baseURL + endpoint;
 
     // Don't set Content-Type header - browser will set it with correct boundary for FormData
-    return this.http.post(url+'/', formData);
+    return this.http.post(url + '/', formData);
   }
 
   // Helper method to create FormData from a form group and a file

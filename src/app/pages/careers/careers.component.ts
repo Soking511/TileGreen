@@ -166,7 +166,7 @@ export class CareersComponent implements OnInit {
           this.formSubmitSuccess = true;
 
           // Auto-close popup after 3 seconds
-          setTimeout(() => this.handleFormSuccess(), 3000);
+          setTimeout(() => this.handleFormSuccess(), 2000);
         },
         (error) => {
           console.error('Error submitting form', error);
