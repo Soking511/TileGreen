@@ -29,14 +29,5 @@
       "!{projectRoot}/tsconfig.spec.json",
       "!{projectRoot}/**/*.spec.[jt]s"
     ]
-<<<<<<< Updated upstream
-  },
-  "nxCloudId": "681c305cb6f96637e02b7548"
-}
-=======
   }
 }
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
