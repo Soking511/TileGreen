@@ -32,6 +32,7 @@ export class FirstSectionAppsComponent {
   playVideo(): void {
     if (this.videoPlayer?.nativeElement) {
       this.videoPlayer.nativeElement.play();
+      this.videoPlayer.nativeElement.currentTime = 0.2;
       this.isPlaying = true;
     }
   }
