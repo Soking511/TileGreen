@@ -168,15 +168,14 @@
     </div>
 
     @if (imagePath) {
-    <!-- Bottom Section with divider and heading - Fully centered -->
     <div class="relative w-full z-10 flex flex-col items-center justify-center h-full mt-16 md:mt-20 pb-4 md:pb-0">
-        <!-- Main Heading - Centered both horizontally and vertically -->
+        @if( componentLoaded() ){
         <span #animateElement [@fadeInUp]="true"
             class="max-w-3xl text-white text-3xl px-4 sm:text-5xl md:text-7xl text-tile-regular text-center"
             [innerHTML]="headTitle1">
         </span>
+        }
 
-        <!-- Bottom content - Also centered -->
         <div #animateElement [@fadeInUp]="true"
             class="container mx-auto px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-8 mt-4 md:mt-8">
             <div class="flex flex-col items-center justify-center text-center">

@@ -8,6 +8,7 @@ import {
   PLATFORM_ID,
   Inject,
   ViewChild,
+  signal,
 } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
@@ -49,6 +50,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   @Input() imagePath: string | null | undefined = null;
   @Input() navigateTo: string | null | undefined = null;
 
+  componentLoaded = signal(false);
   @ViewChild('animateElement') animateElement?: ElementRef;
 
   public isInView: boolean = false;
@@ -90,6 +92,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     if (this.isBrowser) {
       this.optimizeLcpElements();
     }
+
+    this.componentLoaded.set(true);
   }
 
   private preOptimizeLcpElements(): void {
