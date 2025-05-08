@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ProductCardComponent } from '../../shared/components/product-card/product-card.component';
 
 interface ProductCard {
@@ -10,7 +10,7 @@ interface ProductCard {
 @Component({
   selector: 'app-product-expansion-section',
   standalone: true,
-  imports: [CommonModule, ProductCardComponent],
+  imports: [CommonModule, ProductCardComponent, NgOptimizedImage],
   templateUrl: './product-expansion-section.component.html',
 })
 export class ProductExpansionSectionComponent {
