@@ -163,26 +163,14 @@ export class CareersComponent implements OnInit {
       }
 
       // Send form data to server
-      this.apiService.postFormData('/ApplyJob', formData).subscribe(
+      this.apiService.post('/ApplyJob', formData).subscribe(
         (response) => {
           console.log('Form submitted successfully', response);
           this.formSubmitting = false;
           this.formSubmitSuccess = true;
 
-          // Auto-close popup after successful submission
-          setTimeout(() => {
-            if (this.formSubmitSuccess) {
-              this.hideFormPopup();
-
-              // Reset form after popup is closed
-              setTimeout(() => {
-                this.positionForm.reset();
-                this.resume = null;
-                this.fileUploaded = false;
-                this.formSubmitted = false;
-              }, 300);
-            }
-          }, 3000);
+          // Auto-close popup after 3 seconds
+          setTimeout(() => this.handleFormSuccess(), 3000);
         },
         (error) => {
           console.error('Error submitting form', error);
@@ -191,11 +179,25 @@ export class CareersComponent implements OnInit {
         }
       );
     } else {
-      // Mark all form controls as touched to show validation errors
       Object.keys(this.positionForm.controls).forEach((key) => {
         const control = this.positionForm.get(key);
         control?.markAsTouched();
       });
+    }
+  }
+
+  // Helper method to handle successful form submission
+  private handleFormSuccess(): void {
+    if (this.formSubmitSuccess) {
+      this.hideFormPopup();
+
+      // Reset form after popup is closed
+      setTimeout(() => {
+        this.positionForm.reset();
+        this.resume = null;
+        this.fileUploaded = false;
+        this.formSubmitted = false;
+      }, 300);
     }
   }
 

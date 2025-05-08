@@ -62,7 +62,7 @@ export class FormCareersComponent {
   handleFileDrop(event: DragEvent): void {
     event.preventDefault();
     event.stopPropagation();
-    
+
     if (event.dataTransfer?.files && event.dataTransfer.files.length > 0) {
       this.validateAndProcessFile(event.dataTransfer.files[0]);
     }
@@ -94,13 +94,7 @@ export class FormCareersComponent {
       this.formSubmitSuccess = false;
       this.formSubmitError = false;
 
-      // Create FormData object to send file along with form data
       const formData = new FormData();
-
-      // Append all form fields
-      Object.keys(this.positionForm.controls).forEach((key) => {
-        formData.append(key, this.positionForm.get(key)?.value);
-      });
 
       // Append resume file
       if (this.resume) {
@@ -108,52 +102,24 @@ export class FormCareersComponent {
       }
 
       // Send form data to server
-      this.apiService.postFormData('/ApplyJob', formData).subscribe(
+      this.apiService.post('/ApplyJob', formData).subscribe(
         (response) => {
           console.log('Form submitted successfully', response);
           this.formSubmitting = false;
           this.formSubmitSuccess = true;
-
-          // Scroll to the success message
-          setTimeout(() => {
-            const successMessage = document.querySelector('.success-message');
-            successMessage?.scrollIntoView({
-              behavior: 'smooth',
-              block: 'center',
-            });
-          }, 100);
-
-          this.positionForm.reset();
-          this.resume = null;
-          this.fileUploaded = false;
+          this.scrollToElement('.success-message');
+          this.resetForm();
         },
         (error) => {
           console.error('Error submitting form', error);
           this.formSubmitting = false;
           this.formSubmitError = true;
-
-          // Scroll to the error message
-          setTimeout(() => {
-            const errorMessage = document.querySelector('.error-message');
-            errorMessage?.scrollIntoView({
-              behavior: 'smooth',
-              block: 'center',
-            });
-          }, 100);
+          this.scrollToElement('.error-message');
         }
       );
     } else {
-      // Mark all form controls as touched to show validation errors
-      Object.keys(this.positionForm.controls).forEach((key) => {
-        const control = this.positionForm.get(key);
-        control?.markAsTouched();
-      });
-
-      // Find the first error and scroll to it
-      setTimeout(() => {
-        const firstError = document.querySelector('.text-red-500');
-        firstError?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 100);
+      this.markFormGroupTouched();
+      this.scrollToElement('.text-red-500');
     }
   }
 
@@ -161,5 +127,27 @@ export class FormCareersComponent {
   hasError(controlName: string, errorType: string): boolean {
     const control = this.positionForm.get(controlName);
     return !!(control?.touched && control?.hasError(errorType));
+  }
+
+  // Helper method to scroll to elements
+  private scrollToElement(selector: string): void {
+    setTimeout(() => {
+      const element = document.querySelector(selector);
+      element?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+  }
+
+  // Helper method to mark all form controls as touched
+  private markFormGroupTouched(): void {
+    Object.keys(this.positionForm.controls).forEach((key) => {
+      this.positionForm.get(key)?.markAsTouched();
+    });
+  }
+
+  // Helper method to reset the form
+  private resetForm(): void {
+    this.positionForm.reset();
+    this.resume = null;
+    this.fileUploaded = false;
   }
 }

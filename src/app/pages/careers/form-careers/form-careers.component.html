@@ -84,7 +84,7 @@
 
             <div class="mt-6 sm:mt-8 w-full p-4 sm:p-6 rounded-2xl bg-black/5 border border-black border-dashed"
                 [ngClass]="{'border-red-500': !fileUploaded && formSubmitted, 'border-green-500': fileUploaded}"
-                (dragover)="$event.preventDefault()" 
+                (dragover)="$event.preventDefault()"
                 (drop)="handleFileDrop($event)">
                 <div class="flex flex-col items-center gap-4">
                     <svg width="60" height="60" viewBox="0 0 76 76" fill="none" xmlns="https://www.w3.org/2000/svg"
@@ -117,8 +117,8 @@
                     </div>
 
                     <div class="w-full flex justify-center">
-                        <label for="resume-upload" class="cursor-pointer">
-                            <input type="file" id="resume-upload" class="hidden" accept=".pdf"
+                        <label for="resume-upload-popup" class="cursor-pointer">
+                            <input type="file" id="resume-upload-popup" class="hidden" accept=".pdf"
                                 (change)="handleFileInput($event)">
                             <span
                                 class="text-tile-inter inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#0460d9] hover:bg-[#0353bd] transition-colors duration-200 text-white font-semibold text-base">

@@ -66,31 +66,6 @@ export class ApiService {
       );
   }
 
-  postFormData(route: string, formData: FormData): Observable<any> {
-    // For FormData, don't set Content-Type header, browser will set it with boundary
-    const url = `${this.baseURL}${route}/`;
-
-    return this.http
-      .post<any>(url, formData, {
-        // Do not set Content-Type header for multipart/form-data
-        // Let the browser set it automatically with the boundary
-        withCredentials: true,
-      })
-      .pipe(
-        tap((response) => {
-          // this.toastService.success('Form submitted successfully');
-          return response;
-        }),
-        catchError((error) => {
-          console.error('Form submission error:', error);
-          const errorMessage =
-            error.error?.detail || 'Form submission failed. Please try again.';
-          // this.toastService.error(errorMessage);
-          return throwError(() => error);
-        })
-      );
-  }
-
   // Helper method to create FormData from a form group and a file
   createFormDataWithFile(
     formGroup: any,
