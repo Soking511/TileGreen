@@ -10,19 +10,19 @@ export class CompaniesService {
   icons: ICompany[] | undefined;
 
   constructor(private apiService: ApiService) {
-    this.apiService.get('JointStockCompany').subscribe({
+    this.apiService.get('IconCompany').subscribe({
       next: (data: ICompany[]) => {
         this.companies = data;
       },
       error: (error) => {},
     });
 
-    this.apiService.get('IconCompany').subscribe({
-      next: (data: ICompany[]) => {
-        this.icons = data;
-      },
-      error: (error) => {},
-    });
+    // this.apiService.get('IconCompany').subscribe({
+    //   next: (data: ICompany[]) => {
+    //     this.icons = data;
+    //   },
+    //   error: (error) => {},
+    // });
   }
 
 
