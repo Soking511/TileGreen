@@ -151,7 +151,7 @@
                                 [class.border-red-500]="isFieldInvalid('industry')">
                                 <option value="" disabled selected>Choose Industry</option>
                                 @for( industry of industries; track industry ){
-                                    <option [value]="industry">{{industry}}</option>
+                                <option [value]="industry">{{industry}}</option>
                                 }
                             </select>
                             <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none">
@@ -220,7 +220,7 @@
                 </div>
 
                 <!-- Form Status Messages -->
-                <div *ngIf="formSubmitted" class="self-stretch mb-4 w-full">
+                <div *ngIf="formSubmitted" class="self-stretch my-4 w-full">
                     <div *ngIf="formSubmitSuccess" class="p-4 bg-green-100 text-green-800 rounded-lg flex items-center">
                         <svg xmlns="https://www.w3.org/2000/svg" class="h-6 w-6 mr-2 flex-shrink-0" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor">
