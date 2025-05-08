@@ -83,10 +83,13 @@
             </div>
 
             <div class="mt-6 sm:mt-8 w-full p-4 sm:p-6 rounded-2xl bg-black/5 border border-black border-dashed"
-                [ngClass]="{'border-red-500': !fileUploaded && formSubmitted}">
+                [ngClass]="{'border-red-500': !fileUploaded && formSubmitted, 'border-green-500': fileUploaded}"
+                (dragover)="$event.preventDefault()" 
+                (drop)="handleFileDrop($event)">
                 <div class="flex flex-col items-center gap-4">
                     <svg width="60" height="60" viewBox="0 0 76 76" fill="none" xmlns="https://www.w3.org/2000/svg"
-                        class="text-[#0460D9]">
+                        [class.text-green-600]="fileUploaded"
+                        [class.text-[#0460D9]]="!fileUploaded">
                         <path
                             d="M38 69.6079V41.4829M38 41.4829L48.9375 52.4204M38 41.4829L27.0625 52.4204M63 55.8798C67.6687 54.0517 72.375 49.886 72.375 41.4829C72.375 28.9829 61.9594 25.8579 56.75 25.8579C56.75 19.6079 56.75 7.10791 38 7.10791C19.25 7.10791 19.25 19.6079 19.25 25.8579C14.0406 25.8579 3.625 28.9829 3.625 41.4829C3.625 49.886 8.33125 54.0517 13 55.8798"
                             stroke="#0460D9" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path>

@@ -12,7 +12,7 @@ import {
   JobPosition,
   JobDataService,
 } from '../../../services/job-data.service';
-import { FormCareersComponent } from './form-careers/form-careers/form-careers.component';
+import { FormCareersComponent } from './form-careers/form-careers.component';
 
 @Component({
   selector: 'app-careers',
@@ -117,7 +117,7 @@ export class CareersComponent implements OnInit {
   handleFileDrop(event: DragEvent): void {
     event.preventDefault();
     event.stopPropagation();
-    
+
     if (event.dataTransfer?.files && event.dataTransfer.files.length > 0) {
       this.validateAndProcessFile(event.dataTransfer.files[0]);
     }
