@@ -110,8 +110,17 @@ export class CareersComponent implements OnInit {
   handleFileInput(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
-      this.resume = input.files[0];
-      this.fileUploaded = true;
+      const file = input.files[0];
+      // Validate file type
+      if (file.type === 'application/pdf') {
+        this.resume = file;
+        this.fileUploaded = true;
+      } else {
+        alert('Please upload a PDF file');
+        input.value = ''; // Clear the input
+        this.resume = null;
+        this.fileUploaded = false;
+      }
     }
   }
 
