@@ -401,7 +401,7 @@ export const bounceInAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '1.3s',
+      duration: '1s',
       delay: '0s',
     },
   }
