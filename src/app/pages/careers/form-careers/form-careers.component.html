@@ -11,7 +11,7 @@
             <div class="space-y-2">
                 <label for="position" class="block text-xl text-[#010d26] text-tile-regular pl-2">Position Name</label>
                 <input type="text" id="position" formControlName="position_name" placeholder="Enter position"
-                    class="w-full px-5 py-4 text-tile-inter rounded-3xl border border-[#9c9c9c] text-lg placeholder:text-[#a7a7a7]  focus:outline-none focus:ring-2 focus:ring-[#0460d9]"
+                    class="w-full px-5 py-4 text-tile-inter rounded-3xl border border-[#9c9c9c] text-lg placeholder:text-[#6B7280]  focus:outline-none focus:ring-2 focus:ring-[#0460d9]"
                     [ngClass]="{'border-red-500': hasError('position_name', 'required') || hasError('position_name', 'minlength') || hasError('position_name', 'maxlength')}">
                 @if (hasError('position_name', 'required') && formSubmitted) {
                 <p class="text-red-500 text-sm mt-1">Position name is required</p>
@@ -29,7 +29,7 @@
                     <label for="firstName" class="block text-xl text-[#010d26] text-tile-regular pl-2">First
                         Name</label>
                     <input type="text" id="firstName" formControlName="first_name" placeholder="Enter first name"
-                        class="w-full px-5 py-4 rounded-3xl border border-[#9c9c9c] text-tile-inter text-lg placeholder:text-[#a7a7a7] focus:outline-none focus:ring-2 focus:ring-[#0460d9]"
+                        class="w-full px-5 py-4 rounded-3xl border border-[#9c9c9c] text-tile-inter text-lg placeholder:text-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#0460d9]"
                         [ngClass]="{'border-red-500': hasError('first_name', 'required') || hasError('first_name', 'minlength') || hasError('first_name', 'maxlength')}">
                     @if (hasError('first_name', 'required') && formSubmitted) {
                     <p class="text-red-500 text-sm mt-1">First name is required</p>
@@ -41,7 +41,7 @@
                 <div class="space-y-2">
                     <label for="lastName" class="block text-xl text-[#010d26] text-tile-regular pl-2">Last Name</label>
                     <input type="text" id="lastName" formControlName="second_name" placeholder="Enter last name"
-                        class="w-full text-tile-inter px-5 py-4 rounded-3xl border border-[#9c9c9c] text-lg placeholder:text-[#a7a7a7] focus:outline-none focus:ring-2 focus:ring-[#0460d9]"
+                        class="w-full text-tile-inter px-5 py-4 rounded-3xl border border-[#9c9c9c] text-lg placeholder:text-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#0460d9]"
                         [ngClass]="{'border-red-500': hasError('second_name', 'required') || hasError('second_name', 'minlength') || hasError('second_name', 'maxlength')}">
                     @if (hasError('second_name', 'required') && formSubmitted) {
                     <p class="text-red-500 text-sm mt-1">Last name is required</p>
@@ -56,7 +56,7 @@
                 <div class="space-y-2">
                     <label for="email" class="block text-xl text-[#010d26] text-tile-regular pl-2">Email Address</label>
                     <input type="email" id="email" formControlName="email" placeholder="Enter email address"
-                        class="w-full px-5 text-tile-inter py-4 rounded-3xl border border-[#9c9c9c] text-lg placeholder:text-[#a7a7a7] focus:outline-none focus:ring-2 focus:ring-[#0460d9]"
+                        class="w-full px-5 text-tile-inter py-4 rounded-3xl border border-[#9c9c9c] text-lg placeholder:text-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#0460d9]"
                         [ngClass]="{'border-red-500': hasError('email', 'required') || hasError('email', 'email')}">
                     @if (hasError('email', 'required') && formSubmitted) {
                     <p class="text-red-500 text-sm mt-1">Email is required</p>
@@ -68,7 +68,7 @@
                 <div class="space-y-2">
                     <label for="phone" class="block text-xl text-[#010d26] text-tile-regular pl-2">Phone Number</label>
                     <input type="tel" id="phone" formControlName="phone_number" placeholder="Enter phone number"
-                        class="w-full text-tile-inter px-5 py-4 rounded-3xl border border-[#9c9c9c] text-lg placeholder:text-[#a7a7a7] focus:outline-none focus:ring-2 focus:ring-[#0460d9]"
+                        class="w-full text-tile-inter px-5 py-4 rounded-3xl border border-[#9c9c9c] text-lg placeholder:text-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#0460d9]"
                         [ngClass]="{'border-red-500': hasError('phone_number', 'required') || hasError('phone_number', 'pattern') || hasError('phone_number', 'minlength')}">
                     @if (hasError('phone_number', 'required') && formSubmitted) {
                     <p class="text-red-500 text-sm mt-1">Phone number is required</p>
