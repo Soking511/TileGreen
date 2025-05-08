@@ -8,8 +8,13 @@ import {
   ViewChild,
   PLATFORM_ID,
   Inject,
+  ChangeDetectionStrategy,
 } from '@angular/core';
-import { CommonModule, isPlatformBrowser, NgOptimizedImage } from '@angular/common';
+import {
+  CommonModule,
+  isPlatformBrowser,
+  NgOptimizedImage,
+} from '@angular/common';
 
 interface CaseStudy {
   company: string;
@@ -24,6 +29,7 @@ interface CaseStudy {
   templateUrl: './case-studies-slider.component.html',
   styleUrls: ['./case-studies-slider.component.scss'],
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, NgOptimizedImage],
 })
 export class CaseStudiesSliderComponent implements OnInit, OnDestroy {
@@ -74,7 +80,7 @@ export class CaseStudiesSliderComponent implements OnInit, OnDestroy {
   // Scroll hijacking properties
   isScrollHijackEnabled = true;
   isInView = false;
-  stopSpamming=false;
+  stopSpamming = false;
   private observer: IntersectionObserver | null = null;
 
   constructor(
@@ -103,29 +109,32 @@ export class CaseStudiesSliderComponent implements OnInit, OnDestroy {
   // Override next/prev slide methods
   nextSlide(): void {
     // Change the slide and restore visibility
-    if ( this.stopSpamming ) return;
-    this.stopSpamming=true;
-    if ( this.currentIndex + 1 < this.caseStudies.length) {
+    if (this.stopSpamming) return;
+    this.stopSpamming = true;
+    if (this.currentIndex + 1 < this.caseStudies.length) {
       this.currentIndex++;
     } else {
       this.currentIndex = 0;
     }
+
+    this.cdr.markForCheck();
     setTimeout(() => {
-      this.stopSpamming=false;
+      this.stopSpamming = false;
     }, 150);
   }
 
   prevSlide(): void {
-    if ( this.stopSpamming ) return;
-    this.stopSpamming=true;
+    if (this.stopSpamming) return;
+    this.stopSpamming = true;
 
-    if ( this.currentIndex - 1 >= 0) {
+    if (this.currentIndex - 1 >= 0) {
       this.currentIndex--;
     } else {
       this.currentIndex = this.caseStudies.length - 1;
     }
+    this.cdr.markForCheck();
     setTimeout(() => {
-      this.stopSpamming=false;
+      this.stopSpamming = false;
     }, 150);
   }
 
@@ -188,6 +197,4 @@ export class CaseStudiesSliderComponent implements OnInit, OnDestroy {
   private minSwipeDistance = 50; // Minimum distance required for a swipe
   private isSwiping = false;
   private swipeDirection: 'left' | 'right' | null = null;
-
-
 }
