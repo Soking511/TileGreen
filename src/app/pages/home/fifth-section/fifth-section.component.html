@@ -29,7 +29,7 @@
             <!-- Mobile-optimized layout without shadows -->
             <div class="sm:hidden flex flex-col gap-5">
                 <!-- First image with proper sizing for mobile - reduced height -->
-                <div animateOnScroll #personPhoneOne="animateOnScroll" [@bounceInAnimation]="personPhoneOne.isInView"
+                <div
                     class="rounded-xl overflow-hidden relative group">
                     <img ngSrc="https://api-tilegreen.pulslytics.agency/media/images/person/1.webp/"
                         alt="TileGreen innovation" [sizes]="'(min-width: 768px) 50vw, 100vw'" width="600" height="900"
@@ -45,7 +45,7 @@
                 </div>
 
                 <!-- Second image with proper sizing for mobile - reduced height -->
-                <div animateOnScroll #personPhoneTwo="animateOnScroll" [@bounceInAnimation]="personPhoneTwo.isInView"
+                <div
                     class="rounded-xl overflow-hidden relative group">
                     <img ngSrc="https://api-tilegreen.pulslytics.agency/media/images/person/2.webp/"
                         alt="TileGreen sustainability" [sizes]="'(min-width: 768px) 50vw, 100vw'" width="600"
@@ -63,7 +63,7 @@
             <!-- Tablet and desktop layout with the same hover effect -->
             <div class="hidden sm:flex flex-row gap-4">
                 <!-- Left column image with object-contain to prevent cropping - further increased max-height -->
-                <div animateOnScroll #personDeskTwo="animateOnScroll" [@bounceInAnimation]="personDeskTwo.isInView"
+                <div 
                     class="w-1/2">
                     <div class="rounded-3xl h-auto relative group">
                         <img class="rounded-full w-full object-contain max-h-[700px] transition-opacity duration-300"
@@ -82,8 +82,7 @@
                 </div>
                 <!-- Right column image with object-contain to prevent cropping - further increased max-height -->
                 <div class="w-1/2">
-                    <div class="rounded-3xl h-auto relative group" animateOnScroll #personDeskOne="animateOnScroll"
-                        [@bounceInAnimation]="personDeskOne.isInView">
+                    <div class="rounded-3xl h-auto relative group" >
                         <img class="rounded-full w-full object-contain max-h-[700px] transition-opacity duration-300"
                             ngSrc="https://api-tilegreen.pulslytics.agency/media/images/person/2.webp/"
                             alt="TileGreen sustainability" width="700" height="700" />

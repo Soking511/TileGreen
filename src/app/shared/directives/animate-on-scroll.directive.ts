@@ -19,6 +19,7 @@ import { Subject, takeUntil } from 'rxjs';
   exportAs: 'animateOnScroll',
 })
 export class AnimateOnScrollDirective implements OnInit, OnDestroy {
+  static animationsEnabled = false; // Set to false to disable all animations
   @Input() animationConfig: AnimationConfig = {};
   @Input() animationClass = 'animate';
   @Output() isInViewChange = new EventEmitter<boolean>();
@@ -36,6 +37,10 @@ export class AnimateOnScrollDirective implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    if (!AnimateOnScrollDirective.animationsEnabled) {
+      // Do nothing: directive has no effect
+      return;
+    }
     const config: AnimationConfig = {
       threshold: 0.3,
       ...this.animationConfig,
@@ -57,6 +62,10 @@ export class AnimateOnScrollDirective implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    if (!AnimateOnScrollDirective.animationsEnabled) {
+      // Do nothing: directive has no effect
+      return;
+    }
     this.destroy$.next();
     this.destroy$.complete();
     this.animationObserver.unobserve(this.el);
