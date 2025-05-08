@@ -20,12 +20,11 @@ import {
   useAnimation,
 } from '@angular/animations';
 import { fadeInUpAnimation } from '../../../../services/site-animations.service';
-import { AnimateOnScrollDirective } from '../../directives/animate-on-scroll.directive';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive, AnimateOnScrollDirective],
+  imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   animations: [
