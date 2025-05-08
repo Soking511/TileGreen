@@ -12,7 +12,7 @@ import {
   JobPosition,
   JobDataService,
 } from '../../../services/job-data.service';
-import { FormCareersComponent } from './form-careers/form-careers.component';
+import { FormCareersComponent } from './form-careers/form-careers/form-careers.component';
 
 @Component({
   selector: 'app-careers',
@@ -110,18 +110,35 @@ export class CareersComponent implements OnInit {
   handleFileInput(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
-      const file = input.files[0];
-      // Validate file type
-      if (file.type === 'application/pdf') {
-        this.resume = file;
-        this.fileUploaded = true;
-      } else {
-        alert('Please upload a PDF file');
-        input.value = ''; // Clear the input
-        this.resume = null;
-        this.fileUploaded = false;
-      }
+      this.validateAndProcessFile(input.files[0]);
     }
+  }
+
+  handleFileDrop(event: DragEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    if (event.dataTransfer?.files && event.dataTransfer.files.length > 0) {
+      this.validateAndProcessFile(event.dataTransfer.files[0]);
+    }
+  }
+
+  private validateAndProcessFile(file: File): void {
+    // Check file type
+    if (file.type !== 'application/pdf') {
+      alert('Please upload a PDF file');
+      return;
+    }
+
+    // Check file size (5MB limit)
+    const maxSize = 5 * 1024 * 1024; // 5MB in bytes
+    if (file.size > maxSize) {
+      alert('File size must be less than 5MB');
+      return;
+    }
+
+    this.resume = file;
+    this.fileUploaded = true;
   }
 
   onSubmit(): void {
