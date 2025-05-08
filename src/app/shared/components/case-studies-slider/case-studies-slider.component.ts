@@ -36,7 +36,7 @@ export class CaseStudiesSliderComponent implements OnInit, OnDestroy {
       description:
         'TileGreen supplied interlocking tiles for Henkel, showcasing "Henkel Green". This enhanced the facility\'s exterior and emphasized sustainability.',
       imagePath:
-        'https://api-tilegreen.pulslytics.agency/media/images/slider/1.png/',
+        'https://api-tilegreen.pulslytics.agency/media/images/slider/webp.png/',
       logo: 'https://api-tilegreen.pulslytics.agency/media/images/slider/logos/henkel-logo-standalone-svg.png/',
     },
     {

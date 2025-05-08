@@ -102,7 +102,7 @@ export class AboutComponent implements OnInit, OnDestroy {
     },
     {
       id: 3,
-      img: 'https://api-tilegreen.pulslytics.agency/media/images/slider/1.png',
+      img: 'https://api-tilegreen.pulslytics.agency/media/images/slider/1.webp/',
       alt: 'Eco project 4',
       title: 'Community Waste Management',
       description:
