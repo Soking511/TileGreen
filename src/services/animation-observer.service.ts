@@ -13,7 +13,7 @@ export interface AnimationConfig {
 export class AnimationObserverService {
   private observers: Map<string, IntersectionObserver> = new Map();
   private defaultConfig: AnimationConfig = {
-    threshold: 0.15,
+    threshold: 0.1,
     once: true,
     rootMargin: '0px',
   };
