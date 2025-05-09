@@ -1,6 +1,4 @@
-import {
-  Component,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import {
   state,
   style,
@@ -8,7 +6,14 @@ import {
   trigger,
   useAnimation,
 } from '@angular/animations';
-import { bounceInAnimation, fadeInLeftAnimation, fadeInRightAnimation } from '../../../../services/site-animations.service';
+import {
+  bounceInAnimation,
+  fadeInLeftAnimation,
+  fadeInRightAnimation,
+  elegantFadeInAnimation,
+  subtleRevealAnimation,
+  softPulse,
+} from '../../../../services/site-animations.service';
 import { SectionHeaderComponent } from '../../../shared/components/section-header/section-header.component';
 import { FeatureShowcaseSectionComponent } from '../../feature-showcase-section/feature-showcase-section.component';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
@@ -33,6 +38,32 @@ import { NgOptimizedImage } from '@angular/common';
       state('true', style({ visibility: 'visible' })),
       transition('* => true', useAnimation(bounceInAnimation)),
     ]),
+    trigger('elegantFadeInAnimation', [
+      state('*', style({ visibility: 'hidden' })),
+      state('true', style({ visibility: 'visible' })),
+      transition(
+        '* => true',
+        useAnimation(elegantFadeInAnimation)
+      ),
+    ]),
+    trigger('softPulse', [
+      state('*', style({ visibility: 'hidden' })),
+      state('true', style({ visibility: 'visible' })),
+      transition(
+        '* => true',
+        useAnimation(softPulse)
+      ),
+    ]),
+    trigger('subtleReveal', [
+      state('*', style({ visibility: 'hidden' })),
+      state('true', style({ visibility: 'visible' })),
+      transition(
+        '* => true',
+        useAnimation(subtleRevealAnimation, {
+          params: { duration: '0.7s', delay: '0.2s' },
+        })
+      ),
+    ]),
   ],
   standalone: true,
   templateUrl: './first-section.component.html',
@@ -42,8 +73,7 @@ import { NgOptimizedImage } from '@angular/common';
     FeatureShowcaseSectionComponent,
     ButtonComponent,
     AnimateOnScrollDirective,
-    NgOptimizedImage
+    NgOptimizedImage,
   ],
 })
-export class FirstSectionComponent {
-}
+export class FirstSectionComponent {}

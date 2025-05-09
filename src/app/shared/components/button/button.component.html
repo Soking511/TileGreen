@@ -1,15 +1,15 @@
-<div class=''>
+<div class='' animateOnScroll #buttonComponent="animateOnScroll" [@elegantFadeInAnimation]="buttonComponent.isInView">
     <a [routerLink]="linkPath"
-        class="group relative inline-flex items-center bg-stone-100 rounded-[50px] overflow-hidden cursor-pointer"
+        class="group relative inline-flex items-center bg-stone-100 rounded-[50px] overflow-hidden cursor-pointer shadow-sm hover:shadow-md transition-shadow duration-300"
         [attr.aria-label]="buttonText" role="button" tabindex="0">
         <span
-            class="px-3 md:px-5 py-1.5 md:py-2 text-lg md:text-2xl text-tile-regular text-[#010D26] z-10 group-hover:text-white transition-colors duration-300 relative">{{buttonText}}</span>
+            class="px-3 md:px-5 py-1.5 md:py-2 text-lg md:text-2xl text-tile-regular text-[#010D26] z-10 group-hover:text-white transition-colors duration-500 relative">{{buttonText}}</span>
 
         <span class="relative" aria-hidden="true">
             <span class="absolute right-0 top-0 w-10 h-10 md:w-14 md:h-14 bg-blue-700 rounded-full transition-all duration-700 ease-out transform origin-center
                   group-hover:scale-[20] group-hover:rounded-none"></span>
 
-            <span class="flex items-center justify-center w-10 h-10 md:w-14 md:h-14 relative z-10">
+            <span class="flex items-center justify-center w-10 h-10 md:w-14 md:h-14 relative z-10 transition-transform duration-500 transform group-hover:rotate-[360deg]">
                 <svg width="20" height="20" class="md:w-6 md:h-6" viewBox="0 0 24 24" fill="none"
                     xmlns="https://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M13.5 19L21.5 12L13.5 5M21.5 12H2.5" stroke="white" stroke-width="2" stroke-linecap="round"

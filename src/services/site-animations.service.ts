@@ -12,7 +12,8 @@ import {
 })
 export class SiteAnimationsService {}
 
-export const fadeInUpAnimation: AnimationReferenceMetadata = animation(
+// Luxury smooth fade in with slight upward movement
+export const luxuryFadeIn: AnimationReferenceMetadata = animation(
   [
     style({
       visibility: 'hidden',
@@ -24,13 +25,48 @@ export const fadeInUpAnimation: AnimationReferenceMetadata = animation(
           visibility: 'visible',
           opacity: 0,
           transform: 'translate3d(0, {{ distance }}, 0)',
-          easing: 'ease',
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)', // Luxury easing curve
           offset: 0,
         }),
         style({
           opacity: 1,
           transform: 'translate3d(0, 0, 0)',
-          easing: 'ease',
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
+          offset: 1,
+        }),
+      ])
+    ),
+  ],
+  {
+    params: {
+      duration: '0.9s',
+      delay: '0ms',
+      distance: '15px',
+    },
+  }
+);
+
+// Elegant fade out with slight downward movement
+export const luxuryFadeOut: AnimationReferenceMetadata = animation(
+  [
+    style({
+      visibility: 'visible',
+    }),
+    animate(
+      '{{ duration }} {{ delay }}',
+      keyframes([
+        style({
+          visibility: 'visible',
+          opacity: 1,
+          transform: 'translate3d(0, 0, 0)',
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
+          offset: 0,
+        }),
+        style({
+          visibility: 'hidden',
+          opacity: 0,
+          transform: 'translate3d(0, {{ distance }}, 0)',
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
           offset: 1,
         }),
       ])
@@ -40,80 +76,13 @@ export const fadeInUpAnimation: AnimationReferenceMetadata = animation(
     params: {
       duration: '0.8s',
       delay: '0ms',
-      distance: '25%',
+      distance: '15px',
     },
   }
 );
 
-export const fadeOutRightAnimation: AnimationReferenceMetadata = animation(
-  [
-    style({
-      visibility: 'visible',
-    }),
-    animate(
-      '{{ duration }} {{ delay }}',
-      keyframes([
-        style({
-          visibility: 'visible',
-          opacity: 1,
-          transform: 'translate3d(0, 0, 0)',
-          easing: 'ease',
-          offset: 0,
-        }),
-        style({
-          visibility: 'hidden',
-          opacity: 0,
-          transform: 'translate3d({{ distance }}, 0, 0)',
-          easing: 'ease',
-          offset: 1,
-        }),
-      ])
-    ),
-  ],
-  {
-    params: {
-      duration: '1.3s',
-      delay: '0ms',
-      distance: '100%',
-    },
-  }
-);
-
-export const fadeOutLeftAnimation: AnimationReferenceMetadata = animation(
-  [
-    style({
-      visibility: 'visible',
-    }),
-    animate(
-      '{{ duration }} {{ delay }}',
-      keyframes([
-        style({
-          visibility: 'visible',
-          opacity: 1,
-          transform: 'translate3d(0, 0, 0)',
-          easing: 'ease',
-          offset: 0,
-        }),
-        style({
-          visibility: 'hidden',
-          opacity: 0,
-          transform: 'translate3d(-{{ distance }}, 0, 0)',
-          easing: 'ease',
-          offset: 1,
-        }),
-      ])
-    ),
-  ],
-  {
-    params: {
-      duration: '1.3s',
-      delay: '0ms',
-      distance: '100%',
-    },
-  }
-);
-
-export const fadeInRightAnimation: AnimationReferenceMetadata = animation(
+// Subtle fade in with horizontal movement from right
+export const subtleFadeInRight: AnimationReferenceMetadata = animation(
   [
     style({
       visibility: 'hidden',
@@ -125,275 +94,13 @@ export const fadeInRightAnimation: AnimationReferenceMetadata = animation(
           visibility: 'visible',
           opacity: 0,
           transform: 'translate3d(-{{ distance }}, 0, 0)',
-          easing: 'ease',
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
           offset: 0,
         }),
         style({
           opacity: 1,
           transform: 'translate3d(0, 0, 0)',
-          easing: 'ease',
-          offset: 1,
-        }),
-      ])
-    ),
-  ],
-  {
-    params: {
-      duration: '1.3s',
-      delay: '0ms',
-      distance: '100%',
-    },
-  }
-);
-
-export const fadeInLeftAnimation: AnimationReferenceMetadata = animation(
-  [
-    style({
-      visibility: 'hidden',
-    }),
-    animate(
-      '{{ duration }} {{ delay }}',
-      keyframes([
-        style({
-          visibility: 'visible',
-          opacity: 0,
-          transform: 'translate3d({{ distance }}, 0, 0)',
-          easing: 'ease',
-          offset: 0,
-        }),
-        style({
-          opacity: 1,
-          transform: 'translate3d(0, 0, 0)',
-          easing: 'ease',
-          offset: 1,
-        }),
-      ])
-    ),
-  ],
-  {
-    params: {
-      duration: '1.3s',
-      delay: '0ms',
-      distance: '100%',
-    },
-  }
-);
-
-export const zoomInAnimation: AnimationReferenceMetadata = animation(
-  [
-    style({ visibility: 'hidden' }),
-    animate(
-      '{{ duration }} {{ delay }}',
-      keyframes([
-        style({
-          visibility: 'visible',
-          opacity: 0,
-          transform: 'scale3d(0.3, 0.3, 0.3)',
-          easing: 'ease',
-          offset: 0,
-        }),
-        style({
-          opacity: 1,
-          transform: 'scale3d(1, 1, 1)',
-          easing: 'ease',
-          offset: 1,
-        }),
-      ])
-    ),
-  ],
-  {
-    params: {
-      duration: '1.3s',
-      delay: '0s',
-      distance: '100%',
-    },
-  }
-);
-
-export const zoomOutAnimation: AnimationReferenceMetadata = animation(
-  [
-    style({ visibility: 'visible' }),
-    animate(
-      '{{ duration }} {{ delay }}',
-      keyframes([
-        style({
-          opacity: 1,
-          transform: 'scale3d(1, 1, 1)',
-          easing: 'ease',
-          offset: 0,
-        }),
-        style({
-          opacity: 0,
-          transform: 'scale3d(0.3, 0.3, 0.3)',
-          visibility: 'hidden',
-          easing: 'ease',
-          offset: 1,
-        }),
-      ])
-    ),
-  ],
-  {
-    params: {
-      duration: '1.3s',
-      delay: '0s',
-    },
-  }
-);
-
-export const fadeInAnimation: AnimationReferenceMetadata = animation(
-  [
-    style({ visibility: 'hidden', opacity: 0 }),
-    animate(
-      '{{ duration }} {{ delay }}',
-      keyframes([
-        style({
-          visibility: 'visible',
-          opacity: 0,
-          easing: 'ease',
-          offset: 0,
-        }),
-        style({
-          opacity: 1,
-          easing: 'ease',
-          offset: 1,
-        }),
-      ])
-    ),
-  ],
-  {
-    params: {
-      duration: '1.3s',
-      delay: '0s',
-    },
-  }
-);
-
-export const fadeOutAnimation: AnimationReferenceMetadata = animation(
-  [
-    style({ visibility: 'visible', opacity: 1 }),
-    animate(
-      '{{ duration }} {{ delay }}',
-      keyframes([
-        style({
-          opacity: 1,
-          easing: 'ease',
-          offset: 0,
-        }),
-        style({
-          opacity: 0,
-          visibility: 'hidden',
-          easing: 'ease',
-          offset: 1,
-        }),
-      ])
-    ),
-  ],
-  {
-    params: {
-      duration: '1.3s',
-      delay: '0s',
-    },
-  }
-);
-
-export const rotateInAnimation: AnimationReferenceMetadata = animation(
-  [
-    style({ visibility: 'hidden' }),
-    animate(
-      '{{ duration }} {{ delay }}',
-      keyframes([
-        style({
-          visibility: 'visible',
-          opacity: 0,
-          transform: 'rotate3d(0, 0, 1, -200deg)',
-          easing: 'ease',
-          offset: 0,
-        }),
-        style({
-          opacity: 1,
-          transform: 'rotate3d(0, 0, 1, 0deg)',
-          easing: 'ease',
-          offset: 1,
-        }),
-      ])
-    ),
-  ],
-  {
-    params: {
-      duration: '0.5s',
-      delay: '0s',
-    },
-  }
-);
-
-export const rotateOutAnimation: AnimationReferenceMetadata = animation(
-  [
-    style({ visibility: 'visible' }),
-    animate(
-      '{{ duration }} {{ delay }}',
-      keyframes([
-        style({
-          opacity: 1,
-          transform: 'rotate3d(0, 0, 1, 0deg)',
-          easing: 'ease',
-          offset: 0,
-        }),
-        style({
-          opacity: 0,
-          transform: 'rotate3d(0, 0, 1, 200deg)',
-          visibility: 'hidden',
-          easing: 'ease',
-          offset: 1,
-        }),
-      ])
-    ),
-  ],
-  {
-    params: {
-      duration: '1.3s',
-      delay: '0s',
-    },
-  }
-);
-
-export const bounceInAnimation: AnimationReferenceMetadata = animation(
-  [
-    style({ visibility: 'hidden' }),
-    animate(
-      '{{ duration }} {{ delay }}',
-      keyframes([
-        style({
-          visibility: 'visible',
-          opacity: 0,
-          transform: 'scale3d(0.3, 0.3, 0.3)',
-          easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)',
-          offset: 0,
-        }),
-        style({
-          transform: 'scale3d(1.1, 1.1, 1.1)',
-          easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)',
-          offset: 0.2,
-        }),
-        style({
-          transform: 'scale3d(0.9, 0.9, 0.9)',
-          easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)',
-          offset: 0.4,
-        }),
-        style({
-          opacity: 1,
-          transform: 'scale3d(1.03, 1.03, 1.03)',
-          easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)',
-          offset: 0.6,
-        }),
-        style({
-          transform: 'scale3d(0.97, 0.97, 0.97)',
-          easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)',
-          offset: 0.8,
-        }),
-        style({
-          opacity: 1,
-          transform: 'scale3d(1, 1, 1)',
-          easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)',
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
           offset: 1,
         }),
       ])
@@ -402,39 +109,95 @@ export const bounceInAnimation: AnimationReferenceMetadata = animation(
   {
     params: {
       duration: '1s',
+      delay: '0ms',
+      distance: '40px',
+    },
+  }
+);
+
+// Subtle fade in with horizontal movement from left
+export const subtleFadeInLeft: AnimationReferenceMetadata = animation(
+  [
+    style({
+      visibility: 'hidden',
+    }),
+    animate(
+      '{{ duration }} {{ delay }}',
+      keyframes([
+        style({
+          visibility: 'visible',
+          opacity: 0,
+          transform: 'translate3d({{ distance }}, 0, 0)',
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
+          offset: 0,
+        }),
+        style({
+          opacity: 1,
+          transform: 'translate3d(0, 0, 0)',
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
+          offset: 1,
+        }),
+      ])
+    ),
+  ],
+  {
+    params: {
+      duration: '1s',
+      delay: '0ms',
+      distance: '40px',
+    },
+  }
+);
+
+// Refined zoom in animation
+export const refinedZoomIn: AnimationReferenceMetadata = animation(
+  [
+    style({ visibility: 'hidden' }),
+    animate(
+      '{{ duration }} {{ delay }}',
+      keyframes([
+        style({
+          visibility: 'visible',
+          opacity: 0,
+          transform: 'scale3d(0.95, 0.95, 0.95)',
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
+          offset: 0,
+        }),
+        style({
+          opacity: 1,
+          transform: 'scale3d(1, 1, 1)',
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
+          offset: 1,
+        }),
+      ])
+    ),
+  ],
+  {
+    params: {
+      duration: '0.9s',
       delay: '0s',
     },
   }
 );
 
-export const bounceOutAnimation: AnimationReferenceMetadata = animation(
+// Refined zoom out animation
+export const refinedZoomOut: AnimationReferenceMetadata = animation(
   [
     style({ visibility: 'visible' }),
     animate(
       '{{ duration }} {{ delay }}',
       keyframes([
         style({
-          transform: 'scale3d(0.9, 0.9, 0.9)',
-          easing: 'ease',
-          offset: 0.2,
-        }),
-        style({
           opacity: 1,
-          transform: 'scale3d(1.1, 1.1, 1.1)',
-          easing: 'ease',
-          offset: 0.5,
-        }),
-        style({
-          opacity: 1,
-          transform: 'scale3d(1.1, 1.1, 1.1)',
-          easing: 'ease',
-          offset: 0.55,
+          transform: 'scale3d(1, 1, 1)',
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
+          offset: 0,
         }),
         style({
           opacity: 0,
-          transform: 'scale3d(0.3, 0.3, 0.3)',
+          transform: 'scale3d(0.95, 0.95, 0.95)',
           visibility: 'hidden',
-          easing: 'ease',
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
           offset: 1,
         }),
       ])
@@ -442,140 +205,57 @@ export const bounceOutAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '1.3s',
+      duration: '0.9s',
       delay: '0s',
     },
   }
 );
 
-export const bounceInUpAnimation: AnimationReferenceMetadata = animation(
+// Elegant clean fade in with no movement
+export const elegantFadeIn: AnimationReferenceMetadata = animation(
   [
-    style({ visibility: 'hidden' }),
+    style({ visibility: 'hidden', opacity: 0 }),
     animate(
       '{{ duration }} {{ delay }}',
       keyframes([
         style({
           visibility: 'visible',
           opacity: 0,
-          transform: 'translate3d(0, {{ distance }}, 0)',
-          easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)',
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
           offset: 0,
         }),
         style({
           opacity: 1,
-          transform: 'translate3d(0, -20px, 0)',
-          easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)',
-          offset: 0.6,
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
+          offset: 1,
         }),
-        style({
-          transform: 'translate3d(0, 10px, 0)',
-          easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)',
-          offset: 0.75,
-        }),
-        style({
-          transform: 'translate3d(0, -5px, 0)',
-          easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)',
-          offset: 0.9,
-        }),
+      ])
+    ),
+  ],
+  {
+    params: {
+      duration: '0.9s',
+      delay: '0s',
+    },
+  }
+);
+
+// Elegant clean fade out with no movement
+export const elegantFadeOut: AnimationReferenceMetadata = animation(
+  [
+    style({ visibility: 'visible', opacity: 1 }),
+    animate(
+      '{{ duration }} {{ delay }}',
+      keyframes([
         style({
           opacity: 1,
-          transform: 'translate3d(0, 0, 0)',
-          easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)',
-          offset: 1,
-        }),
-      ])
-    ),
-  ],
-  {
-    params: {
-      duration: '1.3s',
-      delay: '0s',
-      distance: '100%',
-    },
-  }
-);
-
-export const slideInUpAnimation: AnimationReferenceMetadata = animation(
-  [
-    style({ visibility: 'hidden' }),
-    animate(
-      '{{ duration }} {{ delay }}',
-      keyframes([
-        style({
-          visibility: 'visible',
-          transform: 'translate3d(0, {{ distance }}, 0)',
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
           offset: 0,
         }),
         style({
-          transform: 'translate3d(0, 0, 0)',
-          offset: 1,
-        }),
-      ])
-    ),
-  ],
-  {
-    params: {
-      duration: '1.3s',
-      delay: '0s',
-      distance: '100%',
-    },
-  }
-);
-
-export const slideInDownAnimation: AnimationReferenceMetadata = animation(
-  [
-    style({ visibility: 'hidden' }),
-    animate(
-      '{{ duration }} {{ delay }}',
-      keyframes([
-        style({
-          visibility: 'visible',
-          transform: 'translate3d(0, -{{ distance }}, 0)',
-          offset: 0,
-        }),
-        style({
-          transform: 'translate3d(0, 0, 0)',
-          offset: 1,
-        }),
-      ])
-    ),
-  ],
-  {
-    params: {
-      duration: '1.3s',
-      delay: '0s',
-      distance: '100%',
-    },
-  }
-);
-
-export const flipInXAnimation: AnimationReferenceMetadata = animation(
-  [
-    style({ visibility: 'hidden' }),
-    animate(
-      '{{ duration }} {{ delay }}',
-      keyframes([
-        style({
-          visibility: 'visible',
-          transform: 'perspective(400px) rotate3d(1, 0, 0, 90deg)',
           opacity: 0,
-          offset: 0,
-        }),
-        style({
-          transform: 'perspective(400px) rotate3d(1, 0, 0, -20deg)',
-          offset: 0.4,
-        }),
-        style({
-          transform: 'perspective(400px) rotate3d(1, 0, 0, 10deg)',
-          opacity: 1,
-          offset: 0.6,
-        }),
-        style({
-          transform: 'perspective(400px) rotate3d(1, 0, 0, -5deg)',
-          offset: 0.8,
-        }),
-        style({
-          transform: 'perspective(400px)',
+          visibility: 'hidden',
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
           offset: 1,
         }),
       ])
@@ -583,39 +263,30 @@ export const flipInXAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '1.3s',
+      duration: '0.9s',
       delay: '0s',
     },
   }
 );
 
-export const flipInYAnimation: AnimationReferenceMetadata = animation(
+// Subtle reveal animation with minimal scaling
+export const subtleReveal: AnimationReferenceMetadata = animation(
   [
-    style({ visibility: 'hidden' }),
+    style({ visibility: 'hidden', opacity: 0, transform: 'scale(0.98)' }),
     animate(
       '{{ duration }} {{ delay }}',
       keyframes([
         style({
           visibility: 'visible',
-          transform: 'perspective(400px) rotate3d(0, 1, 0, 90deg)',
           opacity: 0,
+          transform: 'scale(0.98)',
+          easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)',
           offset: 0,
         }),
         style({
-          transform: 'perspective(400px) rotate3d(0, 1, 0, -20deg)',
-          offset: 0.4,
-        }),
-        style({
-          transform: 'perspective(400px) rotate3d(0, 1, 0, 10deg)',
           opacity: 1,
-          offset: 0.6,
-        }),
-        style({
-          transform: 'perspective(400px) rotate3d(0, 1, 0, -5deg)',
-          offset: 0.8,
-        }),
-        style({
-          transform: 'perspective(400px)',
+          transform: 'scale(1)',
+          easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)',
           offset: 1,
         }),
       ])
@@ -623,13 +294,47 @@ export const flipInYAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '1.3s',
+      duration: '0.7s',
       delay: '0s',
     },
   }
 );
 
-export const pulseAnimation: AnimationReferenceMetadata = animation(
+// Premium hover animation for interactive elements
+export const premiumHover: AnimationReferenceMetadata = animation(
+  [
+    animate(
+      '{{ duration }} {{ delay }}',
+      keyframes([
+        style({
+          transform: 'translateY(0) scale(1)',
+          boxShadow: '0 0 0 rgba(0, 0, 0, 0.1)',
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
+          offset: 0,
+        }),
+        style({
+          transform: 'translateY(-{{ lift }}) scale({{ scale }})',
+          boxShadow: '0 {{ shadowSize }} {{ blurSize }} rgba(0, 0, 0, 0.08)',
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
+          offset: 1,
+        }),
+      ])
+    ),
+  ],
+  {
+    params: {
+      duration: '0.4s',
+      delay: '0s',
+      lift: '3px',
+      scale: '1.01',
+      shadowSize: '8px',
+      blurSize: '16px',
+    },
+  }
+);
+
+// Soft pulse animation for subtle attention
+export const softPulse: AnimationReferenceMetadata = animation(
   [
     animate(
       '{{ duration }} {{ delay }}',
@@ -651,59 +356,230 @@ export const pulseAnimation: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '1.3s',
+      duration: '2s',
       delay: '0s',
-      scale: '1.05',
+      scale: '1.03',
     },
   }
 );
 
-export const shakeAnimation: AnimationReferenceMetadata = animation(
+// Slide in from top animation - subtle
+export const subtleSlideDown: AnimationReferenceMetadata = animation(
   [
+    style({ visibility: 'hidden' }),
     animate(
       '{{ duration }} {{ delay }}',
       keyframes([
-        style({ transform: 'translate3d(0, 0, 0)', offset: 0 }),
-        style({ transform: 'translate3d(-10px, 0, 0)', offset: 0.1 }),
-        style({ transform: 'translate3d(10px, 0, 0)', offset: 0.2 }),
-        style({ transform: 'translate3d(-10px, 0, 0)', offset: 0.3 }),
-        style({ transform: 'translate3d(10px, 0, 0)', offset: 0.4 }),
-        style({ transform: 'translate3d(-10px, 0, 0)', offset: 0.5 }),
-        style({ transform: 'translate3d(10px, 0, 0)', offset: 0.6 }),
-        style({ transform: 'translate3d(-10px, 0, 0)', offset: 0.7 }),
-        style({ transform: 'translate3d(10px, 0, 0)', offset: 0.8 }),
-        style({ transform: 'translate3d(-10px, 0, 0)', offset: 0.9 }),
-        style({ transform: 'translate3d(0, 0, 0)', offset: 1 }),
+        style({
+          visibility: 'visible',
+          transform: 'translate3d(0, -{{ distance }}, 0)',
+          opacity: 0,
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
+          offset: 0,
+        }),
+        style({
+          transform: 'translate3d(0, 0, 0)',
+          opacity: 1,
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
+          offset: 1,
+        }),
       ])
     ),
   ],
   {
     params: {
-      duration: '1.3s',
+      duration: '0.9s',
       delay: '0s',
+      distance: '30px',
     },
   }
 );
 
-export const rubberBandAnimation: AnimationReferenceMetadata = animation(
+// Slide in from bottom animation - subtle
+export const subtleSlideUp: AnimationReferenceMetadata = animation(
   [
+    style({ visibility: 'hidden' }),
     animate(
       '{{ duration }} {{ delay }}',
       keyframes([
-        style({ transform: 'scale3d(1, 1, 1)', offset: 0 }),
-        style({ transform: 'scale3d(1.25, 0.75, 1)', offset: 0.3 }),
-        style({ transform: 'scale3d(0.75, 1.25, 1)', offset: 0.4 }),
-        style({ transform: 'scale3d(1.15, 0.85, 1)', offset: 0.5 }),
-        style({ transform: 'scale3d(0.95, 1.05, 1)', offset: 0.65 }),
-        style({ transform: 'scale3d(1.05, 0.95, 1)', offset: 0.75 }),
-        style({ transform: 'scale3d(1, 1, 1)', offset: 1 }),
+        style({
+          visibility: 'visible',
+          transform: 'translate3d(0, {{ distance }}, 0)',
+          opacity: 0,
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
+          offset: 0,
+        }),
+        style({
+          transform: 'translate3d(0, 0, 0)',
+          opacity: 1,
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
+          offset: 1,
+        }),
       ])
     ),
   ],
   {
     params: {
-      duration: '1.3s',
+      duration: '0.9s',
+      delay: '0s',
+      distance: '30px',
+    },
+  }
+);
+
+// Refined, subtle text reveal for paragraphs
+export const textReveal: AnimationReferenceMetadata = animation(
+  [
+    style({ visibility: 'hidden', opacity: 0, transform: 'translateY(10px)' }),
+    animate(
+      '{{ duration }} {{ delay }}',
+      keyframes([
+        style({
+          visibility: 'visible',
+          opacity: 0,
+          transform: 'translateY(10px)',
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
+          offset: 0,
+        }),
+        style({
+          opacity: 1,
+          transform: 'translateY(0)',
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
+          offset: 1,
+        }),
+      ])
+    ),
+  ],
+  {
+    params: {
+      duration: '0.8s',
       delay: '0s',
     },
   }
 );
+
+// Premium card reveal effect with subtle shadow
+export const cardReveal: AnimationReferenceMetadata = animation(
+  [
+    style({
+      visibility: 'hidden',
+      opacity: 0,
+      transform: 'translateY(20px) scale(0.98)',
+      boxShadow: '0 0 0 rgba(0, 0, 0, 0)'
+    }),
+    animate(
+      '{{ duration }} {{ delay }}',
+      keyframes([
+        style({
+          visibility: 'visible',
+          opacity: 0,
+          transform: 'translateY(20px) scale(0.98)',
+          boxShadow: '0 0 0 rgba(0, 0, 0, 0)',
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
+          offset: 0,
+        }),
+        style({
+          opacity: 1,
+          transform: 'translateY(0) scale(1)',
+          boxShadow: '0 {{ shadowSize }} {{ blurSize }} rgba(0, 0, 0, 0.08)',
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
+          offset: 1,
+        }),
+      ])
+    ),
+  ],
+  {
+    params: {
+      duration: '1s',
+      delay: '0s',
+      shadowSize: '15px',
+      blurSize: '30px'
+    },
+  }
+);
+
+// Subtle background transition
+export const subtleBackgroundTransition: AnimationReferenceMetadata = animation(
+  [
+    animate(
+      '{{ duration }} {{ delay }}',
+      keyframes([
+        style({
+          backgroundColor: '{{ startColor }}',
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
+          offset: 0,
+        }),
+        style({
+          backgroundColor: '{{ endColor }}',
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
+          offset: 1,
+        }),
+      ])
+    ),
+  ],
+  {
+    params: {
+      duration: '0.8s',
+      delay: '0s',
+      startColor: 'rgba(255, 255, 255, 0)',
+      endColor: 'rgba(255, 255, 255, 0.05)',
+    },
+  }
+);
+
+// Elegant rotate in animation
+export const elegantRotateIn: AnimationReferenceMetadata = animation(
+  [
+    style({ visibility: 'hidden' }),
+    animate(
+      '{{ duration }} {{ delay }}',
+      keyframes([
+        style({
+          visibility: 'visible',
+          opacity: 0,
+          transform: 'rotate3d(0, 0, 1, -5deg) scale(0.98)',
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
+          offset: 0,
+        }),
+        style({
+          opacity: 1,
+          transform: 'rotate3d(0, 0, 1, 0deg) scale(1)',
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
+          offset: 1,
+        }),
+      ])
+    ),
+  ],
+  {
+    params: {
+      duration: '0.9s',
+      delay: '0s',
+    },
+  }
+);
+
+// For backward compatibility, we'll alias the old animation names to the new ones
+export const fadeInUpAnimation = luxuryFadeIn;
+export const fadeInRightAnimation = subtleFadeInRight;
+export const fadeInLeftAnimation = subtleFadeInLeft;
+export const zoomInAnimation = refinedZoomIn;
+export const zoomOutAnimation = refinedZoomOut;
+export const fadeInAnimation = elegantFadeIn;
+export const fadeOutAnimation = elegantFadeOut;
+export const fadeOutRightAnimation = luxuryFadeOut;
+export const fadeOutLeftAnimation = luxuryFadeOut;
+export const rotateInAnimation = elegantRotateIn;
+export const rotateOutAnimation = elegantFadeOut;
+export const bounceInAnimation = refinedZoomIn;
+export const bounceOutAnimation = refinedZoomOut;
+export const bounceInUpAnimation = subtleSlideUp;
+export const slideInUpAnimation = subtleSlideUp;
+export const slideInDownAnimation = subtleSlideDown;
+export const flipInXAnimation = subtleReveal;
+export const flipInYAnimation = subtleReveal;
+export const pulseAnimation = softPulse;
+export const shakeAnimation = softPulse;
+export const rubberBandAnimation = softPulse;
+export const elegantFadeInAnimation = elegantFadeIn;
+export const subtleRevealAnimation = subtleReveal;
+export const premiumHoverAnimation = premiumHover;

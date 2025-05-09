@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <div class="flex flex-col lg:flex-row justify-start items-center gap-8 lg:gap-[70px] pt-10 lg:pt-20">
+    <div class="flex flex-col lg:flex-row justify-start items-center gap-8 lg:gap-[70px] pt-10 lg:pt-20" animateOnScroll #sustainabilityText="animateOnScroll" [@fadeInRightAnimation]="sustainabilityText.isInView">
         <!-- Cards container -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-[50px] w-full">
             <!-- First card -->

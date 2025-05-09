@@ -1,28 +1,30 @@
 <!-- section 1 - Responsive Layout -->
 
-<section 
-    class=" py-8 sm:py-10 md:py-12 lg:py-16">
+<section class="py-8 sm:py-10 md:py-12 lg:py-16">
 
-    <app-section-header title="What Makes us special" />
+    <app-section-header title="What Makes us special"
+    />
 
     <div class="flex flex-col md:flex-row justify-start items-stretch gap-4 sm:gap-6 md:gap-8 lg:gap-4 w-full">
         <!-- Left Content Column -->
-        <div class="flex flex-col justify-center items-start w-full md:w-2/3 space-y-5 sm:space-y-8">
-            <h2 class="text-2xl sm:text-4xl md:text-4xl lg:text-6xl text-tile-bold text-[#010d26] w-full leading-tight">
+        <div class="flex flex-col justify-center items-start w-full md:w-2/3 space-y-5 sm:space-y-8" duration="0.9s">
+            <h2  animateOnScroll #textPatented="animateOnScroll" [@subtleReveal]="textPatented.isInView"
+            class="text-2xl sm:text-4xl md:text-4xl lg:text-6xl text-tile-bold text-[#010d26] w-full leading-tight">
                 Patented <span class="hidden md:inline"><br></span> Machine Learning <span
                     class="hidden md:inline"><br></span> Technology <span class="hidden md:inline"><br></span> Leading
                 the Way
             </h2>
-            <div
+            <div animateOnScroll #textPatented2="animateOnScroll" [@subtleReveal]="textPatented2.isInView"
                 class="self-stretch justify-start text-[#4B5563] text-base sm:text-xl md:text-2xl text-tile-inter leading-snug">
                 By harnessing the
                 power of machine learning, we ensure optimal recycling and conversion, creating strong, eco-friendly
                 materials that set new industry standards.</div>
-            <app-button buttonText="Explore Our Tech" linkPath="/technology" />
+            <app-button buttonText="Explore Our Tech" linkPath="/technology"  />
         </div>
 
         <!-- Right Image - Hidden on small screens, visible from medium screens -->
-        <div class="hidden md:flex w-full md:w-1/2 my-4 md:my-0">
+        <div class="hidden md:flex w-full md:w-1/2 my-4 md:my-0"
+            delay="0.2s">
             <div class="w-full h-full flex items-center">
                 <img ngSrc="https://api-tilegreen.pulslytics.agency/media/images/section1.webp/"
                     class="w-full h-full rounded-2xl sm:rounded-3xl shadow-lg object-cover"
@@ -32,7 +34,7 @@
         </div>
 
         <!-- Mobile Image - Visible only on small screens -->
-        <div class="block md:hidden w-full my-4 px-1">
+        <div class="block md:hidden w-full my-4 px-1"  duration="1s">
             <img ngSrc="https://api-tilegreen.pulslytics.agency/media/images/section1.webp/"
                 class="w-full h-auto rounded-2xl shadow-lg object-cover" alt="Machine learning technology for recycling"
                 loading="lazy" fetchpriority="high" sizes="100vw" width="800" height="600" />
@@ -40,31 +42,33 @@
     </div>
 
 </section>
-
+<!-- rubberBandAnimation -->
 
 <!-- Green Building Material Tech Leader Section -->
-<section class="py-8 sm:py-10 md:py-12 lg:py-16">
+<section class="py-8 sm:py-10 md:py-12 lg:py-16" >
 
     <div class="mx-auto">
         <!-- Heading -->
-        <div
-            class="text-center pb-4 justify-start text-[#010D26] text-2xl sm:text-4xl md:text-4xl lg:text-6xl text-tile-bold">
+        <div class="text-center pb-4 justify-start text-[#010D26] text-2xl sm:text-4xl md:text-4xl lg:text-6xl text-tile-bold"
+             duration="1.2s">
             Green Building
             Material
             Tech
             Leader</div>
 
         <!-- Images Grid with improved mobile layout -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-2 lg:gap-6 items-center md:px-0">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-2 lg:gap-6 items-center md:px-0" animateOnScroll #GreenBuilding="animateOnScroll" [@shakeAnimation]="GreenBuilding.isInView">
             <!-- Left Image -->
-            <div class="transform transition duration-500 w-full">
+            <div class="transform transition duration-500 w-full"
+                duration="0.8s">
                 <img ngSrc="https://api-tilegreen.pulslytics.agency/media/images/section2.1.webp/"
                     class="rounded-xl w-full h-[250px] md:h-auto object-cover shadow-md"
                     alt="Machine processing plastic" width="600" height="400" priority>
             </div>
 
             <!-- Right Image -->
-            <div class="transform transition duration-500 w-full">
+            <div class="transform transition duration-500 w-full"  duration="0.8s"
+                delay="0.2s">
                 <img ngSrc="https://api-tilegreen.pulslytics.agency/media/images/section2.2.webp/"
                     class="rounded-xl w-full h-[250px] md:h-auto object-cover shadow-md" alt="Recycling facility"
                     width="600" height="400">
@@ -72,8 +76,8 @@
         </div>
 
         <!-- Description -->
-        <div
-            class=" self-stretch text-center justify-start text-[#4B5563] text-base sm:text-xl md:text-2xl text-tile-inter py-8">
+        <div class="self-stretch text-center justify-start text-[#4B5563] text-base sm:text-xl md:text-2xl text-tile-inter py-8"
+             duration="1s" delay="0.3s">
             <span>We are a
                 tech
                 company with patented technology that uses machine learning to identify plastics and transform them
@@ -84,10 +88,10 @@
 </section>
 
 <!-- What we offer section -->
-<section class="py-8 sm:py-10 md:py-12 lg:py-16" >
+<section class="py-8 sm:py-10 md:py-12 lg:py-16">
     <div>
-        <app-section-header title="What we offer?" />
-        <div class="max-w-6xl">
+        <app-section-header title="What we offer?"  />
+        <div class="max-w-6xl" >
             <h1 class="text-tile-regular text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#010D26]">
                 <span class="block">
                     We Integrate <b>Material Science</b> and <br class="hidden md:block">
@@ -96,14 +100,14 @@
             </h1>
         </div>
         <div class="flex flex-col lg:flex-row gap-4 md:gap-6 lg:gap-8 items-start">
-            <div class="w-full lg:w-1/2">
+            <div class="w-full lg:w-1/2"  duration="0.9s">
                 <img ngSrc="https://api-tilegreen.pulslytics.agency/media/images/section3.webp/" width="600"
                     height="600"
                     alt="TileGreen's recycling facility with workers monitoring machines processing plastic waste"
                     class="w-full h-auto rounded-lg shadow-lg object-cover max-h-[400px]" loading="lazy" />
             </div>
 
-            <div class="w-full lg:w-1/2">
+            <div class="w-full lg:w-1/2"  duration="0.9s" delay="0.2s">
                 <div class="text-tile-inter text-[#4B5563] text-lg sm:text-xl md:text-2xl">
                     <span>
                         By delivering a robust, adaptive system that ensures high-quality outputs,

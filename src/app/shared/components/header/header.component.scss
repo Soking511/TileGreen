@@ -11,10 +11,11 @@
     content: "";
     position: absolute;
     width: 0;
-    height: 2px;
+    height: 1px;
     bottom: -2px;
-    left: 0;
-    transition: width 0.3s ease, background-color 0.3s ease;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.5s cubic-bezier(0.19, 1, 0.22, 1), background-color 0.3s ease;
     background-color: transparent;
   }
 
@@ -24,7 +25,7 @@
     opacity: 0.7;
   }
 
-  transition: color 0.3s ease, transform 0.2s ease;
+  transition: color 0.4s cubic-bezier(0.19, 1, 0.22, 1), transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
 
   &:hover {
     color: #0460d9;
@@ -47,9 +48,9 @@
   }
 
   &.contact:hover {
-    color: #e57200;
+    color: #0460d9;
     &::after {
-      background-color: #e57200;
+      background-color: #0460d9;
     }
   }
 
@@ -60,19 +61,21 @@
 
 .contact-button {
   font-weight: 500;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
   position: relative;
   overflow: hidden;
   transform: translateZ(0);
   backface-visibility: hidden;
 
   &:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(4, 96, 217, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(4, 96, 217, 0.15);
   }
 
   &:active {
     transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(4, 96, 217, 0.1);
+    transition: all 0.2s cubic-bezier(0.19, 1, 0.22, 1);
   }
 }
 
@@ -91,19 +94,19 @@
 
 /* Mobile menu specific styles */
 .mobile-menu-item {
-  transition: all 0.3s ease;
-  border-left: 3px solid transparent;
+  transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  border-left: 2px solid transparent;
   background-color: transparent;
 
   &:hover,
   &:focus {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.07);
     border-left-color: #0460d9;
     padding-left: 1.25rem;
   }
 
   &.mobile-active-link {
-    background-color: rgba(255, 255, 255, 0.15);
+    background-color: rgba(255, 255, 255, 0.1);
     border-left-color: #0460d9;
     padding-left: 1.25rem;
   }
