@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { LogosComponent } from "../../../shared/components/logos/logos.component";
 import { ArticleService } from '../../../../services/article.service';
 import { trigger, state, style, transition, useAnimation } from '@angular/animations';
-import { bounceInAnimation, fadeInLeftAnimation, fadeInRightAnimation } from '../../../../services/site-animations.service';
+import { luxuryFadeIn } from '../../../../services/site-animations.service';
 import { AnimateOnScrollDirective } from '../../../shared/directives/animate-on-scroll.directive';
 
 @Component({
@@ -11,20 +11,10 @@ import { AnimateOnScrollDirective } from '../../../shared/directives/animate-on-
   templateUrl: './second-section.component.html',
   styleUrls: ['./second-section.component.scss'],
   animations: [
-    trigger('fadeInRightAnimation', [
+    trigger('luxuryFadeIn', [
       state('*', style({ visibility: 'hidden' })),
       state('true', style({ visibility: 'visible' })),
-      transition('* => true', useAnimation(fadeInRightAnimation)),
-    ]),
-    trigger('fadeInLeftAnimation', [
-      state('*', style({ visibility: 'hidden' })),
-      state('true', style({ visibility: 'visible' })),
-      transition('* => true', useAnimation(fadeInLeftAnimation)),
-    ]),
-    trigger('bounceInAnimation', [
-      state('*', style({ visibility: 'hidden' })),
-      state('true', style({ visibility: 'visible' })),
-      transition('* => true', useAnimation(bounceInAnimation)),
+      transition('* => true', useAnimation(luxuryFadeIn)),
     ]),
   ],
 })

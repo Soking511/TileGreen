@@ -10,9 +10,10 @@ import {
   bounceInAnimation,
   fadeInLeftAnimation,
   fadeInRightAnimation,
-  elegantFadeInAnimation,
+  refinedZoomIn,
   subtleRevealAnimation,
   softPulse,
+  subtleSlideUp,
 } from '../../../../services/site-animations.service';
 import { SectionHeaderComponent } from '../../../shared/components/section-header/section-header.component';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
@@ -38,12 +39,17 @@ import { FeatureShowcaseSectionComponent } from '../feature-showcase-section/fea
       state('true', style({ visibility: 'visible' })),
       transition('* => true', useAnimation(bounceInAnimation)),
     ]),
-    trigger('elegantFadeInAnimation', [
+    trigger('subtleSlideUp', [
+      state('*', style({ visibility: 'hidden' })),
+      state('true', style({ visibility: 'visible' })),
+      transition('* => true', useAnimation(subtleSlideUp)),
+    ]),
+    trigger('refinedZoomIn', [
       state('*', style({ visibility: 'hidden' })),
       state('true', style({ visibility: 'visible' })),
       transition(
         '* => true',
-        useAnimation(elegantFadeInAnimation)
+        useAnimation(refinedZoomIn)
       ),
     ]),
     trigger('softPulse', [

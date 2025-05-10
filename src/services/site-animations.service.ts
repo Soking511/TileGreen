@@ -39,7 +39,7 @@ export const luxuryFadeIn: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '0.9s',
+      duration: '1.5s',
       delay: '0ms',
       distance: '15px',
     },
@@ -174,7 +174,7 @@ export const refinedZoomIn: AnimationReferenceMetadata = animation(
   ],
   {
     params: {
-      duration: '0.9s',
+      duration: '1.5s',
       delay: '0s',
     },
   }

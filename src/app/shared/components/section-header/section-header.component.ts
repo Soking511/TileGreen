@@ -7,7 +7,7 @@ import {
   useAnimation,
 } from '@angular/animations';
 import { AnimateOnScrollDirective } from '../../directives/animate-on-scroll.directive';
-import { bounceInAnimation } from '../../../../services/site-animations.service';
+import { subtleRevealAnimation } from '../../../../services/site-animations.service';
 
 @Component({
   selector: 'app-section-header',
@@ -16,10 +16,15 @@ import { bounceInAnimation } from '../../../../services/site-animations.service'
   templateUrl: './section-header.component.html',
   styleUrl: './section-header.component.scss',
   animations: [
-    trigger('bounceInAnimation', [
+    trigger('subtleReveal', [
       state('*', style({ visibility: 'hidden' })),
       state('true', style({ visibility: 'visible' })),
-      transition('* => true', useAnimation(bounceInAnimation)),
+      transition(
+        '* => true',
+        useAnimation(subtleRevealAnimation, {
+          params: { duration: '0.7s', delay: '0.2s' },
+        })
+      ),
     ]),
   ],
 })
