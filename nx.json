@@ -1,14 +1,5 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "nx/tasks-runners/default",
-      "options": {
-        "cacheableOperations": ["build", "test"],
-        "accessToken": "MDUyMTdmYmUtMWI5ZS00OTdkLThhOTUtZmQ0Zjc1MzU0YjBmfHJlYWQtd3JpdGU="
-      }
-    }
-  },
 
   "targetDefaults": {
     "build": {
@@ -30,6 +21,5 @@
       "!{projectRoot}/tsconfig.spec.json",
       "!{projectRoot}/**/*.spec.[jt]s"
     ]
-  },
-  "nxCloudId": "681c3620b6f96637e02b7552"
+  }
 }
