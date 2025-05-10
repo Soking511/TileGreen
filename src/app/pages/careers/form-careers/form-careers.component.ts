@@ -6,7 +6,11 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { ApiService } from '../../../../services/api.service';
+import { FileUploadService } from '../../../../services/file-upload.service';
+import {
+  CareersService,
+  JobApplicationResponse,
+} from '../../../../services/careers.service';
 
 @Component({
   selector: 'app-form-careers',
@@ -46,79 +50,68 @@ export class FormCareersComponent {
     ]),
     email: new FormControl('', [Validators.required, Validators.email]),
   });
-
   resume: File | null = null;
   fileUploaded: boolean = false;
-
-  constructor(private apiService: ApiService) {}
-
+  fileErrorMessage: string | undefined;
+  constructor(
+    private fileUploadService: FileUploadService,
+    private careersService: CareersService
+  ) {}
   handleFileInput(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      this.validateAndProcessFile(input.files[0]);
-    }
+    const result = this.fileUploadService.processFileInput(event);
+    this.processFileResult(result);
   }
 
   handleFileDrop(event: DragEvent): void {
     event.preventDefault();
     event.stopPropagation();
 
-    if (event.dataTransfer?.files && event.dataTransfer.files.length > 0) {
-      this.validateAndProcessFile(event.dataTransfer.files[0]);
-    }
+    const result = this.fileUploadService.processFileDrop(event);
+    this.processFileResult(result);
   }
 
-  private validateAndProcessFile(file: File): void {
-    // Check file type
-    if (file.type !== 'application/pdf') {
-      alert('Please upload a PDF file');
-      return;
+  private processFileResult(result: {
+    file: File | null;
+    errorMessage?: string;
+  }): void {
+    if (result.file) {
+      this.resume = result.file;
+      this.fileUploaded = true;
+      this.fileErrorMessage = undefined;
+    } else if (result.errorMessage) {
+      this.fileErrorMessage = result.errorMessage;
+      this.fileUploaded = false;
+      this.resume = null;
+      alert(result.errorMessage);
     }
-
-    // Check file size (5MB limit)
-    const maxSize = 5 * 1024 * 1024; // 5MB in bytes
-    if (file.size > maxSize) {
-      alert('File size must be less than 5MB');
-      return;
-    }
-
-    this.resume = file;
-    this.fileUploaded = true;
   }
-
   onSubmit(): void {
     this.formSubmitted = true;
 
-    if (this.positionForm.valid && this.resume) {
+    // Use the careers service to validate the form
+    const validation = this.careersService.validateJobApplication(
+      this.positionForm,
+      this.resume
+    );
+
+    if (validation.valid) {
       this.formSubmitting = true;
       this.formSubmitSuccess = false;
-      this.formSubmitError = false;
-
-      const formData = new FormData();
-
-      Object.keys(this.positionForm.controls).forEach((key) => {
-        formData.append(key, this.positionForm.get(key)?.value);
-      });
-
-      if (this.resume) {
-        formData.append('resume', this.resume, this.resume.name);
-      }
-
-      this.apiService.postFormData('/ApplyJob', formData).subscribe(
-        (response) => {
-          console.log('Form submitted successfully', response);
-          this.formSubmitting = false;
-          this.formSubmitSuccess = true;
-          this.scrollToElement('.success-message');
-          this.resetForm();
-        },
-        (error) => {
-          console.error('Error submitting form', error);
-          this.formSubmitting = false;
-          this.formSubmitError = true;
-          this.scrollToElement('.error-message');
-        }
-      );
+      this.formSubmitError = false; // Use the careers service to submit the form
+      this.careersService
+        .submitJobApplication(this.positionForm, this.resume)
+        .subscribe({
+          next: (response: JobApplicationResponse) => {
+            this.formSubmitSuccess = true;
+            this.scrollToElement('.success-message');
+            this.resetForm();
+          },
+          error: (error: any) => {
+            this.formSubmitting = false;
+            this.formSubmitError = true;
+            this.scrollToElement('.error-message');
+          },
+        });
     } else {
       this.markFormGroupTouched();
       this.scrollToElement('.text-red-500');
@@ -145,11 +138,12 @@ export class FormCareersComponent {
       this.positionForm.get(key)?.markAsTouched();
     });
   }
-
   // Helper method to reset the form
   private resetForm(): void {
     this.positionForm.reset();
     this.resume = null;
+    this.formSubmitting = false;
     this.fileUploaded = false;
+    this.fileErrorMessage = undefined;
   }
 }

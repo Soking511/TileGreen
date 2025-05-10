@@ -2,7 +2,7 @@
   width: 100%;
   padding: 2rem 0;
   overflow: hidden;
-  position: relative;
+  position: relative; /* Ensure proper positioning */
 }
 
 .logo-carousel {
@@ -10,57 +10,54 @@
   width: 100%;
   display: flex;
   align-items: center;
-  z-index: 1;
+  z-index: 1; /* Ensure visibility */
 }
 
 .logo-track {
   display: flex;
   white-space: nowrap;
-  width: max-content !important;
-  animation: scroll-logos 45s linear infinite; /* Slowed down for more elegant movement */
+  width: max-content !important; /* Ensure track has proper width */
+  animation: scroll-logos 30s linear infinite;
   animation-play-state: running !important;
   will-change: transform;
-  gap: 0;
+  gap: 0; /* No gap between logo groups */
 
   .logo-group {
     display: inline-flex;
     flex-shrink: 0;
     align-items: center;
-    gap: 0;
+    gap: 0; /* No gap between logos */
   }
 }
 
-// Subtle slowdown on hover for a premium feel
+// Pause only on hover if needed
 .logo-carousel:hover .logo-track {
-  animation-play-state: running;
-  animation-duration: 90s; /* Slows down on hover rather than stopping completely */
+  animation-play-state: paused;
 }
 
 .logo-item {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 2rem; /* Increased spacing for elegant presentation */
+  padding: 0 1.5rem;
   flex-shrink: 0;
 }
 
 .logo {
-  height: 5rem;
-  max-width: 14rem;
+  height: 5rem; /* Increased from 3.5rem */
+  max-width: 14rem; /* Increased from 10rem */
   object-fit: contain;
-  opacity: 0.6; /* More subtle starting opacity */
-  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1); /* Luxury easing curve */
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
   filter: grayscale(100%);
-  transform: scale(0.95);
 
   &:hover {
     opacity: 1;
     filter: grayscale(0%);
-    transform: scale(1);
   }
 
   @media (min-width: 768px) {
-    height: 6rem;
+    height: 6rem; /* Even larger on desktop */
     max-width: 16rem;
   }
 }
@@ -76,27 +73,27 @@
   position: absolute;
   top: 0;
   height: 100%;
-  width: 8rem; /* Wider gradient for smoother transition */
+  width: 5rem;
   pointer-events: none;
   z-index: 10;
 
   @media (min-width: 640px) {
-    width: 10rem;
+    width: 7.5rem;
   }
 
   @media (min-width: 768px) {
-    width: 12rem;
+    width: 10rem;
   }
 }
 
 .fade-left {
   left: 0;
-  background: linear-gradient(to right, white 20%, rgba(255, 255, 255, 0));
+  background: linear-gradient(to right, white, rgba(255, 255, 255, 0));
 }
 
 .fade-right {
   right: 0;
-  background: linear-gradient(to left, white 20%, rgba(255, 255, 255, 0));
+  background: linear-gradient(to left, white, rgba(255, 255, 255, 0));
 }
 
 @keyframes scroll-logos {
@@ -104,7 +101,9 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(
+      -50%
+    ); /* Move exactly half the content for perfect loop */
   }
 }
 

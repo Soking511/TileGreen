@@ -4,7 +4,8 @@
 
     <!-- Background image with SEO-optimized lazy loading -->
     <div class="w-full h-full absolute inset-0 transition-all duration-1000 ease-out">
-        <img [ngSrc]="caseStudies[currentIndex].imagePath" class="w-full h-full object-cover object-center transform transition-transform duration-1000 ease-out hover:scale-105"
+        <img [ngSrc]="caseStudies[currentIndex].imagePath"
+            class="w-full h-full object-cover object-center transform transition-transform duration-1000 ease-out hover:scale-105"
             [alt]="caseStudies[currentIndex].company + ' case study'" width="1920" height="1080" priority>
         <div class="absolute inset-0 bg-gradient-to-t from-[#010D26] via-[#010D2680] to-[#010D2600]"></div>
     </div>
@@ -19,13 +20,15 @@
             <div class="w-full md:w-1/2 lg:w-[45%] flex flex-col justify-start items-start gap-1 xs:gap-2">
 
                 <!-- Current company name -->
-                <div class="min-h-[3rem] xs:min-h-[4rem] sm:min-h-[5rem] opacity-0 animate-fadeIn" style="animation-delay: 0.2s; animation-duration: 0.7s; animation-fill-mode: forwards;">
+                <div class="min-h-[3rem] xs:min-h-[4rem] sm:min-h-[5rem] opacity-0 animate-fadeIn"
+                    style="animation-delay: 0.2s; animation-duration: 0.7s; animation-fill-mode: forwards;">
                     <img [src]="caseStudies[currentIndex].logo" [alt]="caseStudies[currentIndex].company + ' logo'"
                         width="200" height="80">
                 </div>
 
                 <!-- Current project title -->
-                <div class="min-h-[1.5rem] xs:min-h-[2rem] opacity-0 animate-fadeIn" style="animation-delay: 0.4s; animation-duration: 0.7s; animation-fill-mode: forwards;">
+                <div class="min-h-[1.5rem] xs:min-h-[2rem] opacity-0 animate-fadeIn"
+                    style="animation-delay: 0.4s; animation-duration: 0.7s; animation-fill-mode: forwards;">
                     <div
                         class="text-white text-base xs:text-lg sm:text-xl md:text-2xl font-normal font-['Inter_Display'] transition-all duration-500">
                         {{caseStudies[currentIndex].title}}
@@ -34,7 +37,8 @@
             </div>
 
             <!-- Right column with description -->
-            <div class="w-full md:w-1/2 lg:w-[40%] min-h-[5rem] xs:min-h-[6rem] sm:min-h-[8rem] mt-3 xs:mt-4 md:mt-0 opacity-0 animate-fadeIn" style="animation-delay: 0.6s; animation-duration: 0.7s; animation-fill-mode: forwards;">
+            <div class="w-full md:w-1/2 lg:w-[40%] min-h-[5rem] xs:min-h-[6rem] sm:min-h-[8rem] mt-3 xs:mt-4 md:mt-0 opacity-0 animate-fadeIn"
+                style="animation-delay: 0.6s; animation-duration: 0.7s; animation-fill-mode: forwards;">
                 <div
                     class="text-white text-sm xs:text-base sm:text-xl md:text-2xl font-normal font-['Inter_Display'] transition-all duration-500">
                     {{caseStudies[currentIndex].description}}
@@ -43,7 +47,8 @@
         </div>
 
         <!-- Bottom pagination indicator -->
-        <div class="flex justify-center items-center w-full mt-4 xs:mt-6 opacity-0 animate-fadeIn" style="animation-delay: 0.8s; animation-duration: 0.7s; animation-fill-mode: forwards;">
+        <div class="flex justify-center items-center w-full mt-4 xs:mt-6 opacity-0 animate-fadeIn"
+            style="animation-delay: 0.8s; animation-duration: 0.7s; animation-fill-mode: forwards;">
             <div class="text-white text-base xs:text-lg sm:text-xl md:text-2xl font-normal font-['Inter_Display']">
                 {{currentIndex + 1}} / <span class="text-stone-300">{{totalCaseStudies}}</span>
             </div>

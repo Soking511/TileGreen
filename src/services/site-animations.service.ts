@@ -465,7 +465,7 @@ export const cardReveal: AnimationReferenceMetadata = animation(
       visibility: 'hidden',
       opacity: 0,
       transform: 'translateY(20px) scale(0.98)',
-      boxShadow: '0 0 0 rgba(0, 0, 0, 0)'
+      boxShadow: '0 0 0 rgba(0, 0, 0, 0)',
     }),
     animate(
       '{{ duration }} {{ delay }}',
@@ -493,7 +493,7 @@ export const cardReveal: AnimationReferenceMetadata = animation(
       duration: '1s',
       delay: '0s',
       shadowSize: '15px',
-      blurSize: '30px'
+      blurSize: '30px',
     },
   }
 );
