@@ -15,10 +15,10 @@ import {
   softPulse,
 } from '../../../../services/site-animations.service';
 import { SectionHeaderComponent } from '../../../shared/components/section-header/section-header.component';
-import { FeatureShowcaseSectionComponent } from '../../feature-showcase-section/feature-showcase-section.component';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
 import { AnimateOnScrollDirective } from '../../../shared/directives/animate-on-scroll.directive';
 import { NgOptimizedImage } from '@angular/common';
+import { FeatureShowcaseSectionComponent } from '../feature-showcase-section/feature-showcase-section.component';
 
 @Component({
   selector: 'app-first-section',

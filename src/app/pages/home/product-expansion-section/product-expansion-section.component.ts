@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { ProductCardComponent } from '../../shared/components/product-card/product-card.component';
+import { ProductCardComponent } from '../../../shared/components/product-card/product-card.component';
 
 interface ProductCard {
   imageUrl: string;

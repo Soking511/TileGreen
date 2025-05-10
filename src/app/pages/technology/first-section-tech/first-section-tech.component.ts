@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FeatureShowcaseSectionComponent } from "../../feature-showcase-section/feature-showcase-section.component";
 import { NgOptimizedImage } from '@angular/common';
+import { FeatureShowcaseSectionComponent } from '../../home/feature-showcase-section/feature-showcase-section.component';
 
 @Component({
   selector: 'app-first-section-tech',
