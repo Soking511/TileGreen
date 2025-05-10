@@ -235,6 +235,7 @@ export class ContactUsPopComponent {
             this.formSubmitting = false;
             this.formSubmitted = true;
             this.formSubmitSuccess = true;
+            this.close();
             this.contactForm.reset();
             this.swwetAleart.success(
               'Success',
