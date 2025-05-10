@@ -107,10 +107,12 @@ export class FormCareersComponent {
             this.resetForm();
           },
           error: (error: any) => {
-            this.formSubmitting = false;
             this.formSubmitError = true;
             this.scrollToElement('.error-message');
           },
+          complete: () => {
+            this.formSubmitting = false;
+          }
         });
     } else {
       this.markFormGroupTouched();
