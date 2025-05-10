@@ -33,12 +33,13 @@ export const appConfig: ApplicationConfig = {
       }),
       // withPreloading(PreloadAllModules)
       withPreloading(SelectivePreloadingStrategy) // Only preload marked routes
-    ),    provideHttpClient(withInterceptorsFromDi()),
+    ),
+    provideHttpClient(withInterceptorsFromDi()),
     provideAnimations(),
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoadingInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
   ],
 };

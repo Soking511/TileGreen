@@ -5,6 +5,8 @@ import { Title, Meta } from '@angular/platform-browser';
   providedIn: 'root',
 })
 export class SeoService {
+  private baseUrl = 'https://tilegreen.org';
+
   constructor(private title: Title, private meta: Meta) {}
 
   /**
@@ -17,6 +19,7 @@ export class SeoService {
     ogType = 'website',
     ogUrl = '',
     ogImage = 'https://api-tilegreen.pulslytics.agency/media/assets/images/cover.webp/',
+    canonicalUrl = '',
   }: {
     title?: string;
     description?: string;
@@ -24,6 +27,7 @@ export class SeoService {
     ogType?: string;
     ogUrl?: string;
     ogImage?: string;
+    canonicalUrl?: string;
   }): void {
     // Update title
     if (title) {
@@ -60,5 +64,29 @@ export class SeoService {
       this.meta.updateTag({ property: 'og:image', content: ogImage });
       this.meta.updateTag({ property: 'twitter:image', content: ogImage });
     }
+
+    // Update canonical URL
+    this.updateCanonicalUrl(canonicalUrl || ogUrl);
+  }
+
+  /**
+   * Updates the canonical URL for the current page
+   * @param path - The path segment of the URL (e.g., '/about', '/technology')
+   */
+  updateCanonicalUrl(path: string): void {
+    // Remove any existing canonical links
+    const existingCanonicalElement = document.querySelector('link[rel="canonical"]');
+    if (existingCanonicalElement) {
+      existingCanonicalElement.remove();
+    }
+
+    // Create a full URL - if path is already a full URL, use it directly
+    const fullUrl = path.startsWith('http') ? path : `${this.baseUrl}${path.startsWith('/') ? '' : '/'}${path}`;
+    
+    // Create and add the canonical link
+    const canonicalLink = document.createElement('link');
+    canonicalLink.setAttribute('rel', 'canonical');
+    canonicalLink.setAttribute('href', fullUrl);
+    document.head.appendChild(canonicalLink);
   }
 }
