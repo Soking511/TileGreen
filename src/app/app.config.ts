@@ -10,9 +10,11 @@ import { routes } from './app.routes';
 import {
   provideHttpClient,
   withInterceptorsFromDi,
+  HTTP_INTERCEPTORS,
 } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { LoadingInterceptor } from '../services/loading.interceptor';
 
 @Injectable({ providedIn: 'root' })
 export class SelectivePreloadingStrategy implements PreloadingStrategy {
@@ -31,9 +33,12 @@ export const appConfig: ApplicationConfig = {
       }),
       // withPreloading(PreloadAllModules)
       withPreloading(SelectivePreloadingStrategy) // Only preload marked routes
-    ),
-    provideHttpClient(withInterceptorsFromDi()),
+    ),    provideHttpClient(withInterceptorsFromDi()),
     provideAnimations(),
-
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true
+    }
   ],
 };

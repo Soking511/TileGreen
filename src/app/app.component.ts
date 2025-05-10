@@ -7,7 +7,7 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
+import { Router, NavigationEnd, RouterOutlet, NavigationStart, NavigationCancel, NavigationError } from '@angular/router';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { ContactUsPopComponent } from './shared/components/contact-us-pop/contact-us-pop.component';
 import { ContactPopupService } from '../services/contact-popup.service';
@@ -15,11 +15,13 @@ import { SeoService } from '../services/seo.service';
 import { Subscription, filter } from 'rxjs';
 import { HeaderConfigService } from '../services/header-config.service';
 import { PerformanceService } from '../services/performance.service';
+import { LoadingComponent } from "./shared/components/loading/loading.component";
+import { LoadingService } from '../services/loading.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ContactUsPopComponent, CommonModule, HeaderComponent],
+  imports: [RouterOutlet, ContactUsPopComponent, CommonModule, HeaderComponent, LoadingComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -28,10 +30,10 @@ export class AppComponent implements OnInit, OnDestroy {
   // Injected services using the new inject pattern
   private readonly router = inject(Router);
   private readonly contactPopupService = inject(ContactPopupService);
-  private readonly seoService = inject(SeoService);
-  private readonly headerConfigService = inject(HeaderConfigService);
+  private readonly seoService = inject(SeoService);  private readonly headerConfigService = inject(HeaderConfigService);
   private readonly performanceService = inject(PerformanceService);
   private readonly platformId = inject(PLATFORM_ID);
+  private readonly loadingService = inject(LoadingService);
 
   // Public properties accessed by the template
   protected isContactPopupOpen = false;
@@ -67,15 +69,28 @@ export class AppComponent implements OnInit, OnDestroy {
       })
     );
   }
-
   private initRouteChangeListener(): void {
-    // Handle route loading state
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe((event: any) => {
-        this.updateHeaderConfig(event.url);
-        this.isRouteLoading = false;
-      });
+    // Handle all navigation events for loading indicator
+    this.subscription.add(
+      this.router.events.subscribe((event) => {
+        if (event instanceof NavigationStart) {
+          // Show loading indicator when navigation starts
+          this.isRouteLoading = true;
+        } else if (
+          event instanceof NavigationEnd ||
+          event instanceof NavigationCancel ||
+          event instanceof NavigationError
+        ) {
+          // Hide loading indicator when navigation ends (success, cancel, or error)
+          this.isRouteLoading = false;
+          
+          if (event instanceof NavigationEnd) {
+            // Update header config when navigation completes successfully
+            this.updateHeaderConfig(event.url);
+          }
+        }
+      })
+    );
 
     // Set initial configuration based on current route
     this.updateHeaderConfig(this.router.url);
