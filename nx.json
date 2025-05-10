@@ -1,6 +1,13 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "test"]
+      }
+    }
+  },
   "targetDefaults": {
     "build": {
       "cache": true,
@@ -12,8 +19,7 @@
       "inputs": ["default", "^production"]
     }
   },
-  "defaultBase": "master",
-  "namedInputs": {
+  "defaultBase": "master",  "namedInputs": {
     "sharedGlobals": [],
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
@@ -21,5 +27,13 @@
       "!{projectRoot}/tsconfig.spec.json",
       "!{projectRoot}/**/*.spec.[jt]s"
     ]
-  }
+  },
+  "plugins": [
+    {
+      "plugin": "@nx/angular/plugin",
+      "options": {
+        "skipTypeCheck": true
+      }
+    }
+  ]
 }
