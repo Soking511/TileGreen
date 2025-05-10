@@ -157,7 +157,6 @@ export class CareersComponent implements OnInit {
         .submitJobApplication(this.positionForm, this.resume)
         .subscribe({
           next: (response: JobApplicationResponse) => {
-            console.log('Form submitted successfully', response);
             this.formSubmitting = false;
             this.formSubmitSuccess = true;
 
@@ -165,7 +164,6 @@ export class CareersComponent implements OnInit {
             setTimeout(() => this.handleFormSuccess(), 2000);
           },
           error: (error: any) => {
-            console.error('Error submitting form', error);
             this.formSubmitting = false;
             this.formSubmitError = true;
           },

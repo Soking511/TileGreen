@@ -176,12 +176,10 @@
 
                     <div class="mt-4 w-full p-4 rounded-xl bg-black/5 border border-black border-dashed"
                         [ngClass]="{'border-red-500': !fileUploaded && formSubmitted, 'border-green-500': fileUploaded}"
-                        (dragover)="$event.preventDefault()"
-                        (drop)="handleFileDrop($event)">
+                        (dragover)="$event.preventDefault()" (drop)="handleFileDrop($event)">
                         <div class="flex flex-col items-center gap-3">
                             <svg width="40" height="40" viewBox="0 0 76 76" fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                                [class.text-green-600]="fileUploaded"
+                                xmlns="http://www.w3.org/2000/svg" [class.text-green-600]="fileUploaded"
                                 [class.text-[#0460D9]]="!fileUploaded">
                                 <path
                                     d="M38 69.6079V41.4829M38 41.4829L48.9375 52.4204M38 41.4829L27.0625 52.4204M63 55.8798C67.6687 54.0517 72.375 49.886 72.375 41.4829C72.375 28.9829 61.9594 25.8579 56.75 25.8579C56.75 19.6079 56.75 7.10791 38 7.10791C19.25 7.10791 19.25 19.6079 19.25 25.8579C14.0406 25.8579 3.625 28.9829 3.625 41.4829C3.625 49.886 8.33125 54.0517 13 55.8798"
@@ -212,8 +210,8 @@
 
                             <div class="w-full flex justify-center">
                                 <label for="resume-upload" class="cursor-pointer">
-                                    <input #fileInput type="file" id="resume-upload" class="hidden" accept="application/pdf"
-                                        (change)="handleFileInput($event)">
+                                    <input #fileInput type="file" id="resume-upload" class="hidden"
+                                        accept="application/pdf" (change)="handleFileInput($event)">
                                     <span
                                         class="text-tile-inter inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#0460d9] hover:bg-[#0353bd] transition-colors duration-200 text-white font-semibold text-sm">
                                         <svg xmlns="https://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20"
@@ -225,38 +223,6 @@
                                         {{ fileUploaded ? 'Replace File' : 'Upload Resume' }}
                                     </span>
                                 </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Form Status Messages -->
-                    <div *ngIf="formSubmitted" class="mt-4 w-full">
-                        <div *ngIf="formSubmitSuccess"
-                            class="p-3 bg-green-100 text-green-800 rounded-lg flex items-center success-message">
-                            <svg xmlns="https://www.w3.org/2000/svg" class="h-5 w-5 mr-2 flex-shrink-0" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
-                            </svg>
-                            <div>
-                                <h3 class="font-semibold text-sm">Application Submitted!</h3>
-                                <p class="text-xs">Thank you for your interest in joining our team. We will review your
-                                    application and contact
-                                    you soon.</p>
-                            </div>
-                        </div>
-                        <div *ngIf="formSubmitError"
-                            class="p-3 bg-red-100 text-red-800 rounded-lg flex items-center error-message">
-                            <svg xmlns="https://www.w3.org/2000/svg" class="h-5 w-5 mr-2 flex-shrink-0" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                            </svg>
-                            <div>
-                                <h3 class="font-semibold text-sm">Submission Error</h3>
-                                <p class="text-xs">There was an error submitting your application. Please try again
-                                    later or contact us
-                                    directly.</p>
                             </div>
                         </div>
                     </div>

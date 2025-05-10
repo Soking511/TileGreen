@@ -59,7 +59,6 @@ export class FooterHomeComponent implements OnInit {
         .post('/NewsletterFooter', this.newLetterForm.value)
         .subscribe(
           (response) => {
-            console.log('Form submitted successfully', response);
             this.formSubmitting = false;
             this.formSubmitted = true;
             this.formSubmitSuccess = true;
@@ -72,7 +71,6 @@ export class FooterHomeComponent implements OnInit {
             }, 5000);
           },
           (error) => {
-            console.error('Error submitting form', error);
             this.formSubmitting = false;
             this.formSubmitted = true;
             this.formSubmitError = true;

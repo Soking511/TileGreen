@@ -14,7 +14,10 @@ export interface JobApplicationResponse {
   providedIn: 'root',
 })
 export class CareersService {
-  constructor(private apiService: ApiService, private sweetAlertService:SweetAlertService) {}
+  constructor(
+    private apiService: ApiService,
+    private sweetAlertService: SweetAlertService
+  ) {}
 
   submitJobApplication(
     formGroup: FormGroup,
@@ -40,11 +43,14 @@ export class CareersService {
     // Submit the form data to the API
     return this.apiService.postFormData('/ApplyJob', formData).pipe(
       tap((response) => {
-            this.sweetAlertService.success('title', 'Form Submitted Successfully');
+        this.sweetAlertService.success(
+          'Success',
+          'Form Submitted Successfully'
+        );
         return response;
       }),
       catchError((error) => {
-            this.sweetAlertService.error('title', 'Error submitting job application');
+        this.sweetAlertService.error('Error', 'try again later');
         return throwError(() => error);
       })
     );

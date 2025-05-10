@@ -87,7 +87,6 @@ export class SecondSectionLiscenceComponent {
 
       this.apiService.post('/ContactUs', this.contactForm.value).subscribe(
         (response) => {
-          console.log('Form submitted successfully', response);
           this.formSubmitting = false;
           this.formSubmitted = true;
           this.formSubmitSuccess = true;
@@ -97,7 +96,6 @@ export class SecondSectionLiscenceComponent {
           this.contactForm.get('industry')?.setValue('');
         },
         (error) => {
-          console.error('Error submitting form', error);
           this.formSubmitting = false;
           this.formSubmitted = true;
           this.formSubmitError = true;

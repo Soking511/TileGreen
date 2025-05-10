@@ -227,14 +227,12 @@ export class ContactUsPopComponent {
 
       this.apiService.post('/ContactUs', this.contactForm.value).subscribe(
         (response) => {
-          console.log('Form submitted successfully', response);
           this.formSubmitting = false;
           this.formSubmitted = true;
           this.formSubmitSuccess = true;
           this.contactForm.reset();
         },
         (error) => {
-          console.error('Error submitting form', error);
           this.formSubmitting = false;
           this.formSubmitted = true;
           this.formSubmitError = true;

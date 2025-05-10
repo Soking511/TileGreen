@@ -133,35 +133,6 @@
                 </div>
             </div>
 
-            <!-- Form Status Messages -->
-            <div *ngIf="formSubmitted" class="mt-4 sm:mt-6 w-full">
-                <div *ngIf="formSubmitSuccess"
-                    class="p-4 bg-green-100 text-green-800 rounded-lg flex items-center success-message">
-                    <svg xmlns="https://www.w3.org/2000/svg" class="h-6 w-6 mr-2 flex-shrink-0" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <div>
-                        <h3 class="font-semibold">Application Submitted!</h3>
-                        <p>Thank you for your interest in joining our team. We will review your application and contact
-                            you soon.</p>
-                    </div>
-                </div>
-                <div *ngIf="formSubmitError"
-                    class="p-4 bg-red-100 text-red-800 rounded-lg flex items-center error-message">
-                    <svg xmlns="https://www.w3.org/2000/svg" class="h-6 w-6 mr-2 flex-shrink-0" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                    </svg>
-                    <div>
-                        <h3 class="font-semibold">Submission Error</h3>
-                        <p>There was an error submitting your application. Please try again later or contact us
-                            directly.</p>
-                    </div>
-                </div>
-            </div>
-
             <!-- Submit Button -->
             <button type="submit" [disabled]="formSubmitting"
                 class="cursor-pointer relative w-full py-3 sm:py-4 px-4 sm:px-6 bg-[#010d26] hover:bg-[#021f59] transition-colors duration-200 text-white text-lg sm:text-xl rounded-full disabled:bg-gray-400 disabled:cursor-not-allowed text-tile-regular">
