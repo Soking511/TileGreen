@@ -13,6 +13,7 @@ export class SweetAlertService {
       text: message,
       icon: 'success',
       confirmButtonText: 'OK',
+      confirmButtonColor: '#010d26',
     });
   }
 
