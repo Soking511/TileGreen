@@ -7,10 +7,10 @@
 
     <!-- Content Container -->
     <div class="container mx-auto px-4 md:px-16 lg:px-24 relative z-10 flex items-center ">
-        <div class="w-full md:w-3/5 py-8 flex flex-col "
+        <div class="w-full md:w-4/5 py-8 flex flex-col "
             [ngClass]="{'mx-auto text-center items-center': textPosition === 'center', 'items-start': textPosition === 'left' || !textPosition}">
             <!-- Heading -->
-            <h2 class="text-4xl md:text-5xl text-white text-tile-md mb-6" [ngClass]="{
+            <h2 class="text-4xl md:text-5xl w-full text-white text-tile-md mb-6" [ngClass]="{
                     'text-left': textPosition === 'left',
                     'text-center': textPosition === 'center',
                     'text-center md:text-left': !textPosition
