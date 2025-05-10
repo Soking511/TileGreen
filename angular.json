@@ -13,7 +13,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-        "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/tile-green",
             "index": "src/index.html",
@@ -21,9 +21,7 @@
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "allowedCommonJsDependencies": [
-              "sweetalert2"
-            ],
+            "allowedCommonJsDependencies": ["sweetalert2"],
             "assets": [
               {
                 "glob": "**/*",

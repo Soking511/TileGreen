@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ApiService } from '../../../../services/api.service';
+import { ContactPopupService } from '../../../../services/contact-popup.service';
 import {
   FormControl,
   FormGroup,
@@ -15,6 +16,7 @@ import {
   animate,
   state,
 } from '@angular/animations';
+import { SweetAlertService } from '../../../../services/sweet-alert.service';
 
 @Component({
   selector: 'app-contact-us-pop',
@@ -186,19 +188,21 @@ export class ContactUsPopComponent {
     },
   ];
 
-  constructor(private apiService: ApiService) {}
-
+  constructor(
+    private swwetAleart: SweetAlertService,
+    private contactPopupService: ContactPopupService
+  ) {}
   // Open the popup
   open() {
     this.isOpen = true;
-    document.body.classList.add('overflow-hidden');
+    this.contactPopupService.openPopup();
   }
 
   // Close the popup
   close() {
     // Set flag to false after animation completes
     this.isOpen = false;
-    document.body.classList.remove('overflow-hidden');
+    this.contactPopupService.closePopup();
     this.closeEvent.emit();
 
     // Reset form state when closing
@@ -217,7 +221,6 @@ export class ContactUsPopComponent {
       this.close();
     }
   }
-
   onSubmit() {
     if (this.contactForm.valid) {
       this.formSubmitting = true;
@@ -225,19 +228,25 @@ export class ContactUsPopComponent {
       this.formSubmitSuccess = false;
       this.formSubmitError = false;
 
-      this.apiService.post('/ContactUs', this.contactForm.value).subscribe(
-        (response) => {
-          this.formSubmitting = false;
-          this.formSubmitted = true;
-          this.formSubmitSuccess = true;
-          this.contactForm.reset();
-        },
-        (error) => {
-          this.formSubmitting = false;
-          this.formSubmitted = true;
-          this.formSubmitError = true;
-        }
-      );
+      this.contactPopupService
+        .submitContactForm(this.contactForm.value)
+        .subscribe({
+          next: (response) => {
+            this.formSubmitting = false;
+            this.formSubmitted = true;
+            this.formSubmitSuccess = true;
+            this.contactForm.reset();
+            this.swwetAleart.success(
+              'Success',
+              'Thank you! Your form has been submitted successfully. We will contact you soon.'
+            );
+          },
+          error: (error) => {
+            this.formSubmitting = false;
+            this.formSubmitted = true;
+            this.formSubmitError = true;
+          },
+        });
     } else {
       console.log('Form is invalid, marking fields as touched');
       // Improve user experience by marking all fields as touched to show errors
@@ -283,7 +292,6 @@ export class ContactUsPopComponent {
     // }
     // item.isOpen = !item.isOpen;
   }
-
   getKeyBenefit(item: IFaqItem, index: number): string {
     return item.keyBenefits && item.keyBenefits.length > index
       ? item.keyBenefits[index]

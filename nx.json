@@ -19,7 +19,8 @@
       "inputs": ["default", "^production"]
     }
   },
-  "defaultBase": "master",  "namedInputs": {
+  "defaultBase": "master",
+  "namedInputs": {
     "sharedGlobals": [],
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
